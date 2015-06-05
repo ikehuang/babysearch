@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Baby Search - Update Guestbook</title>
+		<link rel="stylesheet" type="text/css" href="/css/index.css">
+	</head>
+
+	<body>
+		<div class="header">
+			<img src="/img/02/logo(white).png" style="margin-top:27.5px;margin-left:2.5%;"></img>
+			<ul style="float:right;margin-right:36px;">
+				<a href=""><li><!-- <?php echo $user->nickname ?> --></li></a>/
+				<a href=""><li>登出</li></a>
+			</ul>
+			<div class="clear"></div>
+		</div>
+		
+		<div style="height:110px;line-height:110px;margin-left:36px;margin-right:36px;background:#P2P2P2;">
+			<font class="grey_text">首頁>管理名單></font>
+			<font class="grey_text"><?php echo $device->name ?>></font>
+			<font class="green_text">通知</font>
+		</div>
+		
+		updateGuestbook <?php echo "serial number is ". $device->serial_number?>
+	</body>
+</html>

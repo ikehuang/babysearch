@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Baby Search - User</title>
+		<link rel="stylesheet" type="text/css" href="/css/index.css">
+	</head>
+
+	<body>
+		<div class="header">
+			<img src="/img/02/logo(white).png" style="margin-top:27.5px;margin-left:2.5%;"></img>
+			<ul style="float:right;margin-right:36px;">
+				<a href=""><li><?php echo $user->nickname ?></li></a>/
+				<a href=""><li>登出</li></a>
+			</ul>
+			<div class="clear"></div>
+		</div>
+		
+		<div id="user_container">
+			<div id="user_pic">
+				<?php 
+				if(!empty($user->photo))
+					echo "<img src='" . $user->photo . "'  style='height:100%;width:100%'></img>";
+				else
+					echo "<img src='/img/06/pic-01.png'  style='height:100%;width:100%'></img>";
+				?>
+			</div>
+			<div id="user_info">
+				<div class="green_text" style="height:50px;margin-left:100px;margin-top:50px;">
+					<?php
+						if(!empty($device_list)) {
+							echo "歡 迎 回 來 ，" . $user->nickname;
+						}
+						else {
+							echo "歡 迎 你 ，" . $user->nickname;
+						}
+					?>
+				</div>
+				<a href="/user/update">
+					<div style="margin-top:25px;margin-bottom:25px;">
+						<div style="background-image:url('/img/06/bu-02.png');width:50px;height:50px;margin-left:25px;margin-right:25px;float:left;">
+							
+						</div>
+						<div class="grey_text" style="height:50px;line-height:50px;float:left;">
+							ABC<?php echo $user->nickname?>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</a>
+			</div>
+			<div class="clear"></div>
+		</div>
+
+		<div id="addDevice_container">
+			<div class="green_text" style="margin:0;padding;height:145px;line-height:145px;margin-left:64px;">管 理 名 單</div>
+			<a href="/device/create">
+				<div style="height:160px;width:160px;margin-left:64px;float:left;">
+					<img src="/img/06/bu-01.png" style="height:100%;width:100%"></img>
+				</div>
+			</a>
+			<div class="grey_text" style="height:160px;margin-left:40px;margin-right:64px;line-height:160px;font-size:50px;float:left;">
+				<?php
+					if(!empty($device_list)) {
+	
+						echo "新增註册商品";
+	
+					}
+					else {
+	
+						echo "你可以按 [ <img src='/img/06/icon.png'></img> ]開始新增註册你所購買的產品";
+					}
+				?>
+			</div>
+			<div class="clear"></div>
+		</div>
+
+		<div id="device_container">
+			<?php
+				if(!empty($device_list)) {
+					
+					echo "<ul id='list_device'>";
+
+					foreach($device_list as $device) {
+						
+						//determine 'kind' from serial number
+						$kind = '';
+						
+						if(!empty($device->serial_number))
+							$kind = $device->serial_number[2];
+
+						switch($kind){
+							case "Q":
+								$kind = "Q Tag";
+								break;
+							case "B":
+								$kind = "B Tag";
+								break;
+							case "N":
+								$kind = "N Tag";
+								break;
+							default:
+								break;
+						}
+
+						echo "<a href='/device/update?sn=" . $device->serial_number . "' style='text-decoration:none;'><li>" .
+								"<div style='height:160px;width:160px;margin-top:28px;margin-bottom:28px;margin-left:64px;margin-right:40px;float:left;position:relative;'>" .
+									"<img src= '" . $device->photo . "' style='height:100%;width:100%;border-radius:25px;'></img>" .
+									"<img style='position:absolute;top:55px;left:-25px;' src='/img/07/notice_background.png'></img></div>" .
+									//still need number of message here
+								"<div style='height:100px;margin-top:28px;margin-bottom:28px;margin-right:64px;float:left;'>";
+									echo "<div class='green_text'>" . $device->name . "</div>";
+									echo "<div class='green_text'>" . $kind . "</div>";
+									echo "<div class='green_text'>USID:" . $device->serial_number . "</div></div>";
+									//echo $device->status . "<br><br>";
+								echo "<div class='clear'></div>";
+						echo "</li></a>";
+					}
+									
+					echo "</ul>";
+				}
+			?>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Baby Search - Device</title>
+		<link rel="stylesheet" type="text/css" href="/css/index.css">
+		<script src="/js/jquery-1.11.3.min.js"></script>
+		<script src="/js/jquery.form.js"></script>
+		<script src="/js/device_index.js"></script>
+	</head>
+
+	<body>
+		<div class="header">
+			<img src="/img/02/logo(white).png" style="margin-top:27.5px;margin-left:2.5%;"></img>
+		</div>
+		<div style="width:100%;height:500px;position:relative;">
+			<img src="/img/02/pic-01.png" style="width:100%;height:100%;"></img>
+			<div style="width:100%;height:80px;line-height:80px;background:black;opacity:0.5;position:absolute;bottom:0;"></div>
+			<div class="white_text" style="width:100%;height:80px;line-height:80px;background:transparent;position:absolute;bottom:0;text-align:center;">
+				測試顯示<?php //echo $device->name?>
+			</div>
+		</div>
+		<div id="tab_container">
+			<div id="notice_tab" style="width:50%;height:110px;float:left;position:relative;">
+				<img id="notice_background" src="/img/02/bu-01-01.png" style="width:100%;height:100%;"></img>
+				<div class="white_text" style="position:absolute;top:20%;left:45%;">通 知 事 項</div>
+			</div>
+			<div id="info_tab" style="width:50%;height:110px;float:left;position:relative;">
+				<img id="info_background" src="/img/02/bu-02-01.png" style="width:100%;height:100%;"></img>
+				<div class="white_text" style="position:absolute;top:20%;left:45%;">基 本 資 料</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		
+		<!-- still need to combine 2 div containers here into tab container -->
+		<div id="notice_container">
+			<div style="margin-left:36px;margin-right:36px;margin-top:65px;margin-bottom:120px;">
+				<div style="margin-left:28px;margin-right:28px;">
+					<div class="content_header_container">
+						<div style="width:54px;height:54px;float:left;">
+							<img src="/img/02/icon-01.png" style="width:100%;height:100%;"></img>
+						</div>
+						<div style="width:500px;height:50px;line-height:50px;float:left;">
+							<div class="green_text" style="margin-left:36px;">通 知 事 項</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<article class="black_text" style="margin-top:25px;margin-bottom:65px;">(留言部份...)測試顯示</article>
+					<table id="notice_table">
+						<tr>
+							<td class="blue_text">走失時間:</td>
+							<td class="black_text">測試顯示
+								<?php
+									
+								?>
+							</td>
+						</tr>
+						<tr>
+							<td class="blue_text">走失地點:</td>
+							<td class="black_text">測試顯示
+								<?php
+									
+								?>
+							</td>
+						</tr>
+						<tr>
+							<td class="blue_text">穿著(特徵):</td>
+							<td class="black_text">測試顯示
+								<?php
+									
+								?>
+							</td>
+						</tr>
+						<tr>
+							<td class="blue_text">聯絡方式:</td>
+							<td class="orange_text">測試顯示
+								<?php
+									
+								?>
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+				<!-- click button to create guestbook -->
+				<a href="/guestbook/create">
+					<div class="orange_button" style="margin-top:85px;margin-bottom:85px;">通 知 / 留 言</div>
+				</a>
+			</div>
+				
+			<div style="background:red;padding-left:64px;padding-right:64px;height:100px;line-height:100px;">
+				<div class="white_text">最新留言/通知</div>
+			</div>
+			
+			<div id="guestbook_container">
+			</div>			
+		</div>
+		
+		<div id="info_container">
+			<div style="margin-top:65px;margin-left:64px;margin-right:64px;margin-bottom:100px;">
+				<div class="content_header_container">
+					<div style="width:54px;height:54px;float:left;">
+						<img src="/img/03/icon-01.png" style="width:100%;height:100%;"></img>
+					</div>
+					<div style="width:500px;height:50px;line-height:50px;float:left;">
+						<div class="green_text" style="margin-left:36px;">基 本 資 料</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<table id="info_table">
+					<tr>
+						<td class="blue_text">類別:</td>
+						<td class="black_text">測試顯示
+							<?php
+							/*
+								switch($device->type) {
+									case "Pets":
+										echo "竉物類";
+										break;
+									case "Human":
+										echo "人類";
+										break;
+									case "Valuables":
+										echo "物品類";
+									default:
+										break;
+								}
+							*/
+							?>
+						</td>
+					</tr>
+					<tr>
+						<td class="blue_text">年齡:</td>
+						<td class="black_text">測試顯示
+							<?php
+							/*
+								//Calculate age
+								$birthDate = $info->birthday;
+								//explode the date to get month, day and year
+								$birthDate = explode("-", $birthDate);
+				
+								//get age from date or birthdate
+								$age = (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birthDate[2]))) > date("md")
+										? ((date("Y") - $birthDate[0]) - 1)
+										: (date("Y") - $birthDate[0]));
+								echo $age . "歲";
+							*/
+							?>
+						</td>
+					</tr>
+					<tr>
+						<td class="blue_text">性別:</td>
+						<td class="black_text">測試顯示
+							<?php
+							/*
+								switch($info->sex) {
+									case "male":
+										echo "公";
+										break;
+									case "female":
+										echo "母";
+										break;
+									default:
+										break;
+								}
+							*/
+							?>
+						</td>
+					</tr>
+					<tr>
+						<td class="blue_text">晶片植入:</td>
+						<td class="black_text">測試顯示</td>
+					</tr>
+				</table>
+			</div>
+			
+			<div id="photos_container">
+			<?php
+				if(!empty($photo_list)) {
+					foreach ($photo_list as $photo) {
+						"<div style='width:50%;height:375px;float:left;'>" .
+							"<img src='" . $photo->photo ."' style='width:100%;height:100%;'></img></div>";
+					}
+				}
+			?>
+			<!-- 
+			<div style="width:50%;height:375px;float:left;">
+				<img src="" style="width:100%;height:100%;"></img>
+			</div>
+			 -->
+			<div class="clear"></div>
+		</div>
+		
+		<!-- 
+			<h1><?php echo $device->name?></h1>
+			<h1>類型:
+				<?php
+					switch($device->category) {
+						case "dogs":
+							echo "犬類";
+							break;
+						case "cats":
+							echo "貓類";
+							break;
+						default:
+							break;
+					}
+				?></h1>
+			<h1>年齡:
+				<?php
+					//Calculate age
+					$birthDate = $info->birthday;
+					//explode the date to get month, day and year
+					$birthDate = explode("-", $birthDate);
+	
+					//get age from date or birthdate
+					$age = (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birthDate[2]))) > date("md")
+							? ((date("Y") - $birthDate[0]) - 1)
+							: (date("Y") - $birthDate[0]));
+					echo $age . "歲";
+				?></h1>
+			<h1>性別:
+				<?php
+					switch($info->sex) {
+						case "male":
+							echo "男";
+							break;
+						case "female":
+							echo "女";
+							break;
+						default:
+							break;
+					}
+				?></h1>
+			<h1>晶片植入:</h1>
+		 -->
+	</body>
+</html>

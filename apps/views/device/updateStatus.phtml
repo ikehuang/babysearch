@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Baby Search - Update Status</title>
+		<link rel="stylesheet" type="text/css" href="/css/index.css">
+	</head>
+
+	<body>
+		<div class="header">
+			<img src="/img/02/logo(white).png" style="margin-top:27.5px;margin-left:2.5%;"></img>
+			<ul style="float:right;margin-right:36px;">
+				<a href=""><li><!-- <?php echo $user->nickname ?> --></li></a>/
+				<a href=""><li>登出</li></a>
+			</ul>
+			<div class="clear"></div>
+		</div>
+		
+		<div style="height:110px;line-height:110px;margin-left:36px;margin-right:36px;background:#P2P2P2;">
+			<font class="grey_text">首頁>管理名單></font>
+			<font class="grey_text"><?php echo $device->name ?>></font>
+			<font class="green_text">遺失設定</font>
+		</div>
+		
+		updateStatus <?php echo "serial number is " . $device->serial_number?>
+		
+		<div id="status_form_container" style="margin-left:36px;margin-right:36px;margin-top:64px;margin-bottom:120px;">
+			
+			<div class="green_text" style="font-size:64px;">遺 失 設 定</div>
+			<article class="black_text" style="margin-bottom:50px;">
+				請詳細提供遺失的相關線索，能幫助你盡快找回
+			</article>
+			
+			<form action="" method="post">
+			    <label>
+			        <div class="blue_text"><font color="red">*</font>公告訊息</div>
+			        <textarea type="text" name="message" class="textfield" placeholder="您可以描述遺失當時的情境，或是其他能協尋的重要線索" required></textarea>
+			    </label>		    
+			    <label>
+			        <div class="blue_text">日期</div>
+			        <input type="date" name="date" class="textfield" />
+			    </label>
+			    <label>
+			        <div class="blue_text">時間</div>
+			        <input type="time" name="time" class="textfield" />
+			    </label>
+			    <label>
+			        <div class="blue_text"><font color="red">*</font>遺失地點</div>
+			        <input type="text" name="location" class="textfield" placeholder="請填寫地點或明顯的景點建築" required/>
+			    </label>
+			    <label>
+			        <div class="blue_text"><font color="red">*</font>穿著/特徵</div>
+			        <input type="tel" name="text" class="textfield" />
+			    </label>
+			    <label>
+			        <div class="blue_text" style="float:left;"><font color="red">*</font>聯絡人</div>
+			        <a href="/lostcontacts/update">
+			        	<div class="red_text" style="float:right;">編輯清單</div>
+			        	<div style="background-image:url('/img/12/icon-01.png');width:36px;height:36px;margin-top:10.5px;margin-bottom:10.5px;margin-right:10px;float:right;"></div>
+			        </a>
+			        <div class="clear"></div>
+			        <!-- when print textarea, echo nl2br($message); -->
+			        <input type="radio" name="contact1" required checked/>聯絡人1<br>
+			        <input type="radio" name="contact2" required/>聯絡人2<br>
+			        <input type="radio" name="contact3" required/>聯絡人3<br>
+			    </label>     
+			    <div style="margin-top:45px;margin-bottom:120px;">
+					<button class="orange_button" style="background:#F0B77A;width:49%;margin-right:1%;float:left;">取 消</button>
+					<button type="submit" class="orange_button" style="width:49%;margin-left:1%;float:left;">送 出</button>
+				</div>
+				<div class="clear"></div>    
+			</form>
+		</div>
+	</body>
+</html>

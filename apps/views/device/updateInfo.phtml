@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Baby Search - Update Info</title>
+		<link rel="stylesheet" type="text/css" href="/css/index.css">
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+		<script src="/js/jquery-1.11.3.min.js"></script>
+		<script src="/js/jquery.form.js"></script>
+		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	</head>
+
+	<body>
+		<div class="header">
+			<img src="/img/02/logo(white).png" style="margin-top:27.5px;margin-left:2.5%;"></img>
+			<ul style="float:right;margin-right:36px;">
+				<a href=""><li><!-- <?php echo $user->nickname ?> --></li></a>/
+				<a href=""><li>登出</li></a>
+			</ul>
+			<div class="clear"></div>
+		</div>
+		
+		<div style="height:110px;line-height:110px;margin-left:36px;margin-right:36px;background:#P2P2P2;">
+			<font class="grey_text">首頁>管理名單></font>
+			<font class="grey_text"><?php echo $device->name ?>></font>
+			<font class="green_text">基本資料</font>
+		</div>
+		
+		updateInfo <?php echo "serial number is " . $device->serial_number?>
+		
+		<div style="margin-left:36px;margin-right:36px;">
+		
+			<form action="/device/updatePet" method="post">
+				
+				<div id="updatePet">					
+					<div style="width:100%;height:110px;background:blue;">
+						<button id="petInfo_tab" style="width:50%;height:90px;line-height:110px;float:left;text-align:center;" class="white_text">竉物資料</button>
+						<button id="petHealth_tab" style="width:50%;height:90px;line-height:110px;float:left;text-align:center;" class="white_text">健康狀況</button>
+						<div class="clear"></div>
+					</div>
+					
+					<div id="petInfo_container">
+						<label>
+							<div class="blue_text"><font color="red">*</font>竉物名字</div>
+			        		<input type="text" name="pet_name" class="textfield" required/><br>
+						</label>
+						<label>
+							<div class="blue_text">類別</div>
+							<!-- need php -->
+			        		<span>type</span><br>
+						</label>
+						<label>
+							<div class="blue_text">性別</div>
+							<input type="radio" name="pet_sex" value="M" checked>公
+							<input type="radio" name="pet_sex" value="F">母
+						</label>
+						<label>
+							<div class="blue_text"><font color="red">*</font>生日</div>
+			        		<input name="pet_birthday" class="textfield datepicker"/><br>
+						</label>
+						<label>
+							<div class="blue_text">身高/身長(cm)</div>
+			        		<input type="number" name="pet_height" class="textfield"/><br>
+						</label>
+						<label>
+							<div class="blue_text">體重(kg)</div>
+			        		<input type="number" name="pet_weight" class="textfield"/><br>
+						</label>
+						<label>
+							<div class="blue_text">個性</div>
+			        		<input type="checkbox" name="pet_temperament[]" value="活潑">活潑
+							<input type="checkbox" name="pet_temperament[]" value="怕生">怕生<br>
+							<input type="checkbox" name="pet_temperament[]" value="容易攻擊">容易攻擊
+							<input type="checkbox" name="pet_temperament[]" value="具攻擊性">具攻擊性<br>
+							<input type="checkbox" name="pet_temperament[]" value="其他">其他
+							<input type="text" name="pet_temperament[]" value=""/><br>
+						</label>
+						<label>
+							<div class="blue_text">特殊才能</div>
+			        		<input type="checkbox" name="pet_talents[]" value="坐下">坐下
+							<input type="checkbox" name="pet_talents[]" value="握手">握手<br>
+							<input type="checkbox" name="pet_talents[]" value="聽名字">聽名字
+							<input type="checkbox" name="pet_talents[]" value="站立">站立<br>
+							<input type="checkbox" name="pet_talents[]" value="其他">其他
+							<input type="text" name="pet_talents[]" value=""/><br>
+						</label>
+						<label>
+							<div class="blue_text">簡介</div>
+			        		<textarea type="text" name="pet_description" placeholder="關於竉物的大小事..."></textarea><br>
+						</label>
+					</div>
+				
+					<div id="healthStatus_container">
+						<label>
+							<div class="blue_text"><font color="red">*</font>晶片號碼</div>
+			        		<input type="text" name="pet_chip_number" class="textfield" required/><br>
+						</label>
+						<label>
+							<div class="blue_text">結紮</div>
+							<input type="radio" name="pet_desex" value="Y">有
+							<input type="radio" name="pet_desex" value="N" checked>無
+						</label>
+						<label>
+							<div class="blue_text">預防針種類</div>
+			        		<input type="text" name="pet_vaccine_type" class="textfield"/><br>
+						</label>
+						<label>
+							<div class="blue_text">血型</div>
+			        		<input type="text" name="pet_bloodtype" class="textfield"/><br>
+						</label>
+						<label>
+							<div class="blue_text">血庫資訊通知</div>
+							<input type="radio" name="pet_bloodbank" value="Y">有
+							<input type="radio" name="pet_bloodbank" value="N">無
+						</label>
+						<label>
+							<div class="blue_text">肢體障礙</div>
+							<input type="checkbox" name="pet_disability[]" value="行動">行動
+							<input type="checkbox" name="pet_disability[]" value="聽覺">聽覺
+							<input type="checkbox" name="pet_disability[]" value="視覺">視覺
+							<input type="checkbox" name="pet_disability[]" value="其他">其他
+							<input type="text" name="pet_disability[]" value=""/><br>
+						</label>
+						<label>
+							<div class="blue_text">保險</div>
+			        		<input type="text" name="pet_insurance" class="textfield" placeholder="填入保險單號"/><br>
+						</label>
+						<label>
+							<div class="blue_text">專屬醫院</div>
+			        		<input type="text" name="pet_hospital_name" class="textfield" placeholder="醫院名稱"/><br>
+			        		<input type="number" name="pet_hospital_phone" class="textfield" placeholder="醫院電話"/><br>
+						</label>
+						<label>
+			        		<div class="blue_text">醫院地址</div>
+			        		<input type="text" name="pet_hospital_address" class="textfield" placeholder="地址"/><br>
+			        		<input type="text" name="pet_hospital_city" placeholder="城市"/><br>
+			        		<input type="text" name="pet_hospital_district" placeholder="鄉鎮市區"/><br>
+			        		<input type="text" name="pet_hospital_postal" placeholder="郵遞區號"/><br>
+			        		<input type="text" name="pet_hospital_country" class="textfield" placeholder="國家"/><br>
+						</label>
+					</div>
+					
+					<div style="margin-top:45px;margin-bottom:120px;">
+						<button id="updatePet_complete" type="submit" class="orange_button">儲 存</button>
+					</div>
+				</div>
+					
+			</form>
+				
+			<form action="/device/updateHuman" method="post">
+			
+				<div id="updateHuman">
+					<div id="humanInfo_container">
+						<div class="green_text">資料編輯</div>
+						<label>
+							<div class="blue_text"><font color="red">*</font>姓名</div>
+			        		<input type="text" name="human_firstname" placeholder="名" required/>
+			        		<input type="text" name="human_lastname" placeholder="姓" required/>
+						</label>
+						<label>
+							<div class="blue_text"><font color="red">*</font>暱稱</div>
+			        		<input type="text" name="human_nickname" class="textfield" required/>
+						</label>
+						<label>
+							<div class="blue_text"><font color="red">*</font>性別</div>
+			        		<input type="radio" name="human_sex" value="M">男
+							<input type="radio" name="human_sex" value="F">女
+						</label>
+						<label>
+							<div class="blue_text">生日</div>
+			        		<input type="text" name="human_birthday" class="textfield datepicker"/>
+						</label>
+						<label>
+							<div class="blue_text">身高(cm)</div>
+			        		<input type="text" name="human_height" class="textfield"/>
+						</label>
+						<label>
+							<div class="blue_text">體重(kg)</div>
+			        		<input type="text" name="human_weight" class="textfield"/>
+						</label>
+						<label>
+							<div class="blue_text">血型</div>
+			        		<input type="text" name="human_bloodtype" class="textfield"/>
+						</label>
+						<label>
+							<div class="blue_text">疾病</div>
+							<input type="radio" name="human_disease" value="心臟病">心臟病
+							<input type="radio" name="human_disease" value="高血壓">高血壓<br>
+							<input type="radio" name="human_disease" value="糖尿病">糖尿病
+							<input type="radio" name="human_disease" value="失智">失智<br>
+							<input type="radio" name="human_disease" value="其他">其他
+							<input type="text" name="human_disease"/><br>
+						</label>
+						<label>
+							<div class="blue_text">肢體障礙</div>
+							<input type="radio" name="human_disability" value="行動">行動
+							<input type="radio" name="human_disability" value="聽覺">聽覺<br>
+							<input type="radio" name="human_disability" value="視覺">視覺
+							<input type="radio" name="human_disability" value="語言">語言<br>
+							<input type="radio" name="human_disability" value="其他">其他
+							<input type="text" name="human_disability"/><br>
+						</label>
+						<label>
+							<div class="blue_text">服用藥物</div>
+							<textarea type="number" name="human_medications"></textarea>
+						</label>
+						<label>
+							<div class="blue_text">專屬醫院</div>
+			        		<input type="text" name="human_hospital_name" class="textfield" placeholder="醫院名稱"/><br>
+			        		<input type="number" name="human_hospital_phone" class="textfield" placeholder="醫院電話"/><br>
+						</label>
+						<label>
+			        		<div class="blue_text">醫院地址</div>
+			        		<input type="text" name="human_hospital_address" class="textfield" placeholder="地址"/><br>
+			        		<input type="text" name="human_hospital_city" placeholder="城市"/><br>
+			        		<input type="text" name="human_hospital_district" placeholder="鄉鎮市區"/><br>
+			        		<input type="text" name="human_hospital_postal" placeholder="郵遞區號"/><br>
+			        		<input type="text" name="human_hospital_country" class="textfield" placeholder="國家"/><br>
+						</label>
+						<div style="margin-top:45px;margin-bottom:120px;">
+							<button id="updateHuman_complete" type="submit" class="orange_button">儲 存</button>
+						</div>
+					</div>
+				</div>
+				
+			</form>
+				
+			<form action="/device/updateValuable" method="post">
+			
+				<div id="updateValuable">
+					<div class="green_text">資料編輯</div>
+						<label>
+							<div class="blue_text"><font color="red">*</font>商品名稱</div>
+			        		<input type="text" name="valuable_name" class="textfield" required/>
+						</label>
+						<label>
+							<div class="blue_text">特徵/敘述</div>
+			        		<textarea type="text" name="valuable_description"></textarea>
+						</label>
+					<div style="margin-top:45px;margin-bottom:120px;">
+						<button id="updateValuable_complete" type="submit" class="orange_button">儲 存</button>
+					</div>
+				</div>
+			
+			</form>
+		</div>
+			
+		<script>
+			var device_type = "<?php echo $device->type; ?>";
+			
+			$(document).ready(function() {
+				
+				//determine which forms to hide at first
+				switch(device_type) {
+					case 'Pets':
+						$("#updatePet").show();
+						$("#updateHuman").hide();
+						$("#updateValuable").hide();
+						break;
+					case 'Human':
+						$("#updatePet").hide();
+						$("#updateHuman").show();
+						$("#updateValuable").hide();
+						break;
+					case 'Valuables':
+						$("#updatePet").hide();
+						$("#updateHuman").hide();
+						$("#updateValuable").show();
+						break;
+					default:
+						break;
+				}
+
+				$('.datepicker').datepicker({dateFormat: "yy-mm-dd"});
+			});
+		</script>
+	</body>
+</html>

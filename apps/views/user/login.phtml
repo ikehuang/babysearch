@@ -1,0 +1,178 @@
+<?php 
+//for sso-login buttons
+
+	$facebookLoginUrl = "https://www.facebook.com/dialog/oauth?"
+			. "client_id=" . $config->facebook_sso->app_id
+			. "&redirect_uri=" . $config->facebook_sso->redirect_url
+			. "&state=" . md5(uniqid(rand(), TRUE))
+			. "&response_type=code"
+					. "&scope=user_about_me,email";
+
+	$googleLoginUrl = "https://accounts.google.com/o/oauth2/auth?"
+			. "client_id=" . $config->google_sso->client_id
+			. "&redirect_uri=" . $config->google_sso->redirect_url
+			. "&state=" . md5(uniqid(rand(), TRUE))
+			. "&response_type=code"
+					. "&scope=https://www.googleapis.com/auth/plus.login profile email" // openid%20profile
+					. "&include_granted_scopes=true";
+
+?>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Baby Search - Login</title>
+		<link rel="stylesheet" type="text/css" href="/css/index.css">
+		<script src="/js/jquery-1.11.3.min.js"></script>
+		<script src="/js/jquery.form.js"></script>
+	</head>
+
+	<body>
+		<div class="header" style="background:#FFFFFF;margin-top:27.5px;margin-left:5%;">
+			<img src="/img/01/logo-01.png"></img>
+		</div>
+		
+		<div id="banner_container">
+			<img src="/img/01/pic-01.png" style="width:100%;height:100%;"></img>
+		</div>
+		
+		<div id="login_container">
+			<a href="<?php echo $facebookLoginUrl; ?>">
+				<div style="width:50%;height:375px;float:left;position:relative;">
+					<img src="/img/01/bu-01.png" style="width:100%;height:100%;"></img>
+					<div class="white_text" style="position:absolute;top:80%;left:40%;">登入</div>
+				</div>
+			</a>
+			<a href="<?php echo $googleLoginUrl; ?>">
+				<div style="width:50%;height:375px;float:left;position:relative;">
+					<img src="/img/01/bu-02.png" style="width:100%;height:100%;"></img>
+					<div class="grey_text" style="position:absolute;top:80%;left:40%;">登入</div>
+				</div>
+			</a>
+			<div class="clear"></div>
+		</div>
+
+		<div id="menuList_container">
+			<ul>
+				<a href="">
+					<li class="odd">關 於 我 們</li>
+				</a>
+				<a href="">
+					<li class="even">我 們 的 產 品</li>
+				</a>
+				<a href="">
+					<li class="odd">特 色 與 功 能</li>
+				</a>
+				<a href="">
+					<li class="even">支 援 與 下 載</li>
+				</a>
+				<a href="">
+					<li class="odd">店 舖 位 置</li>
+				</a>
+				<a href="">
+					<li class="even">常 見 問 題</li>
+				</a>
+				<a href="">
+					<li class="odd">使 用 條 款</li>
+				</a>
+				<a href="">
+					<li class="even">隱 私 權 政 策</li>
+				</a>
+			</ul>
+		</div>
+		
+		<div id="article_container">
+			<div class="green_text">聯絡我們</div>
+			<article class="article_content">
+				電話 : 02-1234-5678<br>
+				信箱 : info@babysearch.com
+			</article>
+			<div id="newsfeed_container">
+				<div style="width:30%;float:left;">
+					<div class="green_text">我們的消息</div>
+				</div>
+				<div style="width:70%;float:left;">
+					<div style="width:28px;height:28px;padding-top:13px;padding-right:15px;float:left;"><span class='st_facebook_custom' displayText='Facebook'></span></div>
+					<div style="width:28px;height:28px;padding-top:13px;padding-right:15px;float:left;"><span class='st_twitter_custom' displayText='Twitter'></span></div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div id="downloads_container">
+				<div style="width:30%;float:left;">
+					<div class="green_text">APP下載</div>
+				</div>
+				<div style="width:70%;float:left;">
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		
+		<!-- 
+		<h3>This is an ajaxform test</h3>
+	
+		<form id="ajaxform" action="index" method="POST">
+			Name: <input type="text" id="formName" name="name" required/> <br/>
+		    Email: <input type="email" id="formEmail" name="email" value="" required/> <br/>
+		    <input type="submit" value="註册"/>
+		</form>
+		
+		 
+		
+		<script>
+
+        // wait for the DOM to be loaded 
+        $(document).ready(function() { 
+
+            // bind 'myForm' and provide a simple callback function 
+            $('#ajaxform').ajaxForm({
+				beforeSerialize:function(){
+	                var formData = $("#formEmail").val();
+	                var status = "";
+	                
+	                $.ajax({
+		                async: false,
+	    				url: '/user/checkEmailExists',
+	    				type: "post",
+	    				data: {"formKey" : formData},
+	    				success: function(data) {
+							if(data.status == 'success') {
+								console.log("status return success");
+								status = true;
+
+								//stores email into SESSION upon successful login
+								$_SESSION['email'] = formData;
+							}
+							else {
+								console.log("status return fail");
+								status = false;
+							}
+							
+	        				/**
+	        				console.log("success");
+	        				var x;
+	     
+	    					for(i=0; i<data.length; i++) {
+
+	    						x = data[i];
+	    						//console.log(x["id"]);
+	    						//console.log(x["name"]);
+	    					}
+
+	    					if(formData == x["name"])
+	        					console.log("Sorry, user name '" + x["name"] + "' already existed in the system. " +
+	                					"Please try another user name.");
+	    					**/
+	    				}
+	    			});
+	                //console.log(status);
+	    			return status;
+				},
+				success:function() {
+					console.log("success");
+				}
+            });
+        });
+	</script>
+	-->
+	
+	</body>
+</html>
