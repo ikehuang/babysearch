@@ -35,8 +35,9 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			default:
 				break;
 		}
-
-		$this->view->lost_contacts = LostContacts::find("email = '{$_SESSION['USER']['INFO']['email']}'");
+		
+		$this->view->lost_contacts = LostContacts::find("sso_id = '{$_SESSION['USER']['INFO']['sso_id']}'");
+		//$this->view->lost_contacts = LostContacts::find("email = '{$_SESSION['USER']['INFO']['email']}'");
 		$this->view->photos  = Photos::find("did = {$device->did}");
 		$this->view->setVar("device", $device);
 		$this->view->setVar("info", $info);
@@ -102,6 +103,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			$device->open = $open;
 			$device->created = date('Y-m-d H:i:s');
 			//$device->email = $this->_email;
+			$device->sso_id = $_SESSION['USER']['INFO']['sso_id'];
 			$device->email = $_SESSION['USER']['INFO']['email'];
 			
 			//for uploading device photo
@@ -219,6 +221,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			$device->open = $open;
 			$device->created = date('Y-m-d H:i:s');
 			//$device->email = $this->_email;
+			$device->sso_id = $_SESSION['USER']['INFO']['sso_id'];
 			$device->email = $_SESSION['USER']['INFO']['email'];
 			
 			//for uploading device photo
@@ -314,6 +317,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			$device->open = $open;
 			$device->created = date('Y-m-d H:i:s');
 			//$device->email = $this->_email;
+			$device->sso_id = $_SESSION['USER']['INFO']['sso_id'];
 			$device->email = $_SESSION['USER']['INFO']['email'];
 			
 			//for uploading device photo
@@ -358,10 +362,12 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		$serial_number = $_GET["sn"];
 		
 		//sample data
-		$this->_email = $_SESSION['USER']['INFO']['email'];
+		$this->_sso_id = $_SESSION['USER']['INFO']['sso_id'];
+		//$this->_email = $_SESSION['USER']['INFO']['email'];
 		
+		if(Device::count(array("conditions" => "sso_id = '{$this->_sso_id}' AND serial_number = '{$serial_number}'")) > 0) {
 		//if email-serial_number pair exists in the system, then continue...; otherwise, fail.
-		if(Device::count(array("conditions" => "email = '{$this->_email}' AND serial_number = '{$serial_number}'")) > 0) {
+		//if(Device::count(array("conditions" => "email = '{$this->_email}' AND serial_number = '{$serial_number}'")) > 0) {
 			
 			$device = Device::findFirst("serial_number = '{$serial_number}'");
 			
@@ -373,10 +379,12 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		$serial_number = $_GET["sn"];
 		
 		//sample data
-		$this->_email = $_SESSION['USER']['INFO']['email'];
+		//$this->_email = $_SESSION['USER']['INFO']['email'];
+		$this->_sso_id = $_SESSION['USER']['INFO']['sso_id'];
 		
+		if(Device::count(array("conditions" => "sso_id = '{$this->_sso_id}' AND serial_number = '{$serial_number}'")) > 0) {
 		//if email-serial_number pair exists in the system, then continue...; otherwise, fail.
-		if(Device::count(array("conditions" => "email = '{$this->_email}' AND serial_number = '{$serial_number}'")) > 0) {
+		//if(Device::count(array("conditions" => "email = '{$this->_email}' AND serial_number = '{$serial_number}'")) > 0) {
 			
 			$device = Device::findFirst("serial_number = '{$serial_number}'");
 			
@@ -416,8 +424,9 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		$pet_hospital_phone = $this->_request->getPost('pet_hospital_phone');
 		$pet_hospital_address = $this->_request->getPost('pet_hospital_address');
 		
+		$this->_sso_id = $_SESSION['USER']['INFO']['sso_id'];
 		//set 'email' to session's email
-		$this->_email = $_SESSION['USER']['INFO']['email'];
+		//$this->_email = $_SESSION['USER']['INFO']['email'];
 		
 		//find 'type'-P,M,T,A from first letter of serial number
 		$type = null;
@@ -442,10 +451,12 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 				break;
 		}
 		
+		if(Device::count(array("conditions" => "sso_id = '{$this->_sso_id}' AND serial_number = '{$serial_number}'")) > 0) {
 		//if email-serial_number pair exists in the system, then continue...; otherwise, fail.
-		if(Device::count(array("conditions" => "email = '{$this->_email}' AND serial_number = '{$serial_number}'")) > 0) {
-				
-			$device = Device::findFirst("email = '{$this->_email}' AND serial_number = '{$serial_number}'");
+		//if(Device::count(array("conditions" => "email = '{$this->_email}' AND serial_number = '{$serial_number}'")) > 0) {
+
+			$device = Device::findFirst("sso_id = '{$this->_sso_id}' AND serial_number = '{$serial_number}'");
+			//$device = Device::findFirst("email = '{$this->_email}' AND serial_number = '{$serial_number}'");
 		
 			//filter status
 			switch($status) {
@@ -557,8 +568,9 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		$human_hospital_phone = $this->_request->getPost('human_hospital_phone');
 		$human_hospital_address = $this->_request->getPost('human_hospital_address');
 		
+		$this->_sso_id = $_SESSION['USER']['INFO']['sso_id'];
 		//set 'email' to session's email
-		$this->_email = $_SESSION['USER']['INFO']['email'];
+		//$this->_email = $_SESSION['USER']['INFO']['email'];
 		
 		//find 'type'-P,M,T,A from first letter of serial number
 		$type = null;
@@ -583,10 +595,12 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 				break;
 		}
 		
+		if(Device::count(array("conditions" => "sso_id = '{$this->_sso_id}' AND serial_number = '{$serial_number}'")) > 0) {
 		//if email-serial_number pair exists in the system, then continue...; otherwise, fail.
-		if(Device::count(array("conditions" => "email = '{$this->_email}' AND serial_number = '{$serial_number}'")) > 0) {
+		//if(Device::count(array("conditions" => "email = '{$this->_email}' AND serial_number = '{$serial_number}'")) > 0) {
 			
-			$device = Device::findFirst("email = '{$this->_email}' AND serial_number = '{$serial_number}'");
+			$device = Device::findFirst("sso_id = '{$this->_sso_id}' AND serial_number = '{$serial_number}'");
+			//$device = Device::findFirst("email = '{$this->_email}' AND serial_number = '{$serial_number}'");
 		
 			//filter status
 			switch($status) {
@@ -682,8 +696,9 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		$valuable_name = $this->_request->getPost('valuable_name');
 		$valuable_description = $this->_request->getPost('valuable_description');
 		
+		$this->_sso_id = $_SESSION['USER']['INFO']['sso_id'];
 		//set 'email' to session's email
-		$this->_email = $_SESSION['USER']['INFO']['email'];
+		//$this->_email = $_SESSION['USER']['INFO']['email'];
 		
 		//find 'type'-P,M,T,A from first letter of serial number
 		$type = null;
@@ -708,10 +723,12 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 				break;
 		}
 		
+		if(Device::count(array("conditions" => "sso_id = '{$this->_sso_id}' AND serial_number = '{$serial_number}'")) > 0) {
 		//if email-serial_number pair exists in the system, then continue...; otherwise, fail.
-		if(Device::count(array("conditions" => "email = '{$this->_email}' AND serial_number = '{$serial_number}'")) > 0) {
-				
-			$device = Device::findFirst("email = '{$this->_email}' AND serial_number = '{$serial_number}'");
+		//if(Device::count(array("conditions" => "email = '{$this->_email}' AND serial_number = '{$serial_number}'")) > 0) {
+
+			$device = Device::findFirst("sso_id = '{$this->_sso_id}' AND serial_number = '{$serial_number}'");
+			//$device = Device::findFirst("email = '{$this->_email}' AND serial_number = '{$serial_number}'");
 		
 			//filter status
 			switch($status) {
@@ -788,7 +805,8 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		$photo_list = array();
 	
 		//sample data
-		$this->_email = $_SESSION['USER']['INFO']['email'];
+		//$this->_email = $_SESSION['USER']['INFO']['email'];
+		$this->_email = $_SESSION['USER']['INFO']['sso_id'];
 		//$this->_api_key = 'qwe123';
 		//$this->_apikey = 'qwe123';
 		//$this->_email = 'brucelee@gmail.com';
@@ -797,9 +815,10 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 	
 		//if api_key match, continue...; otherwise, return fail
 		//if($this->_api_key == $this->_apikey) {
-	
+			
+			if(Device::count(array("conditions" => "sso_id = '{$this->_sso_id}' AND serial_number = '{$serial_number}'")) > 0) {
 			//if email-serial_number pair exists in the system, then continue...; otherwise, fail.
-			if(Device::count(array("conditions" => "email = '{$this->_email}' AND serial_number = '{$serial_number}'")) > 0) {
+			//if(Device::count(array("conditions" => "email = '{$this->_email}' AND serial_number = '{$serial_number}'")) > 0) {
 				//if serial number exists, then continue...; otherwise, return fail
 				//if(Device::count("serial_number = '{$serial_number}'") > 0) {
 	
@@ -860,10 +879,12 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		$serial_number = $_GET["sn"];
 		
 		//sample data
-		$this->_email = $_SESSION['USER']['INFO']['email'];
+		//$this->_email = $_SESSION['USER']['INFO']['email'];
+		$this->_sso_id = $_SESSION['USER']['INFO']['sso_id'];
 		
+		if(Device::count(array("conditions" => "sso_id = '{$this->_sso_id}' AND serial_number = '{$serial_number}'")) > 0) {
 		//if email-serial_number pair exists in the system, then continue...; otherwise, fail.
-		if(Device::count(array("conditions" => "email = '{$this->_email}' AND serial_number = '{$serial_number}'")) > 0) {
+		//if(Device::count(array("conditions" => "email = '{$this->_email}' AND serial_number = '{$serial_number}'")) > 0) {
 			
 			$device = Device::findFirst("serial_number = '{$serial_number}'");
 			
@@ -925,11 +946,13 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		//if api_key match, continue...; otherwise, return fail
 		if($this->_api_key == $this->_apikey) {
 			
+			if(!empty($serial_number) && !empty($this->_sso_id)) {
 			//make sure all inputs are not empty
-			if(!empty($serial_number) && !empty($this->_email)) {
-			
+			//if(!empty($serial_number) && !empty($this->_email)) {
+				
+				if(User::count("sso_id = '{$this->_sso_id}'") > 0) {
 				//if user exists, then continue to create device...; otherwise, return fail
-				if(User::count("email = '{$this->_email}'") > 0) {
+				//if(User::count("email = '{$this->_email}'") > 0) {
 				
 					//if serial number doesn't exist, then continue to create device...; otherwise, return fail
 					if(Device::count("serial_number = '{$serial_number}'") == 0) {
@@ -952,6 +975,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 						//$device->category = $category;
 						$device->open = 'N';
 						$device->email = $this->_email;
+						$device->sso_id = $this->_sso_id;
 						
 						$device->create();
 						
