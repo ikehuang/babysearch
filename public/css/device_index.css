@@ -1,0 +1,53 @@
+
+<!-- /device/index.phtml -->
+#tab_container{
+}
+#info_container{
+	width:100%;
+}
+#notice_container{
+	
+}
+#notice_table{
+	margin-top:76px;
+}
+#notice_table tr{
+	height:100px;
+}
+.content_header_container{
+	width:100%;
+}
+#guestbook_container{
+	margin-top:100px;
+	margin-left:36px;
+	margin-right:36px;
+}
+#info_table{
+	margin-top:76px;
+}
+#info_table tr{
+	height:100px;
+}
+#photos_container{
+	width:100%;
+}
+.orange_button{
+	width:100%;
+	height:110px;
+	line-height:110px;
+	background:orange;
+	color:#FFFFFF;
+	text-align:center;
+	font-size:40px;
+	border:none;
+}
+.red_button{
+	width:100%;
+	height:110px;
+	line-height:110px;
+	background:#EB004E;
+	color:#FFFFFF;
+	text-align:center;
+	font-size:40px;
+	border:none;
+}

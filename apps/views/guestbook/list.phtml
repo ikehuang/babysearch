@@ -1,26 +1,28 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Baby Search - List Guestbook</title>
-		<link rel="stylesheet" type="text/css" href="/css/index.css">
-	</head>
+<link rel="stylesheet" type="text/css" href="/css/guestbook_index.css">
+<div id='device_img_wrapper'>
+	<img src="" style="width:100%;">
+	<h3><?php echo $device->name?> </h3>
+</div>
+<div id='title'><img src='/img/08/bu-01.png'/>通知/留言</div>
 
-	<body>
-		
-		<div class="header">
-			<img src="/img/02/logo(white).png" style="margin-top:27.5px;margin-left:2.5%;"></img>
-		</div>
-		<div>
-			<img src="" style="width:100%;height:100%;"><!-- <?php echo $device->name?> --></img>
-		</div>
-		<div>
-			<div style="width:100px;height:100px;float:left;">
-				<img src="" style="width:100%;height:100%;"></img>
-			</div>
-			<div style="height:100px;line-height:100px;font-size:50px;float:left;">通知/留言
-			</div>
-			<div class="clear"></div>
-		</div>
-		<a href="/device"><div class="orange_button">回首頁</div></a>
-	</body>
-</html>
+<div id='guestbook_list'>
+<?php 
+		if(!empty($guestbook_list)) {
+			foreach($guestbook_list as $r) {
+				$created = date('Y-m-d',strtotime($r->datetime));
+				echo <<<EOT
+<div class='guestbook'>
+	<div class='title'><img class='icon' src='/img/15/1.png'/>{$r->name}</div>
+	<div class='date'>{$created}</div>				
+	<div class='message1'></div>
+	<div class='message2'>{$r->message}</div>	
+	<div class='message3'></div>
+	<div class='date2'>{$created}</div>		
+</div>		
+EOT;
+			}
+		}
+		?>
+		<div id='home'>回首頁</div>
+</div>
+

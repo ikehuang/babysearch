@@ -1,5 +1,6 @@
 <?php
 
+date_default_timezone_set('Asia/Taipei');
 /**
  * Very simple MVC structure
  */
@@ -82,11 +83,33 @@ $db = new \Phalcon\Db\Adapter\Pdo\Mysql(array(
 
 $di->set('db',$db);
 
+$router =  new \Phalcon\Mvc\Router();
+$di->set('router', $router);
+
+// default
+$router->add("/", array(
+		'controller' => 'user',
+		'action' => 'login'
+));
+
 //Registering a Http\Response
 $di->set('response', 'Phalcon\Http\Response');
 
 //Registering a Http\Request
 $di->set('request', 'Phalcon\Http\Request');
+
+//to check api-key with config
+$config = new \Phalcon\Config\Adapter\Ini("../apps/config/config.ini");
+
+if($config->site->env == 'development') {
+		
+	$user_info = array(
+			'email' => 'franky@ink.net.tw',
+			'nickname' => 'Franky'
+	);
+		
+	$_SESSION['USER']['INFO'] = $user_info;
+}
 
 try {
 	$application = new \Phalcon\Mvc\Application();

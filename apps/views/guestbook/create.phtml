@@ -1,71 +1,53 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Baby Search - Create Guestbook</title>
-		<link rel="stylesheet" type="text/css" href="/css/index.css">
-	</head>
+<link rel="stylesheet" type="text/css" href="/css/guestbook_create.css">
+<script type='text/javascript' src='/js/jquery-1.11.3.min.js'></script>
+<script type='text/javascript' src='/js/jquery.form.js'></script>
+<script type='text/javascript' src='/js/jquery.validate.js'></script>
+<script type='text/javascript' src='/js/jquery.blockUI.js'></script>
+<script type='text/javascript' src='/js/guestbook_create.js'></script>
+<div id='device_img_wrapper'>
+	<img src="" style="width:100%;">
+	<h3><?php echo $device->name?> </h3>
+</div>
+<div id='title'><img src='/img/08/bu-01.png'/>通知/留言</div>
 
-	<body>
-		
-		<div class="header">
-			<img src="/img/02/logo(white).png" style="margin-top:27.5px;margin-left:2.5%;"></img>
+<div id="guestbook_form_container">
+	
+	<div class="black_text">
+		若你有發現遺失竉物、人或物品的相關資料，請留下您的聯絡方式，幫助遺失的主人順利找回，謝謝～
+	</div>
+	
+	<form action="/guestbook/create" method="post">
+		<input type='hidden' name='did' value='<?php echo $device->did;?>'/>
+		<input type='hidden' name='serial_number' value='<?php echo $device->serial_number;?>'/>
+	    <div class='input_div'>
+	        <div class="blue_text"><span><font color="red">*</font>姓名/名稱</span></div>
+	        <input id="name" type="text" name="name" class="textfield" required/>
+	    </div>		    
+	    <div class='input_div'>
+	        <div class="blue_text"><span>發現日期</span></div>
+	        <input type="date" name="date" class="textfield" />
+	    </div>
+	    <div class='input_div'>
+	        <div class="blue_text"><span>發現時間</span></div>
+	        <input type="time" name="time" class="textfield" />
+	    </div>
+	    <div class='input_div'>
+	        <div class="blue_text"><span>發現地點</span></div>
+	        <input type="text" name="location" class="textfield" placeholder="請填寫地點或明顯的景點建築"/>
+	    </div>
+	    <div class='input_div'>
+	        <div class="blue_text"><span>聯絡電話</span></div>
+	        <input type="tel" name="phone" class="textfield" />
+	    </div>
+	    <div class='input_div'>
+	        <div class="blue_text"><span><font color="red">*</font>留言</span></div>
+	        <!-- when print textarea, echo nl2br($message); -->
+	        <textarea id="message" name="message" class="textfield" rows=5 placeholder="關於竉物的大小事..." required></textarea>
+	    </div>     
+	    <div id='submit_div'>
+			<button class="button orange_btn" style="">取 消</button>
+			<button type="submit" class="button" style="">送 出</button>
 		</div>
-		<div style="width:100%;height:500px;position:relative;">
-			<img src="/img/02/pic-01.png" style="width:100%;height:100%;"></img>
-			<div style="width:100%;height:80px;line-height:80px;background:black;opacity:0.5;position:absolute;bottom:0;"></div>
-			<div class="white_text" style="width:100%;height:80px;line-height:80px;background:transparent;position:absolute;bottom:0;text-align:center;">
-				測試顯示<?php //echo $device->name?>
-			</div>
-		</div>
-		<div style="background-color:#FF8800;padding-left:36px;padding-right:36px;">
-			<div style="width:106px;height:67px;margin-top:21.5px;margin-bottom:21.5px;float:left;">
-				<img src="/img/04/icon-01(white).png" style="width:100%;height:100%;"></img>
-			</div>
-			<div class="white_text" style="height:110px;line-height:110px;margin-left:20px;float:left;">
-				通知/留言
-			</div>
-			<div class="clear"></div>
-		</div>
-		
-		<div id="guestbook_form_container" style="margin-left:36px;margin-right:36px;margin-top:65px;margin-bottom:120px;">
-			
-			<article class="black_text" style="margin-bottom:50px;">
-				若你有發現遺失竉物、人或物品的相關資料，請留下您的聯絡方式，幫助遺失的主人順利找回，謝謝～
-			</article>
-			
-			<form action="/guestbook/create" method="post">
-			    <label>
-			        <div class="blue_text"><span><font color="red">*</font>姓名/名稱</span></div>
-			        <input id="name" type="text" name="name" class="textfield" required/>
-			    </label>		    
-			    <label>
-			        <div class="blue_text"><span>發現日期</span></div>
-			        <input type="date" name="date" class="textfield" />
-			    </label>
-			    <label>
-			        <div class="blue_text"><span>發現時間</span></div>
-			        <input type="time" name="time" class="textfield" />
-			    </label>
-			    <label>
-			        <div class="blue_text"><span>發現地點</span></div>
-			        <input type="text" name="location" class="textfield" placeholder="請填寫地點或明顯的景點建築"/>
-			    </label>
-			    <label>
-			        <div class="blue_text"><span>聯絡電話</span></div>
-			        <input type="tel" name="phone" class="textfield" />
-			    </label>
-			    <label>
-			        <div class="blue_text"><span><font color="red">*</font>留言</span></div>
-			        <!-- when print textarea, echo nl2br($message); -->
-			        <textarea id="message" name="message" class="textfield" placeholder="關於竉物的大小事..." required></textarea>
-			    </label>     
-			    <div style="margin-top:45px;margin-bottom:120px;">
-					<button class="orange_button" style="background:#F0B77A;width:49%;margin-right:1%;float:left;">取 消</button>
-					<button type="submit" class="orange_button" style="width:49%;margin-left:1%;float:left;">送 出</button>
-				</div>
-				<div class="clear"></div>    
-			</form>
-		</div>
-		
-	</body>
-</html>
+		<div class="clear"></div>    
+	</form>
+</div>

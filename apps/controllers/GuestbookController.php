@@ -37,49 +37,57 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 	
 	public function createAction() {
 		
-		//need to somehow find serial number andv uses its did to create its guestbook
-		//sample code
-		$serial_number = "BD1B46XFKMX";
+		if ($this->_request->isPost() == true) {
+			$this->view->disable();
+			$this->response->setContentType('application/json', 'UTF-8');
+				
+			$guestbook = new GuestBook();
 		
-		$device = Device::findFirst("serial_number = '{$serial_number}'");
-		
-		$this->view->setVar("device", $device);
-	}
-	
-	public function listAction() {
-		
-		$serial_number = strtoupper($this->_request->getPost('serial_number'));
-		
-		$guestbook_list = array();
-		
-		$response_data = array(
-				'status' => 'fail',
-				'guestbook_list' => $guestbook_list
-		);
-		
-		//sample data
-		//$serial_number = 'RF1C61XFKMX';
-		
-		//if api_key match, continue...; otherwise, return fail
-		if($this->_api_key == $this->_apikey) {
+			$guestbook->did = $this->_request->getPost("did");
+			$guestbook->name = $this->_request->getPost("name");
+			$guestbook->location = $this->_request->getPost("location");
+			$guestbook->phone = $this->_request->getPost("phone");
+			$guestbook->message = $this->_request->getPost("message");
+			if(!empty($this->_request->getPost("date"))) {
+				$guestbook->datetime = $this->_request->getPost("date")." ".$this->_request->getPost("time");
+			}
 			
-			//(!!may change later on how to list guestbook)
-			//if serial number exists, then continue to create device...; otherwise, return fail
-			if(Device::count("serial_number = '{$serial_number}'") > 0) {
-				
-				$device = Device::findFirst("serial_number = '{$serial_number}'");
-				
-				$guestbook_list = Guestbook::findFirst(array("gid = '{$device->gid}'", "columns" => "name, message, email, phone, datetime, location"));
-				
+			else {
+				$guestbook->datetime = date('Y-m-d H:i:s');
+			}
+			
+			if ($guestbook->create() == false) {
+				foreach ($guestbook->getMessages() as $message) {
+					$response_data = array(
+							"status" => 'fail',
+							"msg" => "We can't category category right now"
+					);
+				}
+			}
+			else {
 				$response_data = array(
-						'status' => 'success',
-						'guestbook_list' => $guestbook_list
+						"status" => 'success',
+						"msg" => "A new category was created successfully!",
+						"id" => $guestbook->gid
 				);
 			}
 				
+			$this->response->setContent(json_encode($response_data));
+			$this->response->send();
 		}
-		
-		$this->response->setContent(json_encode($response_data));
-		$this->response->send();
+		else {
+			$serial_number = $this->_request->get('serial_number');
+			
+			$device = Device::findFirst("serial_number = '{$serial_number}'");
+			
+			$this->view->setVar("device", $device);
+		}
+	}
+	
+	public function listAction() {
+		$serial_number = $this->_request->get('serial_number');
+		$device = Device::findFirst("serial_number = '{$serial_number}'");
+		$this->view->device = $device;
+		$this->view->guestbook_list = Guestbook::find("did = '{$device->did}'");
 	}
 }

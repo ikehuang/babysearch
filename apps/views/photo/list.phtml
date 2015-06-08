@@ -1,0 +1,41 @@
+
+<link rel="stylesheet" type="text/css" href="/css/photo_index.css">
+<script type='text/javascript' src='/js/jquery-1.11.3.min.js'></script>
+<script type='text/javascript' src='/js/jquery.form.js'></script>
+<script type='text/javascript' src='/js/jquery.validate.js'></script>
+<script type='text/javascript' src='/js/jquery.blockUI.js'></script>
+<script type='text/javascript' src='/js/photo_index.js'></script>
+<ul id='title'>
+	<li><a href='/'>首頁</a></li>
+	<li> > </li>
+	<li><a href='/device/index?serial_number=<?php echo $device->serial_number?>'>管理名單</a></li>
+	<li> > </li>
+	<li><a href='/device/update?serial_number=<?php echo $device->serial_number?>'><?php echo $device->name?></a></li>
+	<li> > </li>
+	<li style='color:red;'>相片集</li>
+</ul>
+<div id='photo_list'>
+	<div id='add_photo_btn'>
+		<img src='/img/16/1.png'/>
+	</div>		
+	<?php 
+			if(!empty($photo_list)) {
+				foreach($photo_list as $r) {
+					echo <<<EOT
+<div class='photo_wrapper'>
+	<button type='button' class='delete_btn' photo_id='{$r->id}'></button>
+	<img src='/{$r->photo}' class='photo'/>
+</div>
+EOT;
+				}
+			}
+			?>
+</div>
+
+<div style='clear:both'></div>
+
+<form method='post' style='display:none;' action='/photo/create'>
+	<input type='text' name='did' value='<?php echo $device->did; ?>'/>
+	<input type='text' name='serial_number' value='<?php echo $device->serial_number; ?>'/>
+	<input type='file' name='file' id='photo_input'/>
+</form>

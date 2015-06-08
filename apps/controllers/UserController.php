@@ -32,42 +32,26 @@ class UserController extends \Phalcon\Mvc\Controller {
 		//$this->_test_token = $this->_request->get('token');
 		//$this->_test_imei = $this->_request->get('imei');
 		
-		//to check api-key with config
-		$config = new \Phalcon\Config\Adapter\Ini("../apps/config/config.ini");
-		$this->_apikey = $config->api->apikey;		
-		
-		if($config->site->env == 'development') {
-			
-			$user_info = array(
-				'email' => 'franky@ink.net.tw'		
-			);
-			
-			$_SESSION['USER']['INFO'] = $user_info;
-		}
 	}
 	
 	public function indexAction() {
-		$email = $_SESSION["email"];
-		
-		//sample data
-		$email = "franky@ink.net.tw";
-		
 		$device_list = array();
 		
 		//find user info and all devices belong to the user
-		$user = User::findFirst("email = '{$email}'");
+		$user = User::findFirst("email = '{$_SESSION['USER']['INFO']['email']}'");
 		
-		$devices = Device::find("email = '{$email}'");
+		$devices = Device::find("email = '{$_SESSION['USER']['INFO']['email']}'");
 		
 		foreach ($devices as $device) {
 			$device_list[] = $device;
 		}
 		
-		$this->view->setVar("user", $user);
+		$this->view->setVar("user", $_SESSION['USER']['INFO']);
 		$this->view->setVar("device_list", $device_list);
 	}
 	
 	public function loginAction() {
+		$this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_ACTION_VIEW);
 		$config = new \Phalcon\Config\Adapter\Ini("../apps/config/config.ini");
 		
 		//$this->view->setVar("config", $config);
@@ -598,4 +582,11 @@ class UserController extends \Phalcon\Mvc\Controller {
 	$this->response->send();
 	}
 	*/
+	
+	public function logoutAction() {
+		$this->view->disable();
+		$this->session->destroy();
+		unset($_SESSION['INFO']);
+		header('Location: /');
+	}
 }

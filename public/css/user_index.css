@@ -1,0 +1,38 @@
+<!-- /user/index.phtml -->
+#list_device .even {
+	background:#F2F2F2;
+}
+
+#list_device .odd {
+	background:#E6E6E6;	
+	
+}
+
+#user_container{
+	width:100%;
+}
+#user_pic{
+	height:200px;
+	width:200px;
+	float:left;
+}
+#user_info{
+	height:200px;
+	width:550px;
+	float:left;
+}
+#addDevice_container{
+	height:333px;
+	background:#F2F2F2;
+}
+#device_container{
+	background:#F2F2F2;
+}
+
+#list_device{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+#list_device li{
+}

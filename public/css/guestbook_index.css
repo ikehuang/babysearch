@@ -1,0 +1,218 @@
+#title  {
+	color:white;
+	background:#ff8800;
+	padding:3%;
+	padding-left:20px;
+	font-size:2.5em;	
+	padding:20px;
+}
+
+#title img {
+	vertical-align:middle;	
+	width:10%;
+	padding-right:30px;
+}
+
+#device_img_wrapper {
+	line-height:0;	
+	position:relative;
+	background:#eeee;
+}
+
+#device_img_wrapper img {
+	width:100%;
+}
+
+#device_img_wrapper h3 {
+	position:absolute;
+	left:0;
+	text-align:center;
+	width:100%;
+	bottom:0;
+	font-size:3em;	
+	margin:0;
+	padding-bottom:10px;
+	color:white;
+}
+
+#guestbook_list {
+	padding-left:2%;
+	padding-right:2%;
+	margin-top:6.5%;
+}
+
+.guestbook {
+	margin-bottom:4%;
+}
+
+#guestbook_list .icon {
+	vertical-align:middle;
+	width:10%;
+	margin-right:2%;
+}
+
+#guestbook_list .title {
+	color:#333333;
+	font-size:2.500em;
+	text-align:left;
+}
+
+#guestbook_list .date {
+	font-size:2.500em;	
+	color:#86c557;
+	text-align:right;
+}
+
+#guestbook_list .message1 {
+	background:url(/img/15/2.png) center bottom no-repeat;	
+	background-size:100%;
+	padding:2%;	
+	padding-top:3%;	
+	margin:0 auto;
+}
+#guestbook_list .message2 {	
+	margin:0 auto;	
+	color:white;
+	font-size:2.500em;
+	padding:2%;
+	background:url(/img/15/4.png) center center repeat-y;
+	background-size:100%;	
+	line-height:1;	
+}
+
+#guestbook_list .message3 {
+	margin:0 auto;	
+	padding:2%;	
+	background:url(/img/15/3.png) center top no-repeat;	
+	background-size:100%;	
+	padding-top:0.5%;	
+	
+}
+
+#guestbook_list .date2 {
+	font-size:1.667em;
+	color:#333333;
+	text-align:left;
+	padding-left:2%;
+	padding-top:2%;
+}
+
+#home {
+	margin-top:2%;
+	background:#EB9F4E;
+	font-size:4.167em;
+	color:white;
+	text-align:center;
+	padding:5% 2%;
+	margin-bottom:13%;
+}
+
+
+@media (min-width: 213px) {
+  html, body { font-size: 2px;line-height: 1;
+	 } }
+@media (min-width: 256px) {
+  html, body { font-size: 3px;line-height: 1; } }
+@media (min-width: 320px) {
+  html, body {
+  	font-size: 3px;line-height: 1;
+  }
+}
+@media (min-width: 320px) {
+  html, body {
+     font-size: 4px;
+	line-height:1px; }
+  	
+	#title {
+		padding:12px;
+	}
+
+	#guestbook_list {
+		padding:27px;
+		
+	}
+	
+}
+@media (min-width: 360px) {
+  html, body {
+    font-size: 6px;
+	line-height:1px; } 
+  	
+	#title {
+		padding:20px;
+	}
+	
+	#guestbook_list {
+		padding:64px;
+	}
+}
+
+@media (min-width: 375px) {
+  html, body {
+    font-size: 6px;
+	line-height:1;  	 }
+ }
+@media (min-width: 400px) {
+  html, body {
+    font-size: 6px;
+	line-height:1;  	 }
+ }
+@media (min-width: 480px) {
+  html, body {
+    font-size: 6px;
+	line-height:1;  	 }
+
+	#title {
+		padding:13px;
+	}  	
+	
+	#guestbook_list {
+		padding:35px;
+		
+	}
+}  	
+@media (min-width: 540px) {
+  html, body {
+    font-size: 6px;
+    line-height: 1; }  
+@media (min-width: 600px) {
+  html, body {
+    font-size: 7px;
+    line-height: 1; }
+
+	#title {
+		padding:15px;
+	}  	
+	
+	#guestbook_list {
+		padding:35px;
+		
+	}
+}
+
+@media (min-width: 640px) {
+  html, body {
+    font-size: 7px;
+    line-height: 1;  	 } }
+@media (min-width: 720px) {
+	
+}
+@media (min-width: 768px) {
+  html, body {
+    font-size: 8px;
+    line-height: 1;  	 } }
+@media (min-width: 800px) {
+  html, body {
+    font-size: 10px;
+    line-height: 1;  	 } }
+@media (min-width: 960px) {
+  html, body {
+    font-size: 11px;
+    line-height: 1;  	 }
+}
+@media (min-width: 1024px) {
+
+  html, body {
+    font-size: 12px;
+    line-height: 1;  	 }	
+
