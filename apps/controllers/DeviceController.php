@@ -37,7 +37,8 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		if($config->site->env == 'development') {
 				
 			$user_info = array(
-					'email' => 'franky@ink.net.tw'
+					'email' => 'franky@ink.net.tw',
+					'nickname' => 'franky'
 			);
 				
 			$_SESSION['USER']['INFO'] = $user_info;
@@ -425,15 +426,399 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 	}
 	
 	public function updatePetAction(){
+		//for updating device info
+		//$category = $this->_request->getPost('category');
+		$status = strtolower($this->_request->getPost('status'));
+		//$type = $this->_request->getPost('type');
+		$name = $this->_request->getPost('name');
+		//$photo = $this->_request->getPost('photo');
+		$photo = "";
+		$message = $this->_request->getPost('message');
+		$serial_number = strtoupper($this->_request->getPost('serial_number1'));
+		//$expiry_date = "2015-12-30";
 		
+		//for updating pet...
+		$pet_name = $this->_request->getPost('pet_name');
+		$pet_sex = $this->_request->getPost('pet_sex');
+		$pet_birthday = $this->_request->getPost('pet_birthday');
+		$pet_height = $this->_request->getPost('pet_height');
+		$pet_weight = $this->_request->getPost('pet_weight');
+		$pet_temperament = $this->_request->getPost('pet_temperament');
+		$pet_talents = $this->_request->getPost('pet_talents');
+		$pet_description = $this->_request->getPost('pet_description');
+		$pet_chip_number = $this->_request->getPost('pet_chip_number');
+		$pet_desex = $this->_request->getPost('pet_desex');
+		$pet_vaccine_type = $this->_request->getPost('pet_vaccine_type');
+		$pet_bloodtype = $this->_request->getPost('pet_bloodtype');
+		$pet_bloodbank = $this->_request->getPost('pet_bloodbank');
+		$pet_disability = $this->_request->getPost('pet_disability');
+		$pet_insurance = $this->_request->getPost('pet_insurance');
+		$pet_hospital_name = $this->_request->getPost('pet_hospital_name');
+		$pet_hospital_phone = $this->_request->getPost('pet_hospital_phone');
+		$pet_hospital_address = $this->_request->getPost('pet_hospital_address');
+		
+		//set 'email' to session's email
+		$this->_email = $_SESSION['USER']['INFO']['email'];
+		
+		//find 'type'-P,M,T,A from first letter of serial number
+		$type = null;
+		
+		if(!empty($serial_number))
+			$type = $serial_number[0];
+		
+		switch($type) {
+			case "P":
+				$type = "Pets";
+				break;
+			case "M":
+				$type = "Human";
+				break;
+			case "T":
+				$type = "Valuables";
+				break;
+			case "A":
+				$type = "All";
+				break;
+			default:
+				break;
+		}
+		
+		//if email-serial_number pair exists in the system, then continue...; otherwise, fail.
+		if(Device::count(array("conditions" => "email = '{$this->_email}' AND serial_number = '{$serial_number}'")) > 0) {
+				
+			$device = Device::findFirst("email = '{$this->_email}' AND serial_number = '{$serial_number}'");
+		
+			//filter status
+			switch($status) {
+				case "lost":
+					$device->status = $status;
+					break;
+				case "normal":
+					$device->status = $status;
+					break;
+				default:
+					$device->status = null;
+			}
+		
+			//if device is lost, then switch ON the "open" flag to signal
+			if($device->status == 'lost')
+				$device->open = 'Y';
+			else
+				$device->open = 'N';
+		
+			$device->type = $type;
+			//$device->name = $name;
+			$device->name = $pet_name;
+			//$device->photo = $photo;
+			$device->message = $message;
+		
+			//for uploading device photo
+			// Check if the user has uploaded files
+			if($this->request->hasFiles() == true){
+				$uploads = $this->request->getUploadedFiles();
+				$isUploaded = false;
+					
+				foreach($uploads as $upload){
+						
+					//Move the file into the application
+					$path = 'upload/'.md5(uniqid(rand(), true)).'-'.strtolower($upload->getname());
+					($upload->moveTo($path)) ? $isUploaded = true : $isUploaded = false;
+		
+					if($isUploaded) {
+						if(preg_match("/photo/",$upload->getKey())) {
+		
+							//strip from input key(eg.photos.1) to get id
+							$newkey = preg_replace("/^photos./","",$upload->getKey());
+		
+							$device->photo = "http://{$_SERVER['HTTP_HOST']}/".$path;
+		
+							$photo = $device->photo;
+						}
+					}
+				}
+			}
+		
+			$device->update();
+				
+			//update device info under type
+			if($type == "Pets") {
+		
+				//PetInfo: update
+				$pet_info = PetInfo::findFirst("did = '{$device->did}'");
+		
+				$pet_info->name = $pet_name;
+				$pet_info->sex = $pet_sex;
+				$pet_info->birthday = $pet_birthday;
+				$pet_info->height = $pet_height;
+				$pet_info->weight = $pet_weight;
+				//$pet_info->temperament = $pet_temperament;
+				//$pet_info->talents = $pet_talents;
+				$pet_info->description = $pet_description;
+				$pet_info->chip_number = $pet_chip_number;
+				$pet_info->desex = $pet_desex;
+				$pet_info->vaccine_type = $pet_vaccine_type;
+				$pet_info->bloodtype = $pet_bloodtype;
+				$pet_info->bloodbank = $pet_bloodbank;
+				//$pet_info->disability = $pet_disability;
+				$pet_info->insurance = $pet_insurance;
+				$pet_info->hospital_name = $pet_hospital_name;
+				$pet_info->hospital_phone = $pet_hospital_phone;
+				$pet_info->hospital_address = $pet_hospital_address;
+		
+				$pet_info->update();
+			}
+		}
 	}
 	
 	public function updateHumanAction(){
-	
+		
+		//for updating device info
+		//$category = $this->_request->getPost('category');
+		$status = strtolower($this->_request->getPost('status'));
+		//$type = $this->_request->getPost('type');
+		$name = $this->_request->getPost('name');
+		//$photo = $this->_request->getPost('photo');
+		$photo = "";
+		$message = $this->_request->getPost('message');
+		$serial_number = strtoupper($this->_request->getPost('serial_number2'));
+		//$expiry_date = "2015-12-30";
+		
+		//for updating human...
+		$human_firstname = $this->_request->getPost('human_firstname');
+		$human_lastname = $this->_request->getPost('human_lastname');
+		$human_nickname = $this->_request->getPost('human_nickname');
+		$human_sex = $this->_request->getPost('human_sex');
+		$human_birthday = $this->_request->getPost('human_birthday');
+		$human_height = $this->_request->getPost('human_height');
+		$human_weight = $this->_request->getPost('human_weight');
+		$human_bloodtype = $this->_request->getPost('human_bloodtype');
+		$human_disease = $this->_request->getPost('human_disease');
+		$human_disability = $this->_request->getPost('human_disability');
+		$human_medications = $this->_request->getPost('human_medications');
+		$human_hospital_name = $this->_request->getPost('human_hospital_name');
+		$human_hospital_phone = $this->_request->getPost('human_hospital_phone');
+		$human_hospital_address = $this->_request->getPost('human_hospital_address');
+		
+		//set 'email' to session's email
+		$this->_email = $_SESSION['USER']['INFO']['email'];
+		
+		//find 'type'-P,M,T,A from first letter of serial number
+		$type = null;
+		
+		if(!empty($serial_number))
+			$type = $serial_number[0];
+		
+		switch($type) {
+			case "P":
+				$type = "Pets";
+				break;
+			case "M":
+				$type = "Human";
+				break;
+			case "T":
+				$type = "Valuables";
+				break;
+			case "A":
+				$type = "All";
+				break;
+			default:
+				break;
+		}
+		
+		//if email-serial_number pair exists in the system, then continue...; otherwise, fail.
+		if(Device::count(array("conditions" => "email = '{$this->_email}' AND serial_number = '{$serial_number}'")) > 0) {
+			
+			$device = Device::findFirst("email = '{$this->_email}' AND serial_number = '{$serial_number}'");
+		
+			//filter status
+			switch($status) {
+				case "lost":
+					$device->status = $status;
+					break;
+				case "normal":
+					$device->status = $status;
+					break;
+				default:
+					$device->status = null;
+			}
+		
+			//if device is lost, then switch ON the "open" flag to signal
+			if($device->status == 'lost')
+				$device->open = 'Y';
+			else
+				$device->open = 'N';
+		
+			$device->type = $type;
+			//$device->name = $name;
+			$device->name = $human_nickname;
+			//$device->photo = $photo;
+			$device->message = $message;
+		
+			//for uploading device photo
+			// Check if the user has uploaded files
+			if($this->request->hasFiles() == true){
+				$uploads = $this->request->getUploadedFiles();
+				$isUploaded = false;
+					
+				foreach($uploads as $upload){
+						
+					//Move the file into the application
+					$path = 'upload/'.md5(uniqid(rand(), true)).'-'.strtolower($upload->getname());
+					($upload->moveTo($path)) ? $isUploaded = true : $isUploaded = false;
+		
+					if($isUploaded) {
+						if(preg_match("/photo/",$upload->getKey())) {
+		
+							//strip from input key(eg.photos.1) to get id
+							$newkey = preg_replace("/^photos./","",$upload->getKey());
+		
+							$device->photo = "http://{$_SERVER['HTTP_HOST']}/".$path;
+		
+							$photo = $device->photo;
+						}
+					}
+				}
+			}
+		
+			$device->update();
+			
+			//update device info under type
+			if($type == "Human") {
+		
+				//HumanInfo: update
+				$human_info = HumanInfo::findFirst("did = '{$device->did}'");
+		
+				$human_info->firstname = $human_firstname;
+				$human_info->lasname = $human_lastname;
+				$human_info->nickname = $human_nickname;
+				$human_info->sex = $human_sex;
+				$human_info->birthday = $human_birthday;
+				$human_info->height = $human_height;
+				$human_info->weight = $human_weight;
+				$human_info->bloodtype = $human_bloodtype;
+				$human_info->disease = $human_disease;
+				$human_info->disability = $human_disability;
+				$human_info->medications = $human_medications;
+				$human_info->hospital_name = $human_hospital_name;
+				$human_info->hospital_phone = $human_hospital_phone;
+				$human_info->hospital_address = $human_hospital_address;
+		
+				$human_info->update();
+			}
+		}
 	}
 	
 	public function updateValuableAction(){
-	
+		//for updating device info
+		//$category = $this->_request->getPost('category');
+		$status = strtolower($this->_request->getPost('status'));
+		//$type = $this->_request->getPost('type');
+		$name = $this->_request->getPost('name');
+		//$photo = $this->_request->getPost('photo');
+		$photo = "";
+		$message = $this->_request->getPost('message');
+		$serial_number = strtoupper($this->_request->getPost('serial_number3'));
+		//$expiry_date = "2015-12-30";
+		
+		//for updating valuable...
+		$valuable_name = $this->_request->getPost('valuable_name');
+		$valuable_description = $this->_request->getPost('valuable_description');
+		
+		//set 'email' to session's email
+		$this->_email = $_SESSION['USER']['INFO']['email'];
+		
+		//find 'type'-P,M,T,A from first letter of serial number
+		$type = null;
+		
+		if(!empty($serial_number))
+			$type = $serial_number[0];
+		
+		switch($type) {
+			case "P":
+				$type = "Pets";
+				break;
+			case "M":
+				$type = "Human";
+				break;
+			case "T":
+				$type = "Valuables";
+				break;
+			case "A":
+				$type = "All";
+				break;
+			default:
+				break;
+		}
+		
+		//if email-serial_number pair exists in the system, then continue...; otherwise, fail.
+		if(Device::count(array("conditions" => "email = '{$this->_email}' AND serial_number = '{$serial_number}'")) > 0) {
+				
+			$device = Device::findFirst("email = '{$this->_email}' AND serial_number = '{$serial_number}'");
+		
+			//filter status
+			switch($status) {
+				case "lost":
+					$device->status = $status;
+					break;
+				case "normal":
+					$device->status = $status;
+					break;
+				default:
+					$device->status = null;
+			}
+		
+			//if device is lost, then switch ON the "open" flag to signal
+			if($device->status == 'lost')
+				$device->open = 'Y';
+			else
+				$device->open = 'N';
+		
+			$device->type = $type;
+			//$device->name = $name;
+			$device->name = $valuable_name;
+			//$device->photo = $photo;
+			$device->message = $message;
+		
+			//for uploading device photo
+			// Check if the user has uploaded files
+			if($this->request->hasFiles() == true){
+				$uploads = $this->request->getUploadedFiles();
+				$isUploaded = false;
+					
+				foreach($uploads as $upload){
+						
+					//Move the file into the application
+					$path = 'upload/'.md5(uniqid(rand(), true)).'-'.strtolower($upload->getname());
+					($upload->moveTo($path)) ? $isUploaded = true : $isUploaded = false;
+		
+					if($isUploaded) {
+						if(preg_match("/photo/",$upload->getKey())) {
+		
+							//strip from input key(eg.photos.1) to get id
+							$newkey = preg_replace("/^photos./","",$upload->getKey());
+		
+							$device->photo = "http://{$_SERVER['HTTP_HOST']}/".$path;
+		
+							$photo = $device->photo;
+						}
+					}
+				}
+			}
+		
+			$device->update();
+				
+			//update device info under type
+			if($type == "Valuables") {
+		
+				//ValuableInfo: update
+				$valuable_info = ValuableInfo::findFirst("did = '{$device->did}'");
+		
+				$valuable_info->name = $valuable_name;
+				$valuable_info->description = $valuable_description;
+		
+				$valuable_info->update();
+			}			
+		}
 	}
 	
 	public function updatePhotosAction() {
@@ -544,6 +929,17 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		$message = $this->_request->getPost('message');
 		$expiry_date = '';
 		
+		//sample data
+		//$this->_api_key = 'qwe123';
+		//$this->_apikey = 'qwe123';
+		//$this->_email = 'ike@ink.net.tw';
+		//$serial_number = 'INK46XFKMX';
+		//$type = 'pet';
+		//$category = 'cats';
+		
+		//$imei = '152328054557408';
+		//$token = '166942940015970|tcOoRAAQrWcDm_84h3O7NN7Z9DM';
+		
 		//find 'type'-P,M,T,A from first letter of serial number
 		$type = null;
 		
@@ -566,17 +962,6 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			default:
 				break;
 		}
-		
-		//sample data
-		//$this->_api_key = 'qwe123';
-		//$this->_apikey = 'qwe123';
-		//$this->_email = 'ike@ink.net.tw';
-		//$serial_number = 'INK46XFKMX';
-		//$type = 'pet';
-		//$category = 'cats';
-		
-		//$imei = '152328054557408';
-		//$token = '166942940015970|tcOoRAAQrWcDm_84h3O7NN7Z9DM';
 		
 		//if api_key match, continue...; otherwise, return fail
 		if($this->_api_key == $this->_apikey) {
@@ -1078,7 +1463,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		if($this->_api_key == $this->_apikey) {
 			
 			//check email and sso_id
-			if(Mobile::count(array("conditions" => "email = '{$this->_email}' AND sso_id = '{$this->_sso_id}'")) > 0) {
+			//if(Mobile::count(array("conditions" => "email = '{$this->_email}' AND sso_id = '{$this->_sso_id}'")) > 0) {
 
 				//if the given email has devices, then continue...; otherwise, return fail
 				if(Device::count("email = '{$this->_email}'") > 0) {
@@ -1119,7 +1504,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 							'device_list' => $device_list
 					);
 				}
-			}
+			//}
 		}
 		
 		$this->response->setContent(json_encode($response_data));
