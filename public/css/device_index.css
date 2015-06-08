@@ -1,10 +1,8 @@
 #title  {
 	color:white;
 	background:#ff8800;
-	padding:3%;
-	padding-left:20px;
 	font-size:2.5em;	
-	padding:20px;
+	padding:2%;	
 }
 
 #title img {
@@ -75,6 +73,7 @@
 #info_container {
 }
 
+#info_container_wrapper,
 #notice_container {
 	padding:3%;
 	text-align:left;

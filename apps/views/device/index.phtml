@@ -91,55 +91,92 @@ EOT;
 </div>
 
 <div id="info_container">
-	<div class="green_text title">
-		<img src="/img/02/icon-01.png" />基本資料
-	</div>
-	<table id="info_table">
-		<?php if($device->type == 'Pets') { ?>
-		<tr>
-			<th class="blue_text">類別:</th>
-			<td class="black_text">
-				<?php
-					if(!empty($device->type)) {
-						switch($device->type) {
-							case "Pets":
-								echo "竉物類";
-								break;
-							case "Human":
-								echo "人類";
-								break;
-							case "Valuables":
-								echo "物品類";
-							default:
-								break;
+	<div id="info_container_wrapper">
+		<div class="green_text title">
+			<img src="/img/02/icon-01.png" />基本資料
+		</div>
+		<table id="info_table">
+			<?php if($device->type == 'Pets') { ?>
+			<tr>
+				<th class="blue_text">類別:</th>
+				<td class="black_text">
+					<?php echo $device->category; ?>
+				</td>
+			</tr>
+			<tr>
+				<th class="blue_text">年齡:</th>
+				<td class="black_text">
+					<?php
+						if(!empty($info->birthday)) {
+						
+							//Calculate age
+							$birthDate = $info->birthday;
+							//explode the date to get month, day and year
+							$birthDate = explode("-", $birthDate);
+			
+							//get age from date or birthdate
+							$age = (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birthDate[2]))) > date("md")
+									? ((date("Y") - $birthDate[0]) - 1)
+									: (date("Y") - $birthDate[0]));
+							echo $age . "歲";
 						}
-					}
-				?>
-			</td>
-		</tr>
-		<tr>
-			<th class="blue_text">年齡:</th>
-			<td class="black_text">
+					?>
+				</td>
+			</tr>
+			<tr>
+				<th class="blue_text">性別:</th>
+				<td class="black_text">
+					<?php
+						if(!empty($info->sex)) {
+						
+							switch($info->sex) {
+								case "male":
+									echo "公";
+									break;
+								case "female":
+									echo "母";
+									break;
+								default:
+									break;
+							}
+						}
+					?>
+				</td>
+			</tr>
+			<tr>
+				<th class="blue_text">晶片植入:</th>
+				<td class="black_text">
 				<?php
-					if(!empty($info->birthday)) {
-					
-						//Calculate age
-						$birthDate = $info->birthday;
-						//explode the date to get month, day and year
-						$birthDate = explode("-", $birthDate);
-		
-						//get age from date or birthdate
-						$age = (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birthDate[2]))) > date("md")
-								? ((date("Y") - $birthDate[0]) - 1)
-								: (date("Y") - $birthDate[0]));
-						echo $age . "歲";
-					}
+					echo !empty($info->chip_number) ? "有" : "無";
 				?>
-			</td>
-		</tr>
-		<tr>
-			<th class="blue_text">性別:</th>
-			<td class="black_text">
+				</td>
+			</tr>
+			<?php } ?>
+			
+			<?php if($device->type == 'Human') { ?>
+			<tr>
+				<th class="blue_text">年齡:</th>
+				<td class="black_text">
+					<?php
+						if(!empty($info->birthday)) {
+						
+							//Calculate age
+							$birthDate = $info->birthday;
+							//explode the date to get month, day and year
+							$birthDate = explode("-", $birthDate);
+			
+							//get age from date or birthdate
+							$age = (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birthDate[2]))) > date("md")
+									? ((date("Y") - $birthDate[0]) - 1)
+									: (date("Y") - $birthDate[0]));
+							echo $age . "歲";
+						}
+					?>
+				</td>
+			</tr>
+			<tr>
+				<th class="blue_text">性別:</th>
+				<td class="black_text">
 				<?php
 					if(!empty($info->sex)) {
 					
@@ -155,19 +192,20 @@ EOT;
 						}
 					}
 				?>
-			</td>
-		</tr>
-		<tr>
-			<th class="blue_text">晶片植入:</th>
-			<td class="black_text">
-			<?php
-				echo !empty($info->chip_number) ? "有" : "無";
-			?>
-			</td>
-		</tr>
-		<?php } ?>
-	</table>
-	
+				</td>
+			</tr>
+			<?php } ?>
+			
+			<?php if($device->type == 'Valuables') { ?>
+				<tr>
+				<th class="blue_text">類別:</th>
+				<td class="black_text">
+					<?php echo $device->category; ?>
+				</td>
+			</tr>
+			<?php } ?>
+		</table>
+	</div>
 	<?php 
 	if(!empty($photos)) {
 		foreach($photos as $r) {

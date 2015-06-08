@@ -404,81 +404,45 @@ class UserController extends \Phalcon\Mvc\Controller {
 		 */
 	}
 	
-	public function updateContactsAction() {
-		$firstnames = $this->_request->getPost('firstname');
-		$lastnames = $this->_request->getPost('lastname');
-		$phones = $this->_request->getPost('phone');
-	
-		$response_data = array(
-				'status' => 'fail'
-		);
-	
-		//sample code
-		$this->_api_key = 'qwe123';
-		$this->_apikey = 'qwe123';
-		$firstnames[1] = "peter";
-		$lastnames[1] = "pan";
-		$phones[1] = "21348123";
-		$firstnames[2] = "ales";
-		$lastnames[2] = "wong";
-		$phones[2] = "987948123";
-		$firstnames[3] = "anita";
-		$lastnames[3] = "mui";
-		$phones[3] = "456948123";
-		$this->_email = "franky@ink.net.tw";
-	
-	
-		//if api_key match, continue...; otherwise, return fail
-		if($this->_api_key == $this->_apikey) {
+	public function updateContactAction() {
+		if ($this->_request->isPost() == true) {
+			$this->view->disable();
+			$this->response->setContentType('application/json', 'UTF-8');
+			$firstnames = $this->_request->getPost('firstname');
+			$lastnames = $this->_request->getPost('lastname');
+			$phones = $this->_request->getPost('phone');
+		
+			$response_data = array(
+					'status' => 'fail'
+			);
+		
+			foreach($firstnames as $r) {
+		
+				//Assume firstname is required here...
+				if(!empty($firstnames)) {
 				
-			//if email exists, then continue...; otherwise, return fail
-			if(LostContacts::count("email = '{$this->_email}'") > 0) {
-				
-				$lost_contacts = LostContacts::find("email = '{$this->_email}'");
-				
-				foreach($lost_contacts as $lost_contact) {
-
-					//Assume firstname is required here...
-					if(!empty($firstnames)) {
-					
-						foreach($firstnames as $k => $v) {
-
-							if(!empty($firstnames[$k]) || !empty($lastnames[$k]) || !empty($phones[$k])) {
-									
-								$lost_contact->firstname = $firstnames[$k];
-								$lost_contact->lastname = $lastnames[$k];
-								$lost_contact->phone = $phones[$k];
-								$lost_contact->email = $this->_email;
-								$lost_contact->update();
-									
-							}
-						}
-					
-						$response_data = array(
-								'status' => 'success'
-						);
+					foreach($firstnames as $k => $v) {
+		
+						$lost_contact = LostContacts::findFirst("id = '{$k}'");
+								
+						$lost_contact->firstname = $firstnames[$k];
+						$lost_contact->lastname = $lastnames[$k];
+						$lost_contact->phone = $phones[$k];
+						$lost_contact->update();
 					}
+				
+					$response_data = array(
+							'status' => 'success'
+					);
 				}
 			}
+		
+			$this->response->setContent(json_encode($response_data));
+			$this->response->send();
 		}
-	
-		$this->response->setContent(json_encode($response_data));
-		$this->response->send();
-		/**
-		 *
-		 * <input type='text' name='firstname[1]'/>
-		 *  <input type='text' name='lastname[1]'/>
-		 *   <input type='text' name='phone[1]'/>
-		 *
-		 * <input type='text' name='firstname[2]'/>
-		 *  <input type='text' name='lastname[2]'/>
-		 *   <input type='text' name='phone[2]'/>
-		 *
-		 *
-		 * <input type='text' name='firstname[3]'/>
-		 *  <input type='text' name='lastname[3]'/>
-		 *   <input type='text' name='phone[3]'/>
-		*/
+		else {
+			$this->view->contacts = LostContacts::find("email  = '{$_SESSION['USER']['INFO']['email']}'");
+		}
 	}
 	
 	/*

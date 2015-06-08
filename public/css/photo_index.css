@@ -4,7 +4,7 @@
 		background:#d9d9d9;
 		text-align:left;
 		font-size:2.5em;
-		padding:20px;
+		padding:2%;		
 		margin:0;
 	}
 	
@@ -83,10 +83,6 @@
   html, body {
      font-size: 4px;
 	line-height:1px; }
-  	
-	#title {
-		padding:12px;
-	}
 	
 	#title a,
 	#title a:visited {
@@ -121,10 +117,6 @@
     font-size: 6px;
 	line-height:1px; } 
   	
-	#title {
-		padding:20px;
-	}
-	
 	#title a,
 	#title a:visited {
 		color:#808080;
@@ -167,10 +159,6 @@
   html, body {
     font-size: 6px;
 	line-height:1;  	 }
-
-	#title {
-		padding:13px;
-	}  	
 	
 	#title a,
 	#title a:visited {
@@ -208,10 +196,6 @@
   html, body {
     font-size: 7px;
     line-height: 1; }
-
-	#title {
-		padding:15px;
-	}  	
 	
 	#title a,
 	#title a:visited {

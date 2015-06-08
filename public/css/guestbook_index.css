@@ -1,10 +1,8 @@
 #title  {
 	color:white;
 	background:#ff8800;
-	padding:3%;
-	padding-left:20px;
 	font-size:2.5em;	
-	padding:20px;
+	padding:2%;	
 }
 
 #title img {
@@ -123,29 +121,11 @@
   html, body {
      font-size: 4px;
 	line-height:1px; }
-  	
-	#title {
-		padding:12px;
-	}
-
-	#guestbook_list {
-		padding:27px;
-		
-	}
-	
 }
 @media (min-width: 360px) {
   html, body {
     font-size: 6px;
 	line-height:1px; } 
-  	
-	#title {
-		padding:20px;
-	}
-	
-	#guestbook_list {
-		padding:64px;
-	}
 }
 
 @media (min-width: 375px) {
@@ -162,15 +142,6 @@
   html, body {
     font-size: 6px;
 	line-height:1;  	 }
-
-	#title {
-		padding:13px;
-	}  	
-	
-	#guestbook_list {
-		padding:35px;
-		
-	}
 }  	
 @media (min-width: 540px) {
   html, body {
@@ -180,15 +151,6 @@
   html, body {
     font-size: 7px;
     line-height: 1; }
-
-	#title {
-		padding:15px;
-	}  	
-	
-	#guestbook_list {
-		padding:35px;
-		
-	}
 }
 
 @media (min-width: 640px) {

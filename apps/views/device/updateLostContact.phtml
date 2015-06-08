@@ -1,9 +1,9 @@
-<link rel="stylesheet" type="text/css" href="/css/guestbook_create.css">
+<link rel="stylesheet" type="text/css" href="/css/lost_contact_update.css?rand=<?php echo rand(); ?>">
 <script type='text/javascript' src='/js/jquery-1.11.3.min.js'></script>
 <script type='text/javascript' src='/js/jquery.form.js'></script>
 <script type='text/javascript' src='/js/jquery.validate.js'></script>
 <script type='text/javascript' src='/js/jquery.blockUI.js'></script>
-<script type='text/javascript' src='/js/guestbook_create.js'></script>
+<script type='text/javascript' src='/js/lost_contact_update.js'></script>
 <div id='device_img_wrapper'>
 	<?php 
 	if(empty($device->photo)) {
@@ -28,44 +28,85 @@
 	?>
 	<h3><?php echo $device->name?> </h3>
 </div>
-<div id='title'><img src='/img/08/bu-01.png'/>通知/留言</div>
+<ul id='title'>
+	<li><a href='/'>首頁</a></li>
+	<li> > </li>
+	<li><a href='/device/index?serial_number=<?php echo $device->serial_number?>'>管理名單</a></li>
+	<li> > </li>
+	<li><a href='/device/update?serial_number=<?php echo $device->serial_number?>'><?php echo $device->name?></a></li>
+	<li> > </li>
+	<li style='color:#86c557;'>遺失設定</li>
+</ul>
 
 <div id="guestbook_form_container">
 	
+	<div class="green_text title">
+		遺失設定
+	</div>
+		
 	<div class="black_text">
-		若你有發現遺失竉物、人或物品的相關資料，請留下您的聯絡方式，幫助遺失的主人順利找回，謝謝～
+		請詳細提供遺失的相關線索，能幫助你盡快找回
 	</div>
 	
-	<form action="/guestbook/create" method="post">
+	<form action="/device/updateLostContact" method="post">
 		<input type='hidden' name='did' value='<?php echo $device->did;?>'/>
 		<input type='hidden' name='serial_number' value='<?php echo $device->serial_number;?>'/>
-	    <div class='input_div'>
-	        <div class="blue_text"><span><font color="red">*</font>姓名/名稱</span></div>
-	        <input id="name" type="text" name="name" class="textfield" required/>
-	    </div>		    
-	    <div class='input_div'>
-	        <div class="blue_text"><span>發現日期</span></div>
-	        <input type="date" name="date" class="textfield" />
-	    </div>
-	    <div class='input_div'>
-	        <div class="blue_text"><span>發現時間</span></div>
-	        <input type="time" name="time" class="textfield" />
-	    </div>
-	    <div class='input_div'>
-	        <div class="blue_text"><span>發現地點</span></div>
-	        <input type="text" name="location" class="textfield" placeholder="請填寫地點或明顯的景點建築"/>
-	    </div>
-	    <div class='input_div'>
-	        <div class="blue_text"><span>聯絡電話</span></div>
-	        <input type="tel" name="phone" class="textfield" />
-	    </div>
-	    <div class='input_div'>
-	        <div class="blue_text"><span><font color="red">*</font>留言</span></div>
+		<div class='input_div'>
+	        <div class="blue_text"><span><font color="red">*</font>公告信息</span></div>
 	        <!-- when print textarea, echo nl2br($message); -->
-	        <textarea id="message" name="message" class="textfield" rows=5 placeholder="關於竉物的大小事..." required></textarea>
-	    </div>     
+	        <textarea id="message" name="lost_message" class="textfield" rows=5 placeholder="您可描述遺失當時的情境，或是其他能協助h旳重要線索" required><?php echo $device->lost_message; ?></textarea>
+	    </div>   
+	    
+	    <div class='input_div'>
+	        <div class="blue_text"><span>日期</span></div>
+	        <input type="date" name="lost_date" class="textfield" value='<?php echo date('Y-m-d',strtotime($device->lost_date));?>' />
+	    </div>
+	    <div class='input_div'>
+	        <div class="blue_text"><span>時間</span></div>
+	        <input type="time" name="lost_time" class="textfield"  value='<?php echo date('H:i',strtotime($device->lost_date));?>'/>
+	    </div>
+	    <div class='input_div'>
+	        <div class="blue_text"><span>遺失地點</span></div>
+	        <input type="text" name="lost_location" class="textfield" placeholder="請填寫地點或明顯的景點建築" value='<?php echo $device->lost_location; ?>'/>
+	    </div>
+	    <div class='input_div'>
+	        <div class="blue_text"><span><font color="red">*</font>穿著/特徵</span></div>
+	        <!-- when print textarea, echo nl2br($message); -->
+	        <textarea id="message" name="lost_spec" class="textfield" rows=5 placeholder="關於寵物h旳大小事" required><?php echo $device->lost_spec; ?></textarea>
+	    </div>   
+	    <div class='input_div'>
+	        <div class="blue_text" id='contact_div'>
+	        	<span><font color="red">*</font>聯絡人</span> 
+	        	<div id='edit_contact_div'><img src='/img/12/icon-01.png'/> <a href='/device/updateContact'>編輯清單</a></div>
+	        </div>
+				<?php 
+				for($i = 0; $i < 3;$i++) {
+					$index = $i+1;
+
+					if(isset($contacts[$i])) { 
+						$checked = "";
+							
+						if($contacts[$i]->id == $device->lost_contact_id)
+							$checked = "checked";
+						
+						echo <<<EOT
+				<div class='contact'>
+					聯絡人 {$index} <input type='radio' required {$checked} name='lost_contact_id' value='{$contacts[$i]->id}'/> {$contacts[$i]->firstname} {$contacts[$i]->lastname} {$contacts[$i]->phone}
+				</div>
+EOT;
+					}
+					else {
+echo <<<EOT
+				<div class='contact'>
+					聯絡人 {$index} <span>尚未設置任何聯絡人</span>
+				</div>
+EOT;
+}
+				}
+				?>
+	    </div>  
 	    <div id='submit_div'>
-			<button class="button orange_btn" style="">取 消</button>
+			<button class="button orange_btn" style="" onclick='history.go(-1)'>取 消</button>
 			<button type="submit" class="button" style="">送 出</button>
 		</div>
 		<div class="clear"></div>    

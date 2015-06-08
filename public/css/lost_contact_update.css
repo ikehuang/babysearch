@@ -1,14 +1,21 @@
-#title  {
-	color:white;
-	background:#ff8800;
-	font-size:2.5em;	
+
+#title {
+	list-style-type:none;
+	background:#d9d9d9;
+	text-align:left;
+	font-size:2.5em;
 	padding:2%;	
+	margin:0;
 }
 
-#title img {
-	vertical-align:middle;	
-	width:10%;
-	padding-right:30px;
+#title li {
+	display:inline;
+	color:#808080;	
+}
+
+#title a,
+#title a:visited {
+	color:#808080;
 }
 
 #device_img_wrapper {
@@ -33,6 +40,40 @@
 	color:white;
 }
 
+.title {
+	margin-bottom:3%;
+}
+
+.contact {
+	border-bottom:1px dotted #d9d9d9;
+	font-size:3.333em;
+	color:#808080;
+	padding:3% 0;
+}
+
+.contact span {
+	color:#d9d9d9;
+}
+
+#contact_div {
+	position:relative;	
+	margin-bottom:5%;
+}
+
+#edit_contact_div {
+	color:#FF0000;
+	position:absolute;
+	right:0;
+	top:10%;
+}
+#edit_contact_div a,
+#edit_contact_div a:visited {
+	color:#FF0000;	
+}
+
+#edit_contact_div img {
+	width:15%;
+}
 
 .black_text {
 	margin-bottom:5%;
@@ -100,6 +141,7 @@
   html, body {
     font-size: 6px;
 	line-height:1px; } 
+}
 
 @media (min-width: 375px) {
   html, body {

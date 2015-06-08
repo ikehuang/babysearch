@@ -1,38 +1,50 @@
-#title  {
-	color:white;
-	background:#ff8800;
-	font-size:2.5em;	
-	padding:2%;	
-}
 
-#title img {
-	vertical-align:middle;	
-	width:10%;
-	padding-right:30px;
-}
-
-#device_img_wrapper {
-	line-height:0;	
-	position:relative;
-	background:#eeee;
-}
-
-#device_img_wrapper img {
-	width:100%;
-}
-
-#device_img_wrapper h3 {
-	position:absolute;
-	left:0;
-	text-align:center;
-	width:100%;
-	bottom: 4%;
-	font-size:3.333em;	
+#title {
+	list-style-type:none;
+	background:#d9d9d9;
+	text-align:left;
+	font-size:2.5em;
+	padding:2%;
 	margin:0;
-	padding-bottom:10px;
-	color:white;
 }
 
+#title li {
+	display:inline;
+	color:#808080;	
+}
+
+#title a,
+#title a:visited {
+	color:#808080;
+}
+
+.title {
+	color:#86C557;
+	margin-bottom:3%;
+}
+
+.title span {
+	font-size:3.333em;	
+}
+
+.title p {
+	font-size:2.500em;
+}
+
+.contact {
+	border-bottom:1px dotted #d9d9d9;
+	color:#808080;
+	padding:3% 0;
+}
+
+.contact span {
+	color:#d9d9d9;
+}
+
+#contact_div {
+	position:relative;	
+	margin-top:5%;
+}
 
 .black_text {
 	margin-bottom:5%;
@@ -40,7 +52,7 @@
 	height:3%;
 }
 
-#guestbook_form_container {
+#contact_form_container {
 	margin-left:3.6%;
 	margin-right:3.6%;
 	margin-top:6.5%;
@@ -100,6 +112,7 @@
   html, body {
     font-size: 6px;
 	line-height:1px; } 
+}
 
 @media (min-width: 375px) {
   html, body {

@@ -1815,8 +1815,46 @@ EOTl
 	}
 	
 	public function updateLostContactAction() {
+		if ($this->_request->isPost() == true) {
+			$this->view->disable();
+			$this->response->setContentType('application/json', 'UTF-8');
+		
+			$serial_number = $this->_request->getPost("serial_number");
+			$device = Device::findFirst("serial_number = '{$serial_number}'");
+		
+			$device->lost_location = $this->_request->getPost("lost_location");
+			$device->lost_spec = $this->_request->getPost("lost_spec");
+			$device->lost_message = $this->_request->getPost("lost_message");
+			$device->lost_contact_id = $this->_request->getPost("lost_contact_id");
+			if(!empty($this->_request->getPost("lost_date"))) {
+				$device->lost_date = $this->_request->getPost("lost_date")." ".$this->_request->getPost("lost_time");
+			}
+		
+			else {
+				$device->datetime = date('Y-m-d H:i:s');
+			}
+		
+			if ($device->update() == false) {
+				foreach ($device->getMessages() as $message) {
+					$response_data = array(
+							"status" => 'fail'
+					);
+				}
+			}
+			else {
+				$response_data = array(
+						"status" => 'success'
+				);
+			}
+		
+			$this->response->setContent(json_encode($response_data));
+			$this->response->send();
+		}
+		
 		$serial_number = $this->_request->get('serial_number');
 		$device = Device::findFirst("serial_number = '{$serial_number}'");
 		$this->view->device = $device;
+		
+		$this->view->contacts = LostContacts::find("email  = '{$_SESSION['USER']['INFO']['email']}'");
 	}
 }

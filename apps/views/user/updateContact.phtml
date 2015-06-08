@@ -1,0 +1,55 @@
+<link rel="stylesheet" type="text/css" href="/css/contact_update.css?rand=<?php echo rand(); ?>">
+<script type='text/javascript' src='/js/jquery-1.11.3.min.js'></script>
+<script type='text/javascript' src='/js/jquery.form.js'></script>
+<script type='text/javascript' src='/js/jquery.validate.js'></script>
+<script type='text/javascript' src='/js/jquery.blockUI.js'></script>
+<script type='text/javascript' src='/js/contact_update.js'></script>
+<ul id='title'>
+	<li><a href='/'>首頁</a></li>
+	<li> > </li>
+	<li style='color:#86c557;'>聯絡人設定</li>
+</ul>
+
+<div id="contact_form_container">
+	
+	<div class="title">
+		<span>步驟三 : 在寵物、人或物品遺失時提供給尋獲的人可以看見聯絡人資訊</span>
+		<p>註 : 此資訊只會在狀態設定為"遺失"時才會公開顯示</p>
+	</div>
+		
+	<form action="/user/updateContact" method="post">
+	    <div class='input_div'>
+	        <div class="blue_text" id='contact_div'>
+	        	</font>新增聯絡人清單</span> 
+	        </div>
+				<?php 
+				foreach($contacts as $k => $r) {
+					$index = $k+1;
+					echo <<<EOT
+<div class='contact'>
+	<h3 class='green_text'>聯絡人 {$index}</h3> 
+		
+    <div class='input_div'>
+        <div class="blue_text"><span>姓名</span></div>
+        <input type="text" name="firstname[{$r->id}]" class="textfield" placeholder="姓" value='{$r->firstname}'/>
+    </div>
+    <div class='input_div'>
+        <div class="blue_text"><span></span></div>
+        <input type="text" name="lastname[{$r->id}]" class="textfield" placeholder="名" value='{$r->lastname}'/>
+    </div>
+    <div class='input_div'>
+        <div class="blue_text"><span>電話</span></div>
+        <input type="text" type='phone' name="phone[{$r->id}]" class="textfield" value='{$r->phone}'/>
+    </div>
+</div>
+EOT;
+				}
+				?>
+	    </div>  
+	    <div id='submit_div'>
+			<button class="button orange_btn" style="" onclick='history.go(-1)'>取 消</button>
+			<button type="submit" class="button" style="">存檔</button>
+		</div>
+		<div class="clear"></div>    
+	</form>
+</div>
