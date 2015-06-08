@@ -196,7 +196,7 @@ a {
  input[type=checkbox],
   input[type=radio] {
     border: 0px;
-    width: 40px;
+    width: 2em;
     height: 2em;
 }
 

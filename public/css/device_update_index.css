@@ -12,7 +12,7 @@
 	background:#d9d9d9;
 	text-align:left;
 	font-size:2.5em;
-	padding:2%;	
+	padding:3%;	
 	margin:0;
 }
 
@@ -26,61 +26,37 @@
 	color:#808080;
 }
 
-#device_img_wrapper {
-	line-height:0;	
-	position:relative;
-	background:#eeee;
-}
-
-#device_img_wrapper img {
-	width:100%;
-}
-
-#device_img_wrapper h3 {
-	position:absolute;
-	left:0;
-	text-align:center;
-	width:100%;
-	bottom: 4%;
-	font-size:3.333em;	
-	margin:0;
-	padding-bottom:10px;
-	color:white;
-}
-
 .title {
 	margin-bottom:3%;
 }
 
-.contact {
-	border-bottom:1px dotted #d9d9d9;
-	font-size:3.333em;
-	color:#808080;
-	padding:3% 0;
+#upload_btn {
+	cursor:pointer;
+	z-index:2;
+	width:60%;	
 }
 
-.contact span {
-	color:#d9d9d9;
+#pic {
+	display:none;
+  position: absolute;
+  top: 4%;
+  left: 2.5%;
+  z-index: 4;
+  width: 55%;
+  height: 80%;
+  border-radius: 17%;
 }
 
-#contact_div {
-	position:relative;	
-	margin-bottom:5%;
+#info_wrapper div {
+	padding:1% 0;
+  	color: #86C557;
+  	font-size: 2.5em;	
+	line-height:1;
 }
 
-#edit_contact_div {
-	color:#FF0000;
-	position:absolute;
-	right:0;
-	top:10%;
-}
-#edit_contact_div a,
-#edit_contact_div a:visited {
-	color:#FF0000;	
-}
-
-#edit_contact_div img {
-	width:15%;
+.radio_text {
+	font-size:3.333em;	
+	margin-right:3%;
 }
 
 .black_text {
@@ -89,44 +65,49 @@
 	height:3%;
 }
 
-#guestbook_form_container {
-	margin-left:3.6%;
-	margin-right:3.6%;
-	margin-top:6.5%;
-	margin-bottom:12%;
+#device_menu_container {
+	padding:3.6%;
 }
 
-.textfield {
-	background:#e6e6e6;
-	color:#b3b3b3;
-	border:none;
-}
-
-.button {
-	height:11%;
-	background:#EB9F4e;
-	width:47%;
-	float:right;
-	border:none;
-	padding:2%;
-	margin:0;
-	color:white;
-	font-size:4.167em;
-}
-
-.orange_btn {
+#img_wrapper {
+	position:relative;
 	float:left;
-	margin-right:3.5%;
-	background:#F0B77A;
+	width:20%;
+	text-align:left;
 }
 
-#submit_div {
-	margin-top:4.5%;
-	margin-bottom:12%;
+#info_wrapper {
+	float:left;
+	width:70%;
+	text-align:left;
 }
 
-.input_div {
-	margin-bottom:3%;
+.menu {
+	width:50%;
+	float:left;
+	position:relative;
+	display:block;
+}
+
+.menu span {
+	position:absolute;
+	right:5%;
+	bottom:5%;
+	color:white;	
+}
+
+#notification_count {
+	color:white;
+	position:absolute;
+	left:5%;
+	top:5%;	
+	width:15%;
+	height:15%;
+	text-align:center;
+	padding-top:4%;
+	font-size:3em;
+	background:url(/img/07/notice_background.png) center top no-repeat;
+	background-size:contain;
 }
 
 @media (min-width: 213px) {

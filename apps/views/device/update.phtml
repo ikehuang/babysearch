@@ -1,132 +1,94 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Baby Search - Update Device</title>
-		<link rel="stylesheet" type="text/css" href="/css/index.css">
-		<script src="/js/jquery-1.11.3.min.js"></script>
-		<script src="/js/jquery.form.js"></script>
-	</head>
-
-	<body>
-		<div id="header">
-			<img src="/img/02/logo(white).png"></img>
-			<ul style="float:right;margin-right:36px;">
-				<a href=""><li><!-- <?php echo $user->nickname ?> --></li></a>/
-				<a href=""><li>登出</li></a>
-			</ul>
-			<div class="clear"></div>
+<link rel="stylesheet" type="text/css" href="/css/device_update_index.css?rand=<?php echo rand(); ?>">
+<script type='text/javascript' src='/js/jquery-1.11.3.min.js'></script>
+<script type='text/javascript' src='/js/jquery.form.js'></script>
+<script type='text/javascript' src='/js/jquery.validate.js'></script>
+<script type='text/javascript' src='/js/jquery.blockUI.js'></script>
+<script type='text/javascript' src='/js/device_update_index.js?rand=<?php echo rand(); ?>'></script>
+<ul id='title'>
+	<li><a href='/'>首頁</a></li>
+	<li> > </li>
+	<li><a href='/device/index?serial_number=<?php echo $device->serial_number; ?>'>管理名單</a></li>
+	<li> > </li>
+	<li style='color:#86c557;'><?php echo $device->name; ?></li>
+</ul>
+<div id='device_menu_container'>
+	<div class="blue_text title">照片</div>
+	<input type='hidden' name='serial_number' value='<?php echo $device->serial_number; ?>'/>
+	<div>
+		<div id='img_wrapper'>
+			<img id="pic" src= ""/>
+			<img id='upload_btn' src="/img/08/frame.png"/>
+			<input type='file' name="photos" class="photos" style='width:0;height:0;'/>
 		</div>
-		
-		<div style="height:110px;line-height:110px;margin-left:36px;margin-right:36px;background:#P2P2P2;">
-			<font class="grey_text">首 頁 > 管 理 名 單 > </font>
-			<font class="green_text"><!-- <?php echo $device->name ?> --></font>
-		</div>
-		
-		<div style="height:650px;margin-left:36px;margin-right:36px;">
-			<div class="blue_text" style="height:115px;line-height:115px;">照片</div>
-			
+		<div id='info_wrapper'>
+			<div><?php echo $device->name ?></div>
 			<div>
-				<div style='height:160px;width:160px;float:left;position:relative;'>
-					<img id="pic" src= ""></img>
-					<img class='upload_btn' src="/img/08/frame.png" style="position:absolute;top:0px;"></img>
-					<input type='file' name="photos" class="photos"/>
-				</div>
-				<div style="height:180px;margin-left:40px;float:left;">
-					<div class='green_text'><!-- <?php $device->name ?> --></div>
-					<div class='green_text'>
-						<!-- <?php
-							//determine 'kind' from serial number
-							$kind = '';
-							
-							if(!empty($device->serial_number))
-								$kind = $device->serial_number[2];
-							
-							switch($kind){
-								case "Q":
-									$kind = "Q Tag";
-									break;
-								case "B":
-									$kind = "B Tag";
-									break;
-								case "N":
-									$kind = "N Tag";
-									break;
-								default:
-									break;
-							}
-							
-							echo $kind;
-						?> -->
-					</div>
-					<div class='green_text'>USID: <!-- <?php $device->serial_number ?> --></div>
-				</div>
-				<div class="clear"></div>
-			</div>
-			
-			<div class="blue_text" style="height:115px;line-height:115px;">用途分類</div>
-			<div style="height:110px;line-height:110px;">
-				<font style="color:red;font-size:50px;">*</font><span class="blue_text">資料公開</span>
-				<input type="radio" name="open" value="y">公開
-				<input type="radio" name="open" value="n">關閉
-			</div>
-			<br>
-			<div style="height:110px;line-height:110px;">
-				<font style="color:red;font-size:50px;">*</font><span class="blue_text">遺失狀態</span>
-				<input type="radio" name="status" value="lost">遺失
-				<input type="radio" name="status" value="normal">關閉
-			</div>
-		</div>
-		
-		<div>
-			<a href="/device/updateGuestbook?sn=<?php echo $_GET["sn"]?>">
-				<div style="width:50%;height:230px;float:left;position:relative;">
-						<img src="/img/08/bu-01.png" style="width:100%;height:100%;">
-						<div style="position:absolute;bottom:20px;right:10%" class="white_text">訊息通知</div>
-						<img style="position:absolute;top:20px;left:10%;" src="/img/07/notice_background.png">
-						<!-- still need number of message in white here -->
-				</div>
-			</a>
-			<a href="/device/updateInfo?sn=<?php echo $_GET["sn"]?>">
-				<div style="width:50%;height:230px;float:left;position:relative;"">			
-					<img src="/img/08/bu-02.png" style="width:100%;height:100%;">
-					<div style="position:absolute;bottom:20px;right:10%" class="white_text">基本資料</div>
+					<?php
+					//determine 'kind' from serial number
+					$kind = '';
 					
-				</div>
-			</a>
-			<div class="clear"></div>
+					if(!empty($device->serial_number))
+						$kind = $device->serial_number[2];
+					
+					switch($kind){
+						case "Q":
+							$kind = "Q Tag";
+							break;
+						case "B":
+							$kind = "B Tag";
+							break;
+						case "N":
+							$kind = "N Tag";
+							break;
+						default:
+							break;
+					}
+					
+					echo $kind;
+				?>
+			</div>
+			<div>USID: <?php echo $device->serial_number ?></div>
 		</div>
-		
-		<div>
-			<a href="/device/updatePhotos?sn=<?php echo $_GET["sn"]?>">
-				<div style="width:50%;height:230px;float:left;position:relative;"">
-					<img src="/img/08/bu-03.png" style="width:100%;height:100%;">
-					<div style="position:absolute;bottom:20px;right:10%" class="white_text">相片集</div>
-				</div>
-			</a>
-			<a href="/device/updateStatus?sn=<?php echo $_GET["sn"]?>">
-				<div style="width:50%;height:230px;float:left;position:relative;"">
-					<img src="/img/08/bu-04.png" style="width:100%;height:100%;">
-					<div style="position:absolute;bottom:20px;right:10%" class="white_text">遺失設定</div>
-				</div>
-			</a>
-			<div class="clear"></div>
-		</div>
-		
-		<script>
-			function readURL(input) {
-	            if (input.files && input.files[0]) {
-	                var reader = new FileReader();
+		<div class="clear"></div>
+	</div>
 	
-	                reader.onload = function (e) {
-	                    $('#pic')
-	                        .attr('src', e.target.result)
-	                        .width(160)
-	                        .height(160);
-	                };
-	
-	                reader.readAsDataURL(input.files[0]);
-	            }
-	        }
-		</script>
-	</body>
-</html>
+	<div class="blue_text" style='margin:5% 0 5% 0; '>用途分類</div>
+	<div>
+		<font style="color:red;font-size:3.333em;">*</font><span class="blue_text" style='margin-right:3%;'>資料公開</span>
+		<input type="radio" name="open" value="y" <?php if($device->open == 'y') echo 'checked';?>><span class='radio_text'>公開</span>
+		<input type="radio" name="open" value="n" <?php if($device->open != 'y') echo 'checked';?>><span class='radio_text'>關閉</span>
+	</div>
+	<br>
+	<div>
+		<font style="color:red;font-size:3.333em;">*</font><span class="blue_text" style='margin-right:3%;'>遺失狀態</span>
+		<input type="radio" name="status" value="lost" <?php if($device->status == 'lost') echo 'checked';?>><span class='radio_text'>遺失</span>
+		<input type="radio" name="status" value="normal" <?php if($device->status != 'lost') echo 'checked';?>><span class='radio_text' >關閉</span>
+	</div>
+</div>
+
+<div>
+	<a class='menu' href="/device/updateGuestbook?sn=<?php echo $device->serial_number?>">
+		<img src="/img/08/bu-01.png" style="width:100%;">
+			<?php if($notification_count > 0 ) { ?>
+			<span id='notification_count'><?php echo $notification_count; ?></span>
+			<?php } ?>
+			<span style="position:absolute;bottom:20px;right:10%" class="white_text">訊息通知</span>
+	</a>
+	<a class='menu'  href="/device/updateInfo?sn=<?php echo $device->serial_number?>">
+		<img src="/img/08/bu-02.png" style="width:100%;">
+		<div style="position:absolute;bottom:20px;right:10%" class="white_text">基本資料</div>
+	</a>
+	<div class="clear"></div>
+</div>
+
+<div>
+	<a class='menu'  href="/device/updatePhotos?sn=<?php echo $device->serial_number?>">
+		<img src="/img/08/bu-03.png" style="width:100%;">
+		<div style="position:absolute;bottom:20px;right:10%" class="white_text">相片集</div>
+	</a>
+	<a class='menu'  href="/device/updateStatus?sn=<?php echo $device->serial_number?>">
+		<img src="/img/08/bu-04.png" style="width:100%;">
+		<div style="position:absolute;bottom:20px;right:10%" class="white_text">遺失設定</div>
+	</a>
+	<div class="clear"></div>
+</div>

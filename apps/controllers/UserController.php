@@ -38,16 +38,13 @@ class UserController extends \Phalcon\Mvc\Controller {
 		$device_list = array();
 		
 		//find user info and all devices belong to the user
-		$user = User::findFirst("sso_id = '{$_SESSION['USER']['INFO']['sso_id']}'");
+		$user = User::findFirst("email = '{$_SESSION['USER']['INFO']['email']}'");
 		
-		$devices = Device::find("sso_id = '{$_SESSION['USER']['INFO']['sso_id']}'");
-		
-		//find user info and all devices belong to the user
-		//$user = User::findFirst("email = '{$_SESSION['USER']['INFO']['email']}'");
-		
-		//$devices = Device::find("email = '{$_SESSION['USER']['INFO']['email']}'");
+		$devices = Device::find("email = '{$_SESSION['USER']['INFO']['email']}'");
 		
 		foreach ($devices as $device) {
+			$result = Guestbook::find("did = {$device->did}");
+			$device->notification_count = $result->count();
 			$device_list[] = $device;
 		}
 		
@@ -68,8 +65,7 @@ class UserController extends \Phalcon\Mvc\Controller {
 		$this->view->disable();
 		$this->response->setContentType('application/json', 'UTF-8');
 		
-		$result = User::find("sso_id = '{$_POST["formKey"]}'");
-		//$result = User::find("email = '{$_POST["formKey"]}'");
+		$result = User::find("email = '{$_POST["formKey"]}'");
 		
 		if($result->count() > 0) {
 			$status = 'success';
@@ -86,7 +82,7 @@ class UserController extends \Phalcon\Mvc\Controller {
 		$this->response->send();
 	}
 	
-public function createAction(){
+	public function createAction(){
 		
 		$bulletin_message = "";
 		
@@ -113,119 +109,76 @@ public function createAction(){
 		//if api_key match, continue...; otherwise, return fail
 		if($this->_api_key == $this->_apikey) {
 			
-			//make sure all inputs are not empty
-			if(!empty($this->_token) && !empty($this->_sso_id)) {
-			//if(!empty($this->_token) && !empty($this->_email) && !empty($this->_sso_id)) {
+			//get the newest message from bulletin
+			$bulletin = Bulletin::findFirst();
+			$bulletin_message = $bulletin->message;
 			
-				//get the newest message from bulletin
-				$bulletin = Bulletin::findFirst();
-				$bulletin_message = $bulletin->message;
+			//if email doesn't exist, then continue to create user...; otherwise, return fail
+			if(User::count("email = '{$this->_email}'") == 0) {
 				
-				if(Mobile::count("sso_id = '{$this->_sso_id}'") == 0) {
-				//if email doesn't exist, then continue to create user and mobile...; otherwise, return fail
-				//if(User::count("email = '{$this->_email}'") == 0) {
-					
-					$user = new User();
-					
-					$user->sso_id = $this->_sso_id;
-					$user->email = $this->_email;
-					
-					//optional?
-					//$user->fullname = $test_fullname;
-					//$user->phone = $test_phone;
-					//$user->address = $test_address;
-					//$user->nickname = $test_nickname;
-					
-					$user->create();
-					/*
-					if($user->create() == false) {
-						$message = "Failed to create user. Please refer to return message for possible errors.\n";
-					
-						foreach($user->getMessages() as $msg) {
-							$message = $msg . "\n";
-						}
-					}
-					else {
-						$message = "User created successfully.\n";
-						
-						$response_data = array(
-								'status' => 'success',
-								'bulletin_message' => $bulletin_message
-						);
-					}
-					*/
-					
-					//create mobile
-						
-					//if token doesn't exist, then continue to create mobile...; otherwise, return fail
-					if(Mobile::count("token = '{$this->_token}'") == 0) {
-						//if imei doesn't exist, then continue to create mobile...; otherwise, return fail
-						//if(Mobile::count("imei = '{$this->_imei}'") == 0) {
-							
-						//sample data to create mobile
-						$mobile = new Mobile();
-					
-						//$mobile->imei = $this->_imei;
-						$mobile->token = $this->_token;
-						$mobile->email = $this->_email;
-						$mobile->sso_id = $this->_sso_id;
-					
-						$mobile->create();
-						/*
-						 if($mobile->create() == false) {
-						$message = "Failed to create mobile. Please refer to return message for possible errors.\n";
-					
-						foreach($mobile->getMessages() as $msg) {
+				$user = new User();
+				
+				$user->email = $this->_email;
+				
+				//optional?
+				//$user->fullname = $test_fullname;
+				//$user->phone = $test_phone;
+				//$user->address = $test_address;
+				//$user->nickname = $test_nickname;
+				
+				if($user->create() == false) {
+					$message = "Failed to create user. Please refer to return message for possible errors.\n";
+				
+					foreach($user->getMessages() as $msg) {
 						$message = $msg . "\n";
-						}
-						}
-						else {
-						$message = "Mobile created successfully\n";
-							
-						$response_data = array(
-								'status' => 'success',
-								'bulletin_message' => $bulletin_message
-						);
-						}
-						*/
 					}
 				}
 				else {
-					//$message = "Failed to create user. Email existed\n";
+					$message = "User created successfully.\n";
 					
-					if(Mobile::count("sso_id = '{$this->_sso_id}'") > 0) {
-					//if email exists, update sso_id and token
-					//if(Mobile::count("email = '{$this->_email}'") > 0) {
-						
-						//if token doesn't exist, then continue to create mobile...; otherwise, return fail
-						if(Mobile::count("token = '{$this->_token}'") == 0) {
-							
-							$mobile = new Mobile();
-							
-							//$mobile->imei = $this->_imei;
-							$mobile->token = $this->_token;
-							$mobile->email = $this->_email;
-							$mobile->sso_id = $this->_sso_id;
-							
-							$mobile->create();
-						}
-						else {
-							
-							$update_mobile = Mobile::findFirst("sso_id = '{$this->_sso_id}'");
-							//$update_mobile = Mobile::findFirst("email = '{$this->_email}'");
-		
-							//$update_mobile->sso_id = $this->_sso_id;
-							$update_mobile->email = $this->_email;
-							
-							$update_mobile->update();
-						}
-					}
-				}			
+					$response_data = array(
+							'status' => 'success',
+							'bulletin_message' => $bulletin_message
+					);
+				}
+			}
+			//else {
+			//	$message = "Failed to create user. Email existed\n";
+			//}
+			
+			//create mobile
+			
+			//if sso_id doesn't exist, then continue to create mobile...; otherwise, return fail
+			if(Mobile::count("sso_id = '{$this->_sso_id}'") == 0) {
+			//if imei doesn't exist, then continue to create mobile...; otherwise, return fail
+			//if(Mobile::count("imei = '{$this->_imei}'") == 0) {
+			
+				//sample data to create mobile
+				$mobile = new Mobile();
 				
-				$response_data = array(
-						'status' => 'success',
-						'bulletin_message' => $bulletin_message
-				);
+				$mobile->imei = $this->_imei;
+				$mobile->token = $this->_token;
+				$mobile->email = $this->_email;
+				$mobile->sso_id = $this->_sso_id;
+				
+				if($mobile->create() == false) {
+					$message = "Failed to create mobile. Please refer to return message for possible errors.\n";
+				
+					foreach($mobile->getMessages() as $msg) {
+						$message = $msg . "\n";
+					}
+				}
+				else {
+					$message = "Mobile created successfully\n";
+					
+					$response_data = array(
+							'status' => 'success',
+							'bulletin_message' => $bulletin_message
+					);
+				}
+			}
+			else {
+				$message = "Failed to create mobile. SSO_ID existed\n";
 			}
 		}
 		
@@ -237,11 +190,10 @@ public function createAction(){
 		
 		//still need to get user email from session/login
 		//sample data
-		//$this->email = "watson@ink.net.tw";
+		$email = "watson@ink.net.tw";
 			
 		//find user with given email
-		//$user = User::findFirst("email = '{$email}'");
-		$user = User::findFirst("sso_id = '{$this->sso_id}'");
+		$user = User::findFirst("email = '{$email}'");
 		
 		$request = new \Phalcon\Http\Request();
 		
