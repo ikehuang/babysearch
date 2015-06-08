@@ -35,23 +35,33 @@
 				</div>
 					
 				<div class="blue_text"><font style="color:red;">*</font>暱稱:</div>
-				<input type="text" name="nickname" value="<?php $user->nickname?>" class="textfield" required><br>
+				<input type="text" name="nickname" value="<?php echo $user->nickname?>" class="textfield" required><br>
 				<div class="blue_text"><font style="color:red;">*</font>姓名:</div>
-				<input type="text" name="firstname" placeholder="名" required><br>
-				<input type="text" name="lastname" placeholder="姓" required><br>
+				<input type="text" name="firstname" value="<?php echo $user->firstname?>" placeholder="名" required><br>
+				<input type="text" name="lastname" value="<?php echo $user->lastname?>" placeholder="姓" required><br>
 				<div class="blue_text">性別:</div>
-				<input type="radio" name="sex" value="male">男
-				<input type="radio" name="sex" value="female">女<br>
+				<input type="radio" name="sex" value="m"
+					<?php
+						if(!empty($user->sex) && ($user->sex == 'm')) {
+								echo "CHECKED";
+						}
+					?>>男
+				<input type="radio" name="sex" value="f"
+					<?php
+						if(!empty($user->sex) && ($user->sex == 'f')) {
+								echo "CHECKED";
+						}
+					?>>女<br>
 				<div class="blue_text">生日:</div>
-				<input type="date" name="birthday" value="<?php $user->birthday?>" class="textfield" ><br>
+				<input type="date" name="birthday" value="<?php echo $user->birthday?>" class="textfield" ><br>
 				<div class="blue_text">電話:</div>
-				<input type="tel" name="phone" value="<?php $user->phone?>" class="textfield" ><br>
+				<input type="tel" name="phone" value="<?php echo $user->phone?>" class="textfield" ><br>
 				<div class="blue_text">地址:</div>
-				<input type="text" name="address" value="<?php $user->address?>" class="textfield"  placeholder="地址"><br>
-				<input type="text" name="city" placeholder="城市"><br>
-				<input type="text" name="district" placeholder="鄉鎮市區"><br>
-				<input type="text" name="postal" placeholder="郵遞區號"><br>
-				<input type="text" name="country" placeholder="國家" class="textfield" ><br>
+				<input type="text" name="address" value="<?php echo $user->address?>" class="textfield"  placeholder="地址"><br>
+				<input type="text" name="city" value="<?php echo $user->city?>" placeholder="城市"><br>
+				<input type="text" name="district" value="<?php echo $user->district?>" placeholder="鄉鎮市區"><br>
+				<input type="text" name="postal" value="<?php echo $user->postal?>" placeholder="郵遞區號"><br>
+				<input type="text" name="country" value="<?php echo $user->country?>" placeholder="國家" class="textfield" ><br>
 				<input type="submit" class="orange_button" value="儲存" style="margin-top:45px;">
 			</form>
 		</div>
