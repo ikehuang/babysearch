@@ -10,8 +10,8 @@
 	</head>
 
 	<body>
-		<div class="header">
-			<img src="/img/02/logo(white).png" style="margin-top:27.5px;margin-left:2.5%;"></img>
+		<div id="header">
+			<img src="/img/02/logo(white).png"></img>
 			<ul style="float:right;margin-right:36px;">
 				<a href=""><li><!-- <?php echo $user->nickname ?> --></li></a>/
 				<a href=""><li>登出</li></a>
@@ -30,8 +30,6 @@
 		<div style="margin-left:36px;margin-right:36px;">
 		
 			<form action="/device/updatePet" method="post">
-			
-				<input id="sn1" type="hidden" name="serial_number1" value="<?php echo $device->serial_number?>"/>
 				
 				<div id="updatePet">					
 					<div style="width:100%;height:110px;background:blue;">
@@ -150,8 +148,6 @@
 				
 			<form action="/device/updateHuman" method="post">
 			
-				<input id="sn2" type="hidden" name="serial_number2" value="<?php echo $device->serial_number?>"/>
-			
 				<div id="updateHuman">
 					<div id="humanInfo_container">
 						<div class="green_text">資料編輯</div>
@@ -230,18 +226,16 @@
 				
 			<form action="/device/updateValuable" method="post">
 			
-				<input id="sn3" type="hidden" name="serial_number3" value="<?php echo $device->serial_number?>"/>
-			
 				<div id="updateValuable">
 					<div class="green_text">資料編輯</div>
-					<label>
-						<div class="blue_text"><font color="red">*</font>商品名稱</div>
-		        		<input type="text" name="valuable_name" class="textfield" required/>
-					</label>
-					<label>
-						<div class="blue_text">特徵/敘述</div>
-		        		<textarea type="text" name="valuable_description"></textarea>
-					</label>
+						<label>
+							<div class="blue_text"><font color="red">*</font>商品名稱</div>
+			        		<input type="text" name="valuable_name" class="textfield" required/>
+						</label>
+						<label>
+							<div class="blue_text">特徵/敘述</div>
+			        		<textarea type="text" name="valuable_description"></textarea>
+						</label>
 					<div style="margin-top:45px;margin-bottom:120px;">
 						<button id="updateValuable_complete" type="submit" class="orange_button">儲 存</button>
 					</div>

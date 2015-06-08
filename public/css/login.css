@@ -27,15 +27,20 @@
 	color:#8A8A8A;
 	padding:3% 0;	
 }
-#article_container{
-	padding:3% 4%;
+
+.green {
+	color:#86C557
 }
-.article_content{
+#article_container {
 	color:#4D4D4D;
 	font-size:3.333em;
-	margin-top:50px;
-	margin-bottom:50px;
+	padding:3% 4%;	
 }
+
+#article_container p {
+	line-height:1;
+}
+
 #newsfeed_container{
 	margin-bottom:8%;
 	
@@ -74,6 +79,9 @@
 #download_container ul {
 	list-style-type:none;
 	text-align:left;	
+	width:90%;
+	padding:0;
+	margin:0;
 }
 
 #newsfeed_container li,
@@ -82,6 +90,12 @@
 	padding-left:4%;
 	display:inline-block;	
 	vertical-align:middle;
+}
+
+
+#newsfeed_container img,
+#download_container img {
+	width:100%;
 }
 
 #newsfeed_container .green_text,
