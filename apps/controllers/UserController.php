@@ -260,21 +260,30 @@ public function createAction(){
 			$birthday = $this->_request->getPost('birthday');
 			$sex = $this->_request->getPost('sex');
 			//$photo = $this->_request->getPost('photo');
+			$city = $this->_request->getPost('city');
+			$district = $this->_request->getPost('district');
+			$postal = $this->_request->getPost('postal');
+			$country = $this->_request->getPost('country');
 			
-			$user->fullname = $firstname .  ' ' . $lastname;
+			$user->firstname = $firstname;
+			$user->lastname = $lastname;
 			$user->phone = $phone;
 			$user->address = $address;
 			$user->nickname = $nickname;
 			$user->birthday = $birthday;
 			$user->sex = $sex;
 			//$user->photo = $photo;
+			$user->city = $city;
+			$user->district = $district;
+			$user->postal = $postal;
+			$user->country = $country;
 			
 			//for uploading user photo
 			// Check if the user has uploaded files
 			if($this->request->hasFiles() == true){
 				$uploads = $this->request->getUploadedFiles();
 				$isUploaded = false;
-					
+				
 				foreach($uploads as $upload){
 			
 					//Move the file into the application
