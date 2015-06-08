@@ -238,10 +238,11 @@ public function createAction(){
 		//still need to get user email from session/login
 		//sample data
 		//$this->email = "watson@ink.net.tw";
+		$this->_sso_id = $_SESSION['USER']['INFO']['sso_id'];
 			
 		//find user with given email
 		//$user = User::findFirst("email = '{$email}'");
-		$user = User::findFirst("sso_id = '{$this->sso_id}'");
+		$user = User::findFirst("sso_id = '{$this->_sso_id}'");
 		
 		$request = new \Phalcon\Http\Request();
 		
@@ -260,13 +261,39 @@ public function createAction(){
 			$sex = $this->_request->getPost('sex');
 			//$photo = $this->_request->getPost('photo');
 			
-			$user->fullname = $firstname .  '' . $lastname;
+			$user->fullname = $firstname .  ' ' . $lastname;
 			$user->phone = $phone;
 			$user->address = $address;
 			$user->nickname = $nickname;
 			$user->birthday = $birthday;
 			$user->sex = $sex;
 			//$user->photo = $photo;
+			
+			//for uploading user photo
+			// Check if the user has uploaded files
+			if($this->request->hasFiles() == true){
+				$uploads = $this->request->getUploadedFiles();
+				$isUploaded = false;
+					
+				foreach($uploads as $upload){
+			
+					//Move the file into the application
+					$path = 'upload/'.md5(uniqid(rand(), true)).'-'.strtolower($upload->getname());
+					($upload->moveTo($path)) ? $isUploaded = true : $isUploaded = false;
+						
+					if($isUploaded) {
+						if(preg_match("/photo/",$upload->getKey())) {
+								
+							//strip from input key(eg.photos.1) to get id
+							$newkey = preg_replace("/^photos./","",$upload->getKey());
+								
+							$device->photo = "http://{$_SERVER['HTTP_HOST']}/".$path;
+								
+							$photo = $device->photo;
+						}
+					}
+				}
+			}
 			
 			$user->update();
 		}
