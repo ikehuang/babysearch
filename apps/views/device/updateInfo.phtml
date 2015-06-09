@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html>
+	<head>
 <link rel="stylesheet" type="text/css" href="/css/index.css?rand=<?php echo rand(); ?>">
 <link rel="stylesheet" type="text/css" href="/css/device_update_info.css?rand=<?php echo rand(); ?>">
 <script type='text/javascript' src='/js/jquery-1.11.3.min.js'></script>
@@ -5,6 +8,9 @@
 <script type='text/javascript' src='/js/jquery.validate.js'></script>
 <script type='text/javascript' src='/js/jquery.blockUI.js'></script>
 <script type='text/javascript' src='/js/device_update_info.js?rand=<?php echo rand(); ?>'></script>
+	</head>
+	
+	<body>
 <ul id='title'>
 	<li><a href='/'>首頁</a></li>
 	<li> > </li>
@@ -18,6 +24,8 @@
 <div>
 	<form action="/device/updatePet" method="post">
 		
+		<input type='hidden' name='serial_number1' value='<?php echo $device->serial_number; ?>'/>
+		
 		<div id="updatePet">					
 			<div id="pet_tab_container">
 				<ul>
@@ -29,29 +37,29 @@
 			<div id="petInfo_container" class='container'>
 				<div class='input_div'>
 					<div class="blue_text"><font color="red">*</font>竉物名字</div>
-	        		<input type="text" name="pet_name" class="textfield" required/>
+	        		<input type="text" name="pet_name" value="<?php echo $pet_info->name; ?>" class="textfield" required/>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">類別</div>
-					<input type="text" name="pet_category" class="textfield"/>
+					<input type="text" name="pet_category" value="<?php echo $device->category; ?>" class="textfield"/>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">性別 
-					<input type="radio" name="pet_sex" value="M" checked  style='margin-left:5%;'>公
-					<input type="radio" name="pet_sex" value="F" style='margin-left:20%;'>母
+					<input type="radio" name="pet_sex" value="m" style='margin-left:5%;'>公
+					<input type="radio" name="pet_sex" value="f" style='margin-left:20%;'>母
 					</div>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">生日</div>
-	        		<input name="pet_birthday" class="textfield" type='date'/>
+	        		<input name="pet_birthday" value="<?php echo $pet_info->birthday; ?>" class="textfield" type='date'/>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">身高/身長(cm)</div>
-	        		<input type="number" name="pet_height" class="textfield"/>
+	        		<input type="number" name="pet_height" value="<?php echo $pet_info->height; ?>" class="textfield"/>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">體重(kg)</div>
-	        		<input type="number" name="pet_weight" class="textfield"/>
+	        		<input type="number" name="pet_weight" value="<?php echo $pet_info->weight; ?>" class="textfield"/>
 				</div>
 				<div class='input_div'>
 	        		<table class='checkbox_table'>
@@ -97,32 +105,32 @@
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">簡介</div>
-	        		<textarea type="text" class='textfield' rows=4 name="pet_description" placeholder="關於竉物的大小事..."></textarea>
+	        		<textarea type="text" class='textfield' rows=4 name="pet_description" value="<?php echo $pet_info->description; ?>" placeholder="關於竉物的大小事..."></textarea>
 				</div>
 			</div>
 		
 			<div id="healthStatus_container" class='container'>
 				<div class='input_div'>
 					<div class="blue_text"><font color="red">*</font>晶片號碼</div>
-	        		<input type="text" name="pet_chip_number" class="textfield" required/>
+	        		<input type="text" name="pet_chip_number" value="<?php echo $pet_info->chip_number; ?>" class="textfield" required/>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">結紮
-					<input type="radio" name="pet_desex" value="Y">有
-					<input type="radio" name="pet_desex" value="N" checked>無</div>
+					<input type="radio" name="pet_desex" value="<?php if(strtolower($pet_info->desex) == 'y') echo "CHECKED"; ?>">有
+					<input type="radio" name="pet_desex" value="<?php if(strtolower($pet_info->desex) == 'n') echo "CHECKED"; ?>" checked>無</div>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">預防針種類</div>
-	        		<input type="text" name="pet_vaccine_type" class="textfield"/>
+	        		<input type="text" name="pet_vaccine_type" value="<?php echo $pet_info->vaccine_type; ?>" class="textfield"/>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">血型</div>
-	        		<input type="text" name="pet_bloodtype" class="textfield"/>
+	        		<input type="text" name="pet_bloodtype" value="<?php echo $pet_info->bloodtype; ?>" class="textfield"/>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">血庫資訊通知
-					<input type="radio" name="pet_bloodbank" value="Y">有
-					<input type="radio" name="pet_bloodbank" value="N">無</div>
+					<input type="radio" name="pet_bloodbank" value="<?php if(strtolower($pet_info->bloodbank) == 'y') echo "CHECKED"; ?>">有
+					<input type="radio" name="pet_bloodbank" value="<?php if(strtolower($pet_info->bloodbank) == 'n') echo "CHECKED"; ?>">無</div>
 				</div>
 				<div class='input_div'>
 				
@@ -150,20 +158,20 @@
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">保險</div>
-	        		<input type="text" name="pet_insurance" class="textfield" placeholder="填入保險單號"/><br>
+	        		<input type="text" name="pet_insurance" value="<?php echo $pet_info->insurance; ?>" class="textfield" placeholder="填入保險單號"/><br>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">專屬醫院</div>
-	        		<input type="text" name="pet_hospital_name" class="textfield" placeholder="醫院名稱"/><br>
-	        		<input type="number" name="pet_hospital_phone" class="textfield" placeholder="醫院電話"/><br>
+	        		<input type="text" name="pet_hospital_name" value="<?php echo $pet_info->hospital_name; ?>" class="textfield" placeholder="醫院名稱"/><br>
+	        		<input type="number" name="pet_hospital_phone" value="<?php echo $pet_info->hospital_phone; ?>" class="textfield" placeholder="醫院電話"/><br>
 				</div>
 				<div class='input_div'>
 	        		<div class="blue_text">醫院地址</div>
-	        		<input type="text" name="pet_hospital_address" class="textfield" placeholder="地址"/><br>
-	        		<input type="text" name="pet_hospital_city" class="textfield" style='width:18%;margin-right:2%;' placeholder="城市"/>
-	        		<input type="text" name="pet_hospital_district" class="textfield" style='width:18%;margin-right:2%;' placeholder="鄉鎮市區"/>
-	        		<input type="text" name="pet_hospital_postal" class="textfield" style='width:18%;margin-right:2%;' placeholder="郵遞區號"/>
-	        		<input type="text" name="pet_hospital_country" class="textfield" style='width:19%;' class="textfield" placeholder="國家"/>
+	        		<input type="text" name="pet_hospital_address" value="<?php echo $pet_info->hospital_address; ?>" class="textfield" placeholder="地址"/><br>
+	        		<input type="text" name="pet_hospital_city" value="<?php echo $pet_info->hospital_city; ?>" class="textfield" style='width:18%;margin-right:2%;' placeholder="城市"/>
+	        		<input type="text" name="pet_hospital_district" value="<?php echo $pet_info->hospital_district; ?>" class="textfield" style='width:18%;margin-right:2%;' placeholder="鄉鎮市區"/>
+	        		<input type="text" name="pet_hospital_postal" value="<?php echo $pet_info->hospital_postal; ?>" class="textfield" style='width:18%;margin-right:2%;' placeholder="郵遞區號"/>
+	        		<input type="text" name="pet_hospital_country" value="<?php echo $pet_info->hospital_country; ?>" class="textfield" style='width:19%;' class="textfield" placeholder="國家"/>
 				</div>
 			</div>
 			
@@ -176,38 +184,40 @@
 		
 	<form action="/device/updateHuman" method="post">
 	
+		<input type='hidden' name='serial_number2' value='<?php echo $device->serial_number; ?>'/>
+	
 		<div id="updateHuman">
 			<div id="humanInfo_container" class='container'>
 				<div class="green_text">資料編輯</div>
 				<div class='input_div'>
 					<div class="blue_text"><font color="red">*</font>姓名</div>
-	        		<input type="text" name="human_firstname" class="textfield" placeholder="名" required/>
-	        		<input type="text" name="human_lastname" class="textfield" placeholder="姓" required/>
+	        		<input type="text" name="human_firstname" value="<?php echo $human_info->firstname; ?>" class="textfield" placeholder="名" required/>
+	        		<input type="text" name="human_lastname" value="<?php echo $human_info->lastname; ?>" class="textfield" placeholder="姓" required/>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text"><font color="red">*</font>暱稱</div>
-	        		<input type="text" name="human_nickname" class="textfield" required/>
+	        		<input type="text" name="human_nickname" value="<?php echo $human_info->nickname; ?>" class="textfield" required/>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text"><font color="red">*</font>性別
-	        		<input type="radio" name="human_sex" value="M">男
-					<input type="radio" name="human_sex" value="F">女</div>
+	        		<input type="radio" name="human_sex" value="m">男
+					<input type="radio" name="human_sex" value="f">女</div>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">生日</div>
-	        		<input type="text" name="human_birthday" class="textfield datepicker"/>
+	        		<input type="text" name="human_birthday" value="<?php echo $human_info->birthday; ?>" class="textfield datepicker"/>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">身高(cm)</div>
-	        		<input type="text" name="human_height" class="textfield"/>
+	        		<input type="text" name="human_height" value="<?php echo $human_info->height; ?>" class="textfield"/>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">體重(kg)</div>
-	        		<input type="text" name="human_weight" class="textfield"/>
+	        		<input type="text" name="human_weight" value="<?php echo $human_info->weight; ?>" class="textfield"/>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">血型</div>
-	        		<input type="text" name="human_bloodtype" class="textfield"/>
+	        		<input type="text" name="human_bloodtype" value="<?php echo $human_info->bloodtype; ?>" class="textfield"/>
 				</div>
 				<div class='input_div'>
 				
@@ -254,21 +264,21 @@
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">服用藥物</div>
-					<textarea type="number" name="human_medications" class="textfield" rows=3></textarea>
+					<textarea type="number" name="human_medications" value="<?php echo $human_info->medications; ?>" class="textfield" rows=3></textarea>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">專屬醫院</div>
-	        		<input type="text" name="human_hospital_name" class="textfield" placeholder="醫院名稱"/><br>
-	        		<input type="number" name="human_hospital_phone" class="textfield" placeholder="醫院電話"/><br>
+	        		<input type="text" name="human_hospital_name" value="<?php echo $human_info->hospital_name; ?>" class="textfield" placeholder="醫院名稱"/><br>
+	        		<input type="number" name="human_hospital_phone" value="<?php echo $human_info->hospital_phone; ?>" class="textfield" placeholder="醫院電話"/><br>
 				</div>
 				<div class='input_div'>
 	        		<div class="blue_text">醫院地址</div>
-	        		<input type="text" name="human_hospital_address" class="textfield" placeholder="地址"/><br>
+	        		<input type="text" name="human_hospital_address" value="<?php echo $human_info->hospital_address; ?>" class="textfield" placeholder="地址"/><br>
 	        		
-	        		<input type="text" name="human_hospital_city" placeholder="城市" class="textfield" style='width:18%;margin-right:2%;'/>
-	        		<input type="text" name="human_hospital_district" placeholder="鄉鎮市區" class="textfield" style='width:18%;margin-right:2%;'/>
-	        		<input type="text" name="human_hospital_postal" placeholder="郵遞區號" class="textfield" style='width:18%;margin-right:2%;'/>
-	        		<input type="text" name="human_hospital_country" class="textfield" placeholder="國家" style='width:19%;'/><br>
+	        		<input type="text" name="human_hospital_city" value="<?php echo $human_info->hospital_city; ?>" placeholder="城市" class="textfield" style='width:18%;margin-right:2%;'/>
+	        		<input type="text" name="human_hospital_district" value="<?php echo $human_info->hospital_district; ?>" placeholder="鄉鎮市區" class="textfield" style='width:18%;margin-right:2%;'/>
+	        		<input type="text" name="human_hospital_postal" value="<?php echo $human_info->hospital_postal; ?>" placeholder="郵遞區號" class="textfield" style='width:18%;margin-right:2%;'/>
+	        		<input type="text" name="human_hospital_country" value="<?php echo $human_info->hospital_country; ?>" class="textfield" placeholder="國家" style='width:19%;'/><br>
 				</div>
 			</div>
 			
@@ -281,15 +291,17 @@
 		
 	<form id="updateValuable" action="/device/updateValuable" method="post">
 	
+		<input type='hidden' name='serial_number3' value='<?php echo $device->serial_number; ?>'/>
+	
 		<div class='container'>
 			<div class="green_text" style='margin-bottom:3%;'>資料編輯</div>
 			<div class='input_div'>
 				<div class="blue_text"><font color="red">*</font>商品名稱</div>
-        		<input type="text" name="valuable_name" class="textfield" required/>
+        		<input type="text" name="valuable_name" value="<?php echo $valuable_info->name; ?>" class="textfield" required/>
 			</div>
 			<div class='input_div'>
 				<div class="blue_text">特徵/敘述</div>
-        		<textarea type="text" name="valuable_description"class="textfield" rows=3></textarea>
+        		<textarea type="text" name="valuable_description" value="<?php echo $valuable_info->description; ?>" class="textfield" rows=3></textarea>
 			</div>
 		</div>
 		<div class='submit_div'>
@@ -301,3 +313,6 @@
 <script>
 	var device_type = "<?php echo $device->type; ?>";
 </script>
+
+	</body>
+</html>

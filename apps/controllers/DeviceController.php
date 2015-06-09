@@ -53,6 +53,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		$expiry_date = '';
 		
 		$open = $this->_request->getPost('open');
+		$category = $this->_request->getPost('pet_category');
 		
 		//pet info
 		$pet_name = $this->_request->getPost('pet_name');
@@ -107,6 +108,8 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			$device->created = date('Y-m-d H:i:s');
 			//$device->email = $this->_email;
 			$device->email = $_SESSION['USER']['INFO']['email'];
+			$device->sso_id = $_SESSION['USER']['INFO']['sso_id'];
+			$device->category = $category;
 			
 			//for uploading device photo
 			// Check if the user has uploaded files
@@ -232,6 +235,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			$device->created = date('Y-m-d H:i:s');
 			//$device->email = $this->_email;
 			$device->email = $_SESSION['USER']['INFO']['email'];
+			$device->sso_id = $_SESSION['USER']['INFO']['sso_id'];
 			
 			//for uploading device photo
 			// Check if the user has uploaded files
@@ -331,6 +335,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			$device->created = date('Y-m-d H:i:s');
 			//$device->email = $this->_email;
 			$device->email = $_SESSION['USER']['INFO']['email'];
+			$device->sso_id = $_SESSION['USER']['INFO']['sso_id'];
 			
 			//for uploading device photo
 			// Check if the user has uploaded files
@@ -388,14 +393,51 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 	public function updateInfoAction(){
 		$serial_number = $this->_request->get('serial_number');
 		
+
 		$device = Device::findFirst("serial_number = '{$serial_number}'");
 		
 		$this->view->setVar("device", $device);		
+
+		$this->_sso_id = $_SESSION['USER']['INFO']['sso_id'];
+		//sample data
+		//$this->_email = $_SESSION['USER']['INFO']['email'];
+		
+		if(Device::count(array("conditions" => "sso_id = '{$this->_sso_id}' AND serial_number = '{$serial_number}'")) > 0) {
+		//if email-serial_number pair exists in the system, then continue...; otherwise, fail.
+		//if(Device::count(array("conditions" => "email = '{$this->_email}' AND serial_number = '{$serial_number}'")) > 0) {
+			
+			$device = Device::findFirst("serial_number = '{$serial_number}'");
+			
+			//retrieve the respected 'info' accoring to different types
+			switch($device->type){
+				case "Pets":
+					$pet_info = PetInfo::findFirst("did = '{$device->did}'");
+					break;
+				case "Human":
+					$human_info = HumanInfo::findFirst("did = '{$device->did}'");
+					break;
+				case "Valuables":
+					$valuable_info = ValuableInfo::findFirst("did = '{$device->did}'");
+					break;
+				default:
+					break;
+			}
+			
+			$this->view->setVar("device", $device);
+			$this->view->setVar("pet_info", $pet_info);
+			$this->view->setVar("human_info", $human_info);
+			$this->view->setVar("valuable_info", $valuable_info);
+		}
+
 	}
 	
  	public function updatePetAction(){
+ 		
+ 		$this->view->disable();
+ 		$this->response->setContentType('application/json', 'UTF-8');
+ 		
 		//for updating device info
-		//$category = $this->_request->getPost('category');
+		$category = $this->_request->getPost('pet_category');
 		$status = strtolower($this->_request->getPost('status'));
 		//$type = $this->_request->getPost('type');
 		$name = $this->_request->getPost('name');
@@ -486,6 +528,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			$device->name = $pet_name;
 			//$device->photo = $photo;
 			$device->message = $message;
+			$device->category = $category;
 		
 			//for uploading device photo
 			// Check if the user has uploaded files
@@ -546,10 +589,22 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 				
 				$pet_info->update();
 			}
+			$response_data = array(
+					'status' => 'success',
+					'device' => $device,
+					'pet_info' => $pet_info
+			);
+			
+			$this->response->setContent(json_encode($response_data));
+			$this->response->send();	
 		}
  	}
  	
  	public function updateHumanAction(){
+ 		
+ 		$this->view->disable();
+ 		$this->response->setContentType('application/json', 'UTF-8');
+ 		
 		//for updating device info
 		//$category = $this->_request->getPost('category');
 		$status = strtolower($this->_request->getPost('status'));
@@ -681,19 +736,36 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 				$human_info->height = $human_height;
 				$human_info->weight = $human_weight;
 				$human_info->bloodtype = $human_bloodtype;
-				$human_info->disease = $human_disease;
-				$human_info->disability = $human_disability;
+				//$human_info->disease = $human_disease;
+				//$human_info->disability = $human_disability;
 				$human_info->medications = $human_medications;
 				$human_info->hospital_name = $human_hospital_name;
 				$human_info->hospital_phone = $human_hospital_phone;
 				$human_info->hospital_address = $human_hospital_address;
-		
+				$human_info->hospital_city = $human_hospital_city;
+				$human_info->hospital_district = $human_hospital_district;
+				$human_info->hospital_postal = $human_hospital_postal;
+				$human_info->hospital_country = $human_hospital_country;
+				
 				$human_info->update();
 			}
+			
+			$response_data = array(
+					'status' => 'success',
+					'device' => $device,
+					'human_info' => $human_info
+			);
+				
+			$this->response->setContent(json_encode($response_data));
+			$this->response->send();
 		}
  	}
  	
  	public function updateValuableAction(){
+ 		
+ 		$this->view->disable();
+ 		$this->response->setContentType('application/json', 'UTF-8');
+ 		
 		//for updating device info
 		//$category = $this->_request->getPost('category');
 		$status = strtolower($this->_request->getPost('status'));
@@ -807,6 +879,15 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 				$valuable_info->update();
 			}			
 		}
+		
+		$response_data = array(
+				'status' => 'success',
+				'device' => $device,
+				'valuable_info' => $valuable_info
+		);
+		
+		$this->response->setContent(json_encode($response_data));
+		$this->response->send();
  	}
 	
 	

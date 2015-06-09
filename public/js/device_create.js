@@ -45,6 +45,158 @@ $.init_valuable_event = function() {
 	});
 };
 
+//hide these containers at first
+$("#addPet").hide();
+$("#addContacts1").hide();
+$("#addHuman").hide();
+$("#addContacts2").hide();
+$("#addValuable").hide();
+$("#addContacts3").hide();
+
+//after first step completed...
+$("#addSerial_next" ).click(function() {
+
+	switch($("#sn").val()[0]){
+		case 'P':
+			$("#addSerial").hide();
+			$("#addPet").show();
+			$("#healthStatus_container").hide();					
+			$("#addContacts1").hide();
+
+			switch($("#sn").val()[2]){
+				case 'Q':
+					$('#type1').attr('src', '/img/14/ICON+TITLE-01.png');
+					break;
+				case 'N':
+					$('#type1').attr('src', '/img/14/ICON+TITLE-02.png');
+					break;
+				case 'B':
+					$('#type1').attr('src', '/img/14/ICON+TITLE-03.png');
+					break;
+				default:
+					break;
+			}
+			break;
+		case 'M':
+			$("#addSerial").hide();
+			$("#addHuman").show();
+			$("#addContacts2").hide();
+
+			switch($("#sn").val()[2]){
+				case 'Q':
+					$('#type2').attr('src', '/img/14/ICON+TITLE-01.png');
+					break;
+				case 'N':
+					$('#type2').attr('src', '/img/14/ICON+TITLE-02.png');
+					break;
+				case 'B':
+					$('#type2').attr('src', '/img/14/ICON+TITLE-03.png');
+					break;
+				default:
+					break;
+			}
+			break;
+		case 'T':
+			$("#addSerial").hide();
+			$("#addValuable").show();
+			$("#addContacts3").hide();
+
+			switch($("#sn").val()[2]){
+				case 'Q':
+					$('#type3').attr('src', '/img/14/ICON+TITLE-01.png');
+					break;
+				case 'N':
+					$('#type3').attr('src', '/img/14/ICON+TITLE-02.png');
+					break;
+				case 'B':
+					$('#type3').attr('src', '/img/14/ICON+TITLE-03.png');
+					break;
+				default:
+					break;
+			}
+			break;
+		default:
+			alert('序號格式不正確!');
+			return false;
+		break;
+	}
+
+	$("#sn1").val( $("#sn").val());
+	$("#sn2").val( $("#sn").val());
+	$("#sn3").val( $("#sn").val());
+});
+
+//for tab hiding...
+$("#petInfo_tab" ).click(function() {
+	$("#petInfo_container").show();
+	$("#healthStatus_container").hide();
+});
+
+$("#petHealth_tab" ).click(function() {
+	$("#petInfo_container").hide();
+	$("#healthStatus_container").show();
+});
+
+//from step2 back to step1
+$("#addPet_back" ).click(function() {
+	$("#addSerial").show();
+	$("#addPet").hide();
+	$("#addHuman").hide();
+	$("#addValuable").hide();
+});
+
+$("#addHuman_back" ).click(function() {
+	$("#addSerial").show();
+	$("#addPet").hide();
+	$("#addHuman").hide();
+	$("#addValuable").hide();
+});
+
+$("#addValuable_back" ).click(function() {
+	$("#addSerial").show();
+	$("#addPet").hide();
+	$("#addHuman").hide();
+	$("#addValuable").hide();
+});
+
+//from step2 to step3
+$("#addPet_next" ).click(function() {
+	// check input value
+	if($('#create_pet_form input[name="pet_name"]').val().length == 0) {
+		alert('請輸入竉物名字!');
+		return false;
+	}
+	
+	$("#addPet").hide();
+	$("#addContacts1").show();
+});
+
+$("#addHuman_next" ).click(function() {
+	$("#addHuman").hide();
+	$("#addContacts2").show();
+});
+
+$("#addValuable_next" ).click(function() {
+	$("#addValuable").hide();
+	$("#addContacts3").show();
+});
+
+//from step3 back to step2
+$("#addContact1_back" ).click(function() {
+	$("#addPet").show();
+	$("#addContacts1").hide();
+});
+
+$("#addContact2_back" ).click(function() {
+	$("#addHuman").show();
+	$("#addContacts2").hide();
+});
+
+$("#addContact3_back" ).click(function() {
+	$("#addValuable").show();
+	$("#addContacts3").hide();
+});
+
 $(document).ready(function() {
 	$.init_pet_event();
 	$.init_human_event();
@@ -67,156 +219,4 @@ $(document).ready(function() {
 			return false;
 			break;
 	}
-	
-	//hide these containers at first
-	$("#addPet").hide();
-	$("#addContacts1").hide();
-	$("#addHuman").hide();
-	$("#addContacts2").hide();
-	$("#addValuable").hide();
-	$("#addContacts3").hide();
-
-	//after first step completed...
-	$("#addSerial_next" ).click(function() {
-
-		switch($("#sn").val()[0]){
-			case 'P':
-				$("#addSerial").hide();
-				$("#addPet").show();
-				$("#healthStatus_container").hide();					
-				$("#addContacts1").hide();
-
-				switch($("#sn").val()[2]){
-					case 'Q':
-						$('#type1').attr('src', '/img/14/ICON+TITLE-01.png');
-						break;
-					case 'N':
-						$('#type1').attr('src', '/img/14/ICON+TITLE-02.png');
-						break;
-					case 'B':
-						$('#type1').attr('src', '/img/14/ICON+TITLE-03.png');
-						break;
-					default:
-						break;
-				}
-				break;
-			case 'M':
-				$("#addSerial").hide();
-				$("#addHuman").show();
-				$("#addContacts2").hide();
-
-				switch($("#sn").val()[2]){
-					case 'Q':
-						$('#type2').attr('src', '/img/14/ICON+TITLE-01.png');
-						break;
-					case 'N':
-						$('#type2').attr('src', '/img/14/ICON+TITLE-02.png');
-						break;
-					case 'B':
-						$('#type2').attr('src', '/img/14/ICON+TITLE-03.png');
-						break;
-					default:
-						break;
-				}
-				break;
-			case 'T':
-				$("#addSerial").hide();
-				$("#addValuable").show();
-				$("#addContacts3").hide();
-
-				switch($("#sn").val()[2]){
-					case 'Q':
-						$('#type3').attr('src', '/img/14/ICON+TITLE-01.png');
-						break;
-					case 'N':
-						$('#type3').attr('src', '/img/14/ICON+TITLE-02.png');
-						break;
-					case 'B':
-						$('#type3').attr('src', '/img/14/ICON+TITLE-03.png');
-						break;
-					default:
-						break;
-				}
-				break;
-			default:
-				alert('序號格式不正確!');
-				return false;
-			break;
-		}
-
-		$("#sn1").val( $("#sn").val());
-		$("#sn2").val( $("#sn").val());
-		$("#sn3").val( $("#sn").val());
-	});
-	
-	//for tab hiding...
-	$("#petInfo_tab" ).click(function() {
-		$("#petInfo_container").show();
-		$("#healthStatus_container").hide();
-	});
-
-	$("#petHealth_tab" ).click(function() {
-		$("#petInfo_container").hide();
-		$("#healthStatus_container").show();
-	});
-
-	//from step2 back to step1
-	$("#addPet_back" ).click(function() {
-		$("#addSerial").show();
-		$("#addPet").hide();
-		$("#addHuman").hide();
-		$("#addValuable").hide();
-	});
-
-	$("#addHuman_back" ).click(function() {
-		$("#addSerial").show();
-		$("#addPet").hide();
-		$("#addHuman").hide();
-		$("#addValuable").hide();
-	});
-
-	$("#addValuable_back" ).click(function() {
-		$("#addSerial").show();
-		$("#addPet").hide();
-		$("#addHuman").hide();
-		$("#addValuable").hide();
-	});
-
-	//from step2 to step3
-	$("#addPet_next" ).click(function() {
-		// check input value
-		if($('#create_pet_form input[name="pet_name"]').val().length == 0) {
-			alert('請輸入竉物名字!');
-			return false;
-		}
-		
-		$("#addPet").hide();
-		$("#addContacts1").show();
-	});
-	
-	$("#addHuman_next" ).click(function() {
-		$("#addHuman").hide();
-		$("#addContacts2").show();
-	});
-	
-	$("#addValuable_next" ).click(function() {
-		$("#addValuable").hide();
-		$("#addContacts3").show();
-	});
-
-	//from step3 back to step2
-	$("#addContact1_back" ).click(function() {
-		$("#addPet").show();
-		$("#addContacts1").hide();
-	});
-
-	$("#addContact2_back" ).click(function() {
-		$("#addHuman").show();
-		$("#addContacts2").hide();
-	});
-
-	$("#addContact3_back" ).click(function() {
-		$("#addValuable").show();
-		$("#addContacts3").hide();
-	});
 });

@@ -40,28 +40,28 @@ $.init_form = function() {
 
 	$('form').ajaxForm({
 		beforeSubmit:function(e) {
-			$.blockUI({ message: '留言中...'});
+			$.blockUI({ message: '更新中...'});
 		},
 		success:function(response) {
 			
 			if(response.status == 'success') {
-				$.blockUI({ message: '留言成功!'});
+				$.blockUI({ message: '更新成功!'});
 
 				setTimeout(function() {
 					$.unblockUI();
 					//alert(response.msg);
 					if(response.status == 'success') {
-						window.location.href = '/guestbook/list?serial_number='+$("input[name='serial_number']").val();
+						//window.location.href = '/guestbook/list?serial_number='+$("input[name='serial_number']").val();
 					}
 				}, 1000);
 			}
 			else {
 
-				$.blockUI({ message: '留言失敗!'});
+				$.blockUI({ message: '更新失敗!'});
 			}
 		},
 		error:function() {
-			$.blockUI({ message: '留言失敗!'});
+			$.blockUI({ message: '更新失敗!'});
 		}
 	});
 };
