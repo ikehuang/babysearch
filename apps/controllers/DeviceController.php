@@ -370,18 +370,11 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 	}
 	
 	public function updateInfoAction(){
-		$serial_number = $_GET["sn"];
+		$serial_number = $this->_request->get('serial_number');
 		
-		//sample data
-		$this->_email = $_SESSION['USER']['INFO']['email'];
+		$device = Device::findFirst("serial_number = '{$serial_number}'");
 		
-		//if email-serial_number pair exists in the system, then continue...; otherwise, fail.
-		if(Device::count(array("conditions" => "email = '{$this->_email}' AND serial_number = '{$serial_number}'")) > 0) {
-			
-			$device = Device::findFirst("serial_number = '{$serial_number}'");
-			
-			$this->view->setVar("device", $device);		
-		}
+		$this->view->setVar("device", $device);		
 	}
 	
  	public function updatePetAction(){

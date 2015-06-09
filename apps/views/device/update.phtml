@@ -67,14 +67,14 @@
 </div>
 
 <div>
-	<a class='menu' href="/device/updateGuestbook?sn=<?php echo $device->serial_number?>">
+	<a class='menu' href="/guestbook/list?serial_number=<?php echo $device->serial_number?>">
 		<img src="/img/08/bu-01.png" style="width:100%;">
 			<?php if($notification_count > 0 ) { ?>
 			<span id='notification_count'><?php echo $notification_count; ?></span>
 			<?php } ?>
 			<span style="position:absolute;bottom:20px;right:10%" class="white_text">訊息通知</span>
 	</a>
-	<a class='menu'  href="/device/updateInfo?sn=<?php echo $device->serial_number?>">
+	<a class='menu'  href="/device/updateInfo?serial_number=<?php echo $device->serial_number?>">
 		<img src="/img/08/bu-02.png" style="width:100%;">
 		<div style="position:absolute;bottom:20px;right:10%" class="white_text">基本資料</div>
 	</a>
@@ -82,11 +82,11 @@
 </div>
 
 <div>
-	<a class='menu'  href="/device/updatePhotos?sn=<?php echo $device->serial_number?>">
+	<a class='menu'  href="/device/updatePhotos?serial_number=<?php echo $device->serial_number?>">
 		<img src="/img/08/bu-03.png" style="width:100%;">
 		<div style="position:absolute;bottom:20px;right:10%" class="white_text">相片集</div>
 	</a>
-	<a class='menu'  href="/device/updateStatus?sn=<?php echo $device->serial_number?>">
+	<a class='menu'  href="/device/updateStatus?serial_number=<?php echo $device->serial_number?>">
 		<img src="/img/08/bu-04.png" style="width:100%;">
 		<div style="position:absolute;bottom:20px;right:10%" class="white_text">遺失設定</div>
 	</a>

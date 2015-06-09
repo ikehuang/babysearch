@@ -67,6 +67,9 @@ a {
 	font-size:3.333em;
 	text-align:left;
 	margin-top:1%;
+	background: #e6e6e6;
+  	color: #b3b3b3;
+  	border: none;
 }
 
 .green_text{

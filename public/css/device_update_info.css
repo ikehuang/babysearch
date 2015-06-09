@@ -1,0 +1,208 @@
+#human_tab_container,
+#val_tab_container,
+#pet_tab_container {
+	background:#4e88ff;
+	padding-bottom:1%;	
+}
+#human_tab_container ul,
+#val_tab_container ul,
+#pet_tab_container ul {
+	list-style-type:none;
+	margin:0;
+	padding:0;
+	text-align:right;
+}
+
+#human_tab_container li,
+#val_tab_container li,
+#pet_tab_container li {
+	padding-bottom:1%;	
+	display:inline-block;
+	width:49%;
+	text-align:center;
+	color:white;
+	font-size:2.500em;
+	cursor:pointer;
+}
+
+#human_tab_container img,
+#val_tab_container img,
+#pet_tab_container img {
+	vertical-align:top;
+	margin-right:1%;
+	width:20%;
+}
+
+#human_tab_container li span,
+#val_tab_container li span,
+#pet_tab_container li span {
+	padding-top:6%;	
+	display:inline-block;
+}
+
+#human_tab_container .human_info_tab,
+#val_tab_container .val_info_tab,
+#pet_tab_container .pet_info_tab  {
+	width:50%;
+	background:#4e65c5 url(/img/02/bu-02-03.png) left bottom no-repeat;
+	background-size: contain;
+}
+
+.container {
+	padding:4%;
+}
+
+.input_div {
+	margin:1% 0 3% 0;
+}
+
+.checkbox_table {
+	width:100%;	
+}
+
+.checkbox_table th {
+	width:20%;
+}
+
+.checkbox_table td {
+	text-align:left;
+	width:45%;
+	vertical-align:middle;
+	font-size:2.6em;
+	color:#666;
+	padding:3%;
+}
+
+#title {
+	list-style-type:none;
+	background:#d9d9d9;
+	text-align:left;
+	font-size:2.5em;
+	padding:3%;	
+	margin:0;
+}
+
+#title li {
+	display:inline;
+	color:#808080;	
+}
+
+#title a,
+#title a:visited {
+	color:#808080;
+}
+
+.title {
+	margin-bottom:3%;
+}
+
+.radio_text {
+	font-size:3.333em;	
+	margin-right:3%;
+}
+
+.black_text {
+	margin-bottom:5%;
+	font-size:3.333em;
+	height:3%;
+}
+
+
+.button {
+	height:11%;
+	background:#EB9F4e;
+	width:100%;
+	border:none;
+	padding:2%;
+	margin:0;
+	color:white;
+	font-size:4.167em;
+}
+
+.orange_btn {
+	float:left;
+	margin-right:3.5%;
+	background:#F0B77A;
+}
+
+.submit_div {
+	width:92%;
+	margin:4.5% auto 12% auto;
+}
+
+#healthStatus_container {
+	display:none;
+}
+
+@media (min-width: 213px) {
+  html, body { font-size: 2px;line-height: 1;
+	 } }
+@media (min-width: 256px) {
+  html, body { font-size: 3px;line-height: 1; } }
+@media (min-width: 320px) {
+  html, body {
+  	font-size: 3px;line-height: 1;
+  }
+}
+@media (min-width: 320px) {
+  html, body {
+     font-size: 4px;
+	line-height:1px; }
+	
+}
+@media (min-width: 360px) {
+  html, body {
+    font-size: 6px;
+	line-height:1px; } 
+}
+
+@media (min-width: 375px) {
+  html, body {
+    font-size: 6px;
+	line-height:1;  	 }
+ }
+@media (min-width: 400px) {
+  html, body {
+    font-size: 6px;
+	line-height:1;  	 }
+ }
+@media (min-width: 480px) {
+  html, body {
+    font-size: 6px;
+	line-height:1;  	 }
+}  	
+@media (min-width: 540px) {
+  html, body {
+    font-size: 6px;
+    line-height: 1; }  
+@media (min-width: 600px) {
+  html, body {
+    font-size: 7px;
+    line-height: 1; }
+}
+
+@media (min-width: 640px) {
+  html, body {
+    font-size: 7px;
+    line-height: 1;  	 } }
+@media (min-width: 720px) {
+	
+}
+@media (min-width: 768px) {
+  html, body {
+    font-size: 8px;
+    line-height: 1;  	 } }
+@media (min-width: 800px) {
+  html, body {
+    font-size: 10px;
+    line-height: 1;  	 } }
+@media (min-width: 960px) {
+  html, body {
+    font-size: 11px;
+    line-height: 1;  	 }
+}
+@media (min-width: 1024px) {
+
+  html, body {
+    font-size: 12px;
+    line-height: 1;  	 }	
