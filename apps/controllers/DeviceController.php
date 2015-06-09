@@ -172,6 +172,10 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			$pet_info->hospital_postal = $pet_hospital_postal;
 			$pet_info->hospital_country = $pet_hospital_country;
 			
+			$pet_info->temperament = implode(",", $pet_temperament);
+			$pet_info->talents = implode(",", $pet_talents);
+			$pet_info->disability = implode(",", $pet_disability);
+			
 			$pet_info->create();
 		}
 	}
@@ -277,8 +281,8 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			$human_info->height = $human_height;
 			$human_info->weight = $human_weight;
 			$human_info->bloodtype = $human_bloodtype;
-			$human_info->disease = $human_disease;
-			$human_info->disability = $human_disability;
+			//$human_info->disease = $human_disease;
+			//$human_info->disability = $human_disability;
 			$human_info->medications = $human_medications;
 			$human_info->hospital_name = $human_hospital_name;
 			$human_info->hospital_phone = $human_hospital_phone;
@@ -287,6 +291,9 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			$human_info->hospital_district = $human_hospital_district;
 			$human_info->hospital_postal = $human_hospital_postal;
 			$human_info->hospital_country = $human_hospital_country;
+			
+			$human_info->disease = implode(",", $human_disease);
+			$human_info->disability = implode(",", $human_disability);
 			
 			$human_info->create();
 		}
@@ -587,6 +594,10 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 				$pet_info->hospital_postal = $pet_hospital_postal;
 				$pet_info->hospital_country = $pet_hospital_country;
 				
+				$pet_info->temperament = implode(",", $pet_temperament);
+				$pet_info->talents = implode(",", $pet_talents);
+				$pet_info->disability = implode(",", $pet_disability);
+				
 				$pet_info->update();
 			}
 			$response_data = array(
@@ -746,6 +757,9 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 				$human_info->hospital_district = $human_hospital_district;
 				$human_info->hospital_postal = $human_hospital_postal;
 				$human_info->hospital_country = $human_hospital_country;
+				
+				$human_info->disease = implode(",", $human_disease);
+				$human_info->disability = implode(",", $human_disability);
 				
 				$human_info->update();
 			}
@@ -1103,9 +1117,10 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			//$latitude= "111.213";
 			//$longitude = "222.123";
 			//$battery_status = "low";
-				
+
+			if(Device::count("serial_number = '{$serial_number}'") > 0) {
 			//if email-serial_number pair exists in the system, then continue...; otherwise, fail.
-			if(Device::count(array("conditions" => "email = '{$this->_email}' AND serial_number = '{$serial_number}'")) > 0) {
+			//if(Device::count(array("conditions" => "email = '{$this->_email}' AND serial_number = '{$serial_number}'")) > 0) {
 				
 				$device = Device::findFirst("serial_number = '{$serial_number}'");
 				
