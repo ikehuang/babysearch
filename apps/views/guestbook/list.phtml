@@ -30,6 +30,11 @@
 		if(!empty($guestbook_list)) {
 			foreach($guestbook_list as $r) {
 				$created = date('Y-m-d',strtotime($r->datetime));
+				$phone_link = "";
+				
+				if(!empty($r->phone))
+					$phone_link = "<a class='phone' href='tel:{$r->phone}'><img src='/img/15/phone.png'</a>";
+				
 				echo <<<EOT
 <div class='guestbook'>
 	<div class='title'><img class='icon' src='/img/15/1.png'/>{$r->name}</div>
@@ -38,6 +43,7 @@
 	<div class='message2'>{$r->message}</div>	
 	<div class='message3'></div>
 	<div class='date2'>{$created}</div>		
+	<div class='menu'>{$phone_link} <a class='map' href='http://maps.google.com/?ll={$device->latitude},{$device->longitude}'><img src='/img/15/map.png'/></a></div>
 </div>		
 EOT;
 			}

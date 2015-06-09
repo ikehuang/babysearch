@@ -6,9 +6,7 @@ $.readURL = function(input) {
 
         reader.onload = function (e) {
             $('.blah')
-                .attr('src', e.target.result)
-                .width(250)
-                .height(250);
+                .attr('src', e.target.result).show();
         };
 
         reader.readAsDataURL(input.files[0]);
@@ -20,8 +18,8 @@ $.init_pet_event = function() {
 		$.readURL(this);
 	});
 	
-	$('#create_pet_form  .upload_btn').click(function(){
-		$('#create_pet_form input[name="photos"]').trigger('click');
+	$('#create_pet_form  .upload_btn,#create_pet_form  .blah').click(function(){
+		$('#create_pet_form input[name="photos"]').focus().trigger('click');
 	});
 };
 
@@ -30,8 +28,8 @@ $.init_human_event = function() {
 		$.readURL(this);
 	});
 
-	$('#create_human_form  .upload_btn').click(function(){
-		$('#create_human_form input[name="photos"]').trigger('click');
+	$('#create_human_form  .upload_btn,#create_human_form  .blah').click(function(){
+		$('#create_human_form input[name="photos"]').focus().trigger('click');
 	});
 };
 
@@ -40,8 +38,8 @@ $.init_valuable_event = function() {
 		$.readURL(this);
 	});
 
-	$('#create_valuable_form  .upload_btn').click(function(){
-		$('#create_valuable_form input[name="photos"]').trigger('click');
+	$('#create_valuable_form  .upload_btn,#create_valuable_form  .blah').click(function(){
+		$('#create_valuable_form input[name="photos"]').focus().trigger('click');
 	});
 };
 
@@ -166,7 +164,10 @@ $("#addPet_next" ).click(function() {
 		alert('請輸入竉物名字!');
 		return false;
 	}
-	
+	if($('#create_pet_form input[name="pet_chip_number"]').val().length == 0) {
+		alert('請輸入晶片號碼!');
+		return false;
+	}
 	$("#addPet").hide();
 	$("#addContacts1").show();
 });
@@ -197,11 +198,45 @@ $("#addContact3_back" ).click(function() {
 	$("#addContacts3").hide();
 });
 
+$.init_event = function() {
+	//determine which forms to hide at first
+	switch(device_type) {
+		case 'Pets':
+			$("#updatePet").show();
+			$("#updateHuman").hide();
+			$("#updateValuable").hide();
+			break;
+		case 'Human':
+			$("#updatePet").hide();
+			$("#updateHuman").show();
+			$("#updateValuable").hide();
+			break;
+		case 'Valuables':
+			$("#updatePet").hide();
+			$("#updateHuman").hide();
+			$("#updateValuable").show();
+			break;
+		default:
+			break;
+	}
+	
+	$('#petInfo_tab').click(function(){
+		$('#healthStatus_container').hide();
+		$('#petInfo_container').show();
+	});
+	
+	$('#petHealth_tab').click(function(){
+		$('#petInfo_container').hide();
+		$('#healthStatus_container').show();
+	});
+};
+
 $(document).ready(function() {
+	$.init_event();
+	$.init_form();
 	$.init_pet_event();
 	$.init_human_event();
 	$.init_valuable_event();
-	$('.datepicker').datepicker({dateFormat: "yy-mm-dd"});
 
 	//determine which tag label to switch on
 	switch(get_sn[2]){
@@ -220,3 +255,33 @@ $(document).ready(function() {
 			break;
 	}
 });
+
+
+$.init_form = function() {
+
+	$('form').ajaxForm({
+		beforeSubmit:function(e) {
+			$.blockUI({ message: '新增中...'});
+		},
+		success:function(response) {
+			
+			if(response.status == 'success') {
+				$.blockUI({ message: '新增成功!'});
+			}
+			else {
+
+				$.blockUI({ message: '新增失敗!'});
+			}
+			
+			setTimeout(function() {
+				$.unblockUI();
+				if(response.status == 'success') {
+					window.location.href = '/guestbook/list?serial_number='+$("input[name='serial_number']").val();
+				}
+			}, 1000);
+		},
+		error:function() {
+			$.blockUI({ message: '更新失敗!'});
+		}
+	});
+};

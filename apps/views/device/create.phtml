@@ -1,243 +1,264 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Baby Search - Create Device</title>
-		<link rel="stylesheet" type="text/css" href="/css/index.css">
-		<link rel="stylesheet" type="text/css" href="/css/device_create.css">
-		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-		<script src="/js/jquery-1.11.3.min.js"></script>
-		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-		<script src="/js/jquery.form.js"></script>
-	</head>
-
-	<body>
+<link rel="stylesheet" type="text/css" href="/css/device_create.css?rand=<?php echo rand(); ?>">
+<script type='text/javascript' src='/js/jquery-1.11.3.min.js'></script>
+<script type='text/javascript' src='/js/jquery.form.js'></script>
+<script type='text/javascript' src='/js/jquery.validate.js'></script>
+<script type='text/javascript' src='/js/jquery.blockUI.js'></script>
+<ul id='title'>
+	<li><a href='/'>首頁</a></li>
+	<li> > </li>
+	<li style='color:#86c557;'>新 增 我 購 買 的 商 品</li>
+</ul>
 		
-		<div style="background:#D9D9D9;height:110px;line-height:110px;padding-left:36px;padding-right:36px;">
-			<font class="grey_text">首 頁 > </font>
-			<font class="green_text">新 增 我 購 買 的 商 品</font>
-		</div>
-		
-		<div style="margin-left:36px;margin-right:36px;">
+		<div>
 			<div id="addSerial">
-				<div class="green_text" style="margin-top:64px;margin-bottom:64px;">步 驟 一 :你要購買的產品是?</div>
+				<div class="green_text title">步 驟 一 :你要購買的產品是?</div>
 				<!-- need to check serial number and highlight tag kind -->
-				<div class="blue_text">產品類型:</div>
-				<div style="margin-top:30px;margin-bottom:50px;">
-					<div class="tagKind_container" style="margin-left:36px;margin-right:71px;">
-						<img id="qrcode" src="/img/13/icon-01-02.png">					
-						<div class="green_text" style="text-align:center;">Q tag</div>
-					</div>
-					<div class="tagKind_container" style="margin-right:71px;">
-						<img id="nfc" src="/img/13/icon-02-02.png">					
-						<div class="green_text" style="text-align:center;">N tag</div>
-					</div>
-					<div class="tagKind_container" style="margin-right:36px">
-						<img id="ble" src="/img/13/icon-03-02.png">					
-						<div class="green_text" style="text-align:center;">B tag</div>
-					</div>
-					<div class="clear"></div>
-				</div>
+				<div class="blue_text title" style='margin-top:6%;margin-bottom:2%;'>產品類別:</div>
 				
+				<table id='tagKind_table'>
+					<tr>
+						<td  class="tagKind_container green_text">
+							<img id='qrcode' src="/img/13/icon-01-02.png"><br/>Q tag
+						</td>
+						<td class="tagKind_container green_text">
+							<img id='nfc'  src="/img/13/icon-02-02.png"><br/>N tag
+						</td>
+						<td class="tagKind_container green_text">
+							<img id='ble'  src="/img/13/icon-03-02.png"><br/>B tag
+						</td>
+					</tr>
+				</table>
+				
+				<div class='clear'></div>
 				<span class="blue_text"><font style="color:red;">*</font>產品序號</span><br>
-				<input id="sn" type="text" name="serial_number" value="<?php if(!empty($_GET["sn"])) echo $_GET["sn"] ?>" placeholder="輸 入 你 的 商 品 序 號 / UID" class="textfield" required><br>
-				<button id="help_button" type='button' ></button>
-				<div class="clear"></div>
-				<button id="addSerial_next" type='button' class="orange_button" style="margin-top:84px;margin-bottom:120px;">下 一 步 ></button>
+				<input id="sn" type="text" name="serial_number" style='text-align:center;' value="<?php if(!empty($_GET["sn"])) echo $_GET["sn"] ?>" placeholder="輸 入 你 的 商 品 序 號 / UID" class="textfield" required><br>
+				<a id="help_button" href='' ><img src='/img/13/icon-04.png'/></a>
+				<button id="addSerial_next" type='button' class="orange_button" >下 一 步 ></button>
 			</div>
-			
+			<div class="clear"></div>
 			<form action="/device/createPet" id='create_pet_form' method="post">
-			
 				<div id="addPet">
 					<input id="sn1" type="hidden" name="serial_number1" value="">		
-					<div class="green_text" style="margin-top:64px;margin-bottom:64px;">步 驟 二 : 選擇產品類型與資料編輯</div>
+					<div class="green_text" style="margin-top:6.4%;margin-bottom:6.4%;">步 驟 二 : 選擇產品類型與資料編輯</div>
 					<div style="margin-bottom:30px;"><img id="type1" src=""></div>
-					<div style='height:250px;width:250px;margin:0 auto;position:relative;'>
-						<img class="blah" src= ""></img>
-						<img class='upload_btn' src="/img/14/pic-01.png" style="position:absolute;top:0px;"></img>
-						<input type='file' name="photos" class="photos"/>
+					<div class='img_wrapper'>
+						<img class="blah" src= ""/>
+						<img class='upload_btn' src="/img/08/frame.png"/>
+						<input type='file' name="photos" class="photos" style='width:0;height:0;'/>
 					</div>
 					<div>
-						<div class="blue_text" style="margin-top:84px;margin-bottom:50px;margin-right:15%;float:left;">用途分類</div>
-						<div class="green_text" style="margin-top:84px;margin-bottom:50px;float:left;">竉物<!-- <?php $device->type ?> --></div>
+						<div class="blue_text" style="margin-top:8.4%;margin-bottom:5%;margin-right:15%;float:left;">用途分類</div>
+						<div class="green_text" style="margin-top:8.4%;margin-bottom:5%;float:left;">竉物</div>
 						<div class="clear"></div>					
 					</div>
 					<div>
-						<div class="blue_text" style="margin-bottom:60px;margin-right:15%;float:left;">
+						<div class="blue_text" style="margin-bottom:6%;margin-right:15%;float:left;">
 							<font style="color:red;">*</font>資料公開
 						</div>
-						<div class="green_text" style="margin-bottom:60px;float:left;">
+						<div class="green_text" style="margin-bottom:6%;float:left;">
 							<input type="radio" name="open" value="Y">公開
 							<input type="radio" name="open" value="N" CHECKED>關閉
 						</div>
 						<div class="clear"></div>					
-					</div>
-					<div style="width:100%;height:110px;background:blue;">
-						<button type='button' id="petInfo_tab" style="width:50%;height:90px;line-height:110px;float:left;text-align:center;" class="white_text">竉物資料</button>
-						<button type='button' id="petHealth_tab" style="width:50%;height:90px;line-height:110px;float:left;text-align:center;" class="white_text">健康狀況</button>
-						<div class="clear"></div>
+					</div>		
+					
+					<div id="pet_tab_container">
+						<ul>
+							<li id="petInfo_tab" class='pet_tab pet_notication_tab'><span>竉物資料</span></li>
+							<li id="petHealth_tab" class='pet_tab pet_info_tab' ><span>健康狀況</span></li>
+						</ul>
 					</div>
 					
 					<div id="petInfo_container">
-						<label>
+						<div class='input_div'>
 							<div class="blue_text"><font color="red">*</font>竉物名字</div>
-			        		<input type="text" name="pet_name" class="textfield" required/><br>
-						</label>
-						<label>
+			        		<input type="text" name="pet_name" class="textfield" required/>
+						</div>
+						<div class='input_div'>
 							<div class="blue_text">類別</div>
-							<input type="text" name="pet_category" class="textfield"/><br>
-						</label>
-						<label>
-							<div class="blue_text">性別</div>
-							<input type="radio" name="pet_sex" value="M" checked>公
-							<input type="radio" name="pet_sex" value="F">母
-						</label>
-						<label>
-							<div class="blue_text"><font color="red">*</font>生日</div>
-			        		<input name="pet_birthday" class="textfield datepicker"/><br>
-						</label>
-						<label>
+							<input type="text" name="pet_category" class="textfield"/>
+						</div>
+						<div class='input_div'>
+							<div class="blue_text">性別 
+							<input type="radio" name="pet_sex" value="m" style='margin-left:5%;'>公
+							<input type="radio" name="pet_sex" value="f" style='margin-left:20%;'>母
+							</div>
+						</div>
+						<div class='input_div'>
+							<div class="blue_text">生日</div>
+			        		<input name="pet_birthday" class="textfield" type='date'/>
+						</div>
+						<div class='input_div'>
 							<div class="blue_text">身高/身長(cm)</div>
-			        		<input type="number" name="pet_height" class="textfield"/><br>
-						</label>
-						<label>
+			        		<input type="number" name="pet_height" class="textfield"/>
+						</div>
+						<div class='input_div'>
 							<div class="blue_text">體重(kg)</div>
-			        		<input type="number" name="pet_weight" class="textfield"/><br>
-						</label>
-						<label>
-							<div class="blue_text">個性</div>
-			        		<input type="checkbox" name="pet_temperament[]" value="活潑">活潑
-							<input type="checkbox" name="pet_temperament[]" value="怕生">怕生<br>
-							<input type="checkbox" name="pet_temperament[]" value="容易攻擊">容易攻擊
-							<input type="checkbox" name="pet_temperament[]" value="具攻擊性">具攻擊性<br>
-							<input type="checkbox" name="pet_temperament[]" value="其他">其他
-							<input type="text" name="pet_temperament[]" value=""/><br>
-						</label>
-						<label>
-							<div class="blue_text">特殊才能</div>
-			        		<input type="checkbox" name="pet_talents[]" value="坐下">坐下
-							<input type="checkbox" name="pet_talents[]" value="握手">握手<br>
-							<input type="checkbox" name="pet_talents[]" value="聽名字">聽名字
-							<input type="checkbox" name="pet_talents[]" value="站立">站立<br>
-							<input type="checkbox" name="pet_talents[]" value="其他">其他
-							<input type="text" name="pet_talents[]" value=""/><br>
-						</label>
-						<label>
+			        		<input type="number" name="pet_weight" class="textfield"/>
+						</div>
+						<div class='input_div'>
+			        		<table class='checkbox_table'>
+			        			<tr>
+			        				<th rowspan=4 style='vertical-align: top;'><div class="blue_text">個性</div></th>
+			        			</tr>
+			        			<tr>
+			        				<td><input type="checkbox" name="pet_temperament[]" value="活潑">活潑</td>
+			        				<td><input type="checkbox" name="pet_temperament[]" value="怕生">怕生</td>
+			        			</tr>
+			        			<tr>	
+			        				<td><input type="checkbox" name="pet_temperament[]" value="容易攻擊">容易攻擊</td>
+			        				<td><input type="checkbox" name="pet_temperament[]" value="具攻擊性">具攻擊性</td>
+			        			</tr>
+			        			<tr>
+			        				<td colspan=2>
+			        					<div style='float:left;'><input type="checkbox" name="pet_temperament[]" value="其他">其他</div>
+			        					<input type="text" name="pet_temperament[]" value="" class='textfield' style='float:left;width:50%;font-size:0.5em;margin-left:5%;'/>
+			        				</td>
+			        			</tr>
+			        		</table>
+						</div>
+						<div class='input_div'>
+			        		<table class='checkbox_table'>
+			        			<tr>
+			        				<th rowspan=4 style='vertical-align: top;'><div class="blue_text">特殊才能</div></th>
+			        			</tr>
+			        			<tr>
+			        				<td><input type="checkbox" name="pet_talents[]" value="坐下">坐下</td>
+			        				<td><input type="checkbox" name="pet_talents[]" value="握手">握手</td>
+			        			</tr>
+			        			<tr>	
+			        				<td><input type="checkbox" name="pet_talents[]" value="聽名字">聽名字</td>
+			        				<td><input type="checkbox" name="pet_talents[]" value="站立">站立</td>
+			        			</tr>
+			        			<tr>
+			        				<td colspan=2>
+			        					<div style='float:left;'><input type="checkbox" name="pet_talents[]" value="其他">其他</div>
+			        					<input type="text" name="pet_talents[]" value="" class='textfield' style='float:left;width:50%;font-size:0.5em;margin-left:5%;'/>
+			        				</td>
+			        			</tr>
+			        		</table>
+						</div>
+						<div class='input_div'>
 							<div class="blue_text">簡介</div>
-			        		<textarea type="text" name="pet_description" placeholder="關於竉物的大小事..."></textarea><br>
-						</label>
+			        		<textarea type="text" class='textfield' rows=4 name="pet_description" placeholder="關於竉物的大小事..."></textarea>
+						</div>
 					</div>
 					
 					<div id="healthStatus_container">
-						<label>
+						<div class='input_div'>
 							<div class="blue_text"><font color="red">*</font>晶片號碼</div>
-			        		<input type="text" name="pet_chip_number" class="textfield" required/><br>
-						</label>
-						<label>
-							<div class="blue_text">結紮</div>
-							<input type="radio" name="pet_desex" value="Y">有
-							<input type="radio" name="pet_desex" value="N" checked>無
-						</label>
-						<label>
+			        		<input type="text" name="pet_chip_number" class="textfield" required/>
+						</div>
+						<div class='input_div'>
+							<div class="blue_text">結紮
+							<input type="radio" name="pet_desex">有
+							<input type="radio" name="pet_desex">無</div>
+						</div>
+						<div class='input_div'>
 							<div class="blue_text">預防針種類</div>
-			        		<input type="text" name="pet_vaccine_type" class="textfield"/><br>
-						</label>
-						<label>
+			        		<input type="text" name="pet_vaccine_type" class="textfield"/>
+						</div>
+						<div class='input_div'>
 							<div class="blue_text">血型</div>
-			        		<input type="text" name="pet_bloodtype" class="textfield"/><br>
-						</label>
-						<label>
-							<div class="blue_text">血庫資訊通知</div>
-							<input type="radio" name="pet_bloodbank" value="Y">有
-							<input type="radio" name="pet_bloodbank" value="N">無
-						</label>
-						<label>
-							<div class="blue_text">肢體障礙</div>
-							<input type="checkbox" name="pet_disability[]" value="行動">行動
-							<input type="checkbox" name="pet_disability[]" value="聽覺">聽覺
-							<input type="checkbox" name="pet_disability[]" value="視覺">視覺
-							<input type="checkbox" name="pet_disability[]" value="其他">其他
-							<input type="text" name="pet_disability[]" value=""/><br>
-						</label>
-						<label>
+			        		<input type="text" name="pet_bloodtype" class="textfield"/>
+						</div>
+						<div class='input_div'>
+							<div class="blue_text">血庫資訊通知
+							<input type="radio" name="pet_bloodbank">有
+							<input type="radio" name="pet_bloodbank">無</div>
+						</div>
+						<div class='input_div'>
+						
+			        		<table class='checkbox_table'>
+			        			<tr>
+			        				<th rowspan=4 style='vertical-align: top;'><div class="blue_text">肢體障礙</div></th>
+			        			</tr>
+			        			<tr>
+			        				<td><input type="checkbox" name="pet_disability[]" value="行動">行動</td>
+			        				<td><input type="checkbox" name="pet_disability[]" value="聽覺">聽覺</td>
+			        			</tr>
+			        			<tr>	
+			        				<td><input type="checkbox" name="pet_disability[]" value="視覺">視覺</td>
+			        				<td><input type="checkbox" name="pet_disability[]" value="其他">其他</td>
+			        			</tr>
+			        			<tr>
+			        				<td colspan=2>
+			        					<div style='float:left;'><input type="checkbox" name="pet_disability[]" value="其他">其他</div>
+			        					<input type="text" name="pet_disability[]" value="" class='textfield' style='float:left;width:50%;font-size:0.5em;margin-left:5%;'/>
+			        				</td>
+			        			</tr>
+			        		</table>
+			        		
+			        		<div class='clear'></div>
+						</div>
+						<div class='input_div'>
 							<div class="blue_text">保險</div>
 			        		<input type="text" name="pet_insurance" class="textfield" placeholder="填入保險單號"/><br>
-						</label>
-						<label>
+						</div>
+						<div class='input_div'>
 							<div class="blue_text">專屬醫院</div>
 			        		<input type="text" name="pet_hospital_name" class="textfield" placeholder="醫院名稱"/><br>
 			        		<input type="number" name="pet_hospital_phone" class="textfield" placeholder="醫院電話"/><br>
-						</label>
-						<label>
+						</div>
+						<div class='input_div'>
 			        		<div class="blue_text">醫院地址</div>
 			        		<input type="text" name="pet_hospital_address" class="textfield" placeholder="地址"/><br>
-			        		<input type="text" name="pet_hospital_city" placeholder="城市"/><br>
-			        		<input type="text" name="pet_hospital_district" placeholder="鄉鎮市區"/><br>
-			        		<input type="text" name="pet_hospital_postal" placeholder="郵遞區號"/><br>
-			        		<input type="text" name="pet_hospital_country" class="textfield" placeholder="國家"/><br>
-						</label>
+			        		<input type="text" name="pet_hospital_city" placeholder="城市"/>
+			        		<input type="text" name="pet_hospital_district" placeholder="鄉鎮市區"/>
+			        		<input type="text" name="pet_hospital_postal" placeholder="郵遞區號"/>
+			        		<input type="text" name="pet_hospital_country" placeholder="國家"/>
+						</div>
 					</div>
 					
-					<div style="margin-top:45px;margin-bottom:120px;">
-						<button type='button' id="addPet_back" class="orange_button" style="width:49%;margin-right:1%;float:left;">上 一 步</button>
-						<button type='button' id="addPet_next" class="orange_button" style="width:49%;margin-left:1%;float:left;">下 一 步 ></button>
-						<div class="clear"></div>
+				    <div id='submit_div'>
+						<button type='button' class="button orange_btn"  id="addPet_back" style="">上 一 步</button>
+						<button type="button"  id="addPet_next" class="button" style="">下 一 步 ></button>
 					</div>
+					<div class="clear"></div>
 				</div>
 					
 				<div id="addContacts1">
-					<div class="green_text" style="margin-top:64px;margin-bottom:64px;">步 驟 三 : 在竉物、人或物品遺失時供給尋獲的人可以看見的聯絡資訊</div>
-					<div class="green_text" style="margin-top:64px;margin-bottom:64px;">註 : 此資訊只會在狀態設定為 "遺失" 時才會公開顯示</div>
+					<div class="green_text" style="margin-top:6.4%;margin-bottom:6.4%;">步 驟 三 : 在竉物、人或物品遺失時供給尋獲的人可以看見的聯絡資訊</div>
+					<div class="green_text" style="margin-top:6.4%;margin-bottom:6.4%;">註 : 此資訊只會在狀態設定為 "遺失" 時才會公開顯示</div>
 					<div class="blue_text">新增聯絡人清單</div>
 					<div class="green_text"><input type="radio" name="contact1" value="contact1">聯絡人1</div>
-					<table>
-						<tr>
-							<td>姓名</td>
-							<td><input type="text" name="contactFirstname1" class="textfield" placeholder="名"/></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><input type="text" name="contactFirstname1" class="textfield" placeholder="姓"/></td>
-						</tr>
-						<tr>
-							<td>電話</td>
-							<td><input type="text" name="contactFirstname1" class="textfield"/></td>
-						</tr>
-					</table>
-					<div class="green_text"><input type="radio" name="contact2" value="contact2">聯絡人2</div>
-					<table>
-						<tr>
-							<td>姓名</td>
-							<td><input type="text" name="contactFirstname2" class="textfield" placeholder="名"/></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><input type="text" name="contactFirstname2" class="textfield" placeholder="姓"/></td>
-						</tr>
-						<tr>
-							<td>電話</td>
-							<td><input type="text" name="contactFirstname2" class="textfield"/></td>
-						</tr>
-					</table>
-					<div class="green_text"><input type="radio" name="contact3" value="contact3">聯絡人3</div>
-					<table>
-						<tr>
-							<td>姓名</td>
-							<td><input type="text" name="contactFirstname3" class="textfield" placeholder="名"/></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><input type="text" name="contactFirstname3" class="textfield" placeholder="姓"/></td>
-						</tr>
-						<tr>
-							<td>電話</td>
-							<td><input type="text" name="contactFirstname3" class="textfield"/></td>
-						</tr>
-					</table>
 					
-					<div style="margin-top:100px;margin-bottom:120px;">
-						<button type='button' id="addContact1_back" class="orange_button" style="width:49%;margin-right:1%;float:left;">上 一 步</button>
-						<button id="createPet_complete" type="submit" class="red_button" style="width:49%;margin-left:1%;float:left;">完 成</button>
+					<div class='input_div'>
+						<div class="blue_text">姓名</div>
+						<input type="text" name="contactFirstname1" class="textfield" placeholder="名"/>
+						<input type="text" name="contactFirstname1" class="textfield" placeholder="姓"/>
 					</div>
+					<div class='input_div'>
+						<div class="blue_text">電話</div>
+						<input type="text" name="contactFirstname1" class="textfield"/>
+					</div>
+					<div class="green_text">聯絡人2</div>
+					
+					<div class='input_div'>
+						<div class="blue_text">姓名</div>
+						<input type="text" name="contactFirstname2" class="textfield" placeholder="名"/>
+						<input type="text" name="contactFirstname2" class="textfield" placeholder="姓"/>
+					</div>
+					<div class='input_div'>
+						<div class="blue_text">電話</div>
+						<input type="text" name="contactFirstname2" class="textfield"/>
+					</div>
+					<div class="green_text">聯絡人3</div>
+					<div class='input_div'>
+						<div class="blue_text">姓名</div>
+						<input type="text" name="contactFirstname3" class="textfield" placeholder="名"/>
+						<input type="text" name="contactFirstname3" class="textfield" placeholder="姓"/>
+					</div>
+					<div class='input_div'>
+						<div class="blue_text">電話</div>
+						<input type="text" name="contactFirstname3" class="textfield"/>
+					</div>
+					
+				    <div id='submit_div'>
+						<button type='button' class="button orange_btn"  id="addContact1_back" style="">上 一 步</button>
+						<button type="submit"  id="createPet_complete" class="button" style="">完 成</button>
+					</div>
+					
 					<div class="clear"></div>
 				</div>
 				
@@ -247,23 +268,24 @@
 			
 				<div id="addHuman">
 					<input id="sn2" type="hidden" name="serial_number2" value="">
-					<div class="green_text" style="margin-top:64px;margin-bottom:64px;">步 驟 二 : 選擇產品類型與資料編輯</div>
+					<div class="green_text" style="margin-top:6.4%;margin-bottom:6.4%;">步 驟 二 : 選擇產品類型與資料編輯</div>
 					<div style="margin-bottom:30px;"><img id="type2" src=""></div>
-					<div style='height:250px;width:250px;margin:0 auto;position:relative;'>
-						<img class="blah" src= ""></img>
-						<img src="/img/14/pic-01.png" style="position:absolute;top:0px;"></img>
-						<input type='file' name="photos"  class="photos"/>
+
+					<div class='img_wrapper'>
+						<img class="blah" src= ""/>
+						<img class='upload_btn' src="/img/08/frame.png"/>
+						<input type='file' name="photos" class="photos" style='width:0;height:0;'/>
 					</div>
 					<div>
-						<div class="blue_text" style="margin-top:84px;margin-bottom:50px;margin-right:15%;float:left;">用途分類</div>
-						<div class="green_text" style="margin-top:84px;margin-bottom:50px;float:left;">人<!-- <?php $device->type ?> --></div>
+						<div class="blue_text" style="margin-top:8.4%;margin-bottom:5%;margin-right:15%;float:left;">用途分類</div>
+						<div class="green_text" style="margin-top:8.4%;margin-bottom:5%;float:left;">人</div>
 						<div class="clear"></div>					
 					</div>
 					<div>
-						<div class="blue_text" style="margin-bottom:60px;margin-right:15%;float:left;">
+						<div class="blue_text" style="margin-bottom:6%;margin-right:15%;float:left;">
 							<font style="color:red;">*</font>資料公開
 						</div>
-						<div class="green_text" style="margin-bottom:60px;float:left;">
+						<div class="green_text" style="margin-bottom:6%;float:left;">
 							<input type="radio" name="open" value="Y">公開
 							<input type="radio" name="open" value="N" CHECKED>關閉
 						</div>
@@ -272,132 +294,152 @@
 					
 					<div id="humanInfo_container">
 						<div class="green_text">資料編輯</div>
-						<label>
+						<div class='input_div'>
 							<div class="blue_text"><font color="red">*</font>姓名</div>
-			        		<input type="text" name="human_firstname" placeholder="名" required/>
-			        		<input type="text" name="human_lastname" placeholder="姓" required/>
-						</label>
-						<label>
-							<div class="blue_text"><font color="red">*</font>暱稱</div>
-			        		<input type="text" name="human_nickname" class="textfield" required/>
-						</label>
-						<label>
-							<div class="blue_text"><font color="red">*</font>性別</div>
-			        		<input type="radio" name="human_sex" value="M">男
-							<input type="radio" name="human_sex" value="F">女
-						</label>
-						<label>
-							<div class="blue_text">生日</div>
-			        		<input type="text" name="human_birthday" class="textfield datepicker"/>
-						</label>
-						<label>
-							<div class="blue_text">身高(cm)</div>
-			        		<input type="text" name="human_height" class="textfield"/>
-						</label>
-						<label>
-							<div class="blue_text">體重(kg)</div>
-			        		<input type="text" name="human_weight" class="textfield"/>
-						</label>
-						<label>
-							<div class="blue_text">血型</div>
-			        		<input type="text" name="human_bloodtype" class="textfield"/>
-						</label>
-						<label>
-							<div class="blue_text">疾病</div>
-							<input type="radio" name="human_disease" value="心臟病">心臟病
-							<input type="radio" name="human_disease" value="高血壓">高血壓<br>
-							<input type="radio" name="human_disease" value="糖尿病">糖尿病
-							<input type="radio" name="human_disease" value="失智">失智<br>
-							<input type="radio" name="human_disease" value="其他">其他
-							<input type="text" name="human_disease"/><br>
-						</label>
-						<label>
-							<div class="blue_text">肢體障礙</div>
-							<input type="radio" name="human_disability" value="行動">行動
-							<input type="radio" name="human_disability" value="聽覺">聽覺<br>
-							<input type="radio" name="human_disability" value="視覺">視覺
-							<input type="radio" name="human_disability" value="語言">語言<br>
-							<input type="radio" name="human_disability" value="其他">其他
-							<input type="text" name="human_disability"/><br>
-						</label>
-						<label>
-							<div class="blue_text">服用藥物</div>
-							<textarea type="number" name="human_medications"></textarea>
-						</label>
-						<label>
-							<div class="blue_text">專屬醫院</div>
-			        		<input type="text" name="human_hospital_name" class="textfield" placeholder="醫院名稱"/><br>
-			        		<input type="number" name="human_hospital_phone" class="textfield" placeholder="醫院電話"/><br>
-						</label>
-						<label>
-			        		<div class="blue_text">醫院地址</div>
-			        		<input type="text" name="human_hospital_address" class="textfield" placeholder="地址"/><br>
-			        		<input type="text" name="human_hospital_city" placeholder="城市"/><br>
-			        		<input type="text" name="human_hospital_district" placeholder="鄉鎮市區"/><br>
-			        		<input type="text" name="human_hospital_postal" placeholder="郵遞區號"/><br>
-			        		<input type="text" name="human_hospital_country" class="textfield" placeholder="國家"/><br>
-						</label>
-						<div style="margin-top:45px;margin-bottom:120px;">
-							<button type='button' id="addHuman_back" class="orange_button" style="width:49%;margin-right:1%;float:left;">上 一 步</button>
-							<button type='button' id="addHuman_next" class="orange_button" style="width:49%;margin-left:1%;float:left;">下 一 步 ></button>
+			        		<input type="text" name="human_firstname"  class="textfield" placeholder="名" required/>
+			        		<input type="text" name="human_lastname"  class="textfield" placeholder="姓" required/>
 						</div>
+						<div class='input_div'>
+							<div class="blue_text"><font color="red">*</font>暱稱</div>
+			        		<input type="text" name="human_nickname"  class="textfield" required/>
+						</div>
+						<div class='input_div'>
+							<div class="blue_text"><font color="red">*</font>性別
+			        		<input type="radio" name="human_sex" value="m">男
+							<input type="radio" name="human_sex" value="f">女</div>
+						</div>
+						<div class='input_div'>
+							<div class="blue_text">生日</div>
+			        		<input type="text" name="human_birthday"  class="textfield datepicker"/>
+						</div>
+						<div class='input_div'>
+							<div class="blue_text">身高(cm)</div>
+			        		<input type="text" name="human_height"  class="textfield"/>
+						</div>
+						<div class='input_div'>
+							<div class="blue_text">體重(kg)</div>
+			        		<input type="text" name="human_weight"  class="textfield"/>
+						</div>
+						<div class='input_div'>
+							<div class="blue_text">血型</div>
+			        		<input type="text" name="human_bloodtype"  class="textfield"/>
+						</div>
+						<div class='input_div'>
+						
+			        		<table class='checkbox_table'>
+			        			<tr>
+			        				<th rowspan=4 style='vertical-align: top;'><div class="blue_text">疾病</div></th>
+			        			</tr>
+			        			<tr>
+			        				<td><input type="checkbox" name="human_disease[]" value="心臟病">心臟病</td>
+			        				<td><input type="checkbox" name="human_disease[]" value="高血壓">高血壓</td>
+			        			</tr>
+			        			<tr>	
+			        				<td><input type="checkbox" name="human_disease[]" value="糖尿病">糖尿病</td>
+			        				<td><input type="checkbox" name="human_disease[]" value="失智">失智</td>
+			        			</tr>
+			        			<tr>
+			        				<td colspan=2>
+			        					<div style='float:left;'><input type="checkbox" name="human_disease[]" value="其他">其他</div>
+			        					<input type="text" name="human_disease[]" value="" class='textfield' style='float:left;width:50%;font-size:0.5em;margin-left:5%;'/>
+			        				</td>
+			        			</tr>
+			        		</table>
+						</div>
+						<div class='input_div'>
+			        		<table class='checkbox_table'>
+			        			<tr>
+			        				<th rowspan=4 style='vertical-align: top;'><div class="blue_text">肢體障礙</div></th>
+			        			</tr>
+			        			<tr>
+			        				<td><input type="checkbox" name="human_disability[]" value="行動">行動</td>
+			        				<td><input type="checkbox" name="human_disability[]" value="聽覺">聽覺</td>
+			        			</tr>
+			        			<tr>	
+			        				<td><input type="checkbox" name="human_disability[]" value="視覺">視覺</td>
+			        				<td><input type="checkbox" name="human_disability[]" value="語言">語言</td>
+			        			</tr>
+			        			<tr>
+			        				<td colspan=2>
+			        					<div style='float:left;'><input type="checkbox" name="human_disability[]" value="其他">其他</div>
+			        					<input type="text" name="human_disability[]" value="" class='textfield' style='float:left;width:50%;font-size:0.5em;margin-left:5%;'/>
+			        				</td>
+			        			</tr>
+			        		</table>
+						</div>
+						<div class='input_div'>
+							<div class="blue_text">服用藥物</div>
+							<textarea type="number" name="human_medications"  class="textfield" rows=3></textarea>
+						</div>
+						<div class='input_div'>
+							<div class="blue_text">專屬醫院</div>
+			        		<input type="text" name="human_hospital_name"  class="textfield" placeholder="醫院名稱"/><br>
+			        		<input type="number" name="human_hospital_phone"  class="textfield" placeholder="醫院電話"/><br>
+						</div>
+						<div class='input_div'>
+			        		<div class="blue_text">醫院地址</div>
+			        		<input type="text" name="human_hospital_address"  class="textfield" placeholder="地址"/><br>
+			        		
+			        		<input type="text" name="human_hospital_city"  placeholder="城市" class="textfield" style='width:18%;margin-right:2%;'/>
+			        		<input type="text" name="human_hospital_district"  placeholder="鄉鎮市區" class="textfield" style='width:18%;margin-right:2%;'/>
+			        		<input type="text" name="human_hospital_postal"  placeholder="郵遞區號" class="textfield" style='width:18%;margin-right:2%;'/>
+			        		<input type="text" name="human_hospital_country"  class="textfield" placeholder="國家" style='width:19%;'/><br>
+						</div>
+						
+					    <div id='submit_div'>
+							<button type='button' class="button orange_btn"  id="addHuman_back" style="">上 一 步</button>
+							<button type="button"  id="addHuman_next" class="button" style="">下 一 步 ></button>
+						</div>
+					
 						<div class="clear"></div>
 					</div>
 				</div>
 					
 				<div id="addContacts2">
-					<div class="green_text" style="margin-top:64px;margin-bottom:64px;">步 驟 三 : 在竉物、人或物品遺失時供給尋獲的人可以看見的聯絡資訊</div>
-					<div class="green_text" style="margin-top:64px;margin-bottom:64px;">註 : 此資訊只會在狀態設定為 "遺失" 時才會公開顯示</div>
+					<div class="green_text" style="margin-top:6.4%;margin-bottom:6.4%;">步 驟 三 : 在竉物、人或物品遺失時供給尋獲的人可以看見的聯絡資訊</div>
+					<div class="green_text" style="margin-top:6.4%;margin-bottom:6.4%;">註 : 此資訊只會在狀態設定為 "遺失" 時才會公開顯示</div>
 					<div class="blue_text">新增聯絡人清單</div>
 					<div class="green_text"><input type="radio" name="contact1" value="contact1">聯絡人1</div>
-					<table>
-						<tr>
-							<td>姓名</td>
-							<td><input type="text" name="contactFirstname1" class="textfield" placeholder="名"/></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><input type="text" name="contactFirstname1" class="textfield" placeholder="姓"/></td>
-						</tr>
-						<tr>
-							<td>電話</td>
-							<td><input type="text" name="contactFirstname1" class="textfield"/></td>
-						</tr>
-					</table>
-					<div class="green_text"><input type="radio" name="contact2" value="contact2">聯絡人2</div>
-					<table>
-						<tr>
-							<td>姓名</td>
-							<td><input type="text" name="contactFirstname2" class="textfield" placeholder="名"/></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><input type="text" name="contactFirstname2" class="textfield" placeholder="姓"/></td>
-						</tr>
-						<tr>
-							<td>電話</td>
-							<td><input type="text" name="contactFirstname2" class="textfield"/></td>
-						</tr>
-					</table>
-					<div class="green_text"><input type="radio" name="contact3" value="contact3">聯絡人3</div>
-					<table>
-						<tr>
-							<td>姓名</td>
-							<td><input type="text" name="contactFirstname3" class="textfield" placeholder="名"/></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><input type="text" name="contactFirstname3" class="textfield" placeholder="姓"/></td>
-						</tr>
-						<tr>
-							<td>電話</td>
-							<td><input type="text" name="contactFirstname3" class="textfield"/></td>
-						</tr>
-					</table>
+					
+					<div class='input_div'>
+						<div class="blue_text">姓名</div>
+						<input type="text" name="contactFirstname1" class="textfield" placeholder="名"/>
+						<input type="text" name="contactFirstname1" class="textfield" placeholder="姓"/>
+					</div>
+					<div class='input_div'>
+						<div class="blue_text">電話</div>
+						<input type="text" name="contactFirstname1" class="textfield"/>
+					</div>
+					<div class="green_text">聯絡人2</div>
+					
+					<div class='input_div'>
+						<div class="blue_text">姓名</div>
+						<input type="text" name="contactFirstname2" class="textfield" placeholder="名"/>
+						<input type="text" name="contactFirstname2" class="textfield" placeholder="姓"/>
+					</div>
+					<div class='input_div'>
+						<div class="blue_text">電話</div>
+						<input type="text" name="contactFirstname2" class="textfield"/>
+					</div>
+					<div class="green_text">聯絡人3</div>
+					<div class='input_div'>
+						<div class="blue_text">姓名</div>
+						<input type="text" name="contactFirstname3" class="textfield" placeholder="名"/>
+						<input type="text" name="contactFirstname3" class="textfield" placeholder="姓"/>
+					</div>
+					<div class='input_div'>
+						<div class="blue_text">電話</div>
+						<input type="text" name="contactFirstname3" class="textfield"/>
+					</div>
 					
 					<div style="margin-top:100px;margin-bottom:120px;">
 						<button type='button' id="addContact2_back" class="orange_button" style="width:49%;margin-right:1%;float:left;">上 一 步</button>
 						<button id="createHuman_complete" type="submit" class="red_button" style="width:49%;margin-left:1%;float:left;">完 成</button>
+					</div>
+					
+				    <div id='submit_div'>
+						<button type='button' class="button orange_btn"  id="addContact2_back" style="">上 一 步</button>
+						<button type="button"  id="createHuman_complete" class="button" style="">完 成</button>
 					</div>
 					<div class="clear"></div>
 				</div>
@@ -408,23 +450,24 @@
 			
 				<div id="addValuable">
 					<input id="sn3" type="hidden" name="serial_number3" value="">
-					<div class="green_text" style="margin-top:64px;margin-bottom:64px;">步 驟 二 : 選擇產品類型與資料編輯</div>
+					<div class="green_text" style="margin-top:6.4%;margin-bottom:6.4%;">步 驟 二 : 選擇產品類型與資料編輯</div>
 					<div style="margin-bottom:30px;"><img id="type3" src=""></div>
-					<div style='height:250px;width:250px;margin:0 auto;position:relative;'>
-						<img class="blah" src= ""></img>
-						<img src="/img/14/pic-01.png" style="position:absolute;top:0px;"></img>
-						<input type='file' name="photos" class='photos'/>
+
+					<div class='img_wrapper'>
+						<img class="blah" src= ""/>
+						<img class='upload_btn' src="/img/08/frame.png"/>
+						<input type='file' name="photos" class="photos" style='width:0;height:0;'/>
 					</div>
 					<div>
-						<div class="blue_text" style="margin-top:84px;margin-bottom:50px;margin-right:15%;float:left;">用途分類</div>
-						<div class="green_text" style="margin-top:84px;margin-bottom:50px;float:left;">物品<!-- <?php $device->type ?> --></div>
+						<div class="blue_text" style="margin-top:8.4%;margin-bottom:5%;margin-right:15%;float:left;">用途分類</div>
+						<div class="green_text" style="margin-top:8.4%;margin-bottom:5%;float:left;">物品<!-- <?php $device->type ?> --></div>
 						<div class="clear"></div>					
 					</div>
 					<div>
-						<div class="blue_text" style="margin-bottom:60px;margin-right:15%;float:left;">
+						<div class="blue_text" style="margin-bottom:6%;margin-right:15%;float:left;">
 							<font style="color:red;">*</font>資料公開
 						</div>
-						<div class="green_text" style="margin-bottom:60px;float:left;">
+						<div class="green_text" style="margin-bottom:6%;float:left;">
 							<input type="radio" name="open" value="Y">公開
 							<input type="radio" name="open" value="N" CHECKED>關閉
 						</div>
@@ -432,77 +475,66 @@
 					</div>
 					
 					<div id="valuableInfo_container">
-						<div class="green_text">資料編輯</div>
-						<label>
+						<div class="green_text" style='margin-bottom:3%;'>資料編輯</div>
+						<div class='input_div'>
 							<div class="blue_text"><font color="red">*</font>商品名稱</div>
 			        		<input type="text" name="valuable_name" class="textfield" required/>
-						</label>
-						<label>
+						</div>
+						<div class='input_div'>
 							<div class="blue_text">特徵/敘述</div>
-			        		<textarea type="text" name="valuable_description"></textarea>
-						</label>
+			        		<textarea type="text" name="valuable_description" class="textfield" rows=3></textarea>
+						</div>
 					</div>
-					<div style="margin-top:45px;margin-bottom:120px;">
-						<button type='button' id="addValuable_back" class="orange_button" style="width:49%;margin-right:1%;float:left;">上 一 步</button>
-						<button type='button' id="addValuable_next" class="orange_button" style="width:49%;margin-left:1%;float:left;">下 一 步 ></button>
+					
+				    <div id='submit_div'>
+						<button type='button' class="button orange_btn"  id="addValuable_back" style="">上 一 步</button>
+						<button type="button"  id="addValuable_next" class="button" style="">下 一 步 ></button>
 					</div>
 					<div class="clear"></div>
 				</div>
 					
 				<div id="addContacts3">
-					<div class="green_text" style="margin-top:64px;margin-bottom:64px;">步 驟 三 : 在竉物、人或物品遺失時供給尋獲的人可以看見的聯絡資訊</div>
-					<div class="green_text" style="margin-top:64px;margin-bottom:64px;">註 : 此資訊只會在狀態設定為 "遺失" 時才會公開顯示</div>
+					<div class="green_text" style="margin-top:6.4%;margin-bottom:6.4%;">步 驟 三 : 在竉物、人或物品遺失時供給尋獲的人可以看見的聯絡資訊</div>
+					<div class="green_text" style="margin-top:6.4%;margin-bottom:6.4%;">註 : 此資訊只會在狀態設定為 "遺失" 時才會公開顯示</div>
 					<div class="blue_text">新增聯絡人清單</div>
 					<div class="green_text"><input type="radio" name="contact1" value="contact1">聯絡人1</div>
-					<table>
-						<tr>
-							<td>姓名</td>
-							<td><input type="text" name="contactFirstname1" class="textfield" placeholder="名"/></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><input type="text" name="contactFirstname1" class="textfield" placeholder="姓"/></td>
-						</tr>
-						<tr>
-							<td>電話</td>
-							<td><input type="text" name="contactFirstname1" class="textfield"/></td>
-						</tr>
-					</table>
-					<div class="green_text"><input type="radio" name="contact2" value="contact2">聯絡人2</div>
-					<table>
-						<tr>
-							<td>姓名</td>
-							<td><input type="text" name="contactFirstname2" class="textfield" placeholder="名"/></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><input type="text" name="contactFirstname2" class="textfield" placeholder="姓"/></td>
-						</tr>
-						<tr>
-							<td>電話</td>
-							<td><input type="text" name="contactFirstname2" class="textfield"/></td>
-						</tr>
-					</table>
-					<div class="green_text"><input type="radio" name="contact3" value="contact3">聯絡人3</div>
-					<table>
-						<tr>
-							<td>姓名</td>
-							<td><input type="text" name="contactFirstname3" class="textfield" placeholder="名"/></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><input type="text" name="contactFirstname3" class="textfield" placeholder="姓"/></td>
-						</tr>
-						<tr>
-							<td>電話</td>
-							<td><input type="text" name="contactFirstname3" class="textfield"/></td>
-						</tr>
-					</table>
 					
-					<div style="margin-top:100px;margin-bottom:120px;">
-						<button type='button' id="addContact3_back" class="orange_button" style="width:49%;margin-right:1%;float:left;">上 一 步</button>
-						<button id="createValuable_complete" type="submit" class="red_button" style="width:49%;margin-left:1%;float:left;">完 成</button>
+					<div class='input_div'>
+						<div class="blue_text">姓名</div>
+						<input type="text" name="contactFirstname1" class="textfield" placeholder="名"/>
+						<input type="text" name="contactFirstname1" class="textfield" placeholder="姓"/>
 					</div>
+					<div class='input_div'>
+						<div class="blue_text">電話</div>
+						<input type="text" name="contactFirstname1" class="textfield"/>
+					</div>
+					<div class="green_text">聯絡人2</div>
+					
+					<div class='input_div'>
+						<div class="blue_text">姓名</div>
+						<input type="text" name="contactFirstname2" class="textfield" placeholder="名"/>
+						<input type="text" name="contactFirstname2" class="textfield" placeholder="姓"/>
+					</div>
+					<div class='input_div'>
+						<div class="blue_text">電話</div>
+						<input type="text" name="contactFirstname2" class="textfield"/>
+					</div>
+					<div class="green_text">聯絡人3</div>
+					<div class='input_div'>
+						<div class="blue_text">姓名</div>
+						<input type="text" name="contactFirstname3" class="textfield" placeholder="名"/>
+						<input type="text" name="contactFirstname3" class="textfield" placeholder="姓"/>
+					</div>
+					<div class='input_div'>
+						<div class="blue_text">電話</div>
+						<input type="text" name="contactFirstname3" class="textfield"/>
+					</div>
+					
+				    <div id='submit_div'>
+						<button type='button' class="button orange_btn"  id="addContact3_back" style="">上 一 步</button>
+						<button type="button"  id="createValuable_complete" class="button" style="">完 成</button>
+					</div>
+					
 					<div class="clear"></div>
 				</div>
 			
@@ -510,6 +542,7 @@
 		</div>
 	
 		<script>
+			var device_type = '<?php echo $device_type; ?>';
 			var get_sn = "<?php if(!empty($_GET["sn"])) echo $_GET["sn"]; ?>";
 		</script>
 		

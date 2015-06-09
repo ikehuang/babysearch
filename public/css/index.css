@@ -109,21 +109,6 @@ a {
 }
 
 <!-- /device/create.phtml -->
-#addSerial{
-}
-#help_button{
-	background:transparent;
-	background-image:url("/img/13/icon-04.png");
-	width:60px;
-	height:60px;
-	border:none;
-	margin-top:36px;
-	float:right;
-}
-.tagKind_container {
-	width:160px;
-	float:left;
-}
 #addPet{
 }
 #petInfo_tab{
@@ -137,64 +122,6 @@ a {
 #addValuable{
 }
 
-<!-- /user/update.phtml -->
-#user_form_container{
-	
-}
-
-<!-- /device/update.phtml -->
-	
-<!-- /guestbook/create.phtml -->
-#guestbook_form_container{
-
-}
-
-<!--
-.message_form {
-    margin-left:auto;
-    margin-right:auto;
-	width:100%;
-}
-
-.message_form label {
-    display: block;
-    margin: 0px 0px 5px;
-}
-.message_form label>span {
-    float: left;
-    margin-top: 10px;
-    color:blue;
-    font-size:3.333em;
-}
-.message_form input[type="text"], .message_form input[type="date"], .message_form input[type="time"],
-.message_form input[type="tel"], .message_form textarea{
-    color: #555;
-    height: 50px;
-    line-height:15px;
-    width: 95%;
-    padding: 0px 0px 0px 10px;
-    margin-top: 2px;
-    border: 1px solid #E5E5E5;
-    background: #FBFBFB;
-    outline: 0;
-    -webkit-box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);
-    box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);
-    font: normal 14px/14px Arial, Helvetica, sans-serif;
-}
-.message_form textarea{
-    height:100px;
-    padding-top: 10px;
-}
-.message_form .button {
-    background-color:orange;
-    border: none;
-    padding: 10px 25px 10px 25px;
-    color: #FFFFFF;
-}
-.message_form .button:hover {
-    background-color:#80A24A;
-}
--->
 
  input[type=checkbox],
   input[type=radio] {

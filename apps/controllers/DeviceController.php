@@ -663,6 +663,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 				break;
 		}
 		
+		
 		if(Device::count(array("conditions" => "sso_id = '{$this->_sso_id}' AND serial_number = '{$serial_number}'")) > 0) {
 		//if email-serial_number pair exists in the system, then continue...; otherwise, fail.
 		//if(Device::count(array("conditions" => "email = '{$this->_email}' AND serial_number = '{$serial_number}'")) > 0) {
@@ -1025,59 +1026,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 				break;
 		}
 		
-		//sample data
-		//$this->_api_key = 'qwe123';
-		//$this->_apikey = 'qwe123';
-		//$this->_email = 'ike@ink.net.tw';
-		//$serial_number = 'INK46XFKMX';
-		//$type = 'pet';
-		//$category = 'cats';
-		
-		//$imei = '152328054557408';
-		//$token = '166942940015970|tcOoRAAQrWcDm_84h3O7NN7Z9DM';
-		
-		//if api_key match, continue...; otherwise, return fail
-		if($this->_api_key == $this->_apikey) {
-			
-			//make sure all inputs are not empty
-			if(!empty($serial_number) && !empty($this->_email)) {
-			
-				//if user exists, then continue to create device...; otherwise, return fail
-				if(User::count("email = '{$this->_email}'") > 0) {
-				
-					//if serial number doesn't exist, then continue to create device...; otherwise, return fail
-					if(Device::count("serial_number = '{$serial_number}'") == 0) {
-						
-						$device = new Device();
-						
-						//register device status as Normal
-						$status = 'normal';
-						
-						//register expiry date for 1-year for now
-						$expiry_date = '2016-05-31';
-						
-						$device->serial_number = $serial_number;
-						$device->status = $status;
-						$device->type = $type;
-						$device->name = $name;
-						$device->photo = $photo;
-						$device->message = $message;
-						$device->expiry_date = $expiry_date;
-						//$device->category = $category;
-						$device->open = 'N';
-						$device->email = $this->_email;
-						
-						$device->create();
-						
-						//create Photos
-						$photos = new Photos();
-						$photos->did = $device->did;
-						$photos->create();
-						
-					}
-				}
-			}
-		}
+		$this->view->device_type = $type;
 	}
 	
 	public function updateCoordinatesAction() {
