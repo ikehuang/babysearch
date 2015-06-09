@@ -67,12 +67,12 @@
 	        				<th rowspan=4 style='vertical-align: top;'><div class="blue_text">個性</div></th>
 	        			</tr>
 	        			<tr>
-	        				<td><input type="checkbox" name="pet_temperament[]" value="活潑">活潑</td>
-	        				<td><input type="checkbox" name="pet_temperament[]" value="怕生">怕生</td>
+	        				<td><input type="checkbox" name="pet_temperament[]" value="活潑" <?php if(strpos($pet_info->temperament,'活潑') !== false) echo 'checked="checked"'; ?>>活潑</td>
+	        				<td><input type="checkbox" name="pet_temperament[]" value="怕生" <?php if(strpos($pet_info->temperament,'怕生') !== false) echo 'checked="checked"'; ?>>怕生</td>
 	        			</tr>
 	        			<tr>	
-	        				<td><input type="checkbox" name="pet_temperament[]" value="容易攻擊">容易攻擊</td>
-	        				<td><input type="checkbox" name="pet_temperament[]" value="具攻擊性">具攻擊性</td>
+	        				<td><input type="checkbox" name="pet_temperament[]" value="容易攻擊" <?php if(strpos($pet_info->temperament,'容易攻擊') !== false) echo 'checked="checked"'; ?>>容易攻擊</td>
+	        				<td><input type="checkbox" name="pet_temperament[]" value="具攻擊性" <?php if(strpos($pet_info->temperament,'具攻擊性') !== false) echo 'checked="checked"'; ?>>具攻擊性</td>
 	        			</tr>
 	        			<tr>
 	        				<td colspan=2>
@@ -88,12 +88,12 @@
 	        				<th rowspan=4 style='vertical-align: top;'><div class="blue_text">特殊才能</div></th>
 	        			</tr>
 	        			<tr>
-	        				<td><input type="checkbox" name="pet_talents[]" value="坐下">坐下</td>
-	        				<td><input type="checkbox" name="pet_talents[]" value="握手">握手</td>
+	        				<td><input type="checkbox" name="pet_talents[]" value="坐下" <?php if(strpos($pet_info->talents,'坐下') !== false) echo 'checked="checked"'; ?>>坐下</td>
+	        				<td><input type="checkbox" name="pet_talents[]" value="握手" <?php if(strpos($pet_info->talents,'握手') !== false) echo 'checked="checked"'; ?>>握手</td>
 	        			</tr>
 	        			<tr>	
-	        				<td><input type="checkbox" name="pet_talents[]" value="聽名字">聽名字</td>
-	        				<td><input type="checkbox" name="pet_talents[]" value="站立">站立</td>
+	        				<td><input type="checkbox" name="pet_talents[]" value="聽名字" <?php if(strpos($pet_info->talents,'聽名字') !== false) echo 'checked="checked"'; ?>>聽名字</td>
+	        				<td><input type="checkbox" name="pet_talents[]" value="站立" <?php if(strpos($pet_info->talents,'站立') !== false) echo 'checked="checked"'; ?>>站立</td>
 	        			</tr>
 	        			<tr>
 	        				<td colspan=2>
@@ -116,8 +116,8 @@
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">結紮
-					<input type="radio" name="pet_desex" value="<?php if(strtolower($pet_info->desex) == 'y') echo "CHECKED"; ?>">有
-					<input type="radio" name="pet_desex" value="<?php if(strtolower($pet_info->desex) == 'n') echo "CHECKED"; ?>" checked>無</div>
+					<input type="radio" name="pet_desex" value="<?php if(strtolower($pet_info->desex) == 'y') echo 'checked="checked"'; ?>">有
+					<input type="radio" name="pet_desex" value="<?php if(strtolower($pet_info->desex) == 'n') echo 'checked="checked"'; ?>" checked>無</div>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">預防針種類</div>
@@ -129,8 +129,8 @@
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">血庫資訊通知
-					<input type="radio" name="pet_bloodbank" value="<?php if(strtolower($pet_info->bloodbank) == 'y') echo "CHECKED"; ?>">有
-					<input type="radio" name="pet_bloodbank" value="<?php if(strtolower($pet_info->bloodbank) == 'n') echo "CHECKED"; ?>">無</div>
+					<input type="radio" name="pet_bloodbank" value="<?php if(strtolower($pet_info->bloodbank) == 'y') echo 'checked="checked"'; ?>">有
+					<input type="radio" name="pet_bloodbank" value="<?php if(strtolower($pet_info->bloodbank) == 'n') echo 'checked="checked"'; ?>">無</div>
 				</div>
 				<div class='input_div'>
 				
@@ -139,12 +139,12 @@
 	        				<th rowspan=4 style='vertical-align: top;'><div class="blue_text">肢體障礙</div></th>
 	        			</tr>
 	        			<tr>
-	        				<td><input type="checkbox" name="pet_disability[]" value="行動">行動</td>
-	        				<td><input type="checkbox" name="pet_disability[]" value="聽覺">聽覺</td>
+	        				<td><input type="checkbox" name="pet_disability[]" value="行動" <?php if(strpos($pet_info->disability,'行動') !== false) echo 'checked="checked"'; ?>>行動</td>
+	        				<td><input type="checkbox" name="pet_disability[]" value="聽覺" <?php if(strpos($pet_info->disability,'聽覺') !== false) echo 'checked="checked"'; ?>>聽覺</td>
 	        			</tr>
 	        			<tr>	
-	        				<td><input type="checkbox" name="pet_disability[]" value="視覺">視覺</td>
-	        				<td><input type="checkbox" name="pet_disability[]" value="其他">其他</td>
+	        				<td><input type="checkbox" name="pet_disability[]" value="視覺" <?php if(strpos($pet_info->disability,'視覺') !== false) echo 'checked="checked"'; ?>>視覺</td>
+	        				<td><input type="checkbox" name="pet_disability[]" value="" ></td>
 	        			</tr>
 	        			<tr>
 	        				<td colspan=2>
@@ -226,12 +226,12 @@
 	        				<th rowspan=4 style='vertical-align: top;'><div class="blue_text">疾病</div></th>
 	        			</tr>
 	        			<tr>
-	        				<td><input type="checkbox" name="human_disease[]" value="心臟病">心臟病</td>
-	        				<td><input type="checkbox" name="human_disease[]" value="高血壓">高血壓</td>
+	        				<td><input type="checkbox" name="human_disease[]" value="心臟病" <?php if(strpos($human_info->disease,'心臟病') !== false) echo 'checked="checked"'; ?>>心臟病</td>
+	        				<td><input type="checkbox" name="human_disease[]" value="高血壓" <?php if(strpos($human_info->disease,'高血壓') !== false) echo 'checked="checked"'; ?>>高血壓</td>
 	        			</tr>
 	        			<tr>	
-	        				<td><input type="checkbox" name="human_disease[]" value="糖尿病">糖尿病</td>
-	        				<td><input type="checkbox" name="human_disease[]" value="失智">失智</td>
+	        				<td><input type="checkbox" name="human_disease[]" value="糖尿病" <?php if(strpos($human_info->disease,'糖尿病') !== false) echo 'checked="checked"'; ?>>糖尿病</td>
+	        				<td><input type="checkbox" name="human_disease[]" value="失智" <?php if(strpos($human_info->disease,'失智') !== false) echo 'checked="checked"'; ?>>失智</td>
 	        			</tr>
 	        			<tr>
 	        				<td colspan=2>
@@ -247,12 +247,12 @@
 	        				<th rowspan=4 style='vertical-align: top;'><div class="blue_text">肢體障礙</div></th>
 	        			</tr>
 	        			<tr>
-	        				<td><input type="checkbox" name="human_disability[]" value="行動">行動</td>
-	        				<td><input type="checkbox" name="human_disability[]" value="聽覺">聽覺</td>
+	        				<td><input type="checkbox" name="human_disability[]" value="行動" <?php if(strpos($human_info->disability,'行動') !== false) echo 'checked="checked"'; ?>>行動</td>
+	        				<td><input type="checkbox" name="human_disability[]" value="聽覺" <?php if(strpos($human_info->disability,'聽覺') !== false) echo 'checked="checked"'; ?>>聽覺</td>
 	        			</tr>
 	        			<tr>	
-	        				<td><input type="checkbox" name="human_disability[]" value="視覺">視覺</td>
-	        				<td><input type="checkbox" name="human_disability[]" value="語言">語言</td>
+	        				<td><input type="checkbox" name="human_disability[]" value="視覺" <?php if(strpos($human_info->disability,'視覺') !== false) echo 'checked="checked"'; ?>>視覺</td>
+	        				<td><input type="checkbox" name="human_disability[]" value="語言" <?php if(strpos($human_info->disability,'語言') !== false) echo 'checked="checked"'; ?>>語言</td>
 	        			</tr>
 	        			<tr>
 	        				<td colspan=2>
