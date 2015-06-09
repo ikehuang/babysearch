@@ -16,9 +16,11 @@
 	<input type='hidden' name='serial_number' value='<?php echo $device->serial_number; ?>'/>
 	<div>
 		<div id='img_wrapper'>
-			<img id="pic" src= ""/>
-			<img id='upload_btn' src="/img/08/frame.png"/>
-			<input type='file' name="photos" class="photos" style='width:0;height:0;'/>
+			<div style='height:160px;width:160px;margin:0 auto;position:relative;'>
+				<img id="pic" src= "<?php echo $device->photo?>"/>
+				<img id='upload_btn' src="/img/08/frame.png" style="position:absolute;top:0px;"/>
+				<input type='file' name="photos" class="photos" style='width:0;height:0;'/>
+			</div>
 		</div>
 		<div id='info_wrapper'>
 			<div><?php echo $device->name ?></div>
@@ -82,7 +84,7 @@
 </div>
 
 <div>
-	<a class='menu'  href="/device/updatePhotos?serial_number=<?php echo $device->serial_number?>">
+	<a class='menu'  href="/photo/list?serial_number=<?php echo $device->serial_number?>">
 		<img src="/img/08/bu-03.png" style="width:100%;">
 		<div style="position:absolute;bottom:20px;right:10%" class="white_text">相片集</div>
 	</a>
