@@ -68,13 +68,23 @@
 
 				switch($device->type) {
 					case "Pets":
-						$img = "<img src= '/img/17/pic-02-02.png'/>";
+						if(empty($device->photo))
+							$img = "<img src= '/img/17/pic-02-02.png'/>";
+						else
+							$img = "<img src= '{$device->photo}'/>";
 						break;
 					case "Human":
-						$img = "<img src= '/img/17/pic-01-02.png'/>";
+						if(empty($device->photo))
+							$img = "<img src= '/img/17/pic-01-02.png'/>";
+						else
+							$img = "<img src= '{$device->photo}'/>";
 						break;
 					case "Valuables":
-						$img = "<img src= '/img/17/pic-03-02.png'/>";
+						if(empty($device->photo))
+							$img = "<img src= '/img/17/pic-03-02.png'/>";
+						else
+							$img = "<img src= '{$device->photo}'/>";
+						break;
 					default:
 						break;
 				}
