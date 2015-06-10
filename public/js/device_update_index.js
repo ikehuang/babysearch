@@ -1,5 +1,10 @@
 $(document).ready(function() {
 	$.init_event();
+	$.init_form ();
+	
+
+	if($("input[name='photos']").length > 0)
+		$('#pic').show();
 });
 
 $.init_event = function() {
@@ -58,5 +63,36 @@ function readURL(input) {
         };
 
         reader.readAsDataURL(input.files[0]);
+        
+        $('form').trigger('submit');
     }
+};
+
+
+$.init_form = function() {
+	$('form').ajaxForm({
+		beforeSubmit:function(e) {
+			$.blockUI({ message: '照片更新中...'});
+		},
+		success:function(response) {
+			
+			if(response.status == 'success') {
+				$.blockUI({ message: '照片更新成功!'});
+			}
+			else {
+
+				$.blockUI({ message: '新增失敗!'});
+			}
+			
+			setTimeout(function() {
+				$.unblockUI();
+				if(response.status == 'success') {
+					window.location.href = '/guestbook/list?serial_number='+$("input[name='serial_number']").val();
+				}
+			}, 1000);
+		},
+		error:function() {
+			$.blockUI({ message: '照片更新失敗!'});
+		}
+	});
 };
