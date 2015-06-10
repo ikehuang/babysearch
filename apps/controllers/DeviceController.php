@@ -1642,4 +1642,43 @@ EOTl
 		
 		$this->view->contacts = LostContacts::find("email  = '{$_SESSION['USER']['INFO']['email']}'");
 	}
+	
+	public function updatePhotoAction() {
+		$this->view->disable();
+		$this->response->setContentType('application/json', 'UTF-8');
+		
+		$serial_number = $this->_request->get('serial_number');
+		
+		$device = Device::findFirst("serial_number = '{$serial_number}'");
+		
+		if($this->request->hasFiles() == true){
+			$uploads = $this->request->getUploadedFiles();
+			$isUploaded = false;
+			foreach($uploads as $upload){
+				$path = 'upload/'.md5(uniqid(rand(), true)).'-'.strtolower($upload->getname());
+				$blacklog_files[] = $path;
+				($upload->moveTo($path)) ? $isUploaded = true : $isUploaded = false;
+			}
+				
+			if($isUploaded) {
+				$device->photo = $path;
+			}
+		}
+		
+		if ($device->update() == false) {
+			foreach ($device->getMessages() as $message) {
+				$response_data = array(
+						"status" => 'fail'
+				);
+			}
+		}
+		else {
+			$response_data = array(
+					"status" => 'success'
+			);
+		}
+		
+		$this->response->setContent(json_encode($response_data));
+		$this->response->send();
+	}
 }
