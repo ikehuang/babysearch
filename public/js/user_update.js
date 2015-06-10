@@ -5,10 +5,8 @@ $.readURL = function(input) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
-            $('.blah')
-                .attr('src', e.target.result)
-                .width(250)
-                .height(250);
+            $('#pic')
+                .attr('src', e.target.result).show();
         };
 
         reader.readAsDataURL(input.files[0]);
@@ -16,17 +14,16 @@ $.readURL = function(input) {
 }
 
 $.init_user_event = function() {
-	$('#update_user_form input[name="photos"]').change(function(){
+	$('input[name="photos"]').change(function(){
 		$.readURL(this);
 	});
 	
-	$('#update_user_form  .upload_btn').click(function(){
-		$('#update_user_form input[name="photos"]').trigger('click');
+	$('#upload_btn').click(function(){
+		$('input[name="photos"]').trigger('click');
 	});
 };
 
 $(document).ready(function() {
 	$.init_user_event();
-	$('.datepicker').datepicker({dateFormat: "yy-mm-dd"});
 
 });

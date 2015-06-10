@@ -1,7 +1,164 @@
-.photos {
-	display:none;
+.title {
+	margin-bottom:3%;
 }
 
-.blah {
-	border-radius:50px;	
+#title {
+	list-style-type:none;
+	background:#d9d9d9;
+	text-align:left;
+	font-size:2.5em;
+	padding:2%;	
+	margin:0;
 }
+
+#title li {
+	display:inline;
+	color:#808080;	
+}
+
+#title a,
+#title a:visited {
+	color:#808080;
+}
+
+#img_wrapper  {
+	margin: 0 auto;
+  width: 16%;
+  position: relative;
+}
+
+#upload_btn {
+	position:relative;
+	z-index:10;	
+	width:100%;	
+}
+
+#pic {
+	display:none;
+	position: absolute;
+	top: 3.5%;
+	left: 4%;
+	z-index: 4;
+	  width: 92%;
+	  height: 81%;	
+	border-radius: 17%;
+}
+
+.black_text {
+	margin-bottom:5%;
+	font-size:3.333em;
+	height:3%;
+}
+
+#user_form_container {
+	margin-left:3.6%;
+	margin-right:3.6%;
+	margin-top:6.5%;
+	margin-bottom:12%;
+}
+
+.textfield {
+	background:#e6e6e6;
+	color:#b3b3b3;
+	border:none;
+}
+
+.button {
+	height:11%;
+	background:#EB9F4e;
+	width:100%;
+	float:right;
+	border:none;
+	padding:2%;
+	margin:0;
+	color:white;
+	font-size:4.167em;
+}
+
+.orange_btn {
+	float:left;
+	margin-right:3.5%;
+	background:#F0B77A;
+}
+
+#submit_div {
+	margin-top:4.5%;
+	margin-bottom:120%;
+}
+
+.input_div {
+	margin-bottom:3%;
+}
+
+@media (min-width: 213px) {
+  html, body { font-size: 2px;line-height: 1;
+	 } }
+@media (min-width: 256px) {
+  html, body { font-size: 3px;line-height: 1; } }
+@media (min-width: 320px) {
+  html, body {
+  	font-size: 3px;line-height: 1;
+  }
+}
+@media (min-width: 320px) {
+  html, body {
+     font-size: 4px;
+	line-height:1px; }
+	
+}
+@media (min-width: 360px) {
+  html, body {
+    font-size: 6px;
+	line-height:1px; } 
+}
+
+@media (min-width: 375px) {
+  html, body {
+    font-size: 6px;
+	line-height:1;  	 }
+ }
+@media (min-width: 400px) {
+  html, body {
+    font-size: 6px;
+	line-height:1;  	 }
+ }
+@media (min-width: 480px) {
+  html, body {
+    font-size: 6px;
+	line-height:1;  	 }
+}  	
+@media (min-width: 540px) {
+  html, body {
+    font-size: 6px;
+    line-height: 1; }  
+@media (min-width: 600px) {
+  html, body {
+    font-size: 7px;
+    line-height: 1; }
+}
+
+@media (min-width: 640px) {
+  html, body {
+    font-size: 7px;
+    line-height: 1;  	 } }
+@media (min-width: 720px) {
+	
+}
+@media (min-width: 768px) {
+  html, body {
+    font-size: 8px;
+    line-height: 1;  	 } }
+@media (min-width: 800px) {
+  html, body {
+    font-size: 10px;
+    line-height: 1;  	 } }
+@media (min-width: 960px) {
+  html, body {
+    font-size: 11px;
+    line-height: 1;  	 }
+}
+@media (min-width: 1024px) {
+
+  html, body {
+    font-size: 12px;
+    line-height: 1;  	 }	

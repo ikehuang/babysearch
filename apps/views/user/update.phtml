@@ -1,61 +1,66 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Baby Search - Update User</title>
-		<link rel="stylesheet" type="text/css" href="/css/index.css">
-		<link rel="stylesheet" type="text/css" href="/css/user_update.css">
-		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-		<script src="/js/jquery-1.11.3.min.js"></script>
-		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-		<script src="/js/jquery.form.js"></script>
-	</head>
+<link rel="stylesheet" type="text/css" href="/css/user_update.css?rand=<?php echo rand(); ?>">
+<script type='text/javascript' src='/js/jquery-1.11.3.min.js'></script>
+<script type='text/javascript' src='/js/jquery.form.js'></script>
+<script type='text/javascript' src='/js/jquery.validate.js'></script>
+<script type='text/javascript' src='/js/jquery.blockUI.js'></script>
+<script type='text/javascript' src='/js/user_update.js?rand=<?php echo rand(); ?>'></script>
 
-	<body>
-		<div class="header">
-			<img src="/img/02/logo(white).png"></img>
-			<ul style="float:right;margin-right:36px;">
-				<a href=""><li><?php echo $user->nickname ?></li></a>/
-				<a href=""><li>登出</li></a>
-			</ul>
-			<div class="clear"></div>
+<ul id='title'>
+	<li><a href='/'>首頁</a></li>
+	<li> > </li>
+	<li style='color:#86c557;'>編 輯 個 人 資 訊</li>
+</ul>
+<div id="user_form_container">
+	<form action="/user/update" method="post" id='update_user_form' enctype="multipart/form-data">
+		<input type='file' name="photos" class="photos" style='width:0;height:0;'/>
+		<div class="blue_text title">我的個人照片</div>
+		
+		<div class='clear'></div>
+		<div id='img_wrapper'>
+			<div>
+				<img id="pic" src= "/<?php echo $user->photo; ?>"/>
+				<img id='upload_btn' src="/img/08/frame.png"/>
+			</div>
+		</div>
+		<div class='input_div'>
+			<div class="blue_text"><font style="color:red;">*</font>暱稱:</div>
+			<input type="text" name="nickname" value="<?php echo $user->nickname?>" class="textfield" required>
+		</div>
+		<div class='input_div'>
+		<div class="blue_text"><font style="color:red;">*</font>姓名:</div>
+			<input type="text" class="textfield" name="firstname" value="<?php echo $user->firstname?>" placeholder="名" required><br><br/>
+			<input type="text" class="textfield" name="lastname" value="<?php echo $user->lastname?>" placeholder="姓" required>
+		</div>
+		<div class='input_div'>
+			<div class="blue_text">性別:
+			<input type="radio" name="sex" value="m" <?php if($user->sex == 'm') echo 'checked';?>>男
+			<input type="radio" name="sex" value="f" <?php if($user->sex == 'f') echo 'checked';?>>女
+			
+		</div>
+		<div class='input_div'>
+			<div class="blue_text">生日:</div>
+			<input type="date" name="birthday" value="<?php echo $user->birthday?>" class="textfield" >
 		</div>
 		
-		<div style="height:110px;line-height:110px;padding-left:36px;padding-right:36px;background:#D9D9D9;">
-			<font class="grey_text">首 頁 > </font>
-			<font class="green_text">編 輯 個 人 資 訊</font>
+		<div class='input_div'>
+			<div class="blue_text">電話:</div>
+			<input type="tel" name="phone" value="<?php echo $user->phone?>" class="textfield" >
 		</div>
 		
-		<div id="user_form_container" style="margin-top:64px;margin-bottom:120px;margin-left:36px;margin-right:36px;">
-			<form action="/user/update" method="post" id='update_user_form' enctype="multipart/form-data">
-				<div class="blue_text" style="font-size:64px;">我的個人照片</div>
-				<div style='height:250px;width:250px;margin:0 auto;position:relative;'>
-					<img class="blah" src= "<?php echo $user->photo?>" style="width:100%;"/>
-					<img class='upload_btn' src="/img/14/pic-01.png" style="position:absolute;top:0px;"/>
-					<input type='file' name="photos" class="photos"/>
-				</div>
-					
-				<div class="blue_text"><font style="color:red;">*</font>暱稱:</div>
-				<input type="text" name="nickname" value="<?php echo $user->nickname?>" class="textfield" required><br>
-				<div class="blue_text"><font style="color:red;">*</font>姓名:</div>
-				<input type="text" name="firstname" value="<?php echo $user->firstname?>" placeholder="名" required><br>
-				<input type="text" name="lastname" value="<?php echo $user->lastname?>" placeholder="姓" required><br>
-				<div class="blue_text">性別:</div>
-				<input type="radio" name="sex" value="m" <?php if($user->sex == 'm') echo 'checked';?>>男
-				<input type="radio" name="sex" value="f" <?php if($user->sex == 'f') echo 'checked';?>>女<br>
-				<div class="blue_text">生日:</div>
-				<input type="date" name="birthday" value="<?php echo $user->birthday?>" class="textfield" ><br>
-				<div class="blue_text">電話:</div>
-				<input type="tel" name="phone" value="<?php echo $user->phone?>" class="textfield" ><br>
-				<div class="blue_text">地址:</div>
-				<input type="text" name="address" value="<?php echo $user->address?>" class="textfield"  placeholder="地址"><br>
-				<input type="text" name="city" value="<?php echo $user->city?>" placeholder="城市"><br>
-				<input type="text" name="district" value="<?php echo $user->district?>" placeholder="鄉鎮市區"><br>
-				<input type="text" name="postal" value="<?php echo $user->postal?>" placeholder="郵遞區號"><br>
-				<input type="text" name="country" value="<?php echo $user->country?>" placeholder="國家" class="textfield" ><br>
-				<input type="submit" class="orange_button" value="儲存" style="margin-top:45px;">
-			</form>
+		<div class='input_div'>
+        	<div class="blue_text">地址</div>
+        	<input type="text" name="address" value="<?php if(isset($pet_info)) echo $pet_info->hospital_address; ?>" class="textfield" placeholder="地址"/><br>
+        	<input type="text" name="city" value="<?php if(isset($pet_info)) echo $pet_info->hospital_city; ?>" class="textfield" style='width:18%;margin-right:2%;' placeholder="城市"/>
+        	<input type="text" name="district" value="<?php if(isset($pet_info)) echo $pet_info->hospital_district; ?>" class="textfield" style='width:18%;margin-right:2%;' placeholder="鄉鎮市區"/>
+        	<input type="text" name="postal" value="<?php if(isset($pet_info)) echo $pet_info->hospital_postal; ?>" class="textfield" style='width:18%;margin-right:2%;' placeholder="郵遞區號"/>
+        	<input type="text" name="country" value="<?php if(isset($pet_info)) echo $pet_info->hospital_country; ?>" class="textfield" style='width:19%;' class="textfield" placeholder="國家"/>
 		</div>
 		
-		<script type='text/javascript' src='/js/user_update.js'></script>
-	</body>
-</html>
+		
+	    <div class='submit_div'>
+			<button type="submit" class="button" style="">存檔</button>
+		</div>
+		
+		<div class='clear' style='margin-bottom:10%;'></div>
+	</form>
+</div>
