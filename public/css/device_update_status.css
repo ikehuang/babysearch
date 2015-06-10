@@ -1,0 +1,31 @@
+#title {
+	list-style-type:none;
+	background:#d9d9d9;
+	text-align:left;
+	font-size:2.5em;
+	padding:3%;	
+	margin:0;
+}
+
+#title li {
+	display:inline;
+	color:#808080;	
+}
+
+#title a,
+#title a:visited {
+	color:#808080;
+}
+
+.title {
+	margin-bottom:3%;
+}
+
+.input_div {
+	margin-bottom:3%;
+}
+
+.submit_div {
+	margin-top:4.5%;
+	margin-bottom:12%;
+}

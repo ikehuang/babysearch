@@ -56,8 +56,8 @@
 							<font style="color:red;">*</font>資料公開
 						</div>
 						<div class="green_text" style="margin-bottom:6%;float:left;">
-							<input type="radio" name="open" value="Y">公開
-							<input type="radio" name="open" value="N" CHECKED>關閉
+							<input type="radio" name="open" value="y">公開
+							<input type="radio" name="open" value="n" CHECKED>關閉
 						</div>
 						<div class="clear"></div>					
 					</div>		
@@ -151,8 +151,8 @@
 						</div>
 						<div class='input_div'>
 							<div class="blue_text">結紮
-							<input type="radio" name="pet_desex">有
-							<input type="radio" name="pet_desex">無</div>
+							<input type="radio" name="pet_desex" value="y" style='margin-left:5%;'>有
+							<input type="radio" name="pet_desex" value="n" style='margin-left:20%;'>無</div>
 						</div>
 						<div class='input_div'>
 							<div class="blue_text">預防針種類</div>
@@ -164,8 +164,8 @@
 						</div>
 						<div class='input_div'>
 							<div class="blue_text">血庫資訊通知
-							<input type="radio" name="pet_bloodbank">有
-							<input type="radio" name="pet_bloodbank">無</div>
+							<input type="radio" name="pet_bloodbank" value="y" style='margin-left:5%;'>有
+							<input type="radio" name="pet_bloodbank" value="n" style='margin-left:20%;'>無</div>
 						</div>
 						<div class='input_div'>
 						
@@ -203,10 +203,11 @@
 						<div class='input_div'>
 			        		<div class="blue_text">醫院地址</div>
 			        		<input type="text" name="pet_hospital_address" class="textfield" placeholder="地址"/><br>
-			        		<input type="text" name="pet_hospital_city" placeholder="城市"/>
-			        		<input type="text" name="pet_hospital_district" placeholder="鄉鎮市區"/>
-			        		<input type="text" name="pet_hospital_postal" placeholder="郵遞區號"/>
-			        		<input type="text" name="pet_hospital_country" placeholder="國家"/>
+			        		<input type="text" name="pet_hospital_city" style="width:27%;margin-right:3%;float:left;" class="textfield"  placeholder="城市"/>
+			        		<input type="text" name="pet_hospital_district" style="width:27%;margin-right:3%;float:left;" class="textfield" placeholder="鄉鎮市區"/>
+			        		<input type="text" name="pet_hospital_postal" style="width:27%;float:left;" class="textfield" placeholder="郵遞區號"/>
+			        		<div class="clear"></div>
+			        		<input type="text" name="pet_hospital_country" class="textfield" placeholder="國家"/>
 						</div>
 					</div>
 					
@@ -255,8 +256,8 @@
 					</div>
 					
 				    <div id='submit_div'>
-						<button type='button' class="button orange_btn"  id="addContact1_back" style="">上 一 步</button>
-						<button type="submit"  id="createPet_complete" class="button" style="">完 成</button>
+						<button type='button' class="button orange_btn"  id="addContact1_back">上 一 步</button>
+						<button type="submit"  id="createPet_complete" class="button" style="background:#EB004E;">完 成</button>
 					</div>
 					
 					<div class="clear"></div>
@@ -286,8 +287,8 @@
 							<font style="color:red;">*</font>資料公開
 						</div>
 						<div class="green_text" style="margin-bottom:6%;float:left;">
-							<input type="radio" name="open" value="Y">公開
-							<input type="radio" name="open" value="N" CHECKED>關閉
+							<input type="radio" name="open" value="y">公開
+							<input type="radio" name="open" value="n" CHECKED>關閉
 						</div>
 						<div class="clear"></div>					
 					</div>
@@ -304,25 +305,25 @@
 			        		<input type="text" name="human_nickname"  class="textfield" required/>
 						</div>
 						<div class='input_div'>
-							<div class="blue_text"><font color="red">*</font>性別
-			        		<input type="radio" name="human_sex" value="m">男
-							<input type="radio" name="human_sex" value="f">女</div>
+							<div class="blue_text">性別
+			        		<input type="radio" name="human_sex" value="m" style='margin-left:5%;'>男
+							<input type="radio" name="human_sex" value="f" style='margin-left:20%;'>女</div>
 						</div>
 						<div class='input_div'>
 							<div class="blue_text">生日</div>
-			        		<input type="text" name="human_birthday"  class="textfield datepicker"/>
+			        		<input type="text" name="human_birthday" class="textfield datepicker"/>
 						</div>
 						<div class='input_div'>
 							<div class="blue_text">身高(cm)</div>
-			        		<input type="text" name="human_height"  class="textfield"/>
+			        		<input type="text" name="human_height" class="textfield"/>
 						</div>
 						<div class='input_div'>
 							<div class="blue_text">體重(kg)</div>
-			        		<input type="text" name="human_weight"  class="textfield"/>
+			        		<input type="text" name="human_weight" class="textfield"/>
 						</div>
 						<div class='input_div'>
 							<div class="blue_text">血型</div>
-			        		<input type="text" name="human_bloodtype"  class="textfield"/>
+			        		<input type="text" name="human_bloodtype" class="textfield"/>
 						</div>
 						<div class='input_div'>
 						
@@ -378,12 +379,12 @@
 						</div>
 						<div class='input_div'>
 			        		<div class="blue_text">醫院地址</div>
-			        		<input type="text" name="human_hospital_address"  class="textfield" placeholder="地址"/><br>
-			        		
-			        		<input type="text" name="human_hospital_city"  placeholder="城市" class="textfield" style='width:18%;margin-right:2%;'/>
-			        		<input type="text" name="human_hospital_district"  placeholder="鄉鎮市區" class="textfield" style='width:18%;margin-right:2%;'/>
-			        		<input type="text" name="human_hospital_postal"  placeholder="郵遞區號" class="textfield" style='width:18%;margin-right:2%;'/>
-			        		<input type="text" name="human_hospital_country"  class="textfield" placeholder="國家" style='width:19%;'/><br>
+			        		<input type="text" name="human_hospital_address"  class="textfield" placeholder="地址"/><br>			        		
+			        		<input type="text" name="human_hospital_city"  placeholder="城市" class="textfield" style="width:27%;margin-right:3%;float:left;"/>
+			        		<input type="text" name="human_hospital_district"  placeholder="鄉鎮市區" class="textfield" style="width:28%;margin-right:3%;float:left;"/>
+			        		<input type="text" name="human_hospital_postal"  placeholder="郵遞區號" class="textfield" style="width:27%;float:left;"/>
+			        		<div class="clear"></div>
+			        		<input type="text" name="human_hospital_country"  class="textfield" placeholder="國家"/><br>
 						</div>
 						
 					    <div id='submit_div'>
@@ -432,14 +433,9 @@
 						<input type="text" name="contactFirstname3" class="textfield"/>
 					</div>
 					
-					<div style="margin-top:100px;margin-bottom:120px;">
-						<button type='button' id="addContact2_back" class="orange_button" style="width:49%;margin-right:1%;float:left;">上 一 步</button>
-						<button id="createHuman_complete" type="submit" class="red_button" style="width:49%;margin-left:1%;float:left;">完 成</button>
-					</div>
-					
 				    <div id='submit_div'>
-						<button type='button' class="button orange_btn"  id="addContact2_back" style="">上 一 步</button>
-						<button type="button"  id="createHuman_complete" class="button" style="">完 成</button>
+						<button type='button' class="button orange_btn"  id="addContact2_back">上 一 步</button>
+						<button type="button"  id="createHuman_complete" class="button" style="background:#EB004E;">完 成</button>
 					</div>
 					<div class="clear"></div>
 				</div>
@@ -531,8 +527,8 @@
 					</div>
 					
 				    <div id='submit_div'>
-						<button type='button' class="button orange_btn"  id="addContact3_back" style="">上 一 步</button>
-						<button type="button"  id="createValuable_complete" class="button" style="">完 成</button>
+						<button type='button' class="button orange_btn"  id="addContact3_back">上 一 步</button>
+						<button type="button"  id="createValuable_complete" class="button" style="background:#EB004E;">完 成</button>
 					</div>
 					
 					<div class="clear"></div>

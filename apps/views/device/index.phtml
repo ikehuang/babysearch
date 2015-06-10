@@ -28,12 +28,11 @@
 </div>
 <div id="tab_container">
 	<ul>
-		<li class='tab notication_tab'><img src="/img/02/bu-01-01.png"/><span>通 知 事 項</span></li>
-		<li class='tab info_tab' ><img src="/img/02/bu-02-01.png"/><span>基 本 資 料</span></li>
+		<li class='tab notication_tab'><img id="notice_background" src="/img/02/bu-01-01.png"/><span>通 知 事 項</span></li>
+		<li class='tab info_tab' ><img id="info_background" src="/img/02/bu-02-01.png"/><span>基 本 資 料</span></li>
 	</ul>
 </div>
-		
-<!-- still need to combine 2 div containers here into tab container -->
+
 <div id="notice_container">
 	<div class="green_text title">
 		<img src="/img/02/icon-01.png" />通 知 事 項
@@ -81,7 +80,7 @@ EOT;
 		}
 		?>
 	</table>				
-	<!-- click button to create guestbook -->
+	
 	<div id='add_notication_div'>
 		<a  href="/guestbook/create?serial_number=<?php echo $device->serial_number; ?>">
 		通 知 / 留 言
@@ -99,7 +98,7 @@ EOT;
 		<table id="info_table">
 			<?php if($device->type == 'Pets') { ?>
 			<tr>
-				<th class="blue_text">類別:</th>
+				<th class="blue_text">種類:</th>
 				<td class="black_text">
 					<?php echo $device->category; ?>
 				</td>
@@ -119,7 +118,7 @@ EOT;
 							$age = (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birthDate[2]))) > date("md")
 									? ((date("Y") - $birthDate[0]) - 1)
 									: (date("Y") - $birthDate[0]));
-							echo $age . "歲";
+							echo $age . " 歲";
 						}
 					?>
 				</td>
@@ -131,10 +130,10 @@ EOT;
 						if(!empty($info->sex)) {
 						
 							switch($info->sex) {
-								case "male":
+								case "m":
 									echo "公";
 									break;
-								case "female":
+								case "f":
 									echo "母";
 									break;
 								default:
@@ -152,9 +151,180 @@ EOT;
 				?>
 				</td>
 			</tr>
+			<tr>
+				<th class="blue_text">生日:</th>
+				<td class="black_text">
+					<?php echo $info->birthday; ?>
+				</td>
+			</tr>
+			<tr>
+				<th class="blue_text">身長:</th>
+				<td class="black_text">
+					<?php echo $info->height . " cm"; ?>
+				</td>
+			</tr>
+			<tr>
+				<th class="blue_text">體重:</th>
+				<td class="black_text">
+					<?php echo $info->weight . " kg"; ?>
+				</td>
+			</tr>
+			<tr>
+				<th class="blue_text">個性:</th>
+				<td class="black_text">
+					<?php echo $info->temperament; ?>
+				</td>
+			</tr>
+			<tr>
+				<th class="blue_text">特殊才能:</th>
+				<td class="black_text">
+					<?php echo $info->talents; ?>
+				</td>
+			</tr>
+			<tr>
+				<th class="blue_text">簡介:</th>
+				<td class="black_text">
+					<?php echo $info->description; ?>
+				</td>
+			</tr>
+				<?php if($device->open == 'y') {?>
+					<tr>
+						<th class="blue_text">晶片號碼:</th>
+						<td class="black_text">
+							<?php echo $info->chip_number; ?>
+						</td>
+					</tr>
+					<tr>
+						<th class="blue_text">結紮:</th>
+						<td class="black_text">
+							<?php
+								if(!empty($info->desex)) {
+								
+									switch($info->desex) {
+										case "y":
+											echo "有";
+											break;
+										case "n":
+											echo "無";
+											break;
+										default:
+											break;
+									}
+								}
+							?>
+						</td>
+					</tr>
+					<tr>
+						<th class="blue_text">預防針種類:</th>
+						<td class="black_text">
+							<?php echo $info->vaccine_type; ?>
+						</td>
+					</tr>
+					<tr>
+						<th class="blue_text">血型:</th>
+						<td class="black_text">
+							<?php echo $info->bloodtype . " 型"; ?>
+						</td>
+					</tr>
+					<tr>
+						<th class="blue_text">血庫資訊通知:</th>
+						<td class="black_text">
+							<?php
+								if(!empty($info->bloodbank)) {
+								
+									switch($info->bloodbank) {
+										case "y":
+											echo "有";
+											break;
+										case "n":
+											echo "無";
+											break;
+										default:
+											break;
+									}
+								}
+							?>
+						</td>
+					</tr>
+					<tr>
+						<th class="blue_text">肢體障礙:</th>
+						<td class="black_text">
+							<?php echo $info->disability; ?>
+						</td>
+					</tr>
+					<tr>
+						<th class="blue_text">保險單號:</th>
+						<td class="black_text">
+							<?php echo $info->insurance; ?>
+						</td>
+					</tr>
+					<tr>
+						<th class="blue_text">醫院名稱:</th>
+						<td class="black_text">
+							<?php echo $info->hospital_name; ?>
+						</td>
+					</tr>
+					<tr>
+						<th class="blue_text">醫院電話:</th>
+						<td class="black_text">
+							<?php echo $info->hospital_phone; ?>
+						</td>
+					</tr>
+					<tr>
+						<th class="blue_text">醫院地址:</th>
+						<td class="black_text">
+							<?php echo $info->hospital_address; ?>
+						</td>
+					</tr>
+					<tr>
+						<th class="blue_text">城市:</th>
+						<td class="black_text">
+							<?php echo $info->hospital_city; ?>
+						</td>
+					</tr>
+					<tr>
+						<th class="blue_text">鄉鎮市區:</th>
+						<td class="black_text">
+							<?php echo $info->hospital_district; ?>
+						</td>
+					</tr>
+					<tr>
+						<th class="blue_text">郵遞區號:</th>
+						<td class="black_text">
+							<?php echo $info->hospital_postal; ?>
+						</td>
+					</tr>
+					<tr>
+						<th class="blue_text">國家:</th>
+						<td class="black_text">
+							<?php echo $info->hospital_country; ?>
+						</td>
+					</tr>
+				<?php } ?>
+				
 			<?php } ?>
 			
 			<?php if($device->type == 'Human') { ?>
+			<tr>
+				<th class="blue_text">性別:</th>
+				<td class="black_text">
+				<?php
+					if(!empty($info->sex)) {
+					
+						switch($info->sex) {
+							case "m":
+								echo "男";
+								break;
+							case "f":
+								echo "女";
+								break;
+							default:
+								break;
+						}
+					}
+				?>
+				</td>
+			</tr>
 			<tr>
 				<th class="blue_text">年齡:</th>
 				<td class="black_text">
@@ -170,40 +340,106 @@ EOT;
 							$age = (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birthDate[2]))) > date("md")
 									? ((date("Y") - $birthDate[0]) - 1)
 									: (date("Y") - $birthDate[0]));
-							echo $age . "歲";
+							echo $age . " 歲";
 						}
 					?>
 				</td>
 			</tr>
-			<tr>
-				<th class="blue_text">性別:</th>
-				<td class="black_text">
-				<?php
-					if(!empty($info->sex)) {
-					
-						switch($info->sex) {
-							case "male":
-								echo "公";
-								break;
-							case "female":
-								echo "母";
-								break;
-							default:
-								break;
-						}
-					}
-				?>
-				</td>
-			</tr>
+				<?php if($device->open == 'y') {?>
+					<tr>
+						<th class="blue_text">高度:</th>
+						<td class="black_text">
+							<?php echo $info->height . " cm"; ?>
+						</td>
+					</tr>
+					<tr>
+						<th class="blue_text">體重:</th>
+						<td class="black_text">
+							<?php echo $info->weight . " kg"; ?>
+						</td>
+					</tr>
+					<tr>
+						<th class="blue_text">血型:</th>
+						<td class="black_text">
+							<?php echo strtoupper($info->bloodtype) . " 型"; ?>
+						</td>
+					</tr>
+					<tr>
+						<th class="blue_text">疾病:</th>
+						<td class="black_text">
+							<?php echo $info->disease; ?>
+						</td>
+					</tr>
+					<tr>
+						<th class="blue_text">肢體障礙:</th>
+						<td class="black_text">
+							<?php echo $info->disability; ?>
+						</td>
+					</tr>
+					<tr>
+						<th class="blue_text">服用藥物:</th>
+						<td class="black_text">
+							<?php echo $info->medications; ?>
+						</td>
+					</tr>
+					<tr>
+						<th class="blue_text">醫院名稱:</th>
+						<td class="black_text">
+							<?php echo $info->hospital_name; ?>
+						</td>
+					</tr>
+					<tr>
+						<th class="blue_text">醫院電話:</th>
+						<td class="black_text">
+							<?php echo $info->hospital_phone; ?>
+						</td>
+					</tr>
+					<tr>
+						<th class="blue_text">醫院地址:</th>
+						<td class="black_text">
+							<?php echo $info->hospital_address; ?>
+						</td>
+					</tr>
+					<tr>
+						<th class="blue_text">城市:</th>
+						<td class="black_text">
+							<?php echo $info->hospital_city; ?>
+						</td>
+					</tr>
+					<tr>
+						<th class="blue_text">鄉鎮市區:</th>
+						<td class="black_text">
+							<?php echo $info->hospital_district; ?>
+						</td>
+					</tr>
+					<tr>
+						<th class="blue_text">郵遞區號:</th>
+						<td class="black_text">
+							<?php echo $info->hospital_postal; ?>
+						</td>
+					</tr>
+					<tr>
+						<th class="blue_text">國家:</th>
+						<td class="black_text">
+							<?php echo $info->hospital_country; ?>
+						</td>
+					</tr>
+				<?php } ?>
 			<?php } ?>
 			
 			<?php if($device->type == 'Valuables') { ?>
 				<tr>
-				<th class="blue_text">類別:</th>
-				<td class="black_text">
-					<?php echo $device->category; ?>
-				</td>
-			</tr>
+					<th class="blue_text">名稱:</th>
+					<td class="black_text">
+						<?php echo $info->name; ?>
+					</td>
+				</tr>
+				<tr>
+					<th class="blue_text">特徵/敘述:</th>
+					<td class="black_text">
+						<?php echo $info->description; ?>
+					</td>
+				</tr>
 			<?php } ?>
 		</table>
 	</div>	

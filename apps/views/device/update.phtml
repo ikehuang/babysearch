@@ -28,7 +28,7 @@
 		<div id='info_wrapper'>
 			<div><?php echo $device->name ?></div>
 			<div>
-					<?php
+				<?php
 					//determine 'kind' from serial number
 					$kind = '';
 					
@@ -37,13 +37,13 @@
 					
 					switch($kind){
 						case "Q":
-							$kind = "Q Tag";
+							$kind = "Q-tag";
 							break;
 						case "B":
-							$kind = "B Tag";
+							$kind = "B-tag";
 							break;
 						case "N":
-							$kind = "N Tag";
+							$kind = "N-tag";
 							break;
 						default:
 							break;
@@ -57,7 +57,33 @@
 		<div class="clear"></div>
 	</div>
 	
-	<div class="blue_text" style='margin:5% 0 5% 0; '>用途分類</div>
+	<div class="blue_text" style='margin:5% 0 5% 0; float:left;'>用途分類</div>
+	<div class="green_text" style='margin:5% 0 5% 7%; float:left;'>
+		<?php
+			//determine 'type' from serial number
+			$type = '';
+			
+			if(!empty($device->serial_number))
+				$type = $device->serial_number[0];
+			
+			switch($type){
+				case "P":
+					$type = "竉物";
+					break;
+				case "M":
+					$type = "人";
+					break;
+				case "T":
+					$type = "物品";
+					break;
+				default:
+					break;
+			}
+			
+			echo $type;
+		?>
+	</div>
+	<div class="clear"></div>
 	<div>
 		<font style="color:red;font-size:3.333em;">*</font><span class="blue_text" style='margin-right:3%;'>資料公開</span>
 		<input type="radio" name="open" value="y" <?php if($device->open == 'y') echo 'checked';?>><span class='radio_text'>公開</span>

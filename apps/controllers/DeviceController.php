@@ -956,6 +956,8 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		
 		$device->status = $this->_request->get('status');
 		$device->update();
+		
+		$this->view->setVar("device", $device);
 	}
 	
 

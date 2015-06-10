@@ -45,7 +45,7 @@
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">性別 
-					<input type="radio" name="pet_sex" value="m" style='margin-left:5%;'>公
+					<input type="radio" name="pet_sex" value="m" style='margin-left:15%;'>公
 					<input type="radio" name="pet_sex" value="f" style='margin-left:20%;'>母
 					</div>
 				</div>
@@ -64,7 +64,7 @@
 				<div class='input_div'>
 	        		<table class='checkbox_table'>
 	        			<tr>
-	        				<th rowspan=4 style='vertical-align: top;'><div class="blue_text">個性</div></th>
+	        				<th rowspan=4 style='vertical-align: top;'><div class="blue_text" style="text-align:left;">個性</div></th>
 	        			</tr>
 	        			<tr>
 	        				<td><input type="checkbox" name="pet_temperament[]" value="活潑" <?php if(strpos($pet_info->temperament,'活潑') !== false) echo 'checked="checked"'; ?>>活潑</td>
@@ -85,7 +85,7 @@
 				<div class='input_div'>
 	        		<table class='checkbox_table'>
 	        			<tr>
-	        				<th rowspan=4 style='vertical-align: top;'><div class="blue_text">特殊才能</div></th>
+	        				<th rowspan=4 style='vertical-align: top;'><div class="blue_text" style="text-align:left;">特殊才能</div></th>
 	        			</tr>
 	        			<tr>
 	        				<td><input type="checkbox" name="pet_talents[]" value="坐下" <?php if(strpos($pet_info->talents,'坐下') !== false) echo 'checked="checked"'; ?>>坐下</td>
@@ -116,8 +116,8 @@
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">結紮
-					<input type="radio" name="pet_desex" value="<?php if(strtolower($pet_info->desex) == 'y') echo 'checked="checked"'; ?>">有
-					<input type="radio" name="pet_desex" value="<?php if(strtolower($pet_info->desex) == 'n') echo 'checked="checked"'; ?>" checked>無</div>
+					<input type="radio" name="pet_desex" value="<?php if(strtolower($pet_info->desex) == 'y') echo 'checked="checked"'; ?>" style='margin-left:20%;'>有
+					<input type="radio" name="pet_desex" value="<?php if(strtolower($pet_info->desex) == 'n') echo 'checked="checked"'; ?>" checked style='margin-left:20%;'>無</div>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">預防針種類</div>
@@ -129,14 +129,14 @@
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">血庫資訊通知
-					<input type="radio" name="pet_bloodbank" value="<?php if(strtolower($pet_info->bloodbank) == 'y') echo 'checked="checked"'; ?>">有
-					<input type="radio" name="pet_bloodbank" value="<?php if(strtolower($pet_info->bloodbank) == 'n') echo 'checked="checked"'; ?>">無</div>
+					<input type="radio" name="pet_bloodbank" value="<?php if(strtolower($pet_info->bloodbank) == 'y') echo 'checked="checked"'; ?>" style='margin-left:5%;'>有
+					<input type="radio" name="pet_bloodbank" value="<?php if(strtolower($pet_info->bloodbank) == 'n') echo 'checked="checked"'; ?>" style='margin-left:20%;'>無</div>
 				</div>
 				<div class='input_div'>
 				
 	        		<table class='checkbox_table'>
 	        			<tr>
-	        				<th rowspan=4 style='vertical-align: top;'><div class="blue_text">肢體障礙</div></th>
+	        				<th rowspan=4 style='vertical-align: top;'><div class="blue_text" style="text-align:left;">肢體障礙</div></th>
 	        			</tr>
 	        			<tr>
 	        				<td><input type="checkbox" name="pet_disability[]" value="行動" <?php if(strpos($pet_info->disability,'行動') !== false) echo 'checked="checked"'; ?>>行動</td>
@@ -168,10 +168,11 @@
 				<div class='input_div'>
 	        		<div class="blue_text">醫院地址</div>
 	        		<input type="text" name="pet_hospital_address" value="<?php if(isset($pet_info)) echo $pet_info->hospital_address; ?>" class="textfield" placeholder="地址"/><br>
-	        		<input type="text" name="pet_hospital_city" value="<?php if(isset($pet_info)) echo $pet_info->hospital_city; ?>" class="textfield" style='width:18%;margin-right:2%;' placeholder="城市"/>
-	        		<input type="text" name="pet_hospital_district" value="<?php if(isset($pet_info)) echo $pet_info->hospital_district; ?>" class="textfield" style='width:18%;margin-right:2%;' placeholder="鄉鎮市區"/>
-	        		<input type="text" name="pet_hospital_postal" value="<?php if(isset($pet_info)) echo $pet_info->hospital_postal; ?>" class="textfield" style='width:18%;margin-right:2%;' placeholder="郵遞區號"/>
-	        		<input type="text" name="pet_hospital_country" value="<?php if(isset($pet_info)) echo $pet_info->hospital_country; ?>" class="textfield" style='width:19%;' class="textfield" placeholder="國家"/>
+	        		<input type="text" name="pet_hospital_city" value="<?php if(isset($pet_info)) echo $pet_info->hospital_city; ?>" class="textfield" style='width:27%;margin-right:3%;float:left;' placeholder="城市"/>
+	        		<input type="text" name="pet_hospital_district" value="<?php if(isset($pet_info)) echo $pet_info->hospital_district; ?>" class="textfield" style='width:27%;margin-right:3%;float:left;' placeholder="鄉鎮市區"/>
+	        		<input type="text" name="pet_hospital_postal" value="<?php if(isset($pet_info)) echo $pet_info->hospital_postal; ?>" class="textfield" style='width:27%;float:left;' placeholder="郵遞區號"/>
+	        		<div class="clear"></div>
+	        		<input type="text" name="pet_hospital_country" value="<?php if(isset($pet_info)) echo $pet_info->hospital_country; ?>" class="textfield" placeholder="國家"/>
 				</div>
 			</div>
 			

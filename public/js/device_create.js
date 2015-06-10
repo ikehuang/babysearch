@@ -173,11 +173,28 @@ $("#addPet_next" ).click(function() {
 });
 
 $("#addHuman_next" ).click(function() {
+	// check input value
+	if($('#create_human_form input[name="human_firstname"]').val().length == 0) {
+		alert('請輸入人的名字!');
+		return false;
+	}
+	if($('#create_human_form input[name="human_lastname"]').val().length == 0) {
+		alert('請輸入人的姓氏!');
+		return false;
+	}
+	if($('#create_human_form input[name="human_nickname"]').val().length == 0) {
+		alert('請輸入人的暱稱!');
+		return false;
+	}
 	$("#addHuman").hide();
 	$("#addContacts2").show();
 });
 
 $("#addValuable_next" ).click(function() {
+	if($('#create_valuable_form input[name="valuable_name"]').val().length == 0) {
+		alert('請輸入物品名稱!');
+		return false;
+	}
 	$("#addValuable").hide();
 	$("#addContacts3").show();
 });

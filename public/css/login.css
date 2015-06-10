@@ -46,8 +46,7 @@
 }
 
 #newsfeed_container{
-	margin-bottom:8%;
-	
+	margin-bottom:3%;	
 }
 .st_facebook_custom{
 	background: url("/01/icon-01.png") no-repeat scroll left top transparent;
@@ -58,6 +57,9 @@
 	padding:12px 28px 0 0;
 }
 
+#download_container{
+	margin-bottom:3%;	
+}
 
 .sso {
 	width:50%;
