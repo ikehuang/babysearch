@@ -48,7 +48,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		$serial_number = strtoupper($this->_request->getPost('serial_number1'));
 		$status = '';
 		$name = $this->_request->getPost('name');
-		$photo = $this->_request->getPost('photo');
+		//$photo = $this->_request->getPost('photo');
 		$message = $this->_request->getPost('message');
 		$expiry_date = '';
 		
@@ -116,24 +116,13 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			if($this->request->hasFiles() == true){
 				$uploads = $this->request->getUploadedFiles();
 				$isUploaded = false;
-					
 				foreach($uploads as $upload){
-						
-					//Move the file into the application
 					$path = 'upload/'.md5(uniqid(rand(), true)).'-'.strtolower($upload->getname());
 					($upload->moveTo($path)) ? $isUploaded = true : $isUploaded = false;
-			
-					if($isUploaded) {
-						if(preg_match("/photo/",$upload->getKey())) {
-			
-							//strip from input key(eg.photos.1) to get id
-							$newkey = preg_replace("/^photos./","",$upload->getKey());
-			
-							$device->photo = "http://{$_SERVER['HTTP_HOST']}/".$path;
-			
-							$photo = $device->photo;
-						}
-					}
+				}
+					
+				if($isUploaded) {
+					$device->photo = "/" . $path;
 				}
 			}
 			
@@ -186,7 +175,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		$serial_number = strtoupper($this->_request->getPost('serial_number2'));
 		$status = '';
 		$name = $this->_request->getPost('name');
-		$photo = $this->_request->getPost('photo');
+		//$photo = $this->_request->getPost('photo');
 		$message = $this->_request->getPost('message');
 		$expiry_date = '';
 		
@@ -246,24 +235,13 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			if($this->request->hasFiles() == true){
 				$uploads = $this->request->getUploadedFiles();
 				$isUploaded = false;
-			
 				foreach($uploads as $upload){
-						
-					//Move the file into the application
 					$path = 'upload/'.md5(uniqid(rand(), true)).'-'.strtolower($upload->getname());
 					($upload->moveTo($path)) ? $isUploaded = true : $isUploaded = false;
-			
-					if($isUploaded) {
-						if(preg_match("/photo/",$upload->getKey())) {
-			
-							//strip from input key(eg.photos.1) to get id
-							$newkey = preg_replace("/^photos./","",$upload->getKey());
-			
-							$device->photo = "http://{$_SERVER['HTTP_HOST']}/".$path;
-			
-							$photo = $device->photo;
-						}
-					}
+				}
+					
+				if($isUploaded) {
+					$device->photo = "/" . $path;
 				}
 			}
 			
@@ -305,7 +283,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		$serial_number = strtoupper($this->_request->getPost('serial_number3'));
 		$status = '';
 		$name = $this->_request->getPost('name');
-		$photo = $this->_request->getPost('photo');
+		//$photo = $this->_request->getPost('photo');
 		$message = $this->_request->getPost('message');
 		$expiry_date = '';
 		
@@ -349,24 +327,13 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			if($this->request->hasFiles() == true){
 				$uploads = $this->request->getUploadedFiles();
 				$isUploaded = false;
-			
 				foreach($uploads as $upload){
-						
-					//Move the file into the application
 					$path = 'upload/'.md5(uniqid(rand(), true)).'-'.strtolower($upload->getname());
 					($upload->moveTo($path)) ? $isUploaded = true : $isUploaded = false;
-			
-					if($isUploaded) {
-						if(preg_match("/photo/",$upload->getKey())) {
-			
-							//strip from input key(eg.photos.1) to get id
-							$newkey = preg_replace("/^photos./","",$upload->getKey());
-			
-							$device->photo = "http://{$_SERVER['HTTP_HOST']}/".$path;
-			
-							$photo = $device->photo;
-						}
-					}
+				}
+					
+				if($isUploaded) {
+					$device->photo = "/" . $path;
 				}
 			}
 			
@@ -1108,6 +1075,23 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		
 		$result = Guestbook::find("did = {$device->did}");
 		$this->view->notification_count = $result->count();
+		
+		/*
+		//for uploading device photo
+		// Check if the user has uploaded files
+		if($this->request->hasFiles() == true){
+			$uploads = $this->request->getUploadedFiles();
+			$isUploaded = false;
+			foreach($uploads as $upload){
+				$path = 'upload/'.md5(uniqid(rand(), true)).'-'.strtolower($upload->getname());
+				($upload->moveTo($path)) ? $isUploaded = true : $isUploaded = false;
+			}
+				
+			if($isUploaded) {
+				$device->photo = "/" . $path;
+			}
+		}
+		 */
 	}
 
 	public function deleteAction(){

@@ -225,13 +225,13 @@
 
 .blah {
 	display:none;
-  position: absolute;
-  top: 3.5%;
-  left: 4%;
-  z-index: 4;
-  width: 92%;
-  height: 74%;
-  border-radius: 17%;
+	position: absolute;
+	top: 3.5%;
+	left: 4%;
+	z-index: 4;
+	width: 92%;
+	height: 74%;
+	border-radius: 17%;
 }
 
 .img_wrapper {

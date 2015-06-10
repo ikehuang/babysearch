@@ -41,9 +41,11 @@ class UserController extends \Phalcon\Mvc\Controller {
 		$device_list = array();
 		
 		//find user info and all devices belong to the user
-		$user = User::findFirst("email = '{$_SESSION['USER']['INFO']['email']}'");
+		$user = User::findFirst("sso_id = '{$_SESSION['USER']['INFO']['sso_id']}'");
+		//$user = User::findFirst("email = '{$_SESSION['USER']['INFO']['email']}'");
 		
-		$devices = Device::find("email = '{$_SESSION['USER']['INFO']['email']}'");
+		$devices = Device::find("sso_id = '{$_SESSION['USER']['INFO']['sso_id']}'");
+		//$devices = Device::find("email = '{$_SESSION['USER']['INFO']['email']}'");
 		
 		foreach ($devices as $device) {
 			$result = Guestbook::find("did = {$device->did}");
@@ -51,7 +53,8 @@ class UserController extends \Phalcon\Mvc\Controller {
 			$device_list[] = $device;
 		}
 		
-		$this->view->setVar("user", $_SESSION['USER']['INFO']);
+		//$this->view->setVar("user", $_SESSION['USER']['INFO']);
+		$this->view->setVar("user", $user);
 		$this->view->setVar("device_list", $device_list);
 	}
 	
@@ -194,10 +197,13 @@ class UserController extends \Phalcon\Mvc\Controller {
 		
 		//still need to get user email from session/login
 		//sample data
-		$email = "watson@ink.net.tw";
-			
+		//$email = "watson@ink.net.tw";
+		
+		$this->_sso_id = $_SESSION['USER']['INFO']['sso_id'];
+		
+		$user = User::findFirst("sso_id = '{$this->_sso_id}'");
 		//find user with given email
-		$user = User::findFirst("email = '{$email}'");
+		//$user = User::findFirst("email = '{$email}'");
 		
 		$request = new \Phalcon\Http\Request();
 		
@@ -216,13 +222,64 @@ class UserController extends \Phalcon\Mvc\Controller {
 			$sex = $this->_request->getPost('sex');
 			//$photo = $this->_request->getPost('photo');
 			
+			$city = $this->_request->getPost('city');
+			$district = $this->_request->getPost('district');
+			$postal = $this->_request->getPost('postal');
+			$country = $this->_request->getPost('country');
+			
 			$user->fullname = $firstname .  '' . $lastname;
+			$user->firstname = $firstname;
+			$user->lastname = $lastname;
 			$user->phone = $phone;
 			$user->address = $address;
 			$user->nickname = $nickname;
 			$user->birthday = $birthday;
 			$user->sex = $sex;
 			//$user->photo = $photo;
+			
+			$user->city = $city;
+			$user->district = $district;
+			$user->postal = $postal;
+			$user->country = $country;
+			
+			//for uploading user photo
+			// Check if the user has uploaded files
+			if($this->request->hasFiles() == true){
+				$uploads = $this->request->getUploadedFiles();
+				$isUploaded = false;
+				foreach($uploads as $upload){
+					$path = 'upload/'.md5(uniqid(rand(), true)).'-'.strtolower($upload->getname());
+					($upload->moveTo($path)) ? $isUploaded = true : $isUploaded = false;
+				}
+					
+				if($isUploaded) {
+					$user->photo = "/" . $path;
+				}
+			}
+			/*
+			if($this->request->hasFiles() == true){
+				$uploads = $this->request->getUploadedFiles();
+				$isUploaded = false;
+					
+				foreach($uploads as $upload){
+			
+					//Move the file into the application
+					$path = 'upload/'.md5(uniqid(rand(), true)).'-'.strtolower($upload->getname());
+					($upload->moveTo($path)) ? $isUploaded = true : $isUploaded = false;
+			
+					if($isUploaded) {
+						if(preg_match("/photo/",$upload->getKey())) {
+							 
+							//strip from input key(eg.photos.1) to get id
+							$newkey = preg_replace("/^photos./","",$upload->getKey());
+			
+							$user->photo = "http://{$_SERVER['HTTP_HOST']}/".$path;
+			
+							$photo = $user->photo;
+						}
+					}
+				}
+			}*/
 			
 			$user->update();
 		}
@@ -432,7 +489,8 @@ class UserController extends \Phalcon\Mvc\Controller {
 			$this->response->send();
 		}
 		else {
-			$this->view->contacts = LostContacts::find("email  = '{$_SESSION['USER']['INFO']['email']}'");
+			//$this->view->contacts = LostContacts::find("email  = '{$_SESSION['USER']['INFO']['email']}'");
+			$this->view->contacts = LostContacts::find("sso_id  = '{$_SESSION['USER']['INFO']['sso_id']}'");
 		}
 	}
 	

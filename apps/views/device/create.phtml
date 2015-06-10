@@ -36,7 +36,7 @@
 				<button id="addSerial_next" type='button' class="orange_button" >下 一 步 ></button>
 			</div>
 			<div class="clear"></div>
-			<form action="/device/createPet" id='create_pet_form' method="post">
+			<form action="/device/createPet" id='create_pet_form' method="post" enctype="multipart/form-data">
 				<div id="addPet">
 					<input id="sn1" type="hidden" name="serial_number1" value="">		
 					<div class="green_text" style="margin-top:6.4%;margin-bottom:6.4%;">步 驟 二 : 選擇產品類型與資料編輯</div>
@@ -264,7 +264,7 @@
 				
 			</form>
 			
-			<form action="/device/createHuman" id='create_human_form' method="post">
+			<form action="/device/createHuman" id='create_human_form' method="post" enctype="multipart/form-data">
 			
 				<div id="addHuman">
 					<input id="sn2" type="hidden" name="serial_number2" value="">
@@ -446,7 +446,7 @@
 				
 			</form>
 			
-			<form action="/device/createValuable" id='create_valuable_form' method="post">
+			<form action="/device/createValuable" id='create_valuable_form' method="post" enctype="multipart/form-data">
 			
 				<div id="addValuable">
 					<input id="sn3" type="hidden" name="serial_number3" value="">
