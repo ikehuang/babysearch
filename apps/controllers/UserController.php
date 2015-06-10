@@ -7,6 +7,7 @@ class UserController extends \Phalcon\Mvc\Controller {
 	private $_api_key;
 	private $_email;
 	private $_sso_id;
+	private $_config;
 	
 	//private $_test_imei;
 	//private $_test_token;
@@ -25,7 +26,9 @@ class UserController extends \Phalcon\Mvc\Controller {
 		$this->_email = strtolower($this->_request->getPost('email'));
 		$this->_api_key = $this->_request->getPost('api_key');
 		$this->_sso_id = $this->_request->getPost('sso_id');
-		
+
+		$config = new \Phalcon\Config\Adapter\Ini("../apps/config/config.ini");
+		$this->_config = $config;
 		//test code for getting data
 		//$this->_test_api_key = $this->_request->get('api_key');
 		//$this->_test_email = strtolower($this->_request->get('email'));
@@ -55,6 +58,7 @@ class UserController extends \Phalcon\Mvc\Controller {
 	public function loginAction() {
 		$this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_ACTION_VIEW);
 		$config = new \Phalcon\Config\Adapter\Ini("../apps/config/config.ini");
+		
 		
 		//$this->view->setVar("config", $config);
 		$this->view->config = $config;
@@ -389,21 +393,6 @@ class UserController extends \Phalcon\Mvc\Controller {
 		
 		$this->response->setContent(json_encode($response_data));
 		$this->response->send();
-		/**
-		 *
-		 * <input type='text' name='firstname[1]'/>
-		 *  <input type='text' name='lastname[1]'/>
-		 *   <input type='text' name='phone[1]'/>
-		 *
-		 * <input type='text' name='firstname[2]'/>
-		 *  <input type='text' name='lastname[2]'/>
-		 *   <input type='text' name='phone[2]'/>
-		 *
-		 *
-		 * <input type='text' name='firstname[3]'/>
-		 *  <input type='text' name='lastname[3]'/>
-		 *   <input type='text' name='phone[3]'/>
-		 */
 	}
 	
 	public function updateContactAction() {
@@ -447,112 +436,177 @@ class UserController extends \Phalcon\Mvc\Controller {
 		}
 	}
 	
-	/*
-	public function loginAction(){
-		
-		$user_info = array("fullname" =>"Franky Li", "phone" => "90123456", "address" => "China", "email" => "franky@ink.net.tw", "nickname" => "franky");
-		
-		$response_data = array(
-				'status' => 'fail',
-				'user_info' => $user_info
-		);
-		
-		//if api_key match, continue...; otherwise, return fail
-		if($this->_api_key == $this->_apikey) {
-			
-			//check if mobile existed...		
-			if(Mobile::count(array("conditions" => "email = '{$this->_email}' AND token = '{$this->_token}' AND imei = '{$this->_imei}'")) > 0) {
-				
-				//replace old token with new if needed as per request
-				//
-				$mobile = Mobile::findFirst(array("email = '{$this->_email}'", "imei = '{$this->_imei}'"));
-				$mobile->token = $this->_token;
-				if($mobile->save() == false) {
-					$message = "Failed to save new token. Please refer to return message for possible errors.\n";
-				
-					foreach($mobile->getMessages() as $msg) {
-						$message = $msg . "\n";
-					}
-				}
-				else {
-					$message = "New token saved successfully.\n";
-				}
-				//
-				
-				//fill user_info with given email
-				$user = User::findFirst("email = '{$this->_email}'");
-				
-				$user_info = array("fullname" =>$user->fullname, "phone" => $user->phone, "address" => $user->address, "email" => $user->email, "nickname" => $user->nickname);
-			
-				$response_data = array(
-					'status' => 'success',
-					'user_info' => $user_info
-				);
-			}
-		}
-		
-		//orig.
-
-		//$user_info = array("fullname" =>"Franky", "address" => "China", "email" => "franky@ink.net.tw");
-
-		$response_data = array(
-			'status' => 'success',
-			'user_info' => $user_info
-		);
-
-		$this->response->setContent(json_encode($response_data));
-		$this->response->send();
-	}
-	*/
-	
-	/*
-	 public function updateTokenAction(){
-	
-	$new_token = $this->_request->getPost('new_token');
-	
-	$response_data = array(
-			'status' => 'fail'
-	);
-	
-	//sample data
-	//$new_token = '123442940015970|tcOoRAAQrWcDm_84h3O7NN7Z9DM';
-	
-	//if api_key match, continue...; otherwise, return fail
-	if($this->_api_key == $this->_apikey) {
-		
-	//if email-imei pair exists in the system, then continue...; otherwise, fail.
-	if(Mobile::count(array("conditions" => "email = '{$this->_email}' AND imei = '{$this->_imei}'")) > 0) {
-	
-	$device = Mobile::findFirst("email = '{$this->_email}' AND imei = '{$this->_imei}'");
-	
-	$device->token = $new_token;
-	
-	if($device->update() == false) {
-	$message = "Failed to update. Please refer to return message for possible errors.\n";
-	
-	foreach($device->getMessages() as $msg) {
-	$message = $msg . "\n";
-	}
-	}
-	else {
-	$message = "User updated successfully.\n";
-		
-	$response_data = array(
-			'status' => 'success'
-	);
-	}
-	}
-	}
-	
-	$this->response->setContent(json_encode($response_data));
-	$this->response->send();
-	}
-	*/
-	
 	public function logoutAction() {
 		$this->view->disable();
 		$this->session->destroy();
 		unset($_SESSION['INFO']);
 		header('Location: /');
+	}
+	
+	public function facebookAction() {
+		$this->view->disable();
+		$facebook_code = $_GET['code'];
+		$access_token = $this->getFacebookAccessToken($facebook_code);
+		$user_info = $this->getFacebookUserInfo($access_token);
+
+		//if email doesn't exist, then continue to create user...; otherwise, return fail
+		if(User::count("sso_id = '{$user_info->id}'") == 0) {
+		
+			$user = new User();
+		
+			$user->email = $user_info->email;
+			$user->sso_id = $user_info->id;
+		
+			$user->create();
+		}
+		else {
+			$user = User::findFirst("sso_id = '{$user_info->id}'");		
+		}
+		
+		$_SESSION['USER']['INFO']['email'] = $user->email;
+		$_SESSION['USER']['INFO']['sso_id'] = $user->sso_id;
+		
+		if(Mobile::count("sso_id = '{$user_info->id}'") == 0) {
+			$mobile = new Mobile();
+		
+			$mobile->email = $user_info->email;
+			$mobile->sso_id = $user_info->id;
+		
+			$mobile->create();
+		}
+		
+		//create contact
+		for($i = 0 ;$i < 3;$i++ ) {
+			$lost_contact = new LostContacts();
+			$lost_contact->firstname = '';
+			$lost_contact->lastname = '';
+			$lost_contact->phone = '';
+			$lost_contact->email = '';
+			$lost_contact->create();
+		}
+		
+		return $this->response->redirect("user/index");
+	}
+	
+
+	public function googleAction() {
+		$this->view->disable();
+		$google_code = $_GET['code'];
+		$access_token = $this->getGoogleAccessToken($google_code);
+		$user_info = $this->getGoogleUserInfo($access_token);
+		$user_info->id = "10207116136561047";
+		$user_info->email = "terry.hk796@gmail.com";
+	
+		//if email doesn't exist, then continue to create user...; otherwise, return fail
+		if(User::count("sso_id = '{$user_info->id}'") == 0) {
+	
+			$user = new User();
+	
+			$user->email = $user_info->email;
+			$user->sso_id = $user_info->id;
+	
+			$user->create();
+		}
+		else {
+			$user = User::findFirst("sso_id = '{$user_info->id}'");
+		}
+	
+		$_SESSION['USER']['INFO']['email'] = $user->email;
+		$_SESSION['USER']['INFO']['sso_id'] = $user->sso_id;
+	
+		if(Mobile::count("sso_id = '{$user_info->id}'") == 0) {
+			$mobile = new Mobile();
+	
+			$mobile->email = $user_info->email;
+			$mobile->sso_id = $user_info->id;
+	
+			$mobile->create();
+		}
+	
+		//create contact
+		for($i = 0 ;$i < 3;$i++ ) {
+			$lost_contact = new LostContacts();
+			$lost_contact->firstname = '';
+			$lost_contact->lastname = '';
+			$lost_contact->phone = '';
+			$lost_contact->email = '';
+			$lost_contact->create();
+		}
+	
+		return $this->response->redirect("user/index");
+	}
+	
+	public function facebookCurl($url) {
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+		$data = curl_exec($ch);
+		curl_close($ch);
+		return $data;
+	}
+	public function getFacebookAccessToken($facebook_code) {
+		$token_url = "https://graph.facebook.com/oauth/access_token?"
+				. "client_id=" .  $this->_config->facebook_sso->app_id
+				. "&redirect_uri=" . urlencode($this->_config->facebook_sso->redirect_url)
+				. "&client_secret=" . $this->_config->facebook_sso->app_secret
+				. "&code=" . $facebook_code;
+		$response = $this->facebookCurl($token_url);
+		parse_str($response, $params);
+		if ($params['access_token']) {
+			return $params['access_token'];
+		}
+		return FALSE;
+	}
+	
+	public function getFacebookUserInfo($access_token) {
+		$graph_url = "https://graph.facebook.com/me?access_token=". $access_token;
+		$user = json_decode(curl($graph_url));
+		if($user != null && isset($user->id)) {
+			return $user;
+		}
+		return FALSE;
+	}
+	
+	
+	function google_curl_post($url, $post) {
+		$curl = curl_init($url);
+		curl_setopt($curl, CURLOPT_POST, TRUE);
+		curl_setopt($curl, CURLOPT_POSTFIELDS, $post);
+		curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		$json_response = curl_exec($curl);
+		curl_close($curl);
+		return $json_response;
+	}
+
+	function getGoogleAccessToken($google_code) {
+		$token_url = "https://accounts.google.com/o/oauth2/token?";
+		$post = array(
+				"code" => $google_code,
+				"client_id" => $this->_config->google_sso->client_id,
+				"client_secret" => $this->_config->google_sso->client_secret,
+				"redirect_uri" => $this->_config->google_sso->redirect_url,
+				"grant_type" => "authorization_code"
+		);
+		
+		$response = $this->google_curl_post($token_url, $post);
+		
+		if ($response) {
+			$authObj = json_decode($response);
+		}
+		if (isset($authObj->access_token)) {
+			return $authObj->access_token;
+		}else {
+			return FALSE;
+		}
+	}
+	
+	function getGoogleUserInfo($access_token) {
+		$user_info_url = "https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=" . $access_token;
+		if ($user = json_decode(file_get_contents($user_info_url))) {
+			return $user;
+		};
+		return FALSE;
 	}
 }
