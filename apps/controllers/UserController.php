@@ -618,7 +618,7 @@ class UserController extends \Phalcon\Mvc\Controller {
 	
 	public function getFacebookUserInfo($access_token) {
 		$graph_url = "https://graph.facebook.com/me?access_token=". $access_token;
-		$user = json_decode(facebookCurl($graph_url));
+		$user = json_decode($this->facebookCurl($graph_url));
 		if($user != null && isset($user->id)) {
 			return $user;
 		}
