@@ -520,7 +520,12 @@ class UserController extends \Phalcon\Mvc\Controller {
 			$user->create();
 		}
 		else {
-			$user = User::findFirst("sso_id = '{$user_info->id}'");		
+			$user = User::findFirst("sso_id = '{$user_info->id}'");
+
+			$user->email = $user_info->email;
+			$user->nickname = $user_info->name;
+				
+			$user->update();
 		}
 		
 		$_SESSION['USER']['INFO']['email'] = $user->email;
@@ -555,8 +560,8 @@ class UserController extends \Phalcon\Mvc\Controller {
 		$google_code = $_GET['code'];
 		$access_token = $this->getGoogleAccessToken($google_code);
 		$user_info = $this->getGoogleUserInfo($access_token);
-		$user_info->id = "10207116136561047";
-		$user_info->email = "terry.hk796@gmail.com";
+		//$user_info->id = "10207116136561047";
+		//$user_info->email = "terry.hk796@gmail.com";
 	
 		//if email doesn't exist, then continue to create user...; otherwise, return fail
 		if(User::count("sso_id = '{$user_info->id}'") == 0) {
@@ -571,6 +576,11 @@ class UserController extends \Phalcon\Mvc\Controller {
 		}
 		else {
 			$user = User::findFirst("sso_id = '{$user_info->id}'");
+			
+			$user->email = $user_info->email;
+			$user->nickname = $user_info->name;
+			
+			$user->update();
 		}
 	
 		$_SESSION['USER']['INFO']['email'] = $user->email;
