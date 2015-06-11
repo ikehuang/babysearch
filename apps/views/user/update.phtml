@@ -32,9 +32,10 @@
 			<input type="text" class="textfield" name="lastname" value="<?php echo $user->lastname?>" placeholder="姓" required>
 		</div>
 		<div class='input_div'>
-			<span class="blue_text">性別:</span>
-			<input type="radio" name="sex" value="m" <?php if($user->sex == 'm') echo 'checked';?> style='margin-left:5%;'>男
+			<div class="blue_text">性別:
+			<input type="radio" name="sex" value="m" <?php if($user->sex == 'm') echo 'checked';?> style='margin-left:15%;'>男
 			<input type="radio" name="sex" value="f" <?php if($user->sex == 'f') echo 'checked';?> style='margin-left:20%;'>女		
+			</div>
 		</div>
 		<div class='input_div'>
 			<div class="blue_text">生日:</div>

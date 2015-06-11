@@ -267,7 +267,7 @@ $(document).ready(function() {
 			$("#ble").attr('src','/img/13/icon-03-01.png');
 			break;
 		default:
-			alert('序號格式不正確!');
+			//alert('序號格式不正確!');
 			return false;
 			break;
 	}
