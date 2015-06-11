@@ -283,6 +283,13 @@ class UserController extends \Phalcon\Mvc\Controller {
 			}*/
 			
 			$user->update();
+			
+			$response_data = array(
+					'status' => 'success'
+			);
+			
+			$this->response->setContent(json_encode($response_data));
+			$this->response->send();
 		}
 		else {
 					

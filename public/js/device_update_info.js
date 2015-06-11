@@ -90,7 +90,8 @@ $.init_form = function() {
 			setTimeout(function() {
 				$.unblockUI();
 				if(response.status == 'success') {
-					window.location.href = '/guestbook/list?serial_number='+$("input[name='serial_number']").val();
+					//window.location.href = '/guestbook/list?serial_number='+$("input[name='serial_number']").val();
+					window.location.href = '/user/';
 				}
 			}, 1000);
 		},

@@ -23,7 +23,37 @@ $.init_user_event = function() {
 	});
 };
 
+$.init_form = function() {
+
+	$('form').ajaxForm({
+		beforeSubmit:function(e) {
+			$.blockUI({ message: '更新中...'});
+		},
+		success:function(response) {
+			
+			if(response.status == 'success') {
+				$.blockUI({ message: '更新成功!'});
+			}
+			else {
+
+				$.blockUI({ message: '更新失敗!'});
+			}
+			
+			setTimeout(function() {
+				$.unblockUI();
+				if(response.status == 'success') {
+					//window.location.href = '/guestbook/list?serial_number='+$("input[name='serial_number']").val();
+					window.location.href = '/user/';
+				}
+			}, 1000);
+		},
+		error:function() {
+			$.blockUI({ message: '更新失敗!'});
+		}
+	});
+};
+
 $(document).ready(function() {
 	$.init_user_event();
-
+	$.init_form();
 });
