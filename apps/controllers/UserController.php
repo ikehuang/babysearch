@@ -38,6 +38,7 @@ class UserController extends \Phalcon\Mvc\Controller {
 	}
 	
 	public function indexAction() {
+		
 		$device_list = array();
 		
 		//find user info and all devices belong to the user
@@ -514,6 +515,7 @@ class UserController extends \Phalcon\Mvc\Controller {
 		
 			$user->email = $user_info->email;
 			$user->sso_id = $user_info->id;
+			$user->nickname = $user_info->name;
 		
 			$user->create();
 		}
@@ -523,6 +525,7 @@ class UserController extends \Phalcon\Mvc\Controller {
 		
 		$_SESSION['USER']['INFO']['email'] = $user->email;
 		$_SESSION['USER']['INFO']['sso_id'] = $user->sso_id;
+		$_SESSION['USER']['INFO']['nickname'] = $user->nickname;
 		
 		if(Mobile::count("sso_id = '{$user_info->id}'") == 0) {
 			$mobile = new Mobile();
@@ -562,6 +565,7 @@ class UserController extends \Phalcon\Mvc\Controller {
 	
 			$user->email = $user_info->email;
 			$user->sso_id = $user_info->id;
+			$user->nickname = $user_info->name;
 	
 			$user->create();
 		}
@@ -571,6 +575,7 @@ class UserController extends \Phalcon\Mvc\Controller {
 	
 		$_SESSION['USER']['INFO']['email'] = $user->email;
 		$_SESSION['USER']['INFO']['sso_id'] = $user->sso_id;
+		$_SESSION['USER']['INFO']['nickname'] = $user->nickname;
 	
 		if(Mobile::count("sso_id = '{$user_info->id}'") == 0) {
 			$mobile = new Mobile();
