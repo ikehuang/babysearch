@@ -44,6 +44,13 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 	
 	public function createPetAction(){
 		
+		$this->view->disable();
+		$this->response->setContentType('application/json', 'UTF-8');
+		
+		$response_data = array(
+				'status' => 'fail'
+		);
+		
 		//device info
 		$serial_number = strtoupper($this->_request->getPost('serial_number1'));
 		$status = '';
@@ -166,10 +173,23 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			$pet_info->disability = implode(",", $pet_disability);
 			
 			$pet_info->create();
+			
+			$response_data = array(
+					'status' => 'success'
+			);
 		}
+		$this->response->setContent(json_encode($response_data));
+		$this->response->send();
 	}
 	
 	public function createHumanAction(){
+		
+		$this->view->disable();
+		$this->response->setContentType('application/json', 'UTF-8');
+		
+		$response_data = array(
+				'status' => 'fail'
+		);
 		
 		//device info
 		$serial_number = strtoupper($this->_request->getPost('serial_number2'));
@@ -274,11 +294,24 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			$human_info->disability = implode(",", $human_disability);
 			
 			$human_info->create();
+			
+			$response_data = array(
+					'status' => 'success'
+			);
 		}
+		$this->response->setContent(json_encode($response_data));
+		$this->response->send();
 	}
 	
 	public function createValuableAction(){
-	
+		
+		$this->view->disable();
+		$this->response->setContentType('application/json', 'UTF-8');
+		
+		$response_data = array(
+				'status' => 'fail'
+		);
+		
 		//device info
 		$serial_number = strtoupper($this->_request->getPost('serial_number3'));
 		$status = '';
@@ -346,7 +379,13 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			$valuable_info->description = $valuable_description;
 			
 			$valuable_info->create();
+			
+			$response_data = array(
+					'status' => 'success'
+			);
 		}
+		$this->response->setContent(json_encode($response_data));
+		$this->response->send();
 	}
 	
 	public function updateGuestbookAction(){
