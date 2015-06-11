@@ -56,4 +56,20 @@ $.init_form = function() {
 $(document).ready(function() {
 	$.init_user_event();
 	$.init_form();
+	
+	$("#updateUser_btn" ).click(function() {
+		// check input value
+		if($('#update_user_form input[name="nickname"]').val().length == 0) {
+			alert('請輸入您的暱稱!');
+			return false;
+		}
+		if($('#update_user_form input[name="firstname"]').val().length == 0) {
+			alert('請輸入您的名字!');
+			return false;
+		}
+		if($('#update_user_form input[name="lastname"]').val().length == 0) {
+			alert('請輸入您的姓氏!');
+			return false;
+		}
+	});
 });
