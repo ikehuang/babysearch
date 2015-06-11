@@ -19,7 +19,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 	}
 	
 	public function indexAction() {
-		$serial_number = $this->_request->get('serial_number');
+		$serial_number = $this->_request->get('sn');
 		$device = Device::findFirst("serial_number = '{$serial_number}'");
 		
 		switch($device->type) {
