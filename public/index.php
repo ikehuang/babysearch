@@ -79,7 +79,7 @@ $db = new \Phalcon\Db\Adapter\Pdo\Mysql(array(
 		"username" => $db_config->username,
 		"password" => $db_config->password,
 		"dbname" => $db_config->dbname,
-		'charset' => 'utf8'
+		'charset' => 'latin1'
 ));
 
 $di->set('db',$db);
