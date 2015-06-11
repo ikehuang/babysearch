@@ -72,12 +72,12 @@
 	    <div class='input_div'>
 	        <div class="blue_text"><span><font color="red">*</font>穿著/特徵</span></div>
 	        <!-- when print textarea, echo nl2br($message); -->
-	        <textarea id="message" name="lost_spec" class="textfield" rows=5 placeholder="關於寵物h旳大小事" required><?php echo $device->lost_spec; ?></textarea>
+	        <textarea id="message" name="lost_spec" class="textfield" rows=5 placeholder="關於寵物旳大小事" required><?php echo $device->lost_spec; ?></textarea>
 	    </div>   
 	    <div class='input_div'>
 	        <div class="blue_text" id='contact_div'>
 	        	<span><font color="red">*</font>聯絡人</span> 
-	        	<div id='edit_contact_div'><img src='/img/12/icon-01.png'/> <a href='/device/updateContact'>編輯清單</a></div>
+	        	<div id='edit_contact_div'><img src='/img/12/icon-01.png'/> <a href='/user/updateContact'>編輯清單</a></div>
 	        </div>
 				<?php 
 				for($i = 0; $i < 3;$i++) {

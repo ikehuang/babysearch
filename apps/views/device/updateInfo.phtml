@@ -22,7 +22,7 @@
 </ul>
 
 <div>
-	<form action="/device/updatePet" method="post">
+	<form action="/device/updatePet" method="post" id="update_pet_form">
 		
 		<input type='hidden' name='serial_number1' value='<?php echo $device->serial_number; ?>'/>
 		
@@ -45,7 +45,7 @@
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">性別 
-					<input type="radio" name="pet_sex" value="m" style='margin-left:15%;'>公
+					<input type="radio" name="pet_sex" value="m" style='margin-left:17%;'>公
 					<input type="radio" name="pet_sex" value="f" style='margin-left:20%;'>母
 					</div>
 				</div>
@@ -117,7 +117,7 @@
 				<div class='input_div'>
 					<div class="blue_text">結紮
 					<input type="radio" name="pet_desex" value="<?php if(strtolower($pet_info->desex) == 'y') echo 'checked="checked"'; ?>" style='margin-left:20%;'>有
-					<input type="radio" name="pet_desex" value="<?php if(strtolower($pet_info->desex) == 'n') echo 'checked="checked"'; ?>" checked style='margin-left:20%;'>無</div>
+					<input type="radio" name="pet_desex" value="<?php if(strtolower($pet_info->desex) == 'n') echo 'checked="checked"'; ?>" style='margin-left:20%;'>無</div>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">預防針種類</div>
@@ -177,13 +177,13 @@
 			</div>
 			
 		    <div class='submit_div'>
-				<button type="submit" class="button" style="">存檔</button>
+				<button id="updatePet_btn" type="submit" class="button" style="">存檔</button>
 			</div>
 		</div>
 			
 	</form>
 		
-	<form action="/device/updateHuman" method="post">
+	<form action="/device/updateHuman" method="post" id="update_human_form">
 	
 		<input type='hidden' name='serial_number2' value='<?php echo $device->serial_number; ?>'/>
 	
@@ -200,9 +200,9 @@
 	        		<input type="text" name="human_nickname" value="<?php if(isset($human_info)) echo $human_info->nickname; ?>" class="textfield" required/>
 				</div>
 				<div class='input_div'>
-					<div class="blue_text"><font color="red">*</font>性別
-	        		<input type="radio" name="human_sex" value="m">男
-					<input type="radio" name="human_sex" value="f">女</div>
+					<div class="blue_text">性別
+	        		<input type="radio" name="human_sex" value="m" style='margin-left:17%;'>男
+					<input type="radio" name="human_sex" value="f" style='margin-left:20%;'>女</div>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">生日</div>
@@ -276,10 +276,10 @@
 	        		<div class="blue_text">醫院地址</div>
 	        		<input type="text" name="human_hospital_address" value="<?php if(isset($human_info)) echo $human_info->hospital_address; ?>" class="textfield" placeholder="地址"/><br>
 	        		
-	        		<input type="text" name="human_hospital_city" value="<?php if(isset($human_info)) echo $human_info->hospital_city; ?>" placeholder="城市" class="textfield" style='width:18%;margin-right:2%;'/>
-	        		<input type="text" name="human_hospital_district" value="<?php if(isset($human_info)) echo $human_info->hospital_district; ?>" placeholder="鄉鎮市區" class="textfield" style='width:18%;margin-right:2%;'/>
-	        		<input type="text" name="human_hospital_postal" value="<?php if(isset($human_info)) echo $human_info->hospital_postal; ?>" placeholder="郵遞區號" class="textfield" style='width:18%;margin-right:2%;'/>
-	        		<input type="text" name="human_hospital_country" value="<?php if(isset($human_info)) echo $human_info->hospital_country; ?>" class="textfield" placeholder="國家" style='width:19%;'/><br>
+	        		<input type="text" name="human_hospital_city" value="<?php if(isset($human_info)) echo $human_info->hospital_city; ?>" placeholder="城市" class="textfield" style='width:27%;margin-right:2.5%;'/>
+	        		<input type="text" name="human_hospital_district" value="<?php if(isset($human_info)) echo $human_info->hospital_district; ?>" placeholder="鄉鎮市區" class="textfield" style='width:27%;margin-right:2.5%;'/>
+	        		<input type="text" name="human_hospital_postal" value="<?php if(isset($human_info)) echo $human_info->hospital_postal; ?>" placeholder="郵遞區號" class="textfield" style='width:27%;'/>
+	        		<input type="text" name="human_hospital_country" value="<?php if(isset($human_info)) echo $human_info->hospital_country; ?>" class="textfield" placeholder="國家"/><br>
 				</div>
 			</div>
 			
@@ -290,7 +290,7 @@
 		
 	</form>
 		
-	<form id="updateValuable" action="/device/updateValuable" method="post">
+	<form action="/device/updateValuable" method="post"  id="update_valuable_form">
 	
 		<input type='hidden' name='serial_number3' value='<?php echo $device->serial_number; ?>'/>
 	
