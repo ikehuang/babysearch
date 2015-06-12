@@ -971,7 +971,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 								$photo->did = $device->did;
 								$photo->photo = "http://{$_SERVER['HTTP_HOST']}/" . $path;
 								$photo->create();
-									
+								
 								$counter++;
 	
 								//for listing updated photos

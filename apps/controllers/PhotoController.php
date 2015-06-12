@@ -29,7 +29,7 @@ class PhotoController extends \Phalcon\Mvc\Controller {
 			}
 			
 			if($isUploaded) {
-				$photo->photo = $path;
+				$photo->photo = "http://{$_SERVER['HTTP_HOST']}/" . $path;
 			}
 		}
 		
