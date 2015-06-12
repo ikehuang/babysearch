@@ -14,7 +14,7 @@
 <ul id='title'>
 	<li><a href='/'>首頁</a></li>
 	<li> > </li>
-	<li><a href='/device/index?serial_number=<?php echo $device->serial_number?>'>管理名單</a></li>
+	<li><a href='/device/index?sn=<?php echo $device->serial_number?>'>管理名單</a></li>
 	<li> > </li>
 	<li><a href='/device/update?serial_number=<?php echo $device->serial_number?>'><?php echo $device->name?></a></li>
 	<li> > </li>
@@ -105,7 +105,7 @@
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">簡介</div>
-	        		<textarea type="text" class='textfield' rows=4 name="pet_description" value="<?php if(isset($pet_info)) echo $pet_info->description; ?>" placeholder="關於寵物的大小事..."></textarea>
+	        		<textarea type="text" class='textfield' rows=4 name="pet_description" value="" placeholder="關於寵物的大小事..."><?php if(isset($pet_info)) echo $pet_info->description; ?></textarea>
 				</div>
 			</div>
 		
@@ -264,7 +264,7 @@
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">服用藥物</div>
-					<textarea type="number" name="human_medications" value="<?php if(isset($human_info)) echo $human_info->medications; ?>" class="textfield" rows=3></textarea>
+					<textarea type="number" name="human_medications" value="" class="textfield" rows=3><?php if(isset($human_info)) echo $human_info->medications; ?></textarea>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">專屬醫院</div>
@@ -301,7 +301,7 @@
 			</div>
 			<div class='input_div'>
 				<div class="blue_text">特徵/敘述</div>
-        		<textarea type="text" name="valuable_description" value="<?php if(isset($valuable_info)) echo $valuable_info->description; ?>" class="textfield" rows=3></textarea>
+        		<textarea type="text" name="valuable_description" value="" class="textfield" rows=3><?php if(isset($valuable_info)) echo $valuable_info->description; ?></textarea>
 			</div>
 		</div>
 		<div class='submit_div'>
