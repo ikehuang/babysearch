@@ -29,14 +29,14 @@
 		<div id="updatePet">					
 			<div id="pet_tab_container">
 				<ul>
-					<li id="petInfo_tab" class='pet_tab pet_notication_tab'><span>竉物資料</span></li>
+					<li id="petInfo_tab" class='pet_tab pet_notication_tab'><span>寵物資料</span></li>
 					<li id="petHealth_tab" class='pet_tab pet_info_tab' ><span>健康狀況</span></li>
 				</ul>
 			</div>
 			
 			<div id="petInfo_container" class='container'>
 				<div class='input_div'>
-					<div class="blue_text"><font color="red">*</font>竉物名字</div>
+					<div class="blue_text"><font color="red">*</font>寵物名字</div>
 	        		<input type="text" name="pet_name" value="<?php if(isset($pet_info)) echo $pet_info->name; ?>" class="textfield" required/>
 				</div>
 				<div class='input_div'>
@@ -105,7 +105,7 @@
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">簡介</div>
-	        		<textarea type="text" class='textfield' rows=4 name="pet_description" value="<?php if(isset($pet_info)) echo $pet_info->description; ?>" placeholder="關於竉物的大小事..."></textarea>
+	        		<textarea type="text" class='textfield' rows=4 name="pet_description" value="<?php if(isset($pet_info)) echo $pet_info->description; ?>" placeholder="關於寵物的大小事..."></textarea>
 				</div>
 			</div>
 		

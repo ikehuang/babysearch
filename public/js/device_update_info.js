@@ -5,7 +5,7 @@ $(document).ready(function(){
 	$("#updatePet_btn" ).click(function() {
 		// check input value
 		if($('#update_pet_form input[name="pet_name"]').val().length == 0) {
-			alert('請輸入竉物名字!');
+			alert('請輸入寵物名字!');
 			return false;
 		}
 		if($('#update_pet_form input[name="pet_chip_number"]').val().length == 0) {

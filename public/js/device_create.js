@@ -53,7 +53,9 @@ $("#addContacts3").hide();
 
 //after first step completed...
 $("#addSerial_next" ).click(function() {
-
+	
+	//check input if serial exists and 'new'...
+	
 	switch($("#sn").val()[0]){
 		case 'P':
 			$("#addSerial").hide();
@@ -161,13 +163,15 @@ $("#addValuable_back" ).click(function() {
 $("#addPet_next" ).click(function() {
 	// check input value
 	if($('#create_pet_form input[name="pet_name"]').val().length == 0) {
-		alert('請輸入竉物名字!');
+		alert('請輸入寵物名字!');
 		return false;
 	}
+	/*
 	if($('#create_pet_form input[name="pet_chip_number"]').val().length == 0) {
 		alert('請輸入晶片號碼!');
 		return false;
 	}
+	*/
 	$("#addPet").hide();
 	$("#addContacts1").show();
 });

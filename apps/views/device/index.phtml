@@ -37,11 +37,11 @@
 	<div class="green_text title">
 		<img src="/img/02/icon-01.png" />通 知 事 項
 	</div>
-	<div class="black_text"><?php echo $device->lost_message; ?></div>
+	<div class="black_text"><?php if($device->status == 'lost') echo $device->lost_message; ?></div>
 	<table id="notice_table">
 		<tr>
 			<th class="blue_text">走失時間:</th>
-			<td class="black_text"><?php if(!empty($device->lost_date)) echo date('Y/m/d',strtotime($device->lost_date)); ?>
+			<td class="black_text"><?php if($device->status == 'lost') { if(!empty($device->lost_date)) echo date('Y/m/d',strtotime($device->lost_date)); } ?>
 				<?php
 					
 				?>
@@ -49,7 +49,7 @@
 		</tr>
 		<tr>
 			<th class="blue_text">走失地點:</th>
-			<td class="black_text"><?php echo $device->lost_location; ?>
+			<td class="black_text"><?php if($device->status == 'lost') echo $device->lost_location; ?>
 				<?php
 					
 				?>
@@ -57,13 +57,14 @@
 		</tr>
 		<tr>
 			<th class="blue_text">穿著(特徵):</th>
-			<td class="black_text"><?php echo $device->lost_spec; ?>
+			<td class="black_text"><?php if($device->status == 'lost') echo $device->lost_spec; ?>
 				<?php
 					
 				?>
 			</td>
 		</tr>
 		<?php 
+		if($device->status == 'lost') {
 			if(!empty($lost_contacts)) {
 				foreach($lost_contacts as $r) {
 					if($r->id == $device->lost_contact_id) {
@@ -78,6 +79,7 @@ EOT;
 				}
 			}
 		}
+	}
 		?>
 	</table>				
 	

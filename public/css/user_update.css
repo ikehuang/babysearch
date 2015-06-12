@@ -34,6 +34,7 @@
 }
 
 #pic {
+	<!--
 	display:none;
 	position: absolute;
 	top: 3.5%;
@@ -41,6 +42,7 @@
 	z-index: 4;
 	  width: 92%;
 	  height: 81%;	
+	-->
 	border-radius: 17%;
 }
 
