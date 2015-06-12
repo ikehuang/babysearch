@@ -16,7 +16,7 @@
 	<input type='hidden' name='serial_number' value='<?php echo $device->serial_number; ?>'/>
 	<div>
 		<form id='update_photo_form' method='post' action='/device/updatePhoto' style='visibility:hidden;'>
-			<input type='file' name="photos" class="photos" style='width:0;height:0;'/>
+			<input type='file' name="photos" class="photos"/>
 			<input type='hidden' name='serial_number' value='<?php echo $device->serial_number; ?>'/>
 		</form>
 		<div id='img_wrapper'>
