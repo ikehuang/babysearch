@@ -129,7 +129,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 				}
 					
 				if($isUploaded) {
-					$device->photo = "/" . $path;
+					$device->photo = "http://{$_SERVER['HTTP_HOST']}/" . $path;
 				}
 			}
 			
@@ -261,7 +261,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 				}
 					
 				if($isUploaded) {
-					$device->photo = "/" . $path;
+					$device->photo = "http://{$_SERVER['HTTP_HOST']}/" . $path;
 				}
 			}
 			
@@ -366,7 +366,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 				}
 					
 				if($isUploaded) {
-					$device->photo = "/" . $path;
+					$device->photo = "http://{$_SERVER['HTTP_HOST']}/" . $path;
 				}
 			}
 			
@@ -561,7 +561,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 							//strip from input key(eg.photos.1) to get id
 							$newkey = preg_replace("/^photos./","",$upload->getKey());
 		
-							$device->photo = "http://{$_SERVER['HTTP_HOST']}/".$path;
+							$device->photo = "http://{$_SERVER['HTTP_HOST']}/" . $path;
 		
 							$photo = $device->photo;
 						}
@@ -730,7 +730,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 							//strip from input key(eg.photos.1) to get id
 							$newkey = preg_replace("/^photos./","",$upload->getKey());
 		
-							$device->photo = "http://{$_SERVER['HTTP_HOST']}/".$path;
+							$device->photo = "http://{$_SERVER['HTTP_HOST']}/" . $path;
 		
 							$photo = $device->photo;
 						}
@@ -878,7 +878,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 							//strip from input key(eg.photos.1) to get id
 							$newkey = preg_replace("/^photos./","",$upload->getKey());
 		
-							$device->photo = "http://{$_SERVER['HTTP_HOST']}/".$path;
+							$device->photo = "http://{$_SERVER['HTTP_HOST']}/" . $path;
 		
 							$photo = $device->photo;
 						}
@@ -969,7 +969,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 	
 								$photo = new Photos();
 								$photo->did = $device->did;
-								$photo->photo = "http://{$_SERVER['HTTP_HOST']}/".$path;
+								$photo->photo = "http://{$_SERVER['HTTP_HOST']}/" . $path;
 								$photo->create();
 									
 								$counter++;
@@ -1129,7 +1129,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			}
 				
 			if($isUploaded) {
-				$device->photo = "/" . $path;
+				$device->photo = "http://{$_SERVER['HTTP_HOST']}/" . $path;
 			}
 		}
 		 */
@@ -1702,7 +1702,7 @@ EOTl
 			}
 				
 			if($isUploaded) {
-				$device->photo = $path;
+				$device->photo = "http://{$_SERVER['HTTP_HOST']}/" . $path;;
 			}
 		}
 		

@@ -254,7 +254,7 @@ class UserController extends \Phalcon\Mvc\Controller {
 				}
 					
 				if($isUploaded) {
-					$user->photo = "/" . $path;
+					$user->photo = "http://{$_SERVER['HTTP_HOST']}/" . $path;
 				}
 			}
 			/*

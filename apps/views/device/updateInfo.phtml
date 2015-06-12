@@ -45,8 +45,8 @@
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">性別 
-					<input type="radio" name="pet_sex" value="m" style='margin-left:17%;'>公
-					<input type="radio" name="pet_sex" value="f" style='margin-left:20%;'>母
+					<input type="radio" name="pet_sex" value="m" style='margin-left:17%;' <?php if(isset($pet_info) && ($pet_info->sex == 'm')) echo "checked"; ?>>公
+					<input type="radio" name="pet_sex" value="f" style='margin-left:20%;' <?php if(isset($pet_info) && ($pet_info->sex == 'f')) echo "checked"; ?>>母
 					</div>
 				</div>
 				<div class='input_div'>
@@ -111,13 +111,13 @@
 		
 			<div id="healthStatus_container" class='container'>
 				<div class='input_div'>
-					<div class="blue_text"><font color="red">*</font>晶片號碼</div>
-	        		<input type="text" name="pet_chip_number" value="<?php if(isset($pet_info)) echo $pet_info->chip_number; ?>" class="textfield" required/>
+					<div class="blue_text">晶片號碼</div>
+	        		<input type="text" name="pet_chip_number" value="<?php if(isset($pet_info)) echo $pet_info->chip_number; ?>" class="textfield"/>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">結紮
-					<input type="radio" name="pet_desex" value="<?php if(strtolower($pet_info->desex) == 'y') echo 'checked="checked"'; ?>" style='margin-left:20%;'>有
-					<input type="radio" name="pet_desex" value="<?php if(strtolower($pet_info->desex) == 'n') echo 'checked="checked"'; ?>" style='margin-left:20%;'>無</div>
+					<input type="radio" name="pet_desex" value="y" style='margin-left:20%;' <?php if(isset($pet_info) && ($pet_info->desex == 'y')) echo "checked"; ?>>有
+					<input type="radio" name="pet_desex" value="n" style='margin-left:20%;' <?php if(isset($pet_info) && ($pet_info->desex == 'n')) echo "checked"; ?>>無</div>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">預防針種類</div>
@@ -129,8 +129,8 @@
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">血庫資訊通知
-					<input type="radio" name="pet_bloodbank" value="<?php if(strtolower($pet_info->bloodbank) == 'y') echo 'checked="checked"'; ?>" style='margin-left:5%;'>有
-					<input type="radio" name="pet_bloodbank" value="<?php if(strtolower($pet_info->bloodbank) == 'n') echo 'checked="checked"'; ?>" style='margin-left:20%;'>無</div>
+					<input type="radio" name="pet_bloodbank" value="y" style='margin-left:5%;' <?php if(isset($pet_info) && ($pet_info->bloodbank == 'y')) echo "checked"; ?>>有
+					<input type="radio" name="pet_bloodbank" value="n" style='margin-left:20%;' <?php if(isset($pet_info) && ($pet_info->bloodbank == 'n')) echo "checked"; ?>>無</div>
 				</div>
 				<div class='input_div'>
 				
@@ -144,7 +144,6 @@
 	        			</tr>
 	        			<tr>	
 	        				<td><input type="checkbox" name="pet_disability[]" value="視覺" <?php if(strpos($pet_info->disability,'視覺') !== false) echo 'checked="checked"'; ?>>視覺</td>
-	        				<td><input type="checkbox" name="pet_disability[]" value="" ></td>
 	        			</tr>
 	        			<tr>
 	        				<td colspan=2>
@@ -201,8 +200,8 @@
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">性別
-	        		<input type="radio" name="human_sex" value="m" style='margin-left:17%;'>男
-					<input type="radio" name="human_sex" value="f" style='margin-left:20%;'>女</div>
+	        		<input type="radio" name="human_sex" value="m" style='margin-left:17%;' <?php if(isset($human_info) && ($human_info->sex == 'm')) echo "checked"; ?>>男
+					<input type="radio" name="human_sex" value="f" style='margin-left:20%;' <?php if(isset($human_info) && ($human_info->sex == 'm')) echo "checked"; ?>>女</div>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">生日</div>
