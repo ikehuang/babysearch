@@ -91,7 +91,7 @@ $.init_form = function() {
 				$.unblockUI();
 				if(response.status == 'success') {
 					//window.location.href = '/guestbook/list?serial_number='+$("input[name='serial_number']").val();
-					window.location.href = '/user/';
+					history.go(-1);
 				}
 			}, 1000);
 		},

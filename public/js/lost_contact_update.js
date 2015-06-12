@@ -17,7 +17,8 @@ $.init_form = function() {
 					$.unblockUI();
 					//alert(response.msg);
 					if(response.status == 'success') {
-						window.location.href = '/device/update?serial_number='+$("input[name='serial_number']").val();
+						//window.location.href = '/device/update?serial_number='+$("input[name='serial_number']").val();
+						history.go(-1);
 					}
 				}, 1000);
 			}
