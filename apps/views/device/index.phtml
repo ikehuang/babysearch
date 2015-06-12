@@ -8,10 +8,10 @@
 		if(!empty($device->type)) {
 			switch($device->type) {
 				case "Pets":
-					echo '<img src="/img/17/pic-01.png">';
+					echo '<img src="/img/17/pic-02.png">';
 					break;
 				case "Human":
-					echo '<img src="/img/17/pic-02.png">';
+					echo '<img src="/img/17/pic-01.png">';
 					break;
 				case "Valuables":
 					echo '<img src="/img/17/pic-03.png">';
@@ -21,7 +21,7 @@
 		}
 	}
 	else {
-		echo "<img src='/{$device->photo}'>";
+		echo "<img src='{$device->photo}'/>";
 	}
 	?>
 	<h3><?php echo $device->name?> </h3>
