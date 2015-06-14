@@ -555,6 +555,7 @@ class UserController extends \Phalcon\Mvc\Controller {
 			$lost_contact->lastname = '';
 			$lost_contact->phone = '';
 			$lost_contact->email = '';
+			$lost_contact->sso_id = $user->sso_id;
 			$lost_contact->create();
 		}
 		
@@ -610,6 +611,7 @@ class UserController extends \Phalcon\Mvc\Controller {
 			$lost_contact->lastname = '';
 			$lost_contact->phone = '';
 			$lost_contact->email = '';
+			$lost_contact->sso_id = $user->sso_id;
 			$lost_contact->create();
 		}
 	
