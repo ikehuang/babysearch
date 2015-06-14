@@ -100,75 +100,95 @@ $(document).ready(function() {
 
 	//after first step completed...
 	$("#addSerial_next" ).click(function() {
+		
+		$.ajax({
+			url:"/device/checkSerialNumber?serial_number="+$("#sn").val(),
+			beforeSubmit:function(e) {
+				$.blockUI({ message: '檢查序號中...'});
+			},
+			success:function(response) {
+				$.unblockUI();
+				if(response.status == 'success') {
+					switch($("#sn").val()[0]){
+						case 'P':
+							$("#addSerial").hide();
+							$("#addPet").show();
+							$("#healthStatus_container").hide();					
+							$("#addContacts1").hide();
+	
+							switch($("#sn").val()[2]){
+								case 'Q':
+									$('#type1').attr('src', '/img/14/ICON+TITLE-01.png');
+									break;
+								case 'N':
+									$('#type1').attr('src', '/img/14/ICON+TITLE-02.png');
+									break;
+								case 'B':
+									$('#type1').attr('src', '/img/14/ICON+TITLE-03.png');
+									break;
+								default:
+									break;
+							}
+							break;
+						case 'M':
+							$("#addSerial").hide();
+							$("#addHuman").show();
+							$("#addContacts2").hide();
+	
+							switch($("#sn").val()[2]){
+								case 'Q':
+									$('#type2').attr('src', '/img/14/ICON+TITLE-01.png');
+									break;
+								case 'N':
+									$('#type2').attr('src', '/img/14/ICON+TITLE-02.png');
+									break;
+								case 'B':
+									$('#type2').attr('src', '/img/14/ICON+TITLE-03.png');
+									break;
+								default:
+									break;
+							}
+							break;
+						case 'T':
+							$("#addSerial").hide();
+							$("#addValuable").show();
+							$("#addContacts3").hide();
+	
+							switch($("#sn").val()[2]){
+								case 'Q':
+									$('#type3').attr('src', '/img/14/ICON+TITLE-01.png');
+									break;
+								case 'N':
+									$('#type3').attr('src', '/img/14/ICON+TITLE-02.png');
+									break;
+								case 'B':
+									$('#type3').attr('src', '/img/14/ICON+TITLE-03.png');
+									break;
+								default:
+									break;
+							}
+							break;
+						default:
+							alert('序號格式不正確!');
+							return false;
+						break;
+					}
 
-		switch($("#sn").val()[0]){
-			case 'P':
-				$("#addSerial").hide();
-				$("#addPet").show();
-				$("#healthStatus_container").hide();					
-				$("#addContacts1").hide();
-
-				switch($("#sn").val()[2]){
-					case 'Q':
-						$('#type1').attr('src', '/img/14/ICON+TITLE-01.png');
-						break;
-					case 'N':
-						$('#type1').attr('src', '/img/14/ICON+TITLE-02.png');
-						break;
-					case 'B':
-						$('#type1').attr('src', '/img/14/ICON+TITLE-03.png');
-						break;
-					default:
-						break;
+					$("#sn1").val( $("#sn").val());
+					$("#sn2").val( $("#sn").val());
+					$("#sn3").val( $("#sn").val());
 				}
-				break;
-			case 'M':
-				$("#addSerial").hide();
-				$("#addHuman").show();
-				$("#addContacts2").hide();
+				else {
+					$.blockUI({ message: '序號巳使用!'});
+					
+					setTimeout(function() {
+						$.unblockUI();
+					}, 1000);
+					
 
-				switch($("#sn").val()[2]){
-					case 'Q':
-						$('#type2').attr('src', '/img/14/ICON+TITLE-01.png');
-						break;
-					case 'N':
-						$('#type2').attr('src', '/img/14/ICON+TITLE-02.png');
-						break;
-					case 'B':
-						$('#type2').attr('src', '/img/14/ICON+TITLE-03.png');
-						break;
-					default:
-						break;
 				}
-				break;
-			case 'T':
-				$("#addSerial").hide();
-				$("#addValuable").show();
-				$("#addContacts3").hide();
-
-				switch($("#sn").val()[2]){
-					case 'Q':
-						$('#type3').attr('src', '/img/14/ICON+TITLE-01.png');
-						break;
-					case 'N':
-						$('#type3').attr('src', '/img/14/ICON+TITLE-02.png');
-						break;
-					case 'B':
-						$('#type3').attr('src', '/img/14/ICON+TITLE-03.png');
-						break;
-					default:
-						break;
-				}
-				break;
-			default:
-				alert('序號格式不正確!');
-				return false;
-			break;
-		}
-
-		$("#sn1").val( $("#sn").val());
-		$("#sn2").val( $("#sn").val());
-		$("#sn3").val( $("#sn").val());
+			}
+		});
 	});
 	
 	//for tab hiding...

@@ -18,6 +18,29 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		$this->_request = new \Phalcon\Http\Request();
 	}
 	
+	public function checkSerialNumberAction() {
+		
+		$this->view->disable();
+		$this->response->setContentType('application/json', 'UTF-8');
+
+		$serial_number = $this->_request->get('serial_number');
+		
+		$device = Device::findFirst("serial_number = '{$serial_number}' and status = 'new'");
+		if(!empty($device)) {
+			$response_data = array(
+					'status' => 'success'
+			);
+		}
+		else {
+			$response_data = array(
+					'status' => 'fail'
+			);
+		}
+
+		$this->response->setContent(json_encode($response_data));
+		$this->response->send();
+	}
+	
 	public function indexAction() {
 		$serial_number = $this->_request->get('sn');
 		$device = Device::findFirst("serial_number = '{$serial_number}'");
