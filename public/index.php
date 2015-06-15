@@ -107,7 +107,8 @@ if($config->site->env == 'development') {
 	$user_info = array(
 			'email' => 'franky@ink.net.tw',
 			'sso_id' => '3e8a54fd43234d0ba1304aaf499c4c95',
-			'nickname' => 'Franky'
+			'nickname' => 'Franky',
+			'access_token' => ''
 	);
 		
 	$_SESSION['USER']['INFO'] = $user_info;

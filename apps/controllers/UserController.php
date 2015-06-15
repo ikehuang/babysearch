@@ -504,6 +504,9 @@ class UserController extends \Phalcon\Mvc\Controller {
 	
 	public function logoutAction() {
 		$this->view->disable();
+		
+		echo file_get_contents("https://www.facebook.com/logout.php?next='http://{$_SERVER['HTTP_HOST']}/'&access_token='{$_SESSION['USER']['INFO']['access_token']}'");
+		
 		$this->session->destroy();
 		unset($_SESSION['INFO']);
 		header('Location: /');
@@ -544,9 +547,19 @@ class UserController extends \Phalcon\Mvc\Controller {
 		
 			$mobile->email = $user_info->email;
 			$mobile->sso_id = $user_info->id;
+			$mobile->access_token = $access_token;
 		
 			$mobile->create();
 		}
+		else {
+			$mobile = Mobile::findFirst("sso_id = '{$user_info->id}'");
+			
+			$mobile->access_token = $access_token;
+			
+			$mobile->update();
+		}
+		
+		$_SESSION['USER']['INFO']['access_token'] = $mobile->access_token;
 		
 		//create contact
 		for($i = 0 ;$i < 3;$i++ ) {
