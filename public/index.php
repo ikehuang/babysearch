@@ -7,7 +7,7 @@ date_default_timezone_set('Asia/Taipei');
  */
 $loader = new \Phalcon\Loader();
 
-$loader->registerDirs(array('../apps/controllers/', '../apps/models/'));
+$loader->registerDirs(array('../apps/controllers/', '../apps/models/', '../apps/library/'));
 
 $loader->register();
 
@@ -16,12 +16,12 @@ $di = new \Phalcon\DI();
 
 $di->set('dispatcher', function () use ($di) {
 	//Attach a event listener to the dispatcher
-	$eventsManager = $di->getShared('eventsManager');
-	$eventsManager->attach('dispatch', new \Acl());
+	$eventManager = new \Phalcon\Events\Manager();
+	$eventManager->attach('dispatch', new \Acl());
 
 	$dispatcher = new \Phalcon\Mvc\Dispatcher();
 	//Bind the EventsManager to the Dispatcher
-	$dispatcher->setEventsManager($eventsManager);
+	$dispatcher->setEventsManager($eventManager);
 
 	return $dispatcher;
 });
@@ -35,9 +35,6 @@ $di->setShared('session', function() {
 	
 //Registering a router
 $di->set('router', 'Phalcon\Mvc\Router');
-
-//Registering a dispatcher
-$di->set('dispatcher', 'Phalcon\Mvc\Dispatcher');
 
 //Registering a Http\Response
 $di->set('response', 'Phalcon\Http\Response');
@@ -103,7 +100,6 @@ $di->set('request', 'Phalcon\Http\Request');
 $config = new \Phalcon\Config\Adapter\Ini("../apps/config/config.ini");
 
 if($config->site->env == 'development') {
-		
 	$user_info = array(
 			'email' => 'franky@ink.net.tw',
 			'sso_id' => '3e8a54fd43234d0ba1304aaf499c4c95',
