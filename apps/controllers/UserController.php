@@ -559,7 +559,6 @@ class UserController extends \Phalcon\Mvc\Controller {
 			$mobile->update();
 		}
 		
-		var_dump($mobile->access_token);die();
 		$_SESSION['USER']['INFO']['access_token'] = $mobile->access_token;
 		
 		//create contact
