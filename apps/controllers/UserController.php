@@ -505,7 +505,7 @@ class UserController extends \Phalcon\Mvc\Controller {
 	public function logoutAction() {
 		$this->view->disable();
 		
-		@file_get_contents("https://www.facebook.com/logout.php?next=http://{$_SERVER['HTTP_HOST']}&access_token={$_SESSION['USER']['INFO']['access_token']}");
+		@file_get_contents("https://www.facebook.com/logout.php?next=http://{$this->_config->facebook_sso->redirect_url}&access_token={$_SESSION['USER']['INFO']['access_token']}");
 
 		@file_get_contents("https://accounts.google.com/o/oauth2/revoke?token={$_SESSION['USER']['INFO']['access_token']}");
 		
