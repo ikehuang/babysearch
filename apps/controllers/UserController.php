@@ -504,13 +504,15 @@ class UserController extends \Phalcon\Mvc\Controller {
 	
 	public function logoutAction() {
 		$this->view->disable();
+		$login_type = $_SESSION['USER']['INFO']['login_type'];
+		$access_token = $_SESSION['USER']['INFO']['access_token'];
 		$this->session->destroy();
 		unset($_SESSION);
 		
-		if($_SESSION['USER']['INFO']['login_type'] == 'facebook') 
-			header("Location: https://www.facebook.com/logout.php?next=http://{$_SESSION['HTTP_HOST']}&access_token={$_SESSION['USER']['INFO']['access_token']}");
+		if($login_type == 'facebook') 
+			header("Location: https://www.facebook.com/logout.php?next=http://{$_SESSION['HTTP_HOST']}&access_token={$access_token}");
 		
-		if($_SESSION['USER']['INFO']['login_type'] == 'google')
+		if($login_type == 'google')
 			header("Location: https://accounts.google.com/o/oauth2/revoke?token={$_SESSION['USER']['INFO']['access_token']}");
 		
 		exit;
