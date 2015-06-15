@@ -12,7 +12,7 @@
 		<div>
 			<div id="addSerial">
 				<div class="green_text title">步 驟 一 :你要購買的產品是?</div>
-				<!-- need to check serial number and highlight tag kind -->
+				<!-- need to check serial number and highlight tag kind
 				<div class="blue_text title" style='margin-top:6%;margin-bottom:2%;'>產品類別:</div>
 				
 				<table id='tagKind_table'>
@@ -30,6 +30,7 @@
 				</table>
 				
 				<div class='clear'></div>
+				 -->
 				<span class="blue_text"><font style="color:red;">*</font>產品序號</span><br>
 				<input id="sn" type="text" name="serial_number" style='text-align:center;' value="<?php if(!empty($_GET["sn"])) echo $_GET["sn"] ?>" placeholder="輸 入 你 的 商 品 序 號 / UID" class="textfield" required><br>
 				<a id="help_button" href='' ><img src='/img/13/icon-04.png'/></a>
@@ -311,7 +312,7 @@
 						</div>
 						<div class='input_div'>
 							<div class="blue_text">生日</div>
-			        		<input type="text" name="human_birthday" class="textfield datepicker"/>
+			        		<input name="human_birthday" class="textfield" type='date'/>
 						</div>
 						<div class='input_div'>
 							<div class="blue_text">身高(cm)</div>
@@ -435,7 +436,7 @@
 					
 				    <div id='submit_div'>
 						<button type='button' class="button orange_btn"  id="addContact2_back">上 一 步</button>
-						<button type="button"  id="createHuman_complete" class="button" style="background:#EB004E;">完 成</button>
+						<button type="submit"  id="createHuman_complete" class="button" style="background:#EB004E;">完 成</button>
 					</div>
 					<div class="clear"></div>
 				</div>
@@ -528,7 +529,7 @@
 					
 				    <div id='submit_div'>
 						<button type='button' class="button orange_btn"  id="addContact3_back">上 一 步</button>
-						<button type="button"  id="createValuable_complete" class="button" style="background:#EB004E;">完 成</button>
+						<button type="submit"  id="createValuable_complete" class="button" style="background:#EB004E;">完 成</button>
 					</div>
 					
 					<div class="clear"></div>

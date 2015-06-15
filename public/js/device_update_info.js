@@ -8,10 +8,6 @@ $(document).ready(function(){
 			alert('請輸入寵物名字!');
 			return false;
 		}
-		if($('#update_pet_form input[name="pet_chip_number"]').val().length == 0) {
-			alert('請輸入晶片號碼!');
-			return false;
-		}
 	});
 
 	$("#addHuman_next" ).click(function() {

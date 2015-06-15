@@ -45,10 +45,41 @@ $.init_valuable_event = function() {
 	});
 };
 
+$.init_form = function() {
+
+	$('form').ajaxForm({
+		beforeSubmit:function(e) {
+			$.blockUI({ message: '新增中...'});
+		},
+		success:function(response) {
+			
+			if(response.status == 'success') {
+				$.blockUI({ message: '新增成功!'});
+			}
+			else {
+
+				$.blockUI({ message: '新增失敗!'});
+			}
+			
+			setTimeout(function() {
+				$.unblockUI();
+				if(response.status == 'success') {
+					//window.location.href = '/guestbook/list?serial_number='+$("input[name='serial_number']").val();
+					window.location.href = '/user/';
+				}
+			}, 1000);
+		},
+		error:function() {
+			$.blockUI({ message: '新增失敗!'});
+		}
+	});
+};
+
 $(document).ready(function() {
 	$.init_pet_event();
 	$.init_human_event();
 	$.init_valuable_event();
+	$.init_form();
 
 	//determine which tag label to switch on
 	if(get_sn.length > 0) {
@@ -169,7 +200,7 @@ $(document).ready(function() {
 							}
 							break;
 						default:
-							alert('序號格式不正確!');
+							alert('您輸入的產品序號有誤!');
 							return false;
 						break;
 					}
@@ -237,11 +268,29 @@ $(document).ready(function() {
 	});
 	
 	$("#addHuman_next" ).click(function() {
+		// check input value
+		if($('#create_human_form input[name="human_firstname"]').val().length == 0) {
+			alert('請輸入人的名字!');
+			return false;
+		}
+		if($('#create_human_form input[name="human_lastname"]').val().length == 0) {
+			alert('請輸入人的名字!');
+			return false;
+		}
+		if($('#create_human_form input[name="human_nickname"]').val().length == 0) {
+			alert('請輸入人的暱稱!');
+			return false;
+		}
 		$("#addHuman").hide();
 		$("#addContacts2").show();
 	});
 	
 	$("#addValuable_next" ).click(function() {
+		// check input value
+		if($('#create_valuable_form input[name="valuable_name"]').val().length == 0) {
+			alert('請輸入物品名稱!');
+			return false;
+		}
 		$("#addValuable").hide();
 		$("#addContacts3").show();
 	});
