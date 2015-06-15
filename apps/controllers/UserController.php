@@ -505,7 +505,9 @@ class UserController extends \Phalcon\Mvc\Controller {
 	public function logoutAction() {
 		$this->view->disable();
 		
-		echo file_get_contents("https://www.facebook.com/logout.php?next='http://{$_SERVER['HTTP_HOST']}/'&access_token='{$_SESSION['USER']['INFO']['access_token']}'");
+		@file_get_contents("https://www.facebook.com/logout.php?next=http://{$_SERVER['HTTP_HOST']}/&access_token={$_SESSION['USER']['INFO']['access_token']}");
+
+		@file_get_contents("https://accounts.google.com/o/oauth2/revoke?token={$_SESSION['USER']['INFO']['access_token']}");
 		
 		$this->session->destroy();
 		unset($_SESSION['INFO']);
@@ -541,6 +543,7 @@ class UserController extends \Phalcon\Mvc\Controller {
 		$_SESSION['USER']['INFO']['email'] = $user->email;
 		$_SESSION['USER']['INFO']['sso_id'] = $user->sso_id;
 		$_SESSION['USER']['INFO']['nickname'] = $user->nickname;
+		$_SESSION['USER']['INFO']['access_token'] = $access_token;
 		
 		if(Mobile::count("sso_id = '{$user_info->id}'") == 0) {
 			$mobile = new Mobile();
@@ -559,7 +562,6 @@ class UserController extends \Phalcon\Mvc\Controller {
 			$mobile->update();
 		}
 		
-		$_SESSION['USER']['INFO']['access_token'] = $mobile->access_token;
 		
 		//create contact
 		for($i = 0 ;$i < 3;$i++ ) {
