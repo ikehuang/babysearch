@@ -504,12 +504,23 @@ class UserController extends \Phalcon\Mvc\Controller {
 	
 	public function logoutAction() {
 		$this->view->disable();
-		
-		echo file_get_contents("https://www.facebook.com/logout.php?next='http://{$_SERVER['HTTP_HOST']}/'&access_token='{$_SESSION['USER']['INFO']['access_token']}'");
-		
+		$login_type = $_SESSION['USER']['INFO']['login_type'];
+		$access_token = $_SESSION['USER']['INFO']['access_token'];
 		$this->session->destroy();
-		unset($_SESSION['INFO']);
-		header('Location: /');
+		unset($_SESSION);
+		
+		if($login_type == 'facebook') {
+			header("Location: https://www.facebook.com/logout.php?next=http://{$_SERVER['HTTP_HOST']}&access_token={$access_token}");
+			die();
+		}
+		
+		if($login_type == 'google') {
+			header("Location: https://accounts.google.com/o/oauth2/revoke?token={$access_token}");
+			die();
+		}
+		
+		header("Location: /");
+		exit;
 	}
 	
 	public function facebookAction() {
@@ -538,9 +549,11 @@ class UserController extends \Phalcon\Mvc\Controller {
 			$user->update();
 		}
 		
+		$_SESSION['USER']['INFO']['login_type'] = 'facebook';
 		$_SESSION['USER']['INFO']['email'] = $user->email;
 		$_SESSION['USER']['INFO']['sso_id'] = $user->sso_id;
 		$_SESSION['USER']['INFO']['nickname'] = $user->nickname;
+		$_SESSION['USER']['INFO']['access_token'] = $access_token;
 		
 		if(Mobile::count("sso_id = '{$user_info->id}'") == 0) {
 			$mobile = new Mobile();
@@ -559,7 +572,6 @@ class UserController extends \Phalcon\Mvc\Controller {
 			$mobile->update();
 		}
 		
-		$_SESSION['USER']['INFO']['access_token'] = $mobile->access_token;
 		
 		//create contact
 		for($i = 0 ;$i < 3;$i++ ) {
@@ -603,7 +615,8 @@ class UserController extends \Phalcon\Mvc\Controller {
 			
 			$user->update();
 		}
-	
+
+		$_SESSION['USER']['INFO']['login_type'] = 'google';
 		$_SESSION['USER']['INFO']['email'] = $user->email;
 		$_SESSION['USER']['INFO']['sso_id'] = $user->sso_id;
 		$_SESSION['USER']['INFO']['nickname'] = $user->nickname;
