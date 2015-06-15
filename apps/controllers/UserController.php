@@ -504,14 +504,16 @@ class UserController extends \Phalcon\Mvc\Controller {
 	
 	public function logoutAction() {
 		$this->view->disable();
-		
-		@file_get_contents("https://www.facebook.com/logout.php?next=http://{$this->_config->facebook_sso->redirect_url}&access_token={$_SESSION['USER']['INFO']['access_token']}");
-
-		@file_get_contents("https://accounts.google.com/o/oauth2/revoke?token={$_SESSION['USER']['INFO']['access_token']}");
-		
 		$this->session->destroy();
-		unset($_SESSION['INFO']);
-		header('Location: /');
+		unset($_SESSION);
+		
+		if($_SESSION['USER']['INFO']['login_type'] == 'facebook') 
+			header("Location: https://www.facebook.com/logout.php?next=http://{$_SESSION['HTTP_HOST']}&access_token={$_SESSION['USER']['INFO']['access_token']}");
+		
+		if($_SESSION['USER']['INFO']['login_type'] == 'google')
+			header("Location: https://accounts.google.com/o/oauth2/revoke?token={$_SESSION['USER']['INFO']['access_token']}");
+		
+		exit;
 	}
 	
 	public function facebookAction() {
@@ -540,6 +542,7 @@ class UserController extends \Phalcon\Mvc\Controller {
 			$user->update();
 		}
 		
+		$_SESSION['USER']['INFO']['login_type'] = 'facebook';
 		$_SESSION['USER']['INFO']['email'] = $user->email;
 		$_SESSION['USER']['INFO']['sso_id'] = $user->sso_id;
 		$_SESSION['USER']['INFO']['nickname'] = $user->nickname;
@@ -605,7 +608,8 @@ class UserController extends \Phalcon\Mvc\Controller {
 			
 			$user->update();
 		}
-	
+
+		$_SESSION['USER']['INFO']['login_type'] = 'google';
 		$_SESSION['USER']['INFO']['email'] = $user->email;
 		$_SESSION['USER']['INFO']['sso_id'] = $user->sso_id;
 		$_SESSION['USER']['INFO']['nickname'] = $user->nickname;
