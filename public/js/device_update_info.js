@@ -71,16 +71,18 @@ $.init_form = function() {
 
 	$('form').ajaxForm({
 		beforeSubmit:function(e) {
-			$.blockUI({ message: '更新中...'});
+			$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
+			$.blockUI({ message: '<h1>更新中...</h1>'});
 		},
 		success:function(response) {
 			
 			if(response.status == 'success') {
-				$.blockUI({ message: '更新成功!'});
+				$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
+				$.blockUI({ message: '<h1>更新成功!</h1>'});
 			}
 			else {
-
-				$.blockUI({ message: '更新失敗!'});
+				$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
+				$.blockUI({ message: '<h1>更新失敗!</h1>'});
 			}
 			
 			setTimeout(function() {
@@ -92,7 +94,8 @@ $.init_form = function() {
 			}, 1000);
 		},
 		error:function() {
-			$.blockUI({ message: '更新失敗!'});
+			$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
+			$.blockUI({ message: '<h1>更新失敗!</h1>'});
 		}
 	});
 };

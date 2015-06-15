@@ -11,7 +11,7 @@
 		
 		<div>
 			<div id="addSerial">
-				<div class="green_text title">步 驟 一 :你要購買的產品是?</div>
+				<div class="green_text title">步 驟 一 : 請輸入產品序號</div>
 				<!-- need to check serial number and highlight tag kind
 				<div class="blue_text title" style='margin-top:6%;margin-bottom:2%;'>產品類別:</div>
 				
@@ -32,9 +32,9 @@
 				<div class='clear'></div>
 				 -->
 				<span class="blue_text"><font style="color:red;">*</font>產品序號</span><br>
-				<input id="sn" type="text" name="serial_number" style='text-align:center;' value="<?php if(!empty($_GET["sn"])) echo $_GET["sn"] ?>" placeholder="輸 入 你 的 商 品 序 號 / UID" class="textfield" required><br>
+				<input id="sn" type="text" name="serial_number" style='text-align:center;height:2em;' value="<?php if(!empty($_GET["sn"])) echo $_GET["sn"] ?>" placeholder="輸 入 你 的 商 品 序 號 / UID" class="textfield" required><br>
 				<a id="help_button" href='' ><img src='/img/13/icon-04.png'/></a>
-				<button id="addSerial_next" type='button' class="orange_button" >下 一 步 ></button>
+				<button id="addSerial_next" type='button' class="orange_button" style="height:3em;">下 一 步 ></button>
 			</div>
 			<div class="clear"></div>
 			<form action="/device/createPet" id='create_pet_form' method="post" enctype="multipart/form-data">
@@ -48,17 +48,19 @@
 						<input type='file' name="photos" class="photos" style='visibility:hidden;'/>
 					</div>
 					<div>
-						<div class="blue_text" style="margin-top:8.4%;margin-bottom:5%;margin-right:15%;float:left;">用途分類</div>
+						<div class="blue_text" style="margin-top:8.4%;margin-bottom:5%;margin-right:14%;float:left;">用途分類</div>
 						<div class="green_text" style="margin-top:8.4%;margin-bottom:5%;float:left;">寵物</div>
 						<div class="clear"></div>					
 					</div>
 					<div>
-						<div class="blue_text" style="margin-bottom:6%;margin-right:15%;float:left;">
+						<div class="blue_text" style="margin-bottom:5%;margin-right:9.5%;float:left;">
 							<font style="color:red;">*</font>資料公開
 						</div>
-						<div class="green_text" style="margin-bottom:6%;float:left;">
-							<input type="radio" name="open" value="y">公開
-							<input type="radio" name="open" value="n" CHECKED>關閉
+						<div class='input_div'>
+							<div class="green_text">
+								<input type="radio" name="open" value="y">公開
+								<input type="radio" name="open" value="n" CHECKED style='margin-left:16%;'>關閉
+							</div>
 						</div>
 						<div class="clear"></div>					
 					</div>		
@@ -227,33 +229,33 @@
 					
 					<div class='input_div'>
 						<div class="blue_text">姓名</div>
-						<input type="text" name="contactFirstname1" class="textfield" placeholder="名"/>
-						<input type="text" name="contactFirstname1" class="textfield" placeholder="姓"/>
+						<input type="text" name="contactFirstname[]" class="textfield" placeholder="名"/>
+						<input type="text" name="contactLastname[]" class="textfield" placeholder="姓"/>
 					</div>
 					<div class='input_div'>
 						<div class="blue_text">電話</div>
-						<input type="text" name="contactFirstname1" class="textfield"/>
+						<input type="text" name="contactPhone[]" class="textfield"/>
 					</div>
 					<div class="green_text"><input type="radio" name="contact2" value="contact2">聯絡人2</div>
 					
 					<div class='input_div'>
 						<div class="blue_text">姓名</div>
-						<input type="text" name="contactFirstname2" class="textfield" placeholder="名"/>
-						<input type="text" name="contactFirstname2" class="textfield" placeholder="姓"/>
+						<input type="text" name="contactFirstname[]" class="textfield" placeholder="名"/>
+						<input type="text" name="contactLastname[]" class="textfield" placeholder="姓"/>
 					</div>
 					<div class='input_div'>
 						<div class="blue_text">電話</div>
-						<input type="text" name="contactFirstname2" class="textfield"/>
+						<input type="text" name="contactPhone2" class="textfield"/>
 					</div>
 					<div class="green_text"><input type="radio" name="contact3" value="contact3">聯絡人3</div>
 					<div class='input_div'>
 						<div class="blue_text">姓名</div>
-						<input type="text" name="contactFirstname3" class="textfield" placeholder="名"/>
-						<input type="text" name="contactFirstname3" class="textfield" placeholder="姓"/>
+						<input type="text" name="contactFirstname[]" class="textfield" placeholder="名"/>
+						<input type="text" name="contactLastname[]" class="textfield" placeholder="姓"/>
 					</div>
 					<div class='input_div'>
 						<div class="blue_text">電話</div>
-						<input type="text" name="contactFirstname3" class="textfield"/>
+						<input type="text" name="contactPhone[]" class="textfield"/>
 					</div>
 					
 				    <div id='submit_div'>
@@ -279,22 +281,24 @@
 						<input type='file' name="photos" class="photos" style='visibility:hidden;'/>
 					</div>
 					<div>
-						<div class="blue_text" style="margin-top:8.4%;margin-bottom:5%;margin-right:15%;float:left;">用途分類</div>
+						<div class="blue_text" style="margin-top:8.4%;margin-bottom:5%;margin-right:14%;float:left;">用途分類</div>
 						<div class="green_text" style="margin-top:8.4%;margin-bottom:5%;float:left;">人</div>
 						<div class="clear"></div>					
 					</div>
 					<div>
-						<div class="blue_text" style="margin-bottom:6%;margin-right:15%;float:left;">
+						<div class="blue_text" style="margin-bottom:5%;margin-right:9.5%;float:left;">
 							<font style="color:red;">*</font>資料公開
 						</div>
-						<div class="green_text" style="margin-bottom:6%;float:left;">
-							<input type="radio" name="open" value="y">公開
-							<input type="radio" name="open" value="n" CHECKED>關閉
+						<div class='input_div'>
+							<div class="green_text">
+								<input type="radio" name="open" value="y">公開
+								<input type="radio" name="open" value="n" CHECKED style='margin-left:16%;'>關閉
+							</div>
 						</div>
 						<div class="clear"></div>					
 					</div>
 					
-					<div id="humanInfo_container">
+					<div id="humanInfo_container" style="padding-top:5%; border-top: 1px dotted #d9d9d9;">
 						<div class="green_text">資料編輯</div>
 						<div class='input_div'>
 							<div class="blue_text"><font color="red">*</font>姓名</div>
@@ -307,7 +311,7 @@
 						</div>
 						<div class='input_div'>
 							<div class="blue_text">性別
-			        		<input type="radio" name="human_sex" value="m" style='margin-left:17%;'>男
+			        		<input type="radio" name="human_sex" value="m" style='margin-left:17%;' required>男
 							<input type="radio" name="human_sex" value="f" style='margin-left:20%;'>女</div>
 						</div>
 						<div class='input_div'>
@@ -405,33 +409,33 @@
 					
 					<div class='input_div'>
 						<div class="blue_text">姓名</div>
-						<input type="text" name="contactFirstname1" class="textfield" placeholder="名"/>
-						<input type="text" name="contactFirstname1" class="textfield" placeholder="姓"/>
+						<input type="text" name="contactFirstname[]" class="textfield" placeholder="名"/>
+						<input type="text" name="contactLastname[]" class="textfield" placeholder="姓"/>
 					</div>
 					<div class='input_div'>
 						<div class="blue_text">電話</div>
-						<input type="text" name="contactFirstname1" class="textfield"/>
+						<input type="text" name="contactPhonename[]" class="textfield"/>
 					</div>
 					<div class="green_text"><input type="radio" name="contact2" value="contact2">聯絡人2</div>
 					
 					<div class='input_div'>
 						<div class="blue_text">姓名</div>
-						<input type="text" name="contactFirstname2" class="textfield" placeholder="名"/>
-						<input type="text" name="contactFirstname2" class="textfield" placeholder="姓"/>
+						<input type="text" name="contactFirstname[]" class="textfield" placeholder="名"/>
+						<input type="text" name="contactLastname[]" class="textfield" placeholder="姓"/>
 					</div>
 					<div class='input_div'>
 						<div class="blue_text">電話</div>
-						<input type="text" name="contactFirstname2" class="textfield"/>
+						<input type="text" name="contactPhone[]" class="textfield"/>
 					</div>
 					<div class="green_text"><input type="radio" name="contact3" value="contact3">聯絡人3</div>
 					<div class='input_div'>
 						<div class="blue_text">姓名</div>
-						<input type="text" name="contactFirstname3" class="textfield" placeholder="名"/>
-						<input type="text" name="contactFirstname3" class="textfield" placeholder="姓"/>
+						<input type="text" name="contactFirstname[]" class="textfield" placeholder="名"/>
+						<input type="text" name="contactLastname[]" class="textfield" placeholder="姓"/>
 					</div>
 					<div class='input_div'>
 						<div class="blue_text">電話</div>
-						<input type="text" name="contactFirstname3" class="textfield"/>
+						<input type="text" name="contactPhone[]" class="textfield"/>
 					</div>
 					
 				    <div id='submit_div'>
@@ -456,22 +460,24 @@
 						<input type='file' name="photos" class="photos" style='visibility:hidden;'/>
 					</div>
 					<div>
-						<div class="blue_text" style="margin-top:8.4%;margin-bottom:5%;margin-right:15%;float:left;">用途分類</div>
+						<div class="blue_text" style="margin-top:8.4%;margin-bottom:5%;margin-right:14%;float:left;">用途分類</div>
 						<div class="green_text" style="margin-top:8.4%;margin-bottom:5%;float:left;">物品<!-- <?php $device->type ?> --></div>
 						<div class="clear"></div>					
 					</div>
 					<div>
-						<div class="blue_text" style="margin-bottom:6%;margin-right:15%;float:left;">
+						<div class="blue_text" style="margin-bottom:5%;margin-right:9.5%;float:left;">
 							<font style="color:red;">*</font>資料公開
 						</div>
-						<div class="green_text" style="margin-bottom:6%;float:left;">
-							<input type="radio" name="open" value="Y">公開
-							<input type="radio" name="open" value="N" CHECKED>關閉
+						<div class='input_div'>
+							<div class="green_text">
+								<input type="radio" name="open" value="y">公開
+								<input type="radio" name="open" value="n" CHECKED style='margin-left:16%;'>關閉
+							</div>
 						</div>
 						<div class="clear"></div>					
 					</div>
 					
-					<div id="valuableInfo_container">
+					<div id="valuableInfo_container" style="padding-top:5%;  border-top: 1px dotted #d9d9d9;">
 						<div class="green_text" style='margin-bottom:3%;'>資料編輯</div>
 						<div class='input_div'>
 							<div class="blue_text"><font color="red">*</font>商品名稱</div>
@@ -498,33 +504,33 @@
 					
 					<div class='input_div'>
 						<div class="blue_text">姓名</div>
-						<input type="text" name="contactFirstname1" class="textfield" placeholder="名"/>
-						<input type="text" name="contactFirstname1" class="textfield" placeholder="姓"/>
+						<input type="text" name="contactFirstname[]" class="textfield" placeholder="名"/>
+						<input type="text" name="contactLastname[]" class="textfield" placeholder="姓"/>
 					</div>
 					<div class='input_div'>
 						<div class="blue_text">電話</div>
-						<input type="text" name="contactFirstname1" class="textfield"/>
+						<input type="text" name="contactPhone[]" class="textfield"/>
 					</div>
 					<div class="green_text"><input type="radio" name="contact2" value="contact2">聯絡人2</div>
 					
 					<div class='input_div'>
 						<div class="blue_text">姓名</div>
-						<input type="text" name="contactFirstname2" class="textfield" placeholder="名"/>
-						<input type="text" name="contactFirstname2" class="textfield" placeholder="姓"/>
+						<input type="text" name="contactFirstname[]" class="textfield" placeholder="名"/>
+						<input type="text" name="contactLastname[]" class="textfield" placeholder="姓"/>
 					</div>
 					<div class='input_div'>
 						<div class="blue_text">電話</div>
-						<input type="text" name="contactFirstname2" class="textfield"/>
+						<input type="text" name="contactPhone[]" class="textfield"/>
 					</div>
 					<div class="green_text"><input type="radio" name="contact3" value="contact3">聯絡人3</div>
 					<div class='input_div'>
 						<div class="blue_text">姓名</div>
-						<input type="text" name="contactFirstname3" class="textfield" placeholder="名"/>
-						<input type="text" name="contactFirstname3" class="textfield" placeholder="姓"/>
+						<input type="text" name="contactFirstname[]" class="textfield" placeholder="名"/>
+						<input type="text" name="contactLastname[]" class="textfield" placeholder="姓"/>
 					</div>
 					<div class='input_div'>
 						<div class="blue_text">電話</div>
-						<input type="text" name="contactFirstname3" class="textfield"/>
+						<input type="text" name="contactPhone[]" class="textfield"/>
 					</div>
 					
 				    <div id='submit_div'>

@@ -6,15 +6,18 @@ $.init_form = function() {
 
 	$('form').ajaxForm({
 		beforeSubmit:function(e) {
-			$.blockUI({ message: '留言中...'});
+			$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
+			$.blockUI({ message: '<h1>留言中...</h1>'});
 		},
 		success:function(response) {
 			
 			if(response.status == 'success') {
-				$.blockUI({ message: '留言成功!'});
+				$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
+				$.blockUI({ message: '<h1>留言成功!</h1>'});
 			}
 			else {
-				$.blockUI({ message: '留言失敗!'});
+				$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
+				$.blockUI({ message: '<h1>留言失敗!</h1>'});
 			}
 			
 			setTimeout(function() {
@@ -26,7 +29,8 @@ $.init_form = function() {
 			}, 1000);
 		},
 		error:function() {
-			$.blockUI({ message: '留言失敗!'});
+			$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
+			$.blockUI({ message: '<h1>留言失敗!</h1>'});
 		}
 	});
 };

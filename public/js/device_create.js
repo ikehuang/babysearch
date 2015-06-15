@@ -49,16 +49,18 @@ $.init_form = function() {
 
 	$('form').ajaxForm({
 		beforeSubmit:function(e) {
-			$.blockUI({ message: '新增中...'});
+			$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
+			$.blockUI({ message: '<h1>新增中...</h1>'});
 		},
 		success:function(response) {
 			
 			if(response.status == 'success') {
-				$.blockUI({ message: '新增成功!'});
+				$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
+				$.blockUI({ message: '<h1>新增成功!</h1>'});
 			}
 			else {
-
-				$.blockUI({ message: '新增失敗!'});
+				$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
+				$.blockUI({ message: '<h1>新增失敗!</h1>'});
 			}
 			
 			setTimeout(function() {
@@ -70,7 +72,8 @@ $.init_form = function() {
 			}, 1000);
 		},
 		error:function() {
-			$.blockUI({ message: '新增失敗!'});
+			$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
+			$.blockUI({ message: '<h1>新增失敗!</h1>'});
 		}
 	});
 };
@@ -135,7 +138,8 @@ $(document).ready(function() {
 		$.ajax({
 			url:"/device/checkSerialNumber?serial_number="+$("#sn").val(),
 			beforeSubmit:function(e) {
-				$.blockUI({ message: '檢查序號中...'});
+				$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
+				$.blockUI({ message: '<h1>檢查序號中...</h1>'});
 			},
 			success:function(response) {
 				$.unblockUI();
@@ -210,7 +214,8 @@ $(document).ready(function() {
 					$("#sn3").val( $("#sn").val());
 				}
 				else {
-					$.blockUI({ message: '序號巳使用!'});
+					$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
+					$.blockUI({ message: '<h1>序號巳使用!</h1>'});
 					
 					setTimeout(function() {
 						$.unblockUI();

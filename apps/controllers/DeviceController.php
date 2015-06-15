@@ -111,6 +111,11 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		$pet_hospital_postal = $this->_request->getPost('pet_hospital_postal');
 		$pet_hospital_country = $this->_request->getPost('pet_hospital_country');
 		
+		//for lost contacts
+		$firstnames = $this->_request->getPost('contactFirstname');
+		$lastnames = $this->_request->getPost('contactLastname');
+		$phones = $this->_request->getPost('contactPhone');
+		
 		//if serial number exists and 'status'='new', then continue to create device...; otherwise, return fail
 		if(Device::count(array("conditions" => "status = 'new' AND serial_number = '{$serial_number}'")) > 0) {
 		
@@ -196,6 +201,27 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			$pet_info->disability = implode(",", $pet_disability);
 			
 			$pet_info->create();
+			
+			//create lost contacts
+			$i=0;
+			
+			foreach($firstnames as $r) {
+			
+				//Assume firstname is required here...
+				if(!empty($firstnames)) {
+			
+					//$lost_contact = LostContacts::findFirst("id = '{$k}'");
+					$lost_contact = new LostContacts();
+		
+					$lost_contact->firstname = $firstnames[$i];
+					$lost_contact->lastname = $lastname[$i];
+					$lost_contact->phone = $phones[$i];
+					$i++;
+					$lost_contact->sso_id = $_SESSION['USER']['INFO']['sso_id'];
+					$lost_contact->create();
+					
+				}
+			}
 			
 			$response_data = array(
 					'status' => 'success'

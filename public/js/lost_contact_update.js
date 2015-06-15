@@ -6,12 +6,14 @@ $.init_form = function() {
 
 	$('form').ajaxForm({
 		beforeSubmit:function(e) {
-			$.blockUI({ message: '更新遺失資料中...'});
+			$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
+			$.blockUI({ message: '<h1>更新遺失資料中...</h1>'});
 		},
 		success:function(response) {
 			
 			if(response.status == 'success') {
-				$.blockUI({ message: '更新遺失資料成功!'});
+				$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
+				$.blockUI({ message: '<h1>更新遺失資料成功!</h1>'});
 
 				setTimeout(function() {
 					$.unblockUI();
@@ -23,12 +25,13 @@ $.init_form = function() {
 				}, 1000);
 			}
 			else {
-
-				$.blockUI({ message: '更新遺失資料失敗!'});
+				$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
+				$.blockUI({ message: '<h1>更新遺失資料失敗!</h1>'});
 			}
 		},
 		error:function() {
-			$.blockUI({ message: '更新遺失資料失敗!'});
+			$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
+			$.blockUI({ message: '<h1>更新遺失資料失敗!</h1>'});
 		}
 	});
 };

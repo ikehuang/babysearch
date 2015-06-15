@@ -21,10 +21,12 @@ $.init_event = function() {
 		$.ajax({
 			url:"/device/updateOpenStatus?serial_number="+$("input[name='serial_number']").val()+"&status="+self.val(),
 			beforeSubmit:function(e) {
-				$.blockUI({ message: '更新公開狀態中...'});
+				$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
+				$.blockUI({ message: '<h1>更新公開狀態中...</h1>'});
 			},
 			success:function(response) {
-				$.blockUI({ message: '更新公開狀態成功!'});
+				$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
+				$.blockUI({ message: '<h1>更新公開狀態成功!</h1>'});
 
 				setTimeout(function() {
 					$.unblockUI();
@@ -39,10 +41,12 @@ $.init_event = function() {
 		$.ajax({
 			url:"/device/updateStatus?serial_number="+$("input[name='serial_number']").val()+"&status="+self.val(),
 			beforeSubmit:function(e) {
-				$.blockUI({ message: '更新遺失狀態中...'});
+				$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
+				$.blockUI({ message: '<h1>更新遺失狀態中...</h1>'});
 			},
 			success:function(response) {
-				$.blockUI({ message: '更新遺失狀態成功!'});
+				$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
+				$.blockUI({ message: '<h1>更新遺失狀態成功!</h1>'});
 
 				setTimeout(function() {
 					$.unblockUI();
@@ -72,16 +76,18 @@ function readURL(input) {
 $.init_form = function() {
 	$('form').ajaxForm({
 		beforeSubmit:function(e) {
-			$.blockUI({ message: '照片更新中...'});
+			$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
+			$.blockUI({ message: '<h1>照片更新中...</h1>'});
 		},
 		success:function(response) {
 			
 			if(response.status == 'success') {
-				$.blockUI({ message: '照片更新成功!'});
+				$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
+				$.blockUI({ message: '<h1>照片更新成功!</h1>'});
 			}
 			else {
-
-				$.blockUI({ message: '新增失敗!'});
+				$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
+				$.blockUI({ message: '<h1>新增失敗!</h1>'});
 			}
 			
 			setTimeout(function() {
@@ -92,7 +98,8 @@ $.init_form = function() {
 			}, 1000);
 		},
 		error:function() {
-			$.blockUI({ message: '照片更新失敗!'});
+			$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
+			$.blockUI({ message: '<h1>照片更新失敗!</h1>'});
 		}
 	});
 };

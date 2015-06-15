@@ -143,6 +143,7 @@
 
 .title {
 	margin:3%;
+	margin-bottom:10%;
 }
 
 .radio_text {
@@ -225,7 +226,7 @@
 }
 
 .blah {
-	display:none;
+	<!--display:none;-->
 	position: absolute;
 	top: 3.5%;
 	left: 4%;
