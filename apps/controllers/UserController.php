@@ -509,12 +509,17 @@ class UserController extends \Phalcon\Mvc\Controller {
 		$this->session->destroy();
 		unset($_SESSION);
 		
-		if($login_type == 'facebook') 
-			header("Location: https://www.facebook.com/logout.php?next=http://{$_SESSION['HTTP_HOST']}&access_token={$access_token}");
+		if($login_type == 'facebook') {
+			header("Location: https://www.facebook.com/logout.php?next=http://{$_SERVER['HTTP_HOST']}&access_token={$access_token}");
+			die();
+		}
 		
-		if($login_type == 'google')
-			header("Location: https://accounts.google.com/o/oauth2/revoke?token={$_SESSION['USER']['INFO']['access_token']}");
+		if($login_type == 'google') {
+			header("Location: https://accounts.google.com/o/oauth2/revoke?token={$access_token}");
+			die();
+		}
 		
+		header("Location: /");
 		exit;
 	}
 	
