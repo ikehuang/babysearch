@@ -539,6 +539,18 @@ class UserController extends \Phalcon\Mvc\Controller {
 			$user->nickname = $user_info->name;
 		
 			$user->create();
+			
+			//create contact
+			for($i = 0 ;$i < 3;$i++ ) {
+				$lost_contact = new LostContacts();
+				$lost_contact->firstname = '';
+				$lost_contact->lastname = '';
+				$lost_contact->phone = '';
+				$lost_contact->email = '';
+				$lost_contact->sso_id = $user->sso_id;
+				$lost_contact->create();
+			}
+			
 		}
 		else {
 			$user = User::findFirst("sso_id = '{$user_info->id}'");
@@ -572,18 +584,7 @@ class UserController extends \Phalcon\Mvc\Controller {
 			$mobile->update();
 		}
 		
-		
-		//create contact
-		for($i = 0 ;$i < 3;$i++ ) {
-			$lost_contact = new LostContacts();
-			$lost_contact->firstname = '';
-			$lost_contact->lastname = '';
-			$lost_contact->phone = '';
-			$lost_contact->email = '';
-			$lost_contact->sso_id = $user->sso_id;
-			$lost_contact->create();
-		}
-		
+
 		return $this->response->redirect("user/index");
 	}
 	
@@ -606,6 +607,17 @@ class UserController extends \Phalcon\Mvc\Controller {
 			$user->nickname = $user_info->name;
 	
 			$user->create();
+			
+			//create contact
+			for($i = 0 ;$i < 3;$i++ ) {
+				$lost_contact = new LostContacts();
+				$lost_contact->firstname = '';
+				$lost_contact->lastname = '';
+				$lost_contact->phone = '';
+				$lost_contact->email = '';
+				$lost_contact->sso_id = $user->sso_id;
+				$lost_contact->create();
+			}
 		}
 		else {
 			$user = User::findFirst("sso_id = '{$user_info->id}'");
@@ -628,17 +640,6 @@ class UserController extends \Phalcon\Mvc\Controller {
 			$mobile->sso_id = $user_info->id;
 	
 			$mobile->create();
-		}
-	
-		//create contact
-		for($i = 0 ;$i < 3;$i++ ) {
-			$lost_contact = new LostContacts();
-			$lost_contact->firstname = '';
-			$lost_contact->lastname = '';
-			$lost_contact->phone = '';
-			$lost_contact->email = '';
-			$lost_contact->sso_id = $user->sso_id;
-			$lost_contact->create();
 		}
 	
 		return $this->response->redirect("user/index");

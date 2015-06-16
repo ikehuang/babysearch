@@ -53,10 +53,12 @@ body {
 	color:white;
 	text-align:center;
 	display:none;
+	z-index:999;
 }
 
 #usermenu a{
 	text-decoration: none;
+	color:white;
 }
 
 #footer {

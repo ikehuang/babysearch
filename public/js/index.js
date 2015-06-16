@@ -1,5 +1,6 @@
 $(document).ready(function(){
-   $('#userlink').on('click',function(){  
-      $('#usermenu').show();
-   });
+	$('#usermenu').height($(document).height() );
+	   $('#userlink').on('click',function(){  
+	      $('#usermenu').show();
+	   });
 });
