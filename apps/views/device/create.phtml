@@ -230,17 +230,16 @@
 					if(!empty($lost_contacts)) {
 						foreach($lost_contacts as $k => $r) {
 							$index = $k+1;
-							
 							echo <<<EOT
-<div class="green_text"><input type="checkbox" name="contact[]" value='{$r->id}'>聯絡人{$index}</div>
+<div class="green_text"><input type="checkbox" name="contact[{$r->id}]" value='{$r->id}'>聯絡人{$index}</div>
 <div class='input_div'>
 	<div class="blue_text">姓名</div>
-	<input type="text" name="contactFirstname[]" value='{$r->firstname}' class="textfield" placeholder="名"/>
-	<input type="text" name="contactLastname[]" value='{$r->lastname}' class="textfield" placeholder="姓"/>
+	<input type="text" name="contactFirstname[{$r->id}]" value='{$r->firstname}' class="textfield" placeholder="名"/>
+	<input type="text" name="contactLastname[{$r->id}]" value='{$r->lastname}' class="textfield" placeholder="姓"/>
 </div>
 <div class='input_div'>
 	<div class="blue_text">電話</div>
-	<input type="text" name="contactPhone[]" value='{$r->phone}' class="textfield"/>
+	<input type="text" name="contactPhone[{$r->id}]" value='{$r->phone}' class="textfield"/>
 </div>
 												
 EOT;
@@ -403,15 +402,15 @@ EOT;
 							$index = $k+1;
 							
 							echo <<<EOT
-<div class="green_text"><input type="checkbox" name="contact[]" value='{$r->id}'>聯絡人{$index}</div>
+<div class="green_text"><input type="checkbox" name="contact[{$r->id}]" value='{$r->id}'>聯絡人{$index}</div>
 <div class='input_div'>
 	<div class="blue_text">姓名</div>
-	<input type="text" name="contactFirstname[]" value='{$r->firstname}' class="textfield" placeholder="名"/>
-	<input type="text" name="contactLastname[]" value='{$r->lastname}' class="textfield" placeholder="姓"/>
+	<input type="text" name="contactFirstname[{$r->id}]" value='{$r->firstname}' class="textfield" placeholder="名"/>
+	<input type="text" name="contactLastname[{$r->id}]" value='{$r->lastname}' class="textfield" placeholder="姓"/>
 </div>
 <div class='input_div'>
 	<div class="blue_text">電話</div>
-	<input type="text" name="contactPhone[]" value='{$r->phone}' class="textfield"/>
+	<input type="text" name="contactPhone[{$r->id}]" value='{$r->phone}' class="textfield"/>
 </div>
 												
 EOT;
@@ -489,15 +488,15 @@ EOT;
 							$index = $k+1;
 							
 							echo <<<EOT
-<div class="green_text"><input type="checkbox" name="contact[]" value='{$r->id}'>聯絡人{$index}</div>
+<div class="green_text"><input type="checkbox" name="contact[{$r->id}]" value='{$r->id}'>聯絡人{$index}</div>
 <div class='input_div'>
 	<div class="blue_text">姓名</div>
-	<input type="text" name="contactFirstname[]" value='{$r->firstname}' class="textfield" placeholder="名"/>
-	<input type="text" name="contactLastname[]" value='{$r->lastname}' class="textfield" placeholder="姓"/>
+	<input type="text" name="contactFirstname[{$r->id}]" value='{$r->firstname}' class="textfield" placeholder="名"/>
+	<input type="text" name="contactLastname[{$r->id}]" value='{$r->lastname}' class="textfield" placeholder="姓"/>
 </div>
 <div class='input_div'>
 	<div class="blue_text">電話</div>
-	<input type="text" name="contactPhone[]" value='{$r->phone}' class="textfield"/>
+	<input type="text" name="contactPhone[{$r->id}]" value='{$r->phone}' class="textfield"/>
 </div>
 												
 EOT;

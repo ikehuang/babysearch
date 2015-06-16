@@ -460,8 +460,6 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			
 			$valuable_info->create();
 			
-			/*
-			
 			//update lost contacts for user				
 			$lost_contacts = $this->_request->getPost('contact');
 				
@@ -474,28 +472,34 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 				}
 			}
 				
-			foreach($lost_contacts as $k => $r) {
-			
-				$device_contact = new DeviceContacts();
-				$device_contact->serial_number = $device->serial_number;
-				$device_contact->contact_id = $r;
-				$device_contact->create();
+			if(!empty($lost_contacts)) {
+				foreach($lost_contacts as $contact_id => $r) {
 				
-				
-				//$contacts = LostContacts::findFirst("id = '{$r}'");
-				//$contacts->firstname = $firstnames[$k];
-				//$contacts->lastname = $lastnames[$k];
-				//$contacts->phone = $phones[$k];
-				//$contacts->shown = 'y';
-				//$contacts->update();
-				
+					$device_contact = new DeviceContacts();
+					$device_contact->serial_number = $device->serial_number;
+					$device_contact->contact_id = $r;
+					$device_contact->create();
+				}
 			}
-			*/
+
+
+			if(!empty($firstnames)) {
+				foreach($firstnames as $contact_id => $r) {
+					$contact = LostContacts::findFirst("id = '{$contact_id}'");
+					$contact->firstname = $firstnames[$contact_id];
+					$contact->lastname = $lastnames[$contact_id];
+					$contact->phone = $phones[$contact_id];
+					//$contact->shown = 'y';
+					$contact->update();
+				
+				}
+			}
 			
 			$response_data = array(
 					'status' => 'success'
 			);
 		}
+		
 		$this->response->setContent(json_encode($response_data));
 		$this->response->send();
 	}
@@ -1798,7 +1802,8 @@ EOTl
 		$device = Device::findFirst("serial_number = '{$serial_number}'");
 		$this->view->device = $device;
 		
-		$this->view->contacts = LostContacts::find("email  = '{$_SESSION['USER']['INFO']['email']}'");
+		$this->view->contacts = LostContacts::find("sso_id  = '{$_SESSION['USER']['INFO']['sso_id']}'");
+		//$this->view->contacts = LostContacts::find("email  = '{$_SESSION['USER']['INFO']['email']}'");
 	}
 	
 	public function updatePhotoAction() {

@@ -32,6 +32,11 @@ class Acl extends \Phalcon\Mvc\User\Component
 	{
 		$controller = $dispatcher->getControllerName();
 		$action = $dispatcher->getActionName();
+		if( $controller == 'device' && $action == 'create')
+			return;
+		
+		if( $controller == 'device' && $action == 'index')
+			return;
 
 		if (isset($_SESSION['USER']['INFO']) &&  $controller == 'user' && $action == 'login') {
 			$dispatcher->forward(
