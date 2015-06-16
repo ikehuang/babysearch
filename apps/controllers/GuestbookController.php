@@ -41,8 +41,8 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 			$this->view->disable();
 			$this->response->setContentType('application/json', 'UTF-8');
 				
-			$guestbook = new GuestBook();
-		
+			$guestbook = new Guestbook();
+
 			$guestbook->did = $this->_request->getPost("did");
 			$guestbook->name = $this->_request->getPost("name");
 			$guestbook->location = $this->_request->getPost("location");
