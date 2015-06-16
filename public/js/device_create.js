@@ -73,7 +73,7 @@ $.init_form = function() {
 		},
 		error:function() {
 			$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
-			$.blockUI({ message: '<h1>新增失敗!</h1>'});
+			$.blockUI({ message: '<h1>error新增失敗!</h1>'});
 		}
 	});
 };

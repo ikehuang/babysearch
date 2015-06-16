@@ -8,7 +8,6 @@
 	<li> > </li>
 	<li style='color:#86c557;'>新 增 我 購 買 的 商 品</li>
 </ul>
-		
 		<div>
 			<div id="addSerial">
 				<div class="green_text title">步 驟 一 : 請輸入產品序號</div>
@@ -225,38 +224,29 @@
 					<div class="green_text" style="margin-top:6.4%;margin-bottom:6.4%;">步 驟 三 : 在寵物、人或物品遺失時供給尋獲的人可以看見的聯絡資訊</div>
 					<div class="green_text" style="margin-top:6.4%;margin-bottom:6.4%;">註 : 此資訊只會在狀態設定為 "遺失" 時才會公開顯示</div>
 					<div class="blue_text" style="margin-bottom:3.2%">新增聯絡人清單</div>
-					<div class="green_text"><input type="radio" name="contact1" value="contact1">聯絡人1</div>
 					
-					<div class='input_div'>
-						<div class="blue_text">姓名</div>
-						<input type="text" name="contactFirstname[]" class="textfield" placeholder="名"/>
-						<input type="text" name="contactLastname[]" class="textfield" placeholder="姓"/>
-					</div>
-					<div class='input_div'>
-						<div class="blue_text">電話</div>
-						<input type="text" name="contactPhone[]" class="textfield"/>
-					</div>
-					<div class="green_text"><input type="radio" name="contact2" value="contact2">聯絡人2</div>
+					<?php
 					
-					<div class='input_div'>
-						<div class="blue_text">姓名</div>
-						<input type="text" name="contactFirstname[]" class="textfield" placeholder="名"/>
-						<input type="text" name="contactLastname[]" class="textfield" placeholder="姓"/>
-					</div>
-					<div class='input_div'>
-						<div class="blue_text">電話</div>
-						<input type="text" name="contactPhone2" class="textfield"/>
-					</div>
-					<div class="green_text"><input type="radio" name="contact3" value="contact3">聯絡人3</div>
-					<div class='input_div'>
-						<div class="blue_text">姓名</div>
-						<input type="text" name="contactFirstname[]" class="textfield" placeholder="名"/>
-						<input type="text" name="contactLastname[]" class="textfield" placeholder="姓"/>
-					</div>
-					<div class='input_div'>
-						<div class="blue_text">電話</div>
-						<input type="text" name="contactPhone[]" class="textfield"/>
-					</div>
+					if(!empty($lost_contacts)) {
+						foreach($lost_contacts as $k => $r) {
+							$index = $k+1;
+							
+							echo <<<EOT
+<div class="green_text"><input type="checkbox" name="contact[]" value='{$r->id}'>聯絡人{$index}</div>
+<div class='input_div'>
+	<div class="blue_text">姓名</div>
+	<input type="text" name="contactFirstname[]" value='{$r->firstname}' class="textfield" placeholder="名"/>
+	<input type="text" name="contactLastname[]" value='{$r->lastname}' class="textfield" placeholder="姓"/>
+</div>
+<div class='input_div'>
+	<div class="blue_text">電話</div>
+	<input type="text" name="contactPhone[]" value='{$r->phone}' class="textfield"/>
+</div>
+												
+EOT;
+						}
+					}
+					?>
 					
 				    <div id='submit_div'>
 						<button type='button' class="button orange_btn"  id="addContact1_back">上 一 步</button>
@@ -405,38 +395,29 @@
 					<div class="green_text" style="margin-top:6.4%;margin-bottom:6.4%;">步 驟 三 : 在寵物、人或物品遺失時供給尋獲的人可以看見的聯絡資訊</div>
 					<div class="green_text" style="margin-top:6.4%;margin-bottom:6.4%;">註 : 此資訊只會在狀態設定為 "遺失" 時才會公開顯示</div>
 					<div class="blue_text" style="margin-bottom:3.2%">新增聯絡人清單</div>
-					<div class="green_text"><input type="radio" name="contact1" value="contact1">聯絡人1</div>
 					
-					<div class='input_div'>
-						<div class="blue_text">姓名</div>
-						<input type="text" name="contactFirstname[]" class="textfield" placeholder="名"/>
-						<input type="text" name="contactLastname[]" class="textfield" placeholder="姓"/>
-					</div>
-					<div class='input_div'>
-						<div class="blue_text">電話</div>
-						<input type="text" name="contactPhonename[]" class="textfield"/>
-					</div>
-					<div class="green_text"><input type="radio" name="contact2" value="contact2">聯絡人2</div>
+					<?php
 					
-					<div class='input_div'>
-						<div class="blue_text">姓名</div>
-						<input type="text" name="contactFirstname[]" class="textfield" placeholder="名"/>
-						<input type="text" name="contactLastname[]" class="textfield" placeholder="姓"/>
-					</div>
-					<div class='input_div'>
-						<div class="blue_text">電話</div>
-						<input type="text" name="contactPhone[]" class="textfield"/>
-					</div>
-					<div class="green_text"><input type="radio" name="contact3" value="contact3">聯絡人3</div>
-					<div class='input_div'>
-						<div class="blue_text">姓名</div>
-						<input type="text" name="contactFirstname[]" class="textfield" placeholder="名"/>
-						<input type="text" name="contactLastname[]" class="textfield" placeholder="姓"/>
-					</div>
-					<div class='input_div'>
-						<div class="blue_text">電話</div>
-						<input type="text" name="contactPhone[]" class="textfield"/>
-					</div>
+					if(!empty($lost_contacts)) {
+						foreach($lost_contacts as $k => $r) {
+							$index = $k+1;
+							
+							echo <<<EOT
+<div class="green_text"><input type="checkbox" name="contact[]" value='{$r->id}'>聯絡人{$index}</div>
+<div class='input_div'>
+	<div class="blue_text">姓名</div>
+	<input type="text" name="contactFirstname[]" value='{$r->firstname}' class="textfield" placeholder="名"/>
+	<input type="text" name="contactLastname[]" value='{$r->lastname}' class="textfield" placeholder="姓"/>
+</div>
+<div class='input_div'>
+	<div class="blue_text">電話</div>
+	<input type="text" name="contactPhone[]" value='{$r->phone}' class="textfield"/>
+</div>
+												
+EOT;
+						}
+					}
+					?>
 					
 				    <div id='submit_div'>
 						<button type='button' class="button orange_btn"  id="addContact2_back">上 一 步</button>
@@ -500,38 +481,29 @@
 					<div class="green_text" style="margin-top:6.4%;margin-bottom:6.4%;">步 驟 三 : 在寵物、人或物品遺失時供給尋獲的人可以看見的聯絡資訊</div>
 					<div class="green_text" style="margin-top:6.4%;margin-bottom:6.4%;">註 : 此資訊只會在狀態設定為 "遺失" 時才會公開顯示</div>
 					<div class="blue_text" style="margin-bottom:3.2%">新增聯絡人清單</div>
-					<div class="green_text"><input type="radio" name="contact1" value="contact1">聯絡人1</div>
 					
-					<div class='input_div'>
-						<div class="blue_text">姓名</div>
-						<input type="text" name="contactFirstname[]" class="textfield" placeholder="名"/>
-						<input type="text" name="contactLastname[]" class="textfield" placeholder="姓"/>
-					</div>
-					<div class='input_div'>
-						<div class="blue_text">電話</div>
-						<input type="text" name="contactPhone[]" class="textfield"/>
-					</div>
-					<div class="green_text"><input type="radio" name="contact2" value="contact2">聯絡人2</div>
+					<?php
 					
-					<div class='input_div'>
-						<div class="blue_text">姓名</div>
-						<input type="text" name="contactFirstname[]" class="textfield" placeholder="名"/>
-						<input type="text" name="contactLastname[]" class="textfield" placeholder="姓"/>
-					</div>
-					<div class='input_div'>
-						<div class="blue_text">電話</div>
-						<input type="text" name="contactPhone[]" class="textfield"/>
-					</div>
-					<div class="green_text"><input type="radio" name="contact3" value="contact3">聯絡人3</div>
-					<div class='input_div'>
-						<div class="blue_text">姓名</div>
-						<input type="text" name="contactFirstname[]" class="textfield" placeholder="名"/>
-						<input type="text" name="contactLastname[]" class="textfield" placeholder="姓"/>
-					</div>
-					<div class='input_div'>
-						<div class="blue_text">電話</div>
-						<input type="text" name="contactPhone[]" class="textfield"/>
-					</div>
+					if(!empty($lost_contacts)) {
+						foreach($lost_contacts as $k => $r) {
+							$index = $k+1;
+							
+							echo <<<EOT
+<div class="green_text"><input type="checkbox" name="contact[]" value='{$r->id}'>聯絡人{$index}</div>
+<div class='input_div'>
+	<div class="blue_text">姓名</div>
+	<input type="text" name="contactFirstname[]" value='{$r->firstname}' class="textfield" placeholder="名"/>
+	<input type="text" name="contactLastname[]" value='{$r->lastname}' class="textfield" placeholder="姓"/>
+</div>
+<div class='input_div'>
+	<div class="blue_text">電話</div>
+	<input type="text" name="contactPhone[]" value='{$r->phone}' class="textfield"/>
+</div>
+												
+EOT;
+						}
+					}
+					?>
 					
 				    <div id='submit_div'>
 						<button type='button' class="button orange_btn"  id="addContact3_back">上 一 步</button>

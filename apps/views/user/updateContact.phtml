@@ -7,20 +7,20 @@
 <ul id='title'>
 	<li><a href='/'>首頁</a></li>
 	<li> > </li>
-	<li style='color:#86c557;'>聯絡人設定</li>
+	<li style='color:#86c557;'>聯絡人清單</li>
 </ul>
 
 <div id="contact_form_container">
 	
 	<div class="title">
-		<span>步驟三 : 在寵物、人或物品遺失時提供給尋獲的人可以看見聯絡人資訊</span>
+		<span>在寵物、人或物品遺失時提供給尋獲的人可以看見聯絡人資訊</span>
 		<p>註 : 此資訊只會在狀態設定為"遺失"時才會公開顯示</p>
 	</div>
 		
 	<form action="/user/updateContact" method="post">
 	    <div class='input_div'>
 	        <div class="blue_text" id='contact_div'>
-	        	</font>新增聯絡人清單</span> 
+	        	</font>編輯聯絡人清單</span> 
 	        </div>
 				<?php 
 				foreach($contacts as $k => $r) {

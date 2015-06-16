@@ -59,7 +59,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 				break;
 		}
 
-		$this->view->lost_contacts = LostContacts::find("email = '{$_SESSION['USER']['INFO']['email']}'");
+		$this->view->lost_contacts = LostContacts::find("sso_id = '{$_SESSION['USER']['INFO']['sso_id']}'");
 		$this->view->photos  = Photos::find("did = {$device->did}");
 		$this->view->setVar("device", $device);
 		$this->view->setVar("info", $info);
@@ -110,11 +110,6 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		$pet_hospital_district = $this->_request->getPost('pet_hospital_district');
 		$pet_hospital_postal = $this->_request->getPost('pet_hospital_postal');
 		$pet_hospital_country = $this->_request->getPost('pet_hospital_country');
-		
-		//for lost contacts
-		$firstnames = $this->_request->getPost('contactFirstname');
-		$lastnames = $this->_request->getPost('contactLastname');
-		$phones = $this->_request->getPost('contactPhone');
 		
 		//if serial number exists and 'status'='new', then continue to create device...; otherwise, return fail
 		if(Device::count(array("conditions" => "status = 'new' AND serial_number = '{$serial_number}'")) > 0) {
@@ -202,25 +197,25 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			
 			$pet_info->create();
 			
-			//create lost contacts
-			$i=0;
+			//update lost contacts for user	
 			
-			foreach($firstnames as $r) {
+			$lost_contacts = $this->_request->getPost('contact');
 			
-				//Assume firstname is required here...
-				if(!empty($firstnames)) {
+			$device_contacts = DeviceContacts::find("serial_number = '{$device->serial_number}'");
 			
-					//$lost_contact = LostContacts::findFirst("id = '{$k}'");
-					$lost_contact = new LostContacts();
-		
-					$lost_contact->firstname = $firstnames[$i];
-					$lost_contact->lastname = $lastname[$i];
-					$lost_contact->phone = $phones[$i];
-					$i++;
-					$lost_contact->sso_id = $_SESSION['USER']['INFO']['sso_id'];
-					$lost_contact->create();
-					
+			if(!empty($device_contacts)) {
+				
+				foreach($device_contacts as $r) {
+					$r->delete();
 				}
+			}
+			
+			foreach($lost_contacts as $k => $r) {
+				
+				$device_contact = new DeviceContacts();
+				$device_contact->serial_number = $device->serial_number;
+				$device_contact->contact_id = $r;
+				$device_contact->create();				
 			}
 			
 			$response_data = array(
@@ -269,6 +264,12 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		$human_hospital_district = $this->_request->getPost('human_hospital_district');
 		$human_hospital_postal = $this->_request->getPost('human_hospital_postal');
 		$human_hospital_country = $this->_request->getPost('human_hospital_country');
+		
+		//for lost contacts
+		$contacts = $this->_request->getPost('contact');
+		$firstnames = $this->_request->getPost('contactFirstname');
+		$lastnames = $this->_request->getPost('contactLastname');
+		$phones = $this->_request->getPost('contactPhone');
 		
 		//if serial number exists and 'status'='new', then continue to create device...; otherwise, return fail
 		if(Device::count(array("conditions" => "status = 'new' AND serial_number = '{$serial_number}'")) > 0) {
@@ -344,6 +345,26 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			
 			$human_info->create();
 			
+			//update lost contacts for user
+			$lost_contacts = $this->_request->getPost('contact');
+			
+			$device_contacts = DeviceContacts::find("serial_number = '{$device->serial_number}'");
+			
+			if(!empty($device_contacts)) {
+					
+				foreach($device_contacts as $r) {
+					$r->delete();
+				}
+			}
+			
+			foreach($lost_contacts as $k => $r) {
+					
+				$device_contact = new DeviceContacts();
+				$device_contact->serial_number = $device->serial_number;
+				$device_contact->contact_id = $r;
+				$device_contact->create();
+			}
+			
 			$response_data = array(
 					'status' => 'success'
 			);
@@ -374,6 +395,12 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		//valuable info
 		$valuable_name = $this->_request->getPost('valuable_name');
 		$valuable_description = $this->_request->getPost('valuable_description');
+		
+		//for lost contacts
+		$contacts = $this->_request->getPost('contact');
+		$firstnames = $this->_request->getPost('contactFirstname');
+		$lastnames = $this->_request->getPost('contactLastname');
+		$phones = $this->_request->getPost('contactPhone');
 		
 		//if serial number exists and 'status'='new', then continue to create device...; otherwise, return fail
 		if(Device::count(array("conditions" => "status = 'new' AND serial_number = '{$serial_number}'")) > 0) {
@@ -428,6 +455,35 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			$valuable_info->description = $valuable_description;
 			
 			$valuable_info->create();
+			
+			//update lost contacts for user				
+			$lost_contacts = $this->_request->getPost('contact');
+				
+			$device_contacts = DeviceContacts::find("serial_number = '{$device->serial_number}'");
+				
+			if(!empty($device_contacts)) {
+			
+				foreach($device_contacts as $r) {
+					$r->delete();
+				}
+			}
+				
+			foreach($lost_contacts as $k => $r) {
+			
+				$device_contact = new DeviceContacts();
+				$device_contact->serial_number = $device->serial_number;
+				$device_contact->contact_id = $r;
+				$device_contact->create();
+				
+				/*
+				$contacts = LostContacts::findFirst("id = '{$r}'");
+				$contacts->firstname = $firstnames[$k];
+				$contacts->lastname = $lastnames[$k];
+				$contacts->phone = $phones[$k];
+				$contacts->shown = 'y';
+				$contacts->update();
+				*/
+			}
 			
 			$response_data = array(
 					'status' => 'success'
@@ -1098,6 +1154,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		}
 		
 		$this->view->device_type = $type;
+		$this->view->lost_contacts = LostContacts::find("sso_id = '{$_SESSION['USER']['INFO']['sso_id']}'");
 	}
 	
 	public function updateCoordinatesAction() {
