@@ -25,6 +25,10 @@
 				<?php 
 				foreach($contacts as $k => $r) {
 					$index = $k+1;
+					
+					if($r->phone == 0)
+						$r->phone = null;
+					
 					echo <<<EOT
 <div class='contact'>
 	<h3 class='green_text'>聯絡人 {$index}</h3> 

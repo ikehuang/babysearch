@@ -21,7 +21,25 @@
 		</form>
 		<div id='img_wrapper'>
 			<div style='margin:0 auto;position:relative;'>
-				<img id="pic" src= "<?php echo $device->photo?>"/>
+				<img id="pic" src= "
+					<?php
+						if(empty($device->photo)) {
+							switch($device->type) {
+								case "Pets":
+									echo '/img/17/pic-02-02.png';
+									break;
+								case "Human":
+									echo '/img/17/pic-01-02.png';
+									break;
+								case "Valuables":
+									echo '/img/17/pic-03-02.png';
+									break;
+								default:
+									break;
+							}
+						}
+						else echo $device->photo;
+					?>"/>
 				<img id='upload_btn' src="/img/08/frame.png" />
 			</div>
 		</div>

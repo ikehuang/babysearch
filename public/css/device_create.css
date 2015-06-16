@@ -226,7 +226,7 @@
 }
 
 .blah {
-	<!--display:none;-->
+	display:none;
 	position: absolute;
 	top: 3.5%;
 	left: 4%;

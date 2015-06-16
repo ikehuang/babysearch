@@ -89,6 +89,9 @@
 						if($contacts[$i]->id == $device->lost_contact_id)
 							$checked = "checked";
 						
+							if($contacts[$i]->phone == 0)
+								$contacts[$i]->phone = null;
+						
 						echo <<<EOT
 				<div class='contact'>
 					<table style="width:100%">

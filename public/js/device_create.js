@@ -279,11 +279,19 @@ $(document).ready(function() {
 			return false;
 		}
 		if($('#create_human_form input[name="human_lastname"]').val().length == 0) {
-			alert('請輸入人的名字!');
+			alert('請輸入人的姓氐!');
 			return false;
 		}
 		if($('#create_human_form input[name="human_nickname"]').val().length == 0) {
 			alert('請輸入人的暱稱!');
+			return false;
+		}
+		if($('#create_human_form input[name="human_sex"]').prop('checked') == false) {
+			alert('請選擇人的性別!');
+			return false;
+		}
+		if($('#create_human_form input[name="human_birthday"]').val().length == 0) {
+			alert('請選擇人的生日日期!');
 			return false;
 		}
 		$("#addHuman").hide();
