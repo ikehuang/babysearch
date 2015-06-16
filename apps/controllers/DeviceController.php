@@ -197,6 +197,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			
 			$pet_info->create();
 			
+			/*
 			//update lost contacts for user	
 			
 			$lost_contacts = $this->_request->getPost('contact');
@@ -217,6 +218,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 				$device_contact->contact_id = $r;
 				$device_contact->create();				
 			}
+			*/
 			
 			$response_data = array(
 					'status' => 'success'
@@ -345,6 +347,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			
 			$human_info->create();
 			
+			/*
 			//update lost contacts for user
 			$lost_contacts = $this->_request->getPost('contact');
 			
@@ -364,6 +367,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 				$device_contact->contact_id = $r;
 				$device_contact->create();
 			}
+			*/
 			
 			$response_data = array(
 					'status' => 'success'
@@ -456,6 +460,8 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			
 			$valuable_info->create();
 			
+			/*
+			
 			//update lost contacts for user				
 			$lost_contacts = $this->_request->getPost('contact');
 				
@@ -475,15 +481,16 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 				$device_contact->contact_id = $r;
 				$device_contact->create();
 				
-				/*
-				$contacts = LostContacts::findFirst("id = '{$r}'");
-				$contacts->firstname = $firstnames[$k];
-				$contacts->lastname = $lastnames[$k];
-				$contacts->phone = $phones[$k];
-				$contacts->shown = 'y';
-				$contacts->update();
-				*/
+				
+				//$contacts = LostContacts::findFirst("id = '{$r}'");
+				//$contacts->firstname = $firstnames[$k];
+				//$contacts->lastname = $lastnames[$k];
+				//$contacts->phone = $phones[$k];
+				//$contacts->shown = 'y';
+				//$contacts->update();
+				
 			}
+			*/
 			
 			$response_data = array(
 					'status' => 'success'

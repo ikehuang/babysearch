@@ -162,7 +162,7 @@
 				<div class='input_div'>
 					<div class="blue_text">專屬醫院</div>
 	        		<input type="text" name="pet_hospital_name" value="<?php if(isset($pet_info)) echo $pet_info->hospital_name; ?>" class="textfield" placeholder="醫院名稱"/><br>
-	        		<input type="number" name="pet_hospital_phone" value="<?php if(isset($pet_info)) echo $pet_info->hospital_phone; ?>" class="textfield" placeholder="醫院電話"/><br>
+	        		<input type="number" name="pet_hospital_phone" value="<?php if(isset($pet_info) && ($pet_info->hospital_phone != 0)) echo $pet_info->hospital_phone; ?>" class="textfield" placeholder="醫院電話"/><br>
 				</div>
 				<div class='input_div'>
 	        		<div class="blue_text">醫院地址</div>
@@ -205,7 +205,7 @@
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">生日</div>
-	        		<input type="text" name="human_birthday" value="<?php if(isset($human_info)) echo $human_info->birthday; ?>" class="textfield datepicker"/>
+	        		<input name="human_birthday" value="<?php if(isset($human_info)) echo $human_info->birthday; ?>" class="textfield" type='date'/>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">身高(cm)</div>
@@ -269,7 +269,7 @@
 				<div class='input_div'>
 					<div class="blue_text">專屬醫院</div>
 	        		<input type="text" name="human_hospital_name" value="<?php if(isset($human_info)) echo $human_info->hospital_name; ?>" class="textfield" placeholder="醫院名稱"/><br>
-	        		<input type="number" name="human_hospital_phone" value="<?php if(isset($human_info)) echo $human_info->hospital_phone; ?>" class="textfield" placeholder="醫院電話"/><br>
+	        		<input type="number" name="human_hospital_phone" value="<?php if(isset($human_info) && ($human_info->hospital_phone != 0)) echo $human_info->hospital_phone; ?>" class="textfield" placeholder="醫院電話"/><br>
 				</div>
 				<div class='input_div'>
 	        		<div class="blue_text">醫院地址</div>
