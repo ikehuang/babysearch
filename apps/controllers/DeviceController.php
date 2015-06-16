@@ -504,10 +504,12 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		$serial_number = $_GET["sn"];
 		
 		//sample data
-		$this->_email = $_SESSION['USER']['INFO']['email'];
+		//$this->_email = $_SESSION['USER']['INFO']['email'];
+		$this->_sso_id = $_SESSION['USER']['INFO']['email'];
 		
+		if(Device::count(array("conditions" => "sso_id = '{$this->_sso_id}' AND serial_number = '{$serial_number}'")) > 0) {
 		//if email-serial_number pair exists in the system, then continue...; otherwise, fail.
-		if(Device::count(array("conditions" => "email = '{$this->_email}' AND serial_number = '{$serial_number}'")) > 0) {
+		//if(Device::count(array("conditions" => "email = '{$this->_email}' AND serial_number = '{$serial_number}'")) > 0) {
 			
 			$device = Device::findFirst("serial_number = '{$serial_number}'");
 			
@@ -1032,7 +1034,8 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		$photo_list = array();
 	
 		//sample data
-		$this->_email = $_SESSION['USER']['INFO']['email'];
+		//$this->_email = $_SESSION['USER']['INFO']['email'];
+		$this->_sso_id = $_SESSION['USER']['INFO']['sso_id'];
 		//$this->_api_key = 'qwe123';
 		//$this->_apikey = 'qwe123';
 		//$this->_email = 'brucelee@gmail.com';
@@ -1041,9 +1044,10 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 	
 		//if api_key match, continue...; otherwise, return fail
 		//if($this->_api_key == $this->_apikey) {
-	
+			
+			if(Device::count(array("conditions" => "sso_id = '{$this->_sso_id}' AND serial_number = '{$serial_number}'")) > 0) {
 			//if email-serial_number pair exists in the system, then continue...; otherwise, fail.
-			if(Device::count(array("conditions" => "email = '{$this->_email}' AND serial_number = '{$serial_number}'")) > 0) {
+			//if(Device::count(array("conditions" => "email = '{$this->_email}' AND serial_number = '{$serial_number}'")) > 0) {
 				//if serial number exists, then continue...; otherwise, return fail
 				//if(Device::count("serial_number = '{$serial_number}'") > 0) {
 	
