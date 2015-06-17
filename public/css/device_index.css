@@ -45,6 +45,7 @@
 
 #tab_container {
 	background:#4e88ff;
+	height:13em;
 }
 
 #tab_container ul {
@@ -61,6 +62,7 @@
 	color:white;
 	font-size:4.000em;
 	cursor:pointer;
+	vertical-align:middle;
 }
 
 #tab_container img {
@@ -79,6 +81,7 @@
 	background:#4e65c5 url(/img/02/bu-02-03.png) left bottom no-repeat;
 	background-size: contain;
 	padding-bottom:30px;
+	padding-top:15px;
 }
 
 #info_container {
