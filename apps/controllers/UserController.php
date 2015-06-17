@@ -515,7 +515,22 @@ class UserController extends \Phalcon\Mvc\Controller {
 		}
 		
 		if($login_type == 'google') {
-			header("Location: https://accounts.google.com/o/oauth2/revoke?token={$access_token}");
+			
+			$revokeURL = "https://accounts.google.com/o/oauth2/revoke?token=".$access_token;
+			
+			$ch = curl_init();
+			$options = array(
+					CURLOPT_URL => $revokeURL,
+					CURLOPT_HEADER  =>  true,
+					CURLOPT_RETURNTRANSFER  =>  true,
+					CURLOPT_SSL_VERIFYPEER => true, //verify HTTPS
+					CURLOPT_SSL_CIPHER_LIST => 'TLSv1'); //remove this line if curl SSL error
+			
+			curl_setopt_array($ch, $options); //setup
+			
+			$response = curl_exec($ch); //run
+					
+			header("Location: /");
 			die();
 		}
 		

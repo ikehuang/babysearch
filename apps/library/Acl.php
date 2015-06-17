@@ -44,7 +44,7 @@ class Acl extends \Phalcon\Mvc\User\Component
 		if( $controller == 'guestbook' && $action == 'list')
 			return;
 
-		if (isset($_SESSION['USER']['INFO']) &&  $controller == 'user' && $action == 'login') {
+		if (isset($_SESSION['USER']['INFO']) && !empty($_SESSION['USER']['INFO']) &&  $controller == 'user' && $action == 'login') {
 			$dispatcher->forward(
 				array(
 					'controller' => 'user',
