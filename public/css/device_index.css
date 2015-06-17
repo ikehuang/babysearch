@@ -1,8 +1,9 @@
 #title  {
 	color:white;
 	background:#ff8800;
-	font-size:2.5em;	
+	font-size:4em;	
 	padding:2%;	
+	
 }
 
 #title img {
@@ -49,7 +50,7 @@
 	width:49%;
 	text-align:center;
 	color:white;
-	font-size:2.500em;
+	font-size:4.000em;
 	cursor:pointer;
 }
 
@@ -68,6 +69,7 @@
 	width:50%;
 	background:#4e65c5 url(/img/02/bu-02-03.png) left bottom no-repeat;
 	background-size: contain;
+	padding-bottom:30px;
 }
 
 #info_container {

@@ -21,7 +21,7 @@
 	width:49%;
 	text-align:center;
 	color:white;
-	font-size:2.500em;
+	font-size:4.000em;
 	cursor:pointer;
 }
 
@@ -36,7 +36,7 @@
 #human_tab_container li span,
 #val_tab_container li span,
 #pet_tab_container li span {
-	padding-top:6%;	
+	padding-top:10%;	
 	display:inline-block;
 }
 
@@ -46,6 +46,7 @@
 	width:50%;
 	background:#4e65c5 url(/img/02/bu-02-03.png) left bottom no-repeat;
 	background-size: contain;
+	padding-bottom:40px;
 }
 
 .container {
@@ -53,7 +54,7 @@
 }
 
 .input_div {
-	margin:1% 0 3% 0;
+	 margin-bottom: 9%;
 }
 
 .checkbox_table {
@@ -68,7 +69,7 @@
 	text-align:left;
 	width:45%;
 	vertical-align:middle;
-	font-size:2.6em;
+	font-size:3.5em;
 	color:#666;
 	padding:3%;
 }
@@ -77,7 +78,7 @@
 	list-style-type:none;
 	background:#d9d9d9;
 	text-align:left;
-	font-size:2.5em;
+	font-size:4.0em;
 	padding:3%;	
 	margin:0;
 }
@@ -113,10 +114,11 @@
 	background:#EB9F4e;
 	width:100%;
 	border:none;
-	padding:2%;
-	margin:0;
+	padding:5%;
 	color:white;
 	font-size:4.167em;
+	height: 15%;
+    margin: 10px 0;
 }
 
 .orange_btn {

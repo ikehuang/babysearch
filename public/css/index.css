@@ -1,9 +1,10 @@
+<<<<<<< Updated upstream
 @CHARSET "UTF-8";
 
 body {
 	margin:0;
 	padding:0;
-	font-family: Microsoft JhengHei;
+	font-family: Arial, Helvetica, sans-serif;
 	line-height:1;
 }
 
@@ -78,7 +79,7 @@ a {
 	text-decoration: none;
 }
 .textfield{
-	height:10%;
+	height:100px;
 	padding:2%;
 	width:96%;	
 	font-size:3.333em;
@@ -147,3 +148,155 @@ a {
     height: 2em;
 }
 
+=======
+@CHARSET "UTF-8";
+
+body {
+	margin:0;
+	padding:0;
+	font-family: Arial, Helvetica, sans-serif;
+	line-height:1;
+}
+
+#header {
+	background:#86C557;
+	padding:4%;
+	position:relative;
+}
+
+#logout {
+	position:absolute;
+	right:3%;
+	top:30%;
+	color:white;
+	font-size:4em;
+	font-weight:bold;
+}
+
+#logout a,
+#logout a:visited {
+	color:white;
+}
+
+#header ul{
+	margin:0;
+	padding:0;
+	list-style:none;
+	font-size:3.333em;
+	color:#FFFFFF;
+}
+#header li{
+	display: inline;
+	color:#FFFFFF;
+}
+
+#header img {
+	vertical-align:middle;
+	width:30%;
+}
+
+#usermenu {
+	width:100%;
+	height:100%;
+	position:absolute;
+	background:black;
+	opacity:0.7;
+	color:white;
+	text-align:center;
+	display:none;
+	z-index:999;
+}
+
+#usermenu a{
+	text-decoration: none;
+	color:white;
+}
+
+#footer {
+	background:#86C557;
+	color:#FFFFFF;
+	font-size:3.333em;
+	text-align:center;	
+	padding-top:1%;
+	padding-bottom:1%;
+}
+
+.clear {
+	clear:both;
+}
+
+a {
+	text-decoration: none;
+}
+.textfield{
+	height:100px;
+	padding:2%;
+	width:96%;	
+	font-size:4em;
+	text-align:left;
+	margin-top:1%;
+	background: #e6e6e6;
+  	color: #000000;
+  	border: none;
+}
+
+.green_text{
+	color:#86C557;
+	font-size:4.0em;
+	line-height:1;	
+}
+.grey_text{
+	color:#9B9B9B;
+	font-size:3.333em;
+	line-height:1;	
+}
+.blue_text{
+	color:#4990E3;
+	font-size:4em;
+	line-height:1;	
+}
+.white_text{
+	color:#FFFFFF;
+	font-size:3.333em;	
+	line-height:1;	
+}
+.black_text{
+	color:#333333;
+	font-size:4.0em;
+	line-height:1;
+}
+.orange_text{
+	color:#EB9F4E;
+	font-size:3.333em;
+	line-height:1;	
+}
+.red_text{
+	color:#FF0000;
+	font-size:3.333em;
+	line-height:1;	
+}
+
+<!-- /device/create.phtml -->
+#addPet{
+}
+#petInfo_tab{
+	border:none;
+}
+#petHealth_tab{
+	border:none;
+}
+#addHuman{
+}
+#addValuable{
+}
+
+
+ input[type=checkbox],
+  input[type=radio] {
+    border: 0px;
+    width: 2em;
+    height: 2em;
+	zoom:300%;
+}
+
+>>>>>>> Stashed changes

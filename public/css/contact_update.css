@@ -3,7 +3,7 @@
 	list-style-type:none;
 	background:#d9d9d9;
 	text-align:left;
-	font-size:2.5em;
+	font-size:4em;
 	padding:2%;
 	margin:0;
 }
@@ -24,11 +24,11 @@
 }
 
 .title span {
-	font-size:3.333em;	
+	font-size:4em;	
 }
 
 .title p {
-	font-size:2.500em;
+	font-size:4.000em;
 }
 
 .contact {
@@ -48,7 +48,7 @@
 
 .black_text {
 	margin-bottom:5%;
-	font-size:3.333em;
+	font-size:4em;
 	height:3%;
 }
 
