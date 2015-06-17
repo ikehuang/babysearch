@@ -53,7 +53,7 @@ class Acl extends \Phalcon\Mvc\User\Component
 	        );
 		}
 		
-
+/**
 		if (!isset($_SESSION['USER']['INFO']) && $action != 'login') {
 			$dispatcher->forward(
 					array(
@@ -62,6 +62,7 @@ class Acl extends \Phalcon\Mvc\User\Component
 					)
 			);
 		}
+		**/
 	}
 
 	private function _generateACL() {
