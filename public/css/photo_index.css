@@ -96,10 +96,11 @@
 	
 	#add_photo_btn,
 	.photo_wrapper {
-		margin-bottom:20px;
-		margin-right:20px;
-		width:100px;
-		height:100px;
+		margin-bottom:24px;
+		margin-left:10px;
+		margin-right:10px;
+		width:70px;
+		height:70px;
 	}
 	
 	.photo {
@@ -128,10 +129,10 @@
 	
 	#add_photo_btn,
 	.photo_wrapper {
-		margin-bottom:64px;
-		margin-right:61px;
-		width:160px;
-		height:160px;
+		margin-bottom:32px;
+		margin-right:32px;
+		width:100px;
+		height:100px;
 	}
 	
 	.photo {
@@ -172,10 +173,10 @@
 	
 	#add_photo_btn,
 	.photo_wrapper {
-		margin-bottom:20px;
-		margin-right:20px;
-		width:90px;
-		height:90px;
+		margin-bottom:64px;
+		margin-right:71px;
+		width:160px;
+		height:160px;
 	}
 	
 	.photo {
@@ -209,10 +210,10 @@
 	
 	#add_photo_btn,
 	.photo_wrapper {
-		margin-bottom:30px;
-		margin-right:30px;
-		width:100px;
-		height:100px;
+		margin-bottom:64px;
+		margin-right:71px;
+		width:160px;
+		height:160px;
 	}
 	
 	.photo {

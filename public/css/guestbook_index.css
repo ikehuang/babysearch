@@ -11,6 +11,26 @@
 	padding-right:30px;
 }
 
+#title2 {
+	list-style-type:none;
+	background:#d9d9d9;
+	text-align:left;
+	font-size:4em;
+	padding:2%;		
+	margin:0;
+}
+
+#title2 li {
+	display:inline;
+	color:#808080;	
+}
+
+#title2 a,
+#title2 a:visited {
+	color:#808080;
+}
+
+
 #device_img_wrapper {
 	line-height:0;	
 	position:relative;

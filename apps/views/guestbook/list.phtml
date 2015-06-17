@@ -1,4 +1,5 @@
 <link rel="stylesheet" type="text/css" href="/css/guestbook_index.css?rand=<?php echo rand(); 	?>">
+<?php if(!isset($_SESSION) || !empty($_SESSION)) { ?>
 <div id='device_img_wrapper'>
 	<?php 
 	if(empty($device->photo)) {
@@ -24,6 +25,18 @@
 	<h3><?php echo $device->name?> </h3>
 </div>
 <div id='title'><img src='/img/04/icon-01(white).png'/>通知/留言</div>
+<?php } else { ?>
+<ul id='title2'>
+	<li><a href='/'>首頁</a></li>
+	<li> > </li>
+	<li><a href='/user'>管理名單</a></li>
+	<li> > </li>
+	<li><a href='/device/update?serial_number=<?php echo $device->serial_number?>'><?php echo $device->name?></a></li>
+	<li> > </li>
+	<li style='color:#86c557;'>通知</li>
+</ul>	
+
+<?php } ?>
 
 <div id='guestbook_list'>
 <?php 
@@ -49,5 +62,7 @@ EOT;
 			}
 		}
 		?>
-		<a href="/user/login"><div id='home'>回首頁</div></a>
+		<?php if(isset($_SESSION) && !empty($_SESSION)) { ?>
+		<a href="/user"><div id='home'>回首頁</div></a>
+		<?php } ?>
 </div>

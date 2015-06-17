@@ -112,18 +112,21 @@
 				if(!empty($device->photo))
 					$img = "<img src= '{$device->photo}'/>";
 				echo <<<EOT
-<a href='/device/update?serial_number={$device->serial_number}' class='device_wrapper'><li class='{$class}'>	
+<div class='device_wrapper'><li class='{$class}'>	
 	<div class='img_wrapper'>	
 		{$img}
 		{$notification_div}
 	</div>
-	<div class='device_info'>
-		<p class='green_text'>{$device->name }</p>
-		<p class='green_text'>{$kind}</p>
-		<p class='green_text'>USID : {$device->serial_number}</p>
-	</div>
+	<a href='/device/update?serial_number={$device->serial_number}'>
+		<div class='device_info'>
+			<p class='green_text'>{$device->name }</p>
+			<p class='green_text'>{$kind}</p>
+			<p class='green_text'>USID : {$device->serial_number}</p>
+		</div>
+	</a>
 	<div class='clear'></div>
-</a>
+	
+</div>
 EOT;
 			}
 			
