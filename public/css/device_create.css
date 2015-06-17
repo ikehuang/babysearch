@@ -227,7 +227,6 @@
 }
 
 .blah {
-	display:none;
 	position: absolute;
 	top: 3.5%;
 	left: 4%;
@@ -259,7 +258,6 @@
 	line-height:1px; }
 
 	.blah {
-		display:none;
 	  position: absolute;
 	  top: 3.5%;
 	  left: 4%;
@@ -300,7 +298,6 @@
     line-height: 1; }
 
 	.blah {
-		display:none;
 	  position: absolute;
 	  top: 3.5%;
 	  left: 4%;
@@ -336,7 +333,6 @@
     line-height: 1; }
 
 	.blah {
-		display:none;
 	  position: absolute;
 	  top: 3.5%;
 	  left: 4%;

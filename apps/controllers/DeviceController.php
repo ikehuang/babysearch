@@ -1257,7 +1257,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		$device = Device::findFirst("serial_number = '{$serial_number}'");
 		$this->view->device = $device;
 		
-		$result = Guestbook::find("did = {$device->did}");
+		$result = Guestbook::find("did = {$device->did} and checked != 'Y'");
 		$this->view->notification_count = $result->count();
 		
 		/*

@@ -49,7 +49,7 @@ class UserController extends \Phalcon\Mvc\Controller {
 		//$devices = Device::find("email = '{$_SESSION['USER']['INFO']['email']}'");
 		
 		foreach ($devices as $device) {
-			$result = Guestbook::find("did = {$device->did}");
+			$result = Guestbook::find("did = {$device->did} and checked !='Y'");
 			$device->notification_count = $result->count();
 			$device_list[] = $device;
 		}

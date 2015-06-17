@@ -35,7 +35,7 @@
 		margin-bottom:64px;
 		margin-right:61px;
 		background:url(/img/16/1.png) center center no-repeat;
-		background-size: 100%;		
+		background-size: contain;		
 		width:160px;
 		height:160px;
 		float:left;
@@ -98,8 +98,8 @@
 	.photo_wrapper {
 		margin-bottom:20px;
 		margin-right:20px;
-		width:70px;
-		height:70px;
+		width:100px;
+		height:100px;
 	}
 	
 	.photo {

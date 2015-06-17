@@ -88,6 +88,22 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 		$serial_number = $this->_request->get('serial_number');
 		$device = Device::findFirst("serial_number = '{$serial_number}'");
 		$this->view->device = $device;
-		$this->view->guestbook_list = Guestbook::find("did = '{$device->did}'");
+		$guestbook_list = Guestbook::find("did = '{$device->did}' and checked !='Y'");
+		$this->view->guestbook_list =$guestbook_list;
+		
+		if(isset($_SESSION['USER']['INFO'])) {
+			$device = Device::findFirst("serial_number = '{$serial_number}' and sso_id='{$_SESSION['USER']['INFO']['sso_id']}'");
+			
+			if(!empty($device)) {
+				// update all guestbook to checked
+				
+				if(!empty($guestbook_list)) {
+					foreach($guestbook_list as $r) {
+						$r->checked = 'Y';
+						$r->update();
+					}
+				}
+			}
+		}
 	}
 }

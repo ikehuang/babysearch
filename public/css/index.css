@@ -61,6 +61,10 @@ body {
 	color:white;
 }
 
+#content {
+	margin-bottom:3%;
+}
+
 #footer {
 	background:#86C557;
 	color:#FFFFFF;
@@ -68,6 +72,9 @@ body {
 	text-align:center;	
 	padding-top:1%;
 	padding-bottom:1%;
+	position:fixed;
+	bottom:0;
+	width:100%;
 }
 
 .clear {
