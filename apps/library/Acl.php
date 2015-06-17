@@ -53,7 +53,7 @@ class Acl extends \Phalcon\Mvc\User\Component
 	        );
 		}
 		
-		if (!isset($_SESSION['USER']['INFO']) && $action != 'login'　 && $action != 'google'　 && $action != 'facebook') {
+		if (!isset($_SESSION['USER']['INFO']) && $action != 'login' && $action != 'facebook' && $action != 'google') {
 			$dispatcher->forward(
 					array(
 							'controller' => 'user',
