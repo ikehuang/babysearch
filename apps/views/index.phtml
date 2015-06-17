@@ -18,7 +18,11 @@
 	
 		<div id="header">
 			<a href="/user/login"><img src="/img/logo(white).png"/></a>
-			<?php if(isset($_SESSION['USER'])) { ?>
+			<?php
+				//for hiding logout div
+				$pos = strpos($_SERVER['REQUEST_URI'], '/guestbook');
+				if(isset($_SESSION['USER']) & ($pos === false)) {
+			?>
 			<div id='logout'><a id="userlink" href="#usermenu"><?php echo $_SESSION['USER']['INFO']['nickname']?></a> / <a href='/user/logout'>登出</a></div>
 			<?php } ?>
 		</div>

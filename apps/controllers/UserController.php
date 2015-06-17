@@ -632,14 +632,23 @@ class UserController extends \Phalcon\Mvc\Controller {
 		$_SESSION['USER']['INFO']['email'] = $user->email;
 		$_SESSION['USER']['INFO']['sso_id'] = $user->sso_id;
 		$_SESSION['USER']['INFO']['nickname'] = $user->nickname;
+		$_SESSION['USER']['INFO']['access_token'] = $access_token;
 	
 		if(Mobile::count("sso_id = '{$user_info->id}'") == 0) {
 			$mobile = new Mobile();
 	
 			$mobile->email = $user_info->email;
 			$mobile->sso_id = $user_info->id;
-	
+			$mobile->access_token = $access_token;
+			
 			$mobile->create();
+		}
+		else {
+			$mobile = Mobile::findFirst("sso_id = '{$user_info->id}'");
+				
+			$mobile->access_token = $access_token;
+				
+			$mobile->update();
 		}
 	
 		return $this->response->redirect("user/index");

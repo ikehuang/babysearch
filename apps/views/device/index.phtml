@@ -41,7 +41,7 @@
 	<table id="notice_table">
 		<tr>
 			<th class="blue_text">走失時間:</th>
-			<td class="black_text"><?php if($device->status == 'lost') { if(!empty($device->lost_date)) echo date('Y/m/d',strtotime($device->lost_date)); } ?>
+			<td class="black_text"><?php if($device->status == 'lost') { if(!empty($device->lost_date)) echo date('Y/m/d',strtotime($device->lost_date)); else echo "目前沒有內容";} ?>
 				<?php
 					
 				?>
@@ -49,7 +49,7 @@
 		</tr>
 		<tr>
 			<th class="blue_text">走失地點:</th>
-			<td class="black_text"><?php if($device->status == 'lost') echo $device->lost_location; ?>
+			<td class="black_text"><?php if($device->status == 'lost') { if(!empty($device->lost_location)) echo $device->lost_location; else echo "目前沒有內容";} ?>
 				<?php
 					
 				?>
@@ -57,7 +57,7 @@
 		</tr>
 		<tr>
 			<th class="blue_text">穿著(特徵):</th>
-			<td class="black_text"><?php if($device->status == 'lost') echo $device->lost_spec; ?>
+			<td class="black_text"><?php if($device->status == 'lost') { if(!empty($device->lost_spec)) echo $device->lost_spec; else echo "目前沒有內容";} ?>
 				<?php
 					
 				?>
