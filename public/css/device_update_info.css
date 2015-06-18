@@ -1,3 +1,18 @@
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #b3b3b3;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #b3b3b3;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #b3b3b3;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color:    #b3b3b3;
+}
+
 #human_tab_container,
 #val_tab_container,
 #pet_tab_container {
