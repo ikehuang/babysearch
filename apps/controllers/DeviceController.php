@@ -333,7 +333,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			$human_info->did = $device->did;
 			
 			$human_info->firstname = $human_firstname;
-			$human_info->lasname = $human_lastname;
+			$human_info->lastname = $human_lastname;
 			$human_info->nickname = $human_nickname;
 			$human_info->sex = $human_sex;
 			$human_info->birthday = $human_birthday;

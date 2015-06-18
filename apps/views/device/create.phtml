@@ -241,6 +241,10 @@
 					if(!empty($lost_contacts)) {
 						foreach($lost_contacts as $k => $r) {
 							$index = $k+1;
+							
+							if($r->phone == 0)
+								$r->phone = null;
+							
 							echo <<<EOT
 <div class="green_text"><input type="checkbox" name="contact[{$r->id}]" value='{$r->id}'>聯絡人{$index}</div>
 <div class='input_div'>
@@ -423,6 +427,9 @@ EOT;
 						foreach($lost_contacts as $k => $r) {
 							$index = $k+1;
 							
+							if($r->phone == 0)
+								$r->phone = null;
+							
 							echo <<<EOT
 <div class="green_text"><input type="checkbox" name="contact[{$r->id}]" value='{$r->id}'>聯絡人{$index}</div>
 <div class='input_div'>
@@ -508,6 +515,9 @@ EOT;
 					if(!empty($lost_contacts)) {
 						foreach($lost_contacts as $k => $r) {
 							$index = $k+1;
+							
+							if($r->phone == 0)
+								$r->phone = null;
 							
 							echo <<<EOT
 <div class="green_text"><input type="checkbox" name="contact[{$r->id}]" value='{$r->id}'>聯絡人{$index}</div>
