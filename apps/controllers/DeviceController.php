@@ -1253,7 +1253,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 	}
 
 	public function updateAction(){
-		$serial_number = $this->_request->get('serial_number');
+		$serial_number = $this->_request->get('sn');
 		$device = Device::findFirst("serial_number = '{$serial_number}'");
 		$this->view->device = $device;
 		
