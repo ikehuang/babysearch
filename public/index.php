@@ -110,6 +110,43 @@ if($config->site->env == 'development') {
 	$_SESSION['USER']['INFO'] = $user_info;
 }
 
+//check token from user
+if(isset($_GET["token"])) {
+	
+	$_sso_id = $_GET["sso_id"];
+	$_token = $_GET["token"];
+	
+	//if user and token pair exists, then continue...
+	if(User::count("sso_id = '{$_sso_id}' AND token = '{$_token}'") > 0) {
+	
+		$user = User::findFirst("sso_id = '{$_sso_id}' AND token = '{$_token}'");
+	
+		$time_passed = (strtotime("now") - strtotime($user->token_created));
+		
+		//if time passed > 10 min, then do nothing
+		if($time_passed <= 600) {
+			
+			$user_info = array(
+					'email' => $user->email,
+					'sso_id' => $user->sso_id,
+					'nickname' => $user->nickname,
+					'access_token' => $user->token
+			);
+			
+			$_SESSION['USER']['INFO'] = $user_info;
+
+		}
+	}
+}
+
+$db = new \Phalcon\Db\Adapter\Pdo\Mysql(array(
+		"host" => $db_config->host,
+		"username" => $db_config->username,
+		"password" => $db_config->password,
+		"dbname" => $db_config->dbname,
+		'charset' => 'utf8'
+));
+
 try {
 	$application = new \Phalcon\Mvc\Application();
 	$application->setDI($di);
