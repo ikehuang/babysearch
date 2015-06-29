@@ -48,6 +48,7 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 			$guestbook->location = $this->_request->getPost("location");
 			$guestbook->phone = $this->_request->getPost("phone");
 			$guestbook->message = $this->_request->getPost("message");
+
 			if(!empty($this->_request->getPost("date"))) {
 				$guestbook->datetime = $this->_request->getPost("date")." ".$this->_request->getPost("time");
 			}
@@ -60,18 +61,21 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 				foreach ($guestbook->getMessages() as $message) {
 					$response_data = array(
 							"status" => 'fail',
-							"msg" => "We can't category category right now"
+							"msg" => "We can't create guestbook right now"
 					);
 				}
 			}
 			else {
 				$response_data = array(
 						"status" => 'success',
-						"msg" => "A new category was created successfully!",
+						"msg" => "A new guestbook was created successfully!",
 						"id" => $guestbook->gid
 				);
-			}
 				
+
+				$this->_send_apple_notification($guestbook->message,$token);
+			}
+
 			$this->response->setContent(json_encode($response_data));
 			$this->response->send();
 		}
@@ -105,5 +109,76 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 				}
 			}
 		}
+	}
+	private function _send_android_notification($msg,$token) {
+		// API access key from Google API's Console
+		define( 'API_ACCESS_KEY', 'AIzaSyDfmE5CeBGdP9eCVMbhykDkZ0jBaMS9mBM' );
+		
+		
+		$registrationIds = array( $token );
+		
+		// prep the bundle
+		$msg = array
+		(
+				'message' 	=> $msg
+		);
+		
+		$fields = array
+		(
+				'registration_ids' 	=> $registrationIds,
+				'data'			=> $msg
+		);
+		
+		$headers = array
+		(
+				'Authorization: key=' . API_ACCESS_KEY,
+				'Content-Type: application/json'
+		);
+		
+		$ch = curl_init();
+		curl_setopt( $ch,CURLOPT_URL, 'https://android.googleapis.com/gcm/send' );
+		curl_setopt( $ch,CURLOPT_POST, true );
+		curl_setopt( $ch,CURLOPT_HTTPHEADER, $headers );
+		curl_setopt( $ch,CURLOPT_RETURNTRANSFER, true );
+		curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
+		curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fields ) );
+		$result = curl_exec($ch );
+		curl_close( $ch );
+		
+		echo $result;		
+	}
+	
+	private function _send_apple_notification($msg,$token) {
+		$ctx = stream_context_create();
+		echo getcwd().'/data/ck.pem';
+		die();
+		stream_context_set_option($ctx, 'ssl', 'local_cert', getcwd().'/data/ck.pem');
+		stream_context_set_option($ctx, 'ssl', 'passphrase', '1234');
+		
+		// Open a connection to the APNS server
+		$fp = stream_socket_client(
+				'ssl://gateway.push.apple.com:2195', $err,
+				$errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
+		
+		if (!$fp)
+			exit("Failed to connect: $err $errstr" . PHP_EOL);
+		
+		echo 'Connected to APNS' . PHP_EOL;
+		
+		
+		
+		// Create the payload body
+		$body['aps'] = array(
+				'alert' => $msg
+		);
+		
+		// Encode the payload as JSON
+		$payload = json_encode($body);
+		
+		// Build the binary notification
+		$msg = chr(0) . pack('n', 32) . pack('H*', $token) . pack('n', strlen($payload)) . $payload;
+		
+		// Send it to the server
+		$push_result = fwrite($fp, $msg, strlen($msg));		
 	}
 }
