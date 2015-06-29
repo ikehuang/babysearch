@@ -124,7 +124,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			$status = 'normal';
 				
 			//register expiry date for 1-year for now
-			$expiry_date = '2016-05-31';
+			//$expiry_date = '2016-05-31';
 				
 			$device->serial_number = $serial_number;
 			$device->status = $status;
@@ -140,6 +140,13 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			$device->email = $_SESSION['USER']['INFO']['email'];
 			$device->sso_id = $_SESSION['USER']['INFO']['sso_id'];
 			$device->category = $category;
+			
+			//set default timezone
+			date_default_timezone_set( "Asia/Taipei" );
+			$device->created = date('Y-m-d H:i:s');
+			
+			//register expiry date for 1-year for now
+			$device->expiry_date = date('Y-m-d H:i:s', strtotime($device->created . " + 365 day"));
 			
 			//for uploading device photo
 			// Check if the user has uploaded files
@@ -295,7 +302,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			$status = 'normal';
 				
 			//register expiry date for 1-year for now
-			$expiry_date = '2016-05-31';
+			//$expiry_date = '2016-05-31';
 				
 			$device->serial_number = $serial_number;
 			$device->status = $status;
@@ -310,6 +317,13 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			//$device->email = $this->_email;
 			$device->email = $_SESSION['USER']['INFO']['email'];
 			$device->sso_id = $_SESSION['USER']['INFO']['sso_id'];
+			
+			//set default timezone
+			date_default_timezone_set( "Asia/Taipei" );
+			$device->created = date('Y-m-d H:i:s');
+			
+			//register expiry date for 1-year for now
+			$device->expiry_date = date('Y-m-d H:i:s', strtotime($device->created . " + 365 day"));
 			
 			//for uploading device photo
 			// Check if the user has uploaded files
@@ -333,7 +347,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			$human_info->did = $device->did;
 			
 			$human_info->firstname = $human_firstname;
-			$human_info->lasname = $human_lastname;
+			$human_info->lastname = $human_lastname;
 			$human_info->nickname = $human_nickname;
 			$human_info->sex = $human_sex;
 			$human_info->birthday = $human_birthday;
@@ -453,6 +467,13 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			//$device->email = $this->_email;
 			$device->email = $_SESSION['USER']['INFO']['email'];
 			$device->sso_id = $_SESSION['USER']['INFO']['sso_id'];
+			
+			//set default timezone
+			date_default_timezone_set( "Asia/Taipei" );
+			$device->created = date('Y-m-d H:i:s');
+			
+			//register expiry date for 1-year for now
+			$device->expiry_date = date('Y-m-d H:i:s', strtotime($device->created . " + 365 day"));
 			
 			//for uploading device photo
 			// Check if the user has uploaded files
@@ -1253,7 +1274,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 	}
 
 	public function updateAction(){
-		$serial_number = $this->_request->get('serial_number');
+		$serial_number = $this->_request->get('sn');
 		$device = Device::findFirst("serial_number = '{$serial_number}'");
 		$this->view->device = $device;
 		
