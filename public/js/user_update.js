@@ -60,6 +60,7 @@ $(document).ready(function() {
 	$.init_user_event();
 	$.init_form();
 	
+	/*
 	$("#updateUser_btn" ).click(function() {
 		// check input value
 		if($('#update_user_form input[name="nickname"]').val().length == 0) {
@@ -75,4 +76,5 @@ $(document).ready(function() {
 			return false;
 		}
 	});
+	*/
 });
