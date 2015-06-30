@@ -80,6 +80,11 @@
 .device_info {
 	float:left;
 }
+.device_status {
+	float:right;
+	margin-right:6.4%;
+	margin-top:3em;
+}
 
 .notification {
   position: absolute;
