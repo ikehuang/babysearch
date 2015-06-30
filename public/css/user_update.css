@@ -117,7 +117,15 @@
 @media (min-width: 360px) {
   html, body {
     font-size: 5px;
-	line-height:1px; } 
+	line-height:1px; }
+
+input[type=checkbox],
+  input[type=radio] {
+    border: 0px;
+    width: 1em;
+    height: 1em;
+  	zoom:300%;
+}
 }
 
 @media (min-width: 375px) {
