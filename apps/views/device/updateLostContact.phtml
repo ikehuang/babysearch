@@ -59,11 +59,11 @@
 	    
 	    <div class='input_div'>
 	        <div class="blue_text"><span>日期</span></div>
-	        <input type="date" name="lost_date" class="textfield" value='<?php echo date('Y-m-d',strtotime($device->lost_date));?>' />
+	        <input type="date" name="lost_date" class="textfield" value='<?php if(!empty($device->lost_date)) echo date('Y-m-d',strtotime($device->lost_date)); else echo date('Y-m-d',strtotime('now'));?>' />
 	    </div>
 	    <div class='input_div'>
 	        <div class="blue_text"><span>時間</span></div>
-	        <input type="time" name="lost_time" class="textfield"  value='<?php echo date('H:i',strtotime($device->lost_date));?>'/>
+	        <input type="time" name="lost_time" class="textfield"  value='<?php echo date('H:i',strtotime($device->lost_time));?>'/>
 	    </div>
 	    <div class='input_div'>
 	        <div class="blue_text"><span>遺失地點</span></div>
