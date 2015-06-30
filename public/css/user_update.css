@@ -119,6 +119,14 @@
     font-size: 5px;
 	line-height:1px; }
 
+#title {
+	padding: 5%;
+}
+  	
+.textfield {
+	height:50px;
+}  	
+  	
 input[type=checkbox],
   input[type=radio] {
     border: 0px;
