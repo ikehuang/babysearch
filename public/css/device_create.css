@@ -31,6 +31,7 @@
 	float:right;
 	width:7%;
 	margin-bottom:10%;
+	visibility:hidden;
 }
 
 #help_button img {
@@ -242,17 +243,17 @@
 	position:relative;
 }
 
-@media (min-width: 213px) {
+@media (min-device-width: 213px) {
   html, body { font-size: 2px;line-height: 1;
 	 } }
-@media (min-width: 256px) {
+@media (min-device-width: 256px) {
   html, body { font-size: 3px;line-height: 1; } }
-@media (min-width: 320px) {
+@media (min-device-width: 320px) {
   html, body {
   	font-size: 3px;line-height: 1;
   }
 }
-@media (min-width: 320px) {
+@media (min-device-width: 320px) {
   html, body {
      font-size: 4px;
 	line-height:1px; }
@@ -267,32 +268,32 @@
 	  border-radius: 17%;
 	}  	
 }
-@media (min-width: 360px) {
+@media (min-device-width: 360px) {
   html, body {
     font-size: 6px;
 	line-height:1px; } 
 }
 
-@media (min-width: 375px) {
+@media (min-device-width: 375px) {
   html, body {
     font-size: 6px;
 	line-height:1;  	 }
  }
-@media (min-width: 400px) {
+@media (min-device-width: 400px) {
   html, body {
     font-size: 6px;
 	line-height:1;  	 }
  }
-@media (min-width: 480px) {
+@media (min-device-width: 480px) {
   html, body {
     font-size: 6px;
 	line-height:1;  	 }
 }  	
-@media (min-width: 540px) {
+@media (min-device-width: 540px) {
   html, body {
     font-size: 6px;
     line-height: 1; }  
-@media (min-width: 600px) {
+@media (min-device-width: 600px) {
   html, body {
     font-size: 7px;
     line-height: 1; }
@@ -308,26 +309,26 @@
 	}  	
 }
 
-@media (min-width: 640px) {
+@media (min-device-width: 640px) {
   html, body {
     font-size: 7px;
     line-height: 1;  	 }
 
 }
-@media (min-width: 720px) {
+@media (min-device-width: 720px) {
 	
 }
-@media (min-width: 768px) {
+@media (min-device-width: 768px) {
   html, body {
     font-size: 8px;
     line-height: 1;  	 } }
-@media (min-width: 800px) {
+@media (min-device-width: 800px) {
   html, body {
     font-size: 10px;
     line-height: 1;  	 }
 
   	
-@media (min-width: 600px) {
+@media (min-device-width: 600px) {
   html, body {
     font-size: 7px;
     line-height: 1; }
@@ -344,12 +345,12 @@
 }
   	
 }
-@media (min-width: 960px) {
+@media (min-device-width: 960px) {
   html, body {
     font-size: 11px;
     line-height: 1;  	 }
 }
-@media (min-width: 1024px) {
+@media (min-device-width: 1024px) {
 
   html, body {
     font-size: 12px;
