@@ -70,8 +70,9 @@
 		</div>
 		<div id='info_wrapper'>
 			<p class='green_text' style='font-size:6em;margin-top:0.7em;'><?php echo $device->name ?></p>
-			<p class='green_text' style='font-size:3.5em;margin-top:-.8em;'>ID: <?php echo substr($device->serial_number, 5, 14); ?></p>
+			<p class='green_text' style='font-size:3.5em;margin-top:-.5em;'>ID: <?php echo substr($device->serial_number, 5, 14); ?></p>
 		</div>
+		<!-- 
 		<div class='device_status'>
 			<p class='green_text' style='font-size:4em;margin-top:0.2em;'>
 			<?php
@@ -91,8 +92,29 @@
 				}
 			?></p>
 		</div>
+		 -->
 		<div class="clear"></div>
 	</div>
+	<div class="blue_text" style='margin:5% 0 5% 0; float:left;'>狀態:</div>
+	<div class="green_text" style='margin:5% 0 5% 7%; float:left;'>
+		<?php
+			switch($device->status){
+				case "invalid":
+					echo "<font style='color:EB447E;'>" . '停用' . "</font>";
+					break;
+				case "lost":
+					echo "<font style='color:EB447E;'>" . '遺失' . "</font>";
+					break;
+				case "normal":
+					echo '正常';
+					break;
+				default:
+					echo '';
+					break;
+			}
+		?>
+	</div>
+	<div class="clear"></div>
 	<!-- 
 	<div class="blue_text" style='margin:5% 0 5% 0; float:left;'>用途分類</div>
 	<div class="green_text" style='margin:5% 0 5% 7%; float:left;'>
@@ -137,27 +159,27 @@
 
 <div>
 	<a class='menu' href="/guestbook/list?serial_number=<?php echo $device->serial_number?>">
-		<img src="/img/08/bu-01.png" style="width:100%;">
+		<img src="/img/bu-01.png" style="width:100%;">
 			<?php if($notification_count > 0 ) { ?>
 			<span id='notification_count'><?php echo $notification_count; ?></span>
 			<?php } ?>
-			<span style="position:absolute;bottom:20px;right:10%" class="white_text">訊息通知</span>
+			<span style="position:absolute;bottom:20px;right:10%;font-size:5em;" class="white_text">訊息通知</span>
 	</a>
 	<a class='menu'  href="/device/updateInfo?serial_number=<?php echo $device->serial_number?>">
-		<img src="/img/08/bu-02.png" style="width:100%;">
-		<div style="position:absolute;bottom:20px;right:10%" class="white_text">基本資料</div>
+		<img src="/img/bu-02.png" style="width:100%;">
+		<div style="position:absolute;bottom:20px;right:10%;font-size:5em;" class="white_text">基本資料</div>
 	</a>
 	<div class="clear"></div>
 </div>
 
 <div>
 	<a class='menu'  href="/photo/list?serial_number=<?php echo $device->serial_number?>">
-		<img src="/img/08/bu-03.png" style="width:100%;">
-		<div style="position:absolute;bottom:20px;right:10%" class="white_text">相片集</div>
+		<img src="/img/bu-03.png" style="width:100%;">
+		<div style="position:absolute;bottom:20px;right:10%;font-size:5em;" class="white_text">相片集</div>
 	</a>
 	<a class='menu'  href="/device/updateLostContact?serial_number=<?php echo $device->serial_number?>">
-		<img src="/img/08/bu-04.png" style="width:100%;">
-		<div style="position:absolute;bottom:20px;right:10%" class="white_text">遺失設定</div>
+		<img src="/img/bu-04.png" style="width:100%;">
+		<div style="position:absolute;bottom:20px;right:10%;font-size:5em;" class="white_text">遺失設定</div>
 	</a>
 	<div class="clear"></div>
 </div>
