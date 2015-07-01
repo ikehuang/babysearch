@@ -45,6 +45,14 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		$serial_number = $this->_request->get('sn');
 		$device = Device::findFirst("serial_number = '{$serial_number}'");
 		
+		//redirect according to device status...
+		if($device->status == "new")
+			header("Location: " . "http://{$_SERVER['HTTP_HOST']}/");
+		else if($device->status == "lost")
+			header("Location: " . "http://{$_SERVER['HTTP_HOST']}/guestbook/create?serial_number=" . $serial_number);
+		else if($device->open == "N")
+			header("Location: " . "http://{$_SERVER['HTTP_HOST']}/");
+		
 		switch($device->type) {
 			case "Pets":
 				$info = PetInfo::findFirst("did = '{$device->did}'");
@@ -1174,20 +1182,6 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 	public function createAction(){
 		$serial_number = $_GET["sn"];
 		
-		//$device = Device::findFirst(array("conditions" => "status = 'new' AND serial_number = '{$serial_number}'"));
-		
-		//old code...
-		//check serial number exist or not 
-		//$category = $this->_request->getPost('category');
-		$serial_number = strtoupper($this->_request->getPost('serial_number'));
-		//$status = strtolower($this->_request->getPost('status'));
-		$status = '';
-		//$type = $this->_request->getPost('type');
-		$name = $this->_request->getPost('name');
-		$photo = $this->_request->getPost('photo');
-		$message = $this->_request->getPost('message');
-		$expiry_date = '';
-		
 		//find 'type'-P,M,T,A from first letter of serial number
 		$type = null;
 		
@@ -1211,8 +1205,85 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 				break;
 		}
 		
-		$this->view->device_type = $type;
-		$this->view->lost_contacts = LostContacts::find("sso_id = '{$_SESSION['USER']['INFO']['sso_id']}'");
+		$request = new \Phalcon\Http\Request();
+		
+		//determine if getting or posting data
+		if ($request->isPost() == true) {
+			
+			$this->view->disable();
+			$this->response->setContentType('application/json', 'UTF-8');
+			
+			$response_data = array(
+					'status' => 'fail'
+			);
+			
+			$serial_number = strtoupper($this->_request->getPost('serial_number'));
+			
+			//create Device
+			//if serial number exists and 'status'='new', then continue to create device...; otherwise, return fail
+			if(Device::count(array("conditions" => "status = 'new' AND serial_number = '{$serial_number}'")) > 0) {
+				
+				//create device
+				$device = Device::findFirst("serial_number = '{$serial_number}'");
+				
+				//register device status as Normal
+				$status = 'normal';
+				
+				$device->serial_number = $serial_number;
+				$device->status = $status;
+				$device->type = $type;
+				$device->open = 'N';
+				$device->email = $_SESSION['USER']['INFO']['email'];
+				$device->sso_id = $_SESSION['USER']['INFO']['sso_id'];
+				
+				//set default timezone
+				date_default_timezone_set( "Asia/Taipei" );
+				$device->created = date('Y-m-d H:i:s');
+				
+				//register expiry date for 1-year for now
+				$device->expiry_date = date('Y-m-d H:i:s', strtotime($device->created . " + 365 day"));
+				
+				$device->update();
+				
+				var_dump("here");die();
+				
+				if($type == 'Pets') {
+					
+					//create PetInfo
+					$pet_info = new PetInfo();
+					$pet_info->did = $device->did;
+						
+					$pet_info->create();
+				}
+				else if($type == 'Human') {
+						
+					//create HumanInfo
+					$human_info = new HumanInfo();
+					$human_info->did = $device->did;
+					
+					$human_info->create();
+				}
+				else if($type == 'Valuables') {
+					
+					//create ValuableInfo
+					$valuable_info = new ValuableInfo();
+					$valuable_info->did = $device->did;
+						
+					$valuable_info->create();
+				}
+				
+				$response_data = array(
+						'status' => 'success'
+				);
+					
+				$this->response->setContent(json_encode($response_data));
+				$this->response->send();
+			}
+		}
+		else {		
+			$this->view->device_type = $type;
+			$this->view->lost_contacts = LostContacts::find("sso_id = '{$_SESSION['USER']['INFO']['sso_id']}'");
+		}
 	}
 	
 	public function updateCoordinatesAction() {

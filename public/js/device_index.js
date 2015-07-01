@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	
-	$("#info_container").hide();
+	$("#notice_container").hide();
 	
 	$(".tab" ).click(function() {
 		if($(this).hasClass("notication_tab")) {
