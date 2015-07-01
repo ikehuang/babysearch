@@ -162,7 +162,7 @@
 }
 @media (min-width: 320px) {
   html, body {
-     font-size: 4px;
+     font-size: 5px;
 	line-height:1px; }
 	
 }
@@ -172,7 +172,7 @@
 	line-height:1px; }
 
 #img_wrapper  {
-  	width: 25%;
+  	width: 30%;
 }
   	
 #title {
