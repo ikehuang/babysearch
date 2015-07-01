@@ -42,6 +42,7 @@ $.init_event = function() {
 			$("#updatePet").show();
 			$("#updateHuman").hide();
 			$("#update_valuable_form").hide();
+			$('#petHealth_tab').css("border-bottom-left-radius", "1em").css("border-bottom-right-radius", "0em");
 			break;
 		case 'Human':
 			$("#updatePet").hide();
@@ -61,12 +62,18 @@ $.init_event = function() {
 		$('#healthStatus_container').hide();
 		$('#petInfo_container').show();
 		
-		//$('#healthStatus_container').css
+		$('#petInfo_tab').css("background", "#4e88ff").css("border-bottom-right-radius", "1em").css("border-bottom-left-radius", "0em");
+		$('#petHealth_tab').css("background", "#4e65c5").css("border-bottom-left-radius", "1em").css("border-bottom-right-radius", "0em");
+		//$('#petInfo_tab').css("background-size", "contain");
 	});
 	
 	$('#petHealth_tab').click(function(){
 		$('#petInfo_container').hide();
 		$('#healthStatus_container').show();
+		
+		$('#petHealth_tab').css("background", "#4e88ff").css("border-bottom-right-radius", "1em").css("border-bottom-right-radius", "0em");
+		$('#petInfo_tab').css("background", "#4e65c5").css("border-bottom-left-radius", "1em").css("border-bottom-left-radius", "0em");
+		//$('#petHealth_tab').css("background-size", "contain");
 	});
 };
 

@@ -31,9 +31,9 @@
 #human_tab_container li,
 #val_tab_container li,
 #pet_tab_container li {
-	padding-bottom:1%;	
+	padding-bottom:40px;	
 	display:inline-block;
-	width:49%;
+	width:49.5%;
 	text-align:center;
 	color:white;
 	font-size:4.000em;
