@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	$.init_event();
 	$.init_form();
-	
+	/*
 	$("#updatePet_btn" ).click(function() {
 		// check input value
 		if($('#update_pet_form input[name="pet_name"]').val().length == 0) {
@@ -32,6 +32,7 @@ $(document).ready(function(){
 			return false;
 		}
 	});
+	*/
 });
 
 $.init_event = function() {
@@ -59,6 +60,8 @@ $.init_event = function() {
 	$('#petInfo_tab').click(function(){
 		$('#healthStatus_container').hide();
 		$('#petInfo_container').show();
+		
+		//$('#healthStatus_container').css
 	});
 	
 	$('#petHealth_tab').click(function(){
@@ -72,17 +75,17 @@ $.init_form = function() {
 	$('form').ajaxForm({
 		beforeSubmit:function(e) {
 			$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
-			$.blockUI({ message: '<h1>更新中...</h1>'});
+			$.blockUI({ message: '<h1>更新中...</h1>', css: { 'margin-left':'-25%', 'width':'80%', 'font-size':'2em' }});
 		},
 		success:function(response) {
 			
 			if(response.status == 'success') {
 				$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
-				$.blockUI({ message: '<h1>更新成功!</h1>'});
+				$.blockUI({ message: '<h1>更新成功!</h1>', css: { 'margin-left':'-25%', 'width':'80%', 'font-size':'2em' }});
 			}
 			else {
 				$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
-				$.blockUI({ message: '<h1>更新失敗!</h1>'});
+				$.blockUI({ message: '<h1>更新失敗!</h1>', css: { 'margin-left':'-25%', 'width':'80%', 'font-size':'2em' }});
 			}
 			
 			setTimeout(function() {
@@ -95,7 +98,7 @@ $.init_form = function() {
 		},
 		error:function() {
 			$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
-			$.blockUI({ message: '<h1>更新失敗!</h1>'});
+			$.blockUI({ message: '<h1>更新失敗!</h1>', css: { 'margin-left':'-25%', 'width':'80%', 'font-size':'2em' }});
 		}
 	});
 };

@@ -20,12 +20,12 @@ $.init_event = function() {
 			url:"/photo/delete?id="+photo_id,
 			beforeSubmit:function(e) {
 				$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
-				$.blockUI({ message: '<h1>照片刪除中...</h1>'});
+				$.blockUI({ message: '<h1>照片刪除中...</h1>', css: { 'margin-left':'-25%', 'width':'80%', 'font-size':'2em' }});
 			},
 			success:function(response) {
 				if(response.status == 'success') {
 					$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
-					$.blockUI({ message: '<h1>照片刪除成功!</h1>'});
+					$.blockUI({ message: '<h1>照片刪除成功!</h1>', css: { 'margin-left':'-25%', 'width':'80%', 'font-size':'2em' }});
 
 					setTimeout(function() {
 						$.unblockUI();
@@ -37,7 +37,7 @@ $.init_event = function() {
 				}
 				else {
 					$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
-					$.blockUI({ message: '<h1>照片刪除失敗!</h1>'});
+					$.blockUI({ message: '<h1>照片刪除失敗!</h1>', css: { 'margin-left':'-25%', 'width':'80%', 'font-size':'2em' }});
 				}
 			}
 		});
@@ -48,13 +48,13 @@ $.init_form = function() {
 	$('form').ajaxForm({
 		beforeSubmit:function(e) {
 			$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
-			$.blockUI({ message: '<h1>照片上傳中...</h1>'});
+			$.blockUI({ message: '<h1>照片上傳中...</h1>', css: { 'margin-left':'-25%', 'width':'80%', 'font-size':'2em' }});
 		},
 		success:function(response) {
 			
 			if(response.status == 'success') {
 				$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
-				$.blockUI({ message: '<h1>照片上傳成功!</h1>'});
+				$.blockUI({ message: '<h1>照片上傳成功!</h1>', css: { 'margin-left':'-25%', 'width':'80%', 'font-size':'2em' }});
 
 				setTimeout(function() {
 					$.unblockUI();
@@ -66,12 +66,12 @@ $.init_form = function() {
 			}
 			else {
 				$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
-				$.blockUI({ message: '<h1>照片上傳失敗!</h1>'});
+				$.blockUI({ message: '<h1>照片上傳失敗!</h1>', css: { 'margin-left':'-25%', 'width':'80%', 'font-size':'2em' }});
 			}
 		},
 		error:function() {
 			$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
-			$.blockUI({ message: '<h1>照片上傳失敗!</h1>'});
+			$.blockUI({ message: '<h1>照片上傳失敗!</h1>', css: { 'margin-left':'-25%', 'width':'80%', 'font-size':'2em' }});
 		}
 	});
 };
