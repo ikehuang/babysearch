@@ -40,9 +40,12 @@
 						}
 						else echo $device->photo;
 					?>"/>
-				<img id='upload_btn' src="/img/08/frame.png" />
+				<img id='upload_btn' src="/img/14/pic-01.png" />
 			</div>
-			<p class='green_text' style='font-size:3.5em;text-align:center;margin-top:0;margin-left:30%;'>
+		</div>
+		<div id='info_wrapper'>
+			<p class='green_text' style='font-size:6em;margin-top:0.7em;'><?php echo $device->name ?></p>
+			<p class='green_text' style='font-size:3.5em;margin-top:-.5em;'>
 				<?php
 					//determine 'kind' from serial number
 					$kind = '';
@@ -67,9 +70,6 @@
 					echo $kind;
 				?>
 			</p>
-		</div>
-		<div id='info_wrapper'>
-			<p class='green_text' style='font-size:6em;margin-top:0.7em;'><?php echo $device->name ?></p>
 			<p class='green_text' style='font-size:3.5em;margin-top:-.5em;'>ID: <?php echo substr($device->serial_number, 5, 14); ?></p>
 		</div>
 		<!-- 
@@ -96,7 +96,7 @@
 		<div class="clear"></div>
 	</div>
 	<div class="blue_text" style='margin:5% 0 5% 0; float:left;'>狀態:</div>
-	<div class="green_text" style='margin:5% 0 5% 7%; float:left;'>
+	<div class="green_text" style='margin:5% 0 5% 2%; float:left;'>
 		<?php
 			switch($device->status){
 				case "invalid":

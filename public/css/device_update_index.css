@@ -98,10 +98,10 @@
 }
 
 #img_wrapper  {
-  width: 16%;
+
 	float:left;
 	margin-right:5%;
-  position: relative;
+  	position: relative;
 }
 
 #upload_btn {
