@@ -12,7 +12,7 @@
 	<li style='color:#86c557;'><?php echo $device->name; ?></li>
 </ul>
 <div id='device_menu_container'>
-	<div class="blue_text title">照片</div>
+	<!-- <div class="blue_text title">照片</div>  -->
 	<input type='hidden' name='serial_number' value='<?php echo $device->serial_number; ?>'/>
 	<div>
 		<form id='update_photo_form' method='post' action='/device/updatePhoto' style='visibility:hidden;'>
@@ -42,10 +42,7 @@
 					?>"/>
 				<img id='upload_btn' src="/img/08/frame.png" />
 			</div>
-		</div>
-		<div id='info_wrapper'>
-			<div><?php echo $device->name ?></div>
-			<div>
+			<p class='green_text' style='font-size:3em;text-align:center;margin-top:0;margin-left:30%;'>
 				<?php
 					//determine 'kind' from serial number
 					$kind = '';
@@ -69,12 +66,18 @@
 					
 					echo $kind;
 				?>
-			</div>
-			<div>USID: <?php echo $device->serial_number ?></div>
+			</p>
+		</div>
+		<div id='info_wrapper'>
+			<p class='green_text' style='font-size:7em;margin-top:0.5em;'><?php echo $device->name ?></p>
+			<p class='green_text' style='font-size:3em;margin-top:-.15em;'>ID: <?php echo $device->serial_number ?></p>
+		</div>
+		<div class='device_status'>
+			<p class='green_text' style='font-size:5em;margin-top:0.2em;'><?php echo $device->status ?></p>
 		</div>
 		<div class="clear"></div>
 	</div>
-	
+	<!-- 
 	<div class="blue_text" style='margin:5% 0 5% 0; float:left;'>用途分類</div>
 	<div class="green_text" style='margin:5% 0 5% 7%; float:left;'>
 		<?php
@@ -102,6 +105,7 @@
 		?>
 	</div>
 	<div class="clear"></div>
+	-->
 	<div>
 		<font style="color:red;font-size:3.333em;">*</font><span class="blue_text" style='margin-right:3%;'>資料公開</span>
 		<input type="radio" name="open" value="y" <?php if($device->open == 'y') echo 'checked';?>><span class='radio_text'>公開</span>

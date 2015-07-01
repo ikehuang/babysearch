@@ -112,7 +112,7 @@
 
 #info_wrapper {
 	float:left;
-	width:50%;
+	width:45%;
 	text-align:left;
 	margin-left:10%;
 }
@@ -379,6 +379,19 @@
   html, body {
     font-size: 6px;
 	line-height:1px; } 
+
+#title {
+	padding: 5%;
+}
+  	
+input[type=checkbox],
+  input[type=radio] {
+    border: 0px;
+    width: 1em;
+    height: 1em;
+  	zoom:300%;
+}
+}
 }
 
 @media (min-width: 375px) {
