@@ -36,8 +36,8 @@
 			
 			<div id="petInfo_container" class='container'>
 				<div class='input_div'>
-					<div class="blue_text"><font color="red">*</font>寵物名字</div>
-	        		<input type="text" name="pet_name" value="<?php if(isset($pet_info)) echo $pet_info->name; ?>" class="textfield" required/>
+					<div class="blue_text">寵物名字</div>
+	        		<input type="text" name="pet_name" value="<?php if(isset($pet_info)) echo $pet_info->name; ?>" class="textfield"/>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">類別</div>
@@ -116,7 +116,7 @@
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">結紮
-					<input type="radio" name="pet_desex" value="y" style='margin-left:20%;' <?php if(isset($pet_info) && ($pet_info->desex == 'y')) echo "checked"; ?>>有
+					<input type="radio" name="pet_desex" value="y" style='margin-left:20%;' <?php if(!isset($pet_info) || ($pet_info->desex == 'y')) echo "checked"; ?>>有
 					<input type="radio" name="pet_desex" value="n" style='margin-left:20%;' <?php if(isset($pet_info) && ($pet_info->desex == 'n')) echo "checked"; ?>>無</div>
 				</div>
 				<div class='input_div'>
@@ -129,7 +129,7 @@
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">血庫資訊通知
-					<input type="radio" name="pet_bloodbank" value="y" style='margin-left:5%;' <?php if(isset($pet_info) && ($pet_info->bloodbank == 'y')) echo "checked"; ?>>有
+					<input type="radio" name="pet_bloodbank" value="y" style='margin-left:5%;' <?php if(!isset($pet_info) || ($pet_info->bloodbank == 'y')) echo "checked"; ?>>有
 					<input type="radio" name="pet_bloodbank" value="n" style='margin-left:20%;' <?php if(isset($pet_info) && ($pet_info->bloodbank == 'n')) echo "checked"; ?>>無</div>
 				</div>
 				<div class='input_div'>
@@ -167,11 +167,12 @@
 				<div class='input_div'>
 	        		<div class="blue_text">醫院地址</div>
 	        		<input type="text" name="pet_hospital_address" value="<?php if(isset($pet_info)) echo $pet_info->hospital_address; ?>" class="textfield" placeholder="地址"/><br>
-	        		<input type="text" name="pet_hospital_city" value="<?php if(isset($pet_info)) echo $pet_info->hospital_city; ?>" class="textfield" style='width:27.5%;margin-right:2.4%;float:left;' placeholder="城市"/>
-	        		<input type="text" name="pet_hospital_district" value="<?php if(isset($pet_info)) echo $pet_info->hospital_district; ?>" class="textfield" style='width:27.5%;margin-right:2.4%;float:left;' placeholder="鄉鎮市區"/>
-	        		<input type="text" name="pet_hospital_postal" value="<?php if(isset($pet_info)) echo $pet_info->hospital_postal; ?>" class="textfield" style='width:27.5%;float:left;' placeholder="郵遞區號"/>
+	        		<input type="text" name="pet_hospital_city" value="<?php if(isset($pet_info)) echo $pet_info->hospital_city; ?>" class="textfield" style='width:27.4%;margin-right:2%;float:left;' placeholder="城市"/>
+	        		<input type="text" name="pet_hospital_district" value="<?php if(isset($pet_info)) echo $pet_info->hospital_district; ?>" class="textfield" style='width:27.3%;margin-right:2%;float:left;' placeholder="鄉鎮市區"/>
+	        		<input type="text" name="pet_hospital_postal" value="<?php if(isset($pet_info)) echo $pet_info->hospital_postal; ?>" class="textfield" style='width:27.3%;float:left;' placeholder="郵遞區號"/>
 	        		<div class="clear"></div>
-	        		<select name="pet_hospital_country" class="textfield" placeholder="國家" style="width:100%;">
+	        		<select name="pet_hospital_country" class="textfield" style="width:100%;">
+		        		<option value=''>國家</option>
 		        	<?php 
 		        		$country_array = array("Afghanistan", "Aland Islands", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Barbuda", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Trty.", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Caicos Islands", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Congo, Democratic Republic of the", "Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "French Guiana", "French Polynesia", "French Southern Territories", "Futuna Islands", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard", "Herzegovina", "Holy See", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran (Islamic Republic of)", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Jan Mayen Islands", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea", "Korea (Democratic)", "Kuwait", "Kyrgyzstan", "Lao", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Macao", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "McDonald Islands", "Mexico", "Micronesia", "Miquelon", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "Nevis", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Palestinian Territory, Occupied", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Principe", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russian Federation", "Rwanda", "Saint Barthelemy", "Saint Helena", "Saint Kitts", "Saint Lucia", "Saint Martin (French part)", "Saint Pierre", "Saint Vincent", "Samoa", "San Marino", "Sao Tome", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia", "South Sandwich Islands", "Spain", "Sri Lanka", "Sudan", "Suriname", "Svalbard", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "The Grenadines", "Timor-Leste", "Tobago", "Togo", "Tokelau", "Tonga", "Trinidad", "Tunisia", "Turkey", "Turkmenistan", "Turks Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "US Minor Outlying Islands", "Uzbekistan", "Vanuatu", "Vatican City State", "Venezuela", "Vietnam", "Virgin Islands (British)", "Virgin Islands (US)", "Wallis", "Western Sahara", "Yemen", "Zambia", "Zimbabwe");
 		        	
@@ -201,13 +202,13 @@
 			<div id="humanInfo_container" class='container'>
 				<div class="green_text">資料編輯</div>
 				<div class='input_div'>
-					<div class="blue_text"><font color="red">*</font>姓名</div>
-	        		<input type="text" name="human_firstname" value="<?php if(isset($human_info)) echo $human_info->firstname; ?>" class="textfield" placeholder="名" required/>
-	        		<input type="text" name="human_lastname" value="<?php if(isset($human_info)) echo $human_info->lastname; ?>" class="textfield" placeholder="姓" required/>
+					<div class="blue_text">姓名</div>
+	        		<input type="text" name="human_firstname" value="<?php if(isset($human_info)) echo $human_info->firstname; ?>" class="textfield" placeholder="名"/>
+	        		<input type="text" name="human_lastname" value="<?php if(isset($human_info)) echo $human_info->lastname; ?>" class="textfield" placeholder="姓"/>
 				</div>
 				<div class='input_div'>
-					<div class="blue_text"><font color="red">*</font>暱稱</div>
-	        		<input type="text" name="human_nickname" value="<?php if(isset($human_info)) echo $human_info->nickname; ?>" class="textfield" required/>
+					<div class="blue_text">暱稱</div>
+	        		<input type="text" name="human_nickname" value="<?php if(isset($human_info)) echo $human_info->nickname; ?>" class="textfield"/>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">性別
@@ -286,10 +287,11 @@
 	        		<div class="blue_text">醫院地址</div>
 	        		<input type="text" name="human_hospital_address" value="<?php if(isset($human_info)) echo $human_info->hospital_address; ?>" class="textfield" placeholder="地址"/><br>
 	        		
-	        		<input type="text" name="human_hospital_city" value="<?php if(isset($human_info)) echo $human_info->hospital_city; ?>" placeholder="城市" class="textfield" style='width:27.5%;margin-right:2.4%;'/>
-	        		<input type="text" name="human_hospital_district" value="<?php if(isset($human_info)) echo $human_info->hospital_district; ?>" placeholder="鄉鎮市區" class="textfield" style='width:27.5%;margin-right:2.4%;'/>
-	        		<input type="text" name="human_hospital_postal" value="<?php if(isset($human_info)) echo $human_info->hospital_postal; ?>" placeholder="郵遞區號" class="textfield" style='width:27.5%;'/>
-	        		<select name="human_hospital_country" class="textfield" placeholder="國家" style="width:100%;">
+	        		<input type="text" name="human_hospital_city" value="<?php if(isset($human_info)) echo $human_info->hospital_city; ?>" placeholder="城市" class="textfield" style='width:27.4%;margin-right:2%;'/>
+	        		<input type="text" name="human_hospital_district" value="<?php if(isset($human_info)) echo $human_info->hospital_district; ?>" placeholder="鄉鎮市區" class="textfield" style='width:27.3%;margin-right:2%;'/>
+	        		<input type="text" name="human_hospital_postal" value="<?php if(isset($human_info)) echo $human_info->hospital_postal; ?>" placeholder="郵遞區號" class="textfield" style='width:27.3%;'/>
+	        		<select name="human_hospital_country" class="textfield" style="width:100%;">
+	        			<option value=''>國家</option>
 		        	<?php 
 		        		$country_array = array("Afghanistan", "Aland Islands", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Barbuda", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Trty.", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Caicos Islands", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Congo, Democratic Republic of the", "Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "French Guiana", "French Polynesia", "French Southern Territories", "Futuna Islands", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard", "Herzegovina", "Holy See", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran (Islamic Republic of)", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Jan Mayen Islands", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea", "Korea (Democratic)", "Kuwait", "Kyrgyzstan", "Lao", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Macao", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "McDonald Islands", "Mexico", "Micronesia", "Miquelon", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "Nevis", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Palestinian Territory, Occupied", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Principe", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russian Federation", "Rwanda", "Saint Barthelemy", "Saint Helena", "Saint Kitts", "Saint Lucia", "Saint Martin (French part)", "Saint Pierre", "Saint Vincent", "Samoa", "San Marino", "Sao Tome", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia", "South Sandwich Islands", "Spain", "Sri Lanka", "Sudan", "Suriname", "Svalbard", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "The Grenadines", "Timor-Leste", "Tobago", "Togo", "Tokelau", "Tonga", "Trinidad", "Tunisia", "Turkey", "Turkmenistan", "Turks Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "US Minor Outlying Islands", "Uzbekistan", "Vanuatu", "Vatican City State", "Venezuela", "Vietnam", "Virgin Islands (British)", "Virgin Islands (US)", "Wallis", "Western Sahara", "Yemen", "Zambia", "Zimbabwe");
 		        	
@@ -318,8 +320,8 @@
 		<div class='container'>
 			<div class="green_text" style='margin-bottom:3%;'>資料編輯</div>
 			<div class='input_div'>
-				<div class="blue_text"><font color="red">*</font>商品名稱</div>
-        		<input type="text" name="valuable_name" value="<?php if(isset($valuable_info)) echo $valuable_info->name; ?>" class="textfield" required/>
+				<div class="blue_text">商品名稱</div>
+        		<input type="text" name="valuable_name" value="<?php if(isset($valuable_info)) echo $valuable_info->name; ?>" class="textfield"/>
 			</div>
 			<div class='input_div'>
 				<div class="blue_text">特徵/敘述</div>

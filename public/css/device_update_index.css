@@ -112,7 +112,7 @@
 
 #info_wrapper {
 	float:left;
-	width:45%;
+	width:40%;
 	text-align:left;
 	margin-left:10%;
 }
@@ -375,9 +375,9 @@
 	line-height:1px; }
 	
 }
-@media (min-width: 360px) {
+@media (min-device-width: 360px) {
   html, body {
-    font-size: 6px;
+    font-size: 5px;
 	line-height:1px; } 
 
 #title {
@@ -390,7 +390,6 @@ input[type=checkbox],
     width: 1em;
     height: 1em;
   	zoom:300%;
-}
 }
 }
 
