@@ -1191,7 +1191,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 	}
 	
 	public function createAction(){
-		$serial_number = $_GET["sn"];
+		$serial_number = isset($_GET["sn"]) ? $_GET["sn"]: "";
 		
 		//find 'type'-P,M,T,A from first letter of serial number
 		$type = null;
@@ -1284,7 +1284,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 				$response_data = array(
 						'status' => 'success'
 				);
-					
+				
 				$this->response->setContent(json_encode($response_data));
 				$this->response->send();
 			}
