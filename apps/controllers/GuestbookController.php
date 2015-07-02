@@ -72,7 +72,7 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 						"id" => $guestbook->gid
 				);
 				
-
+				$this->_send_android_notification($guestbook->message, $_SESSION['USER']['INFO']['access_token']);
 				$this->_send_apple_notification($guestbook->message, $_SESSION['USER']['INFO']['access_token']);
 			}
 
