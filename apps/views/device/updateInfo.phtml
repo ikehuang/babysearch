@@ -171,6 +171,7 @@
 	        		<input type="text" name="pet_hospital_district" value="<?php if(isset($pet_info)) echo $pet_info->hospital_district; ?>" class="textfield" style='width:27.3%;margin-right:2%;float:left;' placeholder="鄉鎮市區"/>
 	        		<input type="text" name="pet_hospital_postal" value="<?php if(isset($pet_info)) echo $pet_info->hospital_postal; ?>" class="textfield" style='width:27.3%;float:left;' placeholder="郵遞區號"/>
 	        		<div class="clear"></div>
+	        		<!-- 
 	        		<select name="pet_hospital_country" class="textfield" style="width:100%;">
 		        		<option value=''>國家</option>
 		        	<?php 
@@ -184,6 +185,7 @@
 		        			echo '<option selected="' . $pet_info->hospital_country . '">' . $pet_info->hospital_country . '</option>';
 		        	?>
 		        	</select>
+		        	 -->
 				</div>
 			</div>
 			
@@ -290,6 +292,7 @@
 	        		<input type="text" name="human_hospital_city" value="<?php if(isset($human_info)) echo $human_info->hospital_city; ?>" placeholder="城市" class="textfield" style='width:27.4%;margin-right:2%;'/>
 	        		<input type="text" name="human_hospital_district" value="<?php if(isset($human_info)) echo $human_info->hospital_district; ?>" placeholder="鄉鎮市區" class="textfield" style='width:27.3%;margin-right:2%;'/>
 	        		<input type="text" name="human_hospital_postal" value="<?php if(isset($human_info)) echo $human_info->hospital_postal; ?>" placeholder="郵遞區號" class="textfield" style='width:27.3%;'/>
+	        		<!-- 
 	        		<select name="human_hospital_country" class="textfield" style="width:100%;">
 	        			<option value=''>國家</option>
 		        	<?php 
@@ -303,6 +306,7 @@
 		        			echo '<option selected="' . $human_info->hospital_country . '">' . $human_info->hospital_country . '</option>';
 		        	?>
 		        	</select>
+		        	 -->
 				</div>
 			</div>
 			

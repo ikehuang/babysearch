@@ -1245,8 +1245,6 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 				
 				$device->update();
 				
-				var_dump("here");die();
-				
 				if($type == 'Pets') {
 					
 					//create PetInfo
