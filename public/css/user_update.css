@@ -130,8 +130,8 @@
 input[type=checkbox],
   input[type=radio] {
     border: 0px;
-    width: 1em;
-    height: 1em;
+    width: 2em;
+    height: 2em;
   	zoom:300%;
 }
 }
