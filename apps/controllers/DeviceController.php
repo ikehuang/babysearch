@@ -1978,7 +1978,7 @@ EOTl
 		// prep the bundle
 		$msg = array
 		(
-				'message' 	=> $msg
+				'msg' 	=> $msg
 		);
 	
 		$fields = array

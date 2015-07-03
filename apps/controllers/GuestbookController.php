@@ -120,7 +120,7 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 		// prep the bundle
 		$msg = array
 		(
-				'message' 	=> $msg
+				'msg' 	=> $msg
 		);
 		
 		$fields = array
