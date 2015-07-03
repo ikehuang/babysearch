@@ -56,9 +56,13 @@
 	<div class='message2'>{$r->message}</div>	
 	<div class='message3'></div>
 	<div class='date2'>{$created}</div>		
-	<div class='menu'>{$phone_link} <a class='map' href='http://maps.google.com/?ll={$device->latitude},{$device->longitude}'><img src='/img/15/map.png'/></a></div>
+EOT;
+				if(!empty($r->latitude) && !empty($r->longitude)) {
+					echo <<<EOT
+	<div class='menu'>{$phone_link} <a class='map' href='http://maps.google.com/?ll={$r->latitude},{$r->longitude}'><img src='/img/15/map.png'/></a></div>
 </div>		
 EOT;
+				}
 			}
 		}
 		?>

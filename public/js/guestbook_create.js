@@ -1,9 +1,24 @@
 $(document).ready(function(){
 	$.init_form();
+	getLocation();
+	
 });
 
-$.init_form = function() {
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+    	alert("Geolocation is not supported by this browser.");
+    }
+}
 
+function showPosition(position) {
+	$('input[name="latitude"]').val(position.coords.latitude);
+	$('input[name="longitude"]').val(position.coords.longitude);
+}
+
+$.init_form = function() {
+	
 	$('form').ajaxForm({
 		beforeSubmit:function(e) {
 			$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });

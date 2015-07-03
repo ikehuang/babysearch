@@ -48,6 +48,8 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 			$guestbook->location = $this->_request->getPost("location");
 			$guestbook->phone = $this->_request->getPost("phone");
 			$guestbook->message = $this->_request->getPost("message");
+			$guestbook->latitude = $this->_request->getPost("latitude");
+			$guestbook->longitude = $this->_request->getPost("longitude");
 
 			if(!empty($this->_request->getPost("date"))) {
 				$guestbook->datetime = $this->_request->getPost("date")." ".$this->_request->getPost("time");

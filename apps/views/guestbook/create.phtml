@@ -37,6 +37,8 @@
 	</div>
 	
 	<form action="/guestbook/create" method="post">
+		<input type='hidden' name='latitude' value=''/>
+		<input type='hidden' name='longitude' value=''/>
 		<input type='hidden' name='did' value='<?php echo $device->did;?>'/>
 		<input type='hidden' name='serial_number' value='<?php echo $device->serial_number;?>'/>
 	    <div class='input_div'>
