@@ -37,6 +37,8 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 	
 	public function createAction() {
 		
+		$serial_number = $this->_request->get('serial_number');
+		
 		if ($this->_request->isPost() == true) {
 			$this->view->disable();
 			$this->response->setContentType('application/json', 'UTF-8');
@@ -72,15 +74,14 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 						"id" => $guestbook->gid
 				);
 				
-				$this->_send_android_notification($guestbook->message, $_SESSION['USER']['INFO']['access_token']);
-				$this->_send_apple_notification($guestbook->message, $_SESSION['USER']['INFO']['access_token']);
+				$this->_send_android_notification($guestbook->message, $serial_number, $_SESSION['USER']['INFO']['access_token']);
+				$this->_send_apple_notification($guestbook->message, $serial_number, $_SESSION['USER']['INFO']['access_token']);
 			}
 
 			$this->response->setContent(json_encode($response_data));
 			$this->response->send();
 		}
 		else {
-			$serial_number = $this->_request->get('serial_number');
 			
 			$device = Device::findFirst("serial_number = '{$serial_number}'");
 			
@@ -110,7 +111,7 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 			}
 		}
 	}
-	private function _send_android_notification($msg,$token) {
+	private function _send_android_notification($msg, $sn, $token) {
 		// API access key from Google API's Console
 		define( 'API_ACCESS_KEY', 'AIzaSyDfmE5CeBGdP9eCVMbhykDkZ0jBaMS9mBM' );
 		
@@ -120,7 +121,8 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 		// prep the bundle
 		$msg = array
 		(
-				'msg' 	=> $msg
+				'msg' 	=> $msg,
+				'sn'	=> $sn
 		);
 		
 		$fields = array
@@ -160,7 +162,8 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 		if ($fp) {
 			// Create the payload body
 			$body['aps'] = array(
-					'alert' => $msg
+					'alert' => $msg,
+					'sn'	=> $sn
 			);
 			
 			// Encode the payload as JSON

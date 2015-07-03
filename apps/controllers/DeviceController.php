@@ -60,8 +60,8 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			$msg = substr($serial_number, 3, 14);
 		
 		if(($device->status == "lost") && (empty($_SESSION))) {
-			$this->_send_android_notification($msg, $_SESSION['USER']['INFO']['access_token']);
-			$this->_send_apple_notification($msg, $_SESSION['USER']['INFO']['access_token']);
+			$this->_send_android_notification($msg, $serial_number, $_SESSION['USER']['INFO']['access_token']);
+			$this->_send_apple_notification($msg, $serial_number, $_SESSION['USER']['INFO']['access_token']);
 		}
 			
 		switch($device->type) {
@@ -1968,17 +1968,18 @@ EOTl
 		$this->response->send();
 	}
 	
-	private function _send_android_notification($msg,$token) {
+	private function _send_android_notification($msg, $sn, $token) {
 		// API access key from Google API's Console
 		define( 'API_ACCESS_KEY', 'AIzaSyDfmE5CeBGdP9eCVMbhykDkZ0jBaMS9mBM' );
 	
 	
 		$registrationIds = array( $token );
-	
+		
 		// prep the bundle
 		$msg = array
 		(
-				'msg' 	=> $msg
+				'msg' 	=> $msg,
+				'sn'	=> $sn
 		);
 	
 		$fields = array
@@ -2004,7 +2005,7 @@ EOTl
 		curl_close( $ch );
 	}
 	
-	private function _send_apple_notification($msg, $token) {
+	private function _send_apple_notification($msg, $sn, $token) {
 		$ctx = stream_context_create();
 	
 		stream_context_set_option($ctx, 'ssl', 'local_cert', getcwd().'/data/ck.pem');
@@ -2018,7 +2019,8 @@ EOTl
 		if ($fp) {
 			// Create the payload body
 			$body['aps'] = array(
-					'alert' => $msg
+					'alert' => $msg,
+					'sn' => $sn
 			);
 				
 			// Encode the payload as JSON
