@@ -25,6 +25,7 @@
 		<link rel="stylesheet" type="text/css" href="/css/login.css">
 		<script src="/js/jquery-1.11.3.min.js"></script>
 		<script src="/js/jquery.form.js"></script>
+		<script type='text/javascript' src='/js/login.js?rand=<?php echo rand(); ?>'></script>
 	</head>
 
 	<body>
@@ -51,36 +52,78 @@
 			</a>
 			<div class="clear"></div>
 		</div>
-<!-- 
+
+		<article class="article">
+			<div style="color:#86C557;text-align:center;">BabySearch目標與精神</div>
+			<hr style="background:#86C557;width:60%;height:0.05em;text-align:center;border:none;">
+			<div style="color:#FFB330;text-align:center;">讓你的寶貝安心找到回家的路~</div>
+			<div style="color:#FFB330;text-align:center;">這就是Babysearch協尋平台的目標</div><br>
+			<div>我們認為“協尋”不單指產品能幫助使用者找尋你的寶貝也代表著使用者可以相互幫忙,發揮群體協助的力量BabySearch就是依循這個精神設計出來的使用者不但能透過BabySearch找到你遺失的寶貝也能透過BabySearch幫忙他人尋找他們的寶貝。</div>
+		</article>
+		
 		<div id="menuList_container">
 			<ul>
-				<a href="">
-					<li class="odd">關 於 我 們</li>
-				</a>
-				<a href="">
-					<li class="even">我 們 的 產 品</li>
-				</a>
-				<a href="">
-					<li class="odd">特 色 與 功 能</li>
-				</a>
-				<a href="">
-					<li class="even">支 援 與 下 載</li>
-				</a>
-				<a href="">
-					<li class="odd">店 舖 位 置</li>
-				</a>
-				<a href="">
-					<li class="even">常 見 問 題</li>
-				</a>
-				<a href="">
-					<li class="odd">使 用 條 款</li>
-				</a>
-				<a href="">
-					<li class="even">隱 私 權 政 策</li>
-				</a>
+				<li id="link1" class="odd">認 識 BabySearch</li>
+				<div id="text1">
+					<article class="article2">
+						<h3 style="color:#86C557;">認 識 BabySearch</h3>
+BabySearch是開放式的整合協尋平台 能全方位的協尋人、寵物、物品等你的寶貝事物目前支援Qr-code/NFC/BLE等技術產品分別命名為Qtag/Ntag/Btag。<br><br>
+依使用者需求使用產品內建獨一無二的ID就如同為你的寶貝申請一張身份證所有協尋動作就使用這個ID在雲端平台上面運作全世界智慧型手機都能幫助間接協尋安裝Babysearch App 除能管理你的所有寶貝ID外更能主動選擇幫助他人協尋。</article>
+				</div>
+				<li id="link2" class="even">使 用 方 式</li>
+				<div id="text2">coming soon...</div>
+				<li id="link3" class="odd">會 員 權 益 介 紹</li>
+				<div id="text3">coming soon...</div>
+				<li id="link4" class="even">平 台 簡 介</li>
+				<div id="text4">
+					<article class="article2">
+						<h3 style="color:#86C557;">平 台 簡 介</h3>
+						<div style="color:#900000">BabySearch所謂的開放式平台主要指</div><br>
+						<div style="color:#86C557">A: BabySearch App內崁Babysearch SDK (協尋公益套件)</div>
+各團體只要提出申請即可在各App內安裝此套件讓App發揮群體協尋的功能。<br><br>
+						<div style="color:#86C557">B:開放產品ID授權,各品牌產品能共用</div>
+各品牌產品不需在花費精神在這方面透過少許授權費用取得ID,即可輕鬆將產品加入全功能的協尋功能。</article>
+				</div>
+				<li id="link5" class="odd">關 於 我 們</li>
+				<div id="text5">
+					<article class="article2">
+						<h3 style="color:#86C557;">關 於 我 們</h3>
+恮欣科技成立於2009年台北，專注於協尋方面的技術其Tracker方面產品行銷歐美各地多年有感於市面上協尋技術零亂,且各行其事決定提出一協尋平台,讓各家協尋產品能整合集合各品牌與使用者的力量,發揮協尋的精神。<br><br>
+恮欣科技是台灣少數從產品品牌,企畫,設計,硬體,軟體,雲端,App,生產,維修等都有能力自行處理的公司MIT更是我們的堅持,產品全程在台灣生產,雲端也設立在台灣恮欣科技的客戶，遍及全球，經由與當地經銷商合作，提供使用者優質且專業的售後服務。讓全球的消費者，都能體驗到最好的協尋產品及服務。</article>
+				</div>
+				<li id="link6" class="even">聯 絡 我 們</li>
+				<div id="text6">
+					<article class="article2">
+						<h3 style="color:#86C557;">聯 絡 我 們</h3>
+若您使用上有任何的問題都歡迎向我們提出 不論友善的、憤怒的我們都欣然接受並且立刻處理若您有任何合作構想或願意加入 BabySearch 協尋平台都歡迎聯繫 。<br><br>
+					<table>
+						<tr>
+							<td style="color:#86C557;">地址：</td>
+							<td>台北市11490內湖區成功路三段141號3樓 </td>
+						</tr>
+						<tr>
+							<td style="color:#86C557;">電話：</td>
+							<td>(02)87911915</td>
+						</tr>
+						<tr>
+							<td style="color:#86C557;">傳真：</td>
+							<td>(02)87911915</td>
+						</tr>
+						<tr>
+							<td style="color:#86C557;">Mail：</td>
+							<td>sales@traceez.com</td>
+						</tr>
+					</table>
+					
+					</article>
+				</div>
+				<li id="link7" class="odd">使 用 條 款</li>
+				<div id="text7">coming soon...</div>
+				<li id="link8" class="even">隱 私 權 政 策</li>
+				<div id="text8">coming soon...</div>
 			</ul>
 		</div>
- -->		
+		
 		<div id="article_container">
 			<p  class='green'>聯絡我們</p>
 			<p>電話 : 02-8791-1915</p>

@@ -31,6 +31,20 @@
 	color:#8A8A8A;
 	padding:3% 0;	
 }
+.article {
+	font-size:3.5em;
+	margin:1.5em;
+	line-height:1.5em;
+}
+.article2 {
+	font-size:1em;
+	margin-top:1em;
+	margin-bottom:5em;
+	margin-left:1.5em;
+	margin-right:1.5em;
+	line-height:1.5em;
+	text-align:left;
+}
 
 .green {
 	color:#86C557
