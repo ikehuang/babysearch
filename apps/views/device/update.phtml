@@ -145,13 +145,13 @@
 	<div class="clear"></div>
 	-->
 	<div>
-		<font style="color:red;font-size:3.333em;">*</font><span class="blue_text" style='margin-right:3%;'>資料公開</span>
+		<font style="color:red;font-size:3.333em;">*</font><span class="blue_text" style='margin-right:5%;'>資料公開</span>
 		<input type="radio" name="open" value="y" <?php if($device->open == 'y') echo 'checked';?>><span class='radio_text'>公開</span>
 		<input type="radio" name="open" value="n" <?php if($device->open != 'y') echo 'checked';?>><span class='radio_text'>關閉</span>
 	</div>
 	<br>
 	<div>
-		<font style="color:red;font-size:3.333em;">*</font><span class="blue_text" style='margin-right:3%;'>遺失狀態</span>
+		<font style="color:red;font-size:3.333em;">*</font><span class="blue_text" style='margin-right:5%;'>遺失狀態</span>
 		<input type="radio" name="status" value="lost" <?php if($device->status == 'lost') echo 'checked';?>><span class='radio_text'>遺失</span>
 		<input type="radio" name="status" value="normal" <?php if($device->status != 'lost') echo 'checked';?>><span class='radio_text' >關閉</span>
 	</div>
