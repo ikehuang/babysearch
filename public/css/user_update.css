@@ -150,6 +150,14 @@ input[type=checkbox],
   html, body {
     font-size: 7px;
 	line-height:1;  	 }
+  	
+input[type=checkbox],
+  input[type=radio] {
+    border: 0px;
+    width: 2em;
+    height: 2em;
+  	zoom:300%;
+}
 }  	
 @media (min-width: 540px) {
   html, body {
