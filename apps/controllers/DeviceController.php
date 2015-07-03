@@ -45,6 +45,25 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		$serial_number = $this->_request->get('sn');
 		$device = Device::findFirst("serial_number = '{$serial_number}'");
 		
+		//redirect according to device status...
+		if($device->status == "new")
+			header("Location: " . "http://{$_SERVER['HTTP_HOST']}/");
+		else if($device->status == "lost")
+			header("Location: " . "http://{$_SERVER['HTTP_HOST']}/guestbook/create?serial_number=" . $serial_number);
+		else if($device->open == "N")
+			header("Location: " . "http://{$_SERVER['HTTP_HOST']}/");
+		
+		//push notifications when device status lost
+		if(!empty($device->name))
+			$msg = '有人發現 "' . $device->name . '"';
+		else
+			$msg = substr($serial_number, 3, 14);
+		
+		if(($device->status == "lost") && (empty($_SESSION))) {
+			$this->_send_android_notification($msg, $serial_number, $_SESSION['USER']['INFO']['access_token']);
+			$this->_send_apple_notification($msg, $serial_number, $_SESSION['USER']['INFO']['access_token']);
+		}
+			
 		switch($device->type) {
 			case "Pets":
 				$info = PetInfo::findFirst("did = '{$device->did}'");
@@ -1172,21 +1191,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 	}
 	
 	public function createAction(){
-		$serial_number = $_GET["sn"];
-		
-		//$device = Device::findFirst(array("conditions" => "status = 'new' AND serial_number = '{$serial_number}'"));
-		
-		//old code...
-		//check serial number exist or not 
-		//$category = $this->_request->getPost('category');
-		$serial_number = strtoupper($this->_request->getPost('serial_number'));
-		//$status = strtolower($this->_request->getPost('status'));
-		$status = '';
-		//$type = $this->_request->getPost('type');
-		$name = $this->_request->getPost('name');
-		$photo = $this->_request->getPost('photo');
-		$message = $this->_request->getPost('message');
-		$expiry_date = '';
+		$serial_number = isset($_GET["sn"]) ? $_GET["sn"]: "";
 		
 		//find 'type'-P,M,T,A from first letter of serial number
 		$type = null;
@@ -1211,8 +1216,83 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 				break;
 		}
 		
-		$this->view->device_type = $type;
-		$this->view->lost_contacts = LostContacts::find("sso_id = '{$_SESSION['USER']['INFO']['sso_id']}'");
+		$request = new \Phalcon\Http\Request();
+		
+		//determine if getting or posting data
+		if ($request->isPost() == true) {
+			
+			$this->view->disable();
+			$this->response->setContentType('application/json', 'UTF-8');
+			
+			$response_data = array(
+					'status' => 'fail'
+			);
+			
+			$serial_number = strtoupper($this->_request->getPost('serial_number'));
+			
+			//create Device
+			//if serial number exists and 'status'='new', then continue to create device...; otherwise, return fail
+			if(Device::count(array("conditions" => "status = 'new' AND serial_number = '{$serial_number}'")) > 0) {
+				
+				//create device
+				$device = Device::findFirst("serial_number = '{$serial_number}'");
+				
+				//register device status as Normal
+				$status = 'normal';
+				
+				$device->serial_number = $serial_number;
+				$device->status = $status;
+				$device->type = $type;
+				$device->open = 'N';
+				$device->email = $_SESSION['USER']['INFO']['email'];
+				$device->sso_id = $_SESSION['USER']['INFO']['sso_id'];
+				
+				//set default timezone
+				date_default_timezone_set( "Asia/Taipei" );
+				$device->created = date('Y-m-d H:i:s');
+				
+				//register expiry date for 1-year for now
+				$device->expiry_date = date('Y-m-d H:i:s', strtotime($device->created . " + 365 day"));
+				
+				$device->update();
+				
+				if($type == 'Pets') {
+					
+					//create PetInfo
+					$pet_info = new PetInfo();
+					$pet_info->did = $device->did;
+						
+					$pet_info->create();
+				}
+				else if($type == 'Human') {
+						
+					//create HumanInfo
+					$human_info = new HumanInfo();
+					$human_info->did = $device->did;
+					
+					$human_info->create();
+				}
+				else if($type == 'Valuables') {
+					
+					//create ValuableInfo
+					$valuable_info = new ValuableInfo();
+					$valuable_info->did = $device->did;
+						
+					$valuable_info->create();
+				}
+				
+				$response_data = array(
+						'status' => 'success'
+				);
+				
+				$this->response->setContent(json_encode($response_data));
+				$this->response->send();
+			}
+		}
+		else {		
+			$this->view->device_type = $type;
+			$this->view->lost_contacts = LostContacts::find("sso_id = '{$_SESSION['USER']['INFO']['sso_id']}'");
+		}
 	}
 	
 	public function updateCoordinatesAction() {
@@ -1886,5 +1966,71 @@ EOTl
 		
 		$this->response->setContent(json_encode($response_data));
 		$this->response->send();
+	}
+	
+	private function _send_android_notification($msg, $sn, $token) {
+		// API access key from Google API's Console
+		define( 'API_ACCESS_KEY', 'AIzaSyDfmE5CeBGdP9eCVMbhykDkZ0jBaMS9mBM' );
+	
+	
+		$registrationIds = array( $token );
+		
+		// prep the bundle
+		$msg = array
+		(
+				'msg' 	=> $msg,
+				'sn'	=> $sn
+		);
+	
+		$fields = array
+		(
+				'registration_ids' 	=> $registrationIds,
+				'data'			=> $msg
+		);
+	
+		$headers = array
+		(
+				'Authorization: key=' . API_ACCESS_KEY,
+				'Content-Type: application/json'
+		);
+	
+		$ch = curl_init();
+		curl_setopt( $ch,CURLOPT_URL, 'https://android.googleapis.com/gcm/send' );
+		curl_setopt( $ch,CURLOPT_POST, true );
+		curl_setopt( $ch,CURLOPT_HTTPHEADER, $headers );
+		curl_setopt( $ch,CURLOPT_RETURNTRANSFER, true );
+		curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
+		curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fields ) );
+		$result = curl_exec($ch );
+		curl_close( $ch );
+	}
+	
+	private function _send_apple_notification($msg, $sn, $token) {
+		$ctx = stream_context_create();
+	
+		stream_context_set_option($ctx, 'ssl', 'local_cert', getcwd().'/data/ck.pem');
+		stream_context_set_option($ctx, 'ssl', 'passphrase', '1234');
+	
+		// Open a connection to the APNS server
+		$fp = stream_socket_client(
+				'ssl://gateway.push.apple.com:2195', $err,
+				$errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
+	
+		if ($fp) {
+			// Create the payload body
+			$body['aps'] = array(
+					'alert' => $msg,
+					'sn' => $sn
+			);
+				
+			// Encode the payload as JSON
+			$payload = json_encode($body);
+				
+			// Build the binary notification
+			$msg = chr(0) . pack('n', 32) . pack('H*', $token) . pack('n', strlen($payload)) . $payload;
+				
+			// Send it to the server
+			$push_result = fwrite($fp, $msg);
+		}
 	}
 }

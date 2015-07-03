@@ -48,17 +48,17 @@ $.init_form = function() {
 	$('form').ajaxForm({
 		beforeSubmit:function(e) {
 			$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
-			$.blockUI({ message: '<h1>新增中...</h1>'});
+			$.blockUI({ message: '<h1>新增中...</h1>', css: { 'margin-left':'-25%', 'width':'80%', 'font-size':'2em' }});
 		},
 		success:function(response) {
 			
 			if(response.status == 'success') {
 				$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
-				$.blockUI({ message: '<h1>新增成功!</h1>'});
+				$.blockUI({ message: '<h1>新增成功!</h1>', css: { 'margin-left':'-25%', 'width':'80%', 'font-size':'2em' }});
 			}
 			else {
 				$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
-				$.blockUI({ message: '<h1>新增失敗!</h1>'});
+				$.blockUI({ message: '<h1>新增失敗!</h1>', css: { 'margin-left':'-25%', 'width':'80%', 'font-size':'2em' }});
 			}
 			
 			setTimeout(function() {
@@ -71,7 +71,7 @@ $.init_form = function() {
 		},
 		error:function() {
 			$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
-			$.blockUI({ message: '<h1>error新增失敗!</h1>'});
+			$.blockUI({ message: '<h1>error新增失敗!</h1>', css: { 'margin-left':'-25%', 'width':'80%', 'font-size':'2em' }});
 		}
 	});
 };
@@ -130,6 +130,7 @@ $(document).ready(function() {
 	$("#addValuable").hide();
 	$("#addContacts3").hide();
 
+	/*
 	//after first step completed...
 	$("#addSerial_next" ).click(function() {
 		
@@ -143,6 +144,71 @@ $(document).ready(function() {
 				$.unblockUI();
 				if(response.status == 'success') {
 					switch($("#sn").val()[0]){
+					
+					case 'P':
+						$("#addSerial").hide();
+						$("#addPet").show();
+						$("#healthStatus_container").hide();
+						$("#addContacts1").hide();
+
+						switch($("#sn").val()[2]){
+							case 'Q':
+								$('#type1').attr('src', '/img/14/ICON+TITLE-01.png');
+								break;
+							case 'N':
+								$('#type1').attr('src', '/img/14/ICON+TITLE-02.png');
+								break;
+							case 'B':
+								$('#type1').attr('src', '/img/14/ICON+TITLE-03.png');
+								break;
+							default:
+								break;
+						}
+						break;
+					case 'M':
+						$("#addSerial").hide();
+						$("#addHuman").show();
+						$("#addContacts2").hide();
+
+						switch($("#sn").val()[2]){
+							case 'Q':
+								$('#type2').attr('src', '/img/14/ICON+TITLE-01.png');
+								break;
+							case 'N':
+								$('#type2').attr('src', '/img/14/ICON+TITLE-02.png');
+								break;
+							case 'B':
+								$('#type2').attr('src', '/img/14/ICON+TITLE-03.png');
+								break;
+							default:
+								break;
+						}
+						break;
+					case 'T':
+						$("#addSerial").hide();
+						$("#addValuable").show();
+						$("#addContacts3").hide();
+
+						switch($("#sn").val()[2]){
+							case 'Q':
+								$('#type3').attr('src', '/img/14/ICON+TITLE-01.png');
+								break;
+							case 'N':
+								$('#type3').attr('src', '/img/14/ICON+TITLE-02.png');
+								break;
+							case 'B':
+								$('#type3').attr('src', '/img/14/ICON+TITLE-03.png');
+								break;
+							default:
+								break;
+						}
+						break;
+					default:
+						alert('您輸入的產品序號有誤!');
+						return false;
+					break;
+				}
+					
 						case 'P':
 							$("#addSerial").hide();
 							$("#addPet").show();
@@ -206,6 +272,7 @@ $(document).ready(function() {
 							return false;
 						break;
 					}
+					
 
 					$("#sn1").val( $("#sn").val());
 					$("#sn2").val( $("#sn").val());
@@ -224,6 +291,7 @@ $(document).ready(function() {
 			}
 		});
 	});
+	*/
 	
 	//for tab hiding...
 	$("#petInfo_tab" ).click(function() {

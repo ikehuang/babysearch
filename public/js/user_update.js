@@ -28,17 +28,17 @@ $.init_form = function() {
 	$('form').ajaxForm({
 		beforeSubmit:function(e) {
 			$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
-			$.blockUI({ message: '<h1>更新中...</h1>'});
+			$.blockUI({ message: '<h1>更新中...</h1>', css: { 'margin-left':'-25%', 'width':'80%', 'font-size':'2em' }});
 		},
 		success:function(response) {
 			
 			if(response.status == 'success') {
 				$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
-				$.blockUI({ message: '<h1>更新成功!</h1>'});
+				$.blockUI({ message: '<h1>更新成功!</h1>', css: { 'margin-left':'-25%', 'width':'80%', 'font-size':'2em' }});
 			}
 			else {
 				$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
-				$.blockUI({ message: '<h1>更新失敗!</h1>'});
+				$.blockUI({ message: '<h1>更新失敗!</h1>', css: { 'margin-left':'-25%', 'width':'80%', 'font-size':'2em' }});
 			}
 			
 			setTimeout(function() {
@@ -51,7 +51,7 @@ $.init_form = function() {
 		},
 		error:function() {
 			$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
-			$.blockUI({ message: '<h1>更新失敗!</h1>'});
+			$.blockUI({ message: '<h1>更新失敗!</h1>', css: { 'margin-left':'-25%', 'width':'80%', 'font-size':'2em' }});
 		}
 	});
 };
@@ -60,6 +60,7 @@ $(document).ready(function() {
 	$.init_user_event();
 	$.init_form();
 	
+	/*
 	$("#updateUser_btn" ).click(function() {
 		// check input value
 		if($('#update_user_form input[name="nickname"]').val().length == 0) {
@@ -75,4 +76,5 @@ $(document).ready(function() {
 			return false;
 		}
 	});
+	*/
 });

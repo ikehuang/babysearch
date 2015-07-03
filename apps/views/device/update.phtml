@@ -12,7 +12,7 @@
 	<li style='color:#86c557;'><?php echo $device->name; ?></li>
 </ul>
 <div id='device_menu_container'>
-	<div class="blue_text title">照片</div>
+	<!-- <div class="blue_text title">照片</div>  -->
 	<input type='hidden' name='serial_number' value='<?php echo $device->serial_number; ?>'/>
 	<div>
 		<form id='update_photo_form' method='post' action='/device/updatePhoto' style='visibility:hidden;'>
@@ -40,12 +40,12 @@
 						}
 						else echo $device->photo;
 					?>"/>
-				<img id='upload_btn' src="/img/08/frame.png" />
+				<img id='upload_btn' src="/img/14/pic-01.png" />
 			</div>
 		</div>
 		<div id='info_wrapper'>
-			<div><?php echo $device->name ?></div>
-			<div>
+			<p class='green_text' style='font-size:6em;margin-top:0.7em;'><?php echo $device->name ?></p>
+			<p class='green_text' style='font-size:3.5em;margin-top:-.5em;'>
 				<?php
 					//determine 'kind' from serial number
 					$kind = '';
@@ -55,13 +55,13 @@
 					
 					switch($kind){
 						case "Q":
-							$kind = "Q-tag";
+							$kind = "Qtag";
 							break;
 						case "B":
-							$kind = "B-tag";
+							$kind = "Btag";
 							break;
 						case "N":
-							$kind = "N-tag";
+							$kind = "Ntag";
 							break;
 						default:
 							break;
@@ -69,12 +69,53 @@
 					
 					echo $kind;
 				?>
-			</div>
-			<div>USID: <?php echo $device->serial_number ?></div>
+			</p>
+			<p class='green_text' style='font-size:3.5em;margin-top:-.5em;'>ID: <?php echo substr($device->serial_number, 5, 14); ?></p>
 		</div>
+		<!-- 
+		<div class='device_status'>
+			<p class='green_text' style='font-size:4em;margin-top:0.2em;'>
+			<?php
+				switch($device->status){
+					case "invalid":
+						echo '停用';
+						break;
+					case "lost":
+						echo '遺失';
+						break;
+					case "normal":
+						echo '正常';
+						break;
+					default:
+						echo '';
+						break;
+				}
+			?></p>
+		</div>
+		 -->
 		<div class="clear"></div>
 	</div>
-	
+	<div class="blue_text" style='margin:5% 0 5% 0; float:left;'>狀態:</div>
+	<div class="green_text" style='margin:5% 0 5% 2%; float:left;'>
+		<?php
+			switch($device->status){
+				case "invalid":
+					echo "<font style='color:EB447E;'>" . '停用' . "</font>";
+					break;
+				case "lost":
+					echo "<font style='color:EB447E;'>" . '遺失' . "</font>";
+					break;
+				case "normal":
+					echo '正常';
+					break;
+				default:
+					echo '';
+					break;
+			}
+		?>
+	</div>
+	<div class="clear"></div>
+	<!-- 
 	<div class="blue_text" style='margin:5% 0 5% 0; float:left;'>用途分類</div>
 	<div class="green_text" style='margin:5% 0 5% 7%; float:left;'>
 		<?php
@@ -102,6 +143,7 @@
 		?>
 	</div>
 	<div class="clear"></div>
+	-->
 	<div>
 		<font style="color:red;font-size:3.333em;">*</font><span class="blue_text" style='margin-right:3%;'>資料公開</span>
 		<input type="radio" name="open" value="y" <?php if($device->open == 'y') echo 'checked';?>><span class='radio_text'>公開</span>
@@ -117,27 +159,27 @@
 
 <div>
 	<a class='menu' href="/guestbook/list?serial_number=<?php echo $device->serial_number?>">
-		<img src="/img/08/bu-01.png" style="width:100%;">
+		<img src="/img/bu-01.png" style="width:100%;">
 			<?php if($notification_count > 0 ) { ?>
 			<span id='notification_count'><?php echo $notification_count; ?></span>
 			<?php } ?>
-			<span style="position:absolute;bottom:20px;right:10%" class="white_text">訊息通知</span>
+			<span style="position:absolute;bottom:20px;right:10%;font-size:5em;" class="white_text">訊息通知</span>
 	</a>
 	<a class='menu'  href="/device/updateInfo?serial_number=<?php echo $device->serial_number?>">
-		<img src="/img/08/bu-02.png" style="width:100%;">
-		<div style="position:absolute;bottom:20px;right:10%" class="white_text">基本資料</div>
+		<img src="/img/bu-02.png" style="width:100%;">
+		<div style="position:absolute;bottom:20px;right:10%;font-size:5em;" class="white_text">基本資料</div>
 	</a>
 	<div class="clear"></div>
 </div>
 
 <div>
 	<a class='menu'  href="/photo/list?serial_number=<?php echo $device->serial_number?>">
-		<img src="/img/08/bu-03.png" style="width:100%;">
-		<div style="position:absolute;bottom:20px;right:10%" class="white_text">相片集</div>
+		<img src="/img/bu-03.png" style="width:100%;">
+		<div style="position:absolute;bottom:20px;right:10%;font-size:5em;" class="white_text">相片集</div>
 	</a>
 	<a class='menu'  href="/device/updateLostContact?serial_number=<?php echo $device->serial_number?>">
-		<img src="/img/08/bu-04.png" style="width:100%;">
-		<div style="position:absolute;bottom:20px;right:10%" class="white_text">遺失設定</div>
+		<img src="/img/bu-04.png" style="width:100%;">
+		<div style="position:absolute;bottom:20px;right:10%;font-size:5em;" class="white_text">遺失設定</div>
 	</a>
 	<div class="clear"></div>
 </div>

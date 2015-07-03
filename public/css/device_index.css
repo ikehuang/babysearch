@@ -63,6 +63,7 @@
 	font-size:4.000em;
 	cursor:pointer;
 	vertical-align:middle;
+	padding-bottom:1em;
 }
 
 #tab_container img {
@@ -77,11 +78,7 @@
 }
 
 #tab_container .info_tab  {
-	width:50%;
-	background:#4e65c5 url(/img/02/bu-02-03.png) left bottom no-repeat;
-	background-size: contain;
-	padding-bottom:30px;
-	padding-top:15px;
+	width:50%;	
 }
 
 #info_container {

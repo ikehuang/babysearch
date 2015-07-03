@@ -99,74 +99,90 @@
 }
 
 @media (min-width: 213px) {
-  html, body { font-size: 2px;line-height: 1;
+  html, body { font-size: 3px;line-height: 1;
 	 } }
 @media (min-width: 256px) {
-  html, body { font-size: 3px;line-height: 1; } }
+  html, body { font-size: 4px;line-height: 1; } }
 @media (min-width: 320px) {
   html, body {
-  	font-size: 3px;line-height: 1;
+  	font-size: 4px;line-height: 1;
   }
 }
 @media (min-width: 320px) {
   html, body {
-     font-size: 4px;
+     font-size: 5px;
 	line-height:1px; }
 	
 }
-@media (min-width: 360px) {
+@media (min-device-width: 360px) {
   html, body {
-    font-size: 6px;
-	line-height:1px; } 
+    font-size: 5px;
+	line-height:1px; }
+
+#title {
+	padding: 5%;
+}
+  	
+.textfield {
+	height:50px;
+}  	
+  	
+input[type=checkbox],
+  input[type=radio] {
+    border: 0px;
+    width: 1em;
+    height: 1em;
+  	zoom:300%;
+}
 }
 
 @media (min-width: 375px) {
   html, body {
-    font-size: 6px;
+    font-size: 7px;
 	line-height:1;  	 }
  }
 @media (min-width: 400px) {
   html, body {
-    font-size: 6px;
+    font-size: 7px;
 	line-height:1;  	 }
  }
 @media (min-width: 480px) {
   html, body {
-    font-size: 6px;
+    font-size: 7px;
 	line-height:1;  	 }
 }  	
 @media (min-width: 540px) {
   html, body {
-    font-size: 6px;
+    font-size: 7px;
     line-height: 1; }  
 @media (min-width: 600px) {
   html, body {
-    font-size: 7px;
+    font-size: 8px;
     line-height: 1; }
 }
 
 @media (min-width: 640px) {
   html, body {
-    font-size: 7px;
+    font-size: 8px;
     line-height: 1;  	 } }
 @media (min-width: 720px) {
 	
 }
 @media (min-width: 768px) {
   html, body {
-    font-size: 8px;
+    font-size: 9px;
     line-height: 1;  	 } }
 @media (min-width: 800px) {
   html, body {
-    font-size: 10px;
+    font-size: 11px;
     line-height: 1;  	 } }
 @media (min-width: 960px) {
   html, body {
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1;  	 }
 }
 @media (min-width: 1024px) {
 
   html, body {
-    font-size: 12px;
+    font-size: 13px;
     line-height: 1;  	 }	

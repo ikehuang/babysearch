@@ -37,10 +37,12 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 	
 	public function createAction() {
 		
+		$serial_number = $this->_request->get('serial_number');
+		
 		if ($this->_request->isPost() == true) {
 			$this->view->disable();
 			$this->response->setContentType('application/json', 'UTF-8');
-				
+			
 			$guestbook = new Guestbook();
 
 			$guestbook->did = $this->_request->getPost("did");
@@ -74,15 +76,14 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 						"id" => $guestbook->gid
 				);
 				
-
-				$this->_send_apple_notification($guestbook->message,$token);
+				$this->_send_android_notification($guestbook->message, $serial_number, $_SESSION['USER']['INFO']['access_token']);
+				$this->_send_apple_notification($guestbook->message, $serial_number, $_SESSION['USER']['INFO']['access_token']);
 			}
 
 			$this->response->setContent(json_encode($response_data));
 			$this->response->send();
 		}
 		else {
-			$serial_number = $this->_request->get('serial_number');
 			
 			$device = Device::findFirst("serial_number = '{$serial_number}'");
 			
@@ -112,7 +113,7 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 			}
 		}
 	}
-	private function _send_android_notification($msg,$token) {
+	private function _send_android_notification($msg, $sn, $token) {
 		// API access key from Google API's Console
 		define( 'API_ACCESS_KEY', 'AIzaSyDfmE5CeBGdP9eCVMbhykDkZ0jBaMS9mBM' );
 		
@@ -122,7 +123,8 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 		// prep the bundle
 		$msg = array
 		(
-				'message' 	=> $msg
+				'msg' 	=> $msg,
+				'sn'	=> $sn
 		);
 		
 		$fields = array
@@ -146,14 +148,11 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 		curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fields ) );
 		$result = curl_exec($ch );
 		curl_close( $ch );
-		
-		echo $result;		
 	}
 	
-	private function _send_apple_notification($msg,$token) {
+	private function _send_apple_notification($msg, $token) {
 		$ctx = stream_context_create();
-		echo getcwd().'/data/ck.pem';
-		die();
+		
 		stream_context_set_option($ctx, 'ssl', 'local_cert', getcwd().'/data/ck.pem');
 		stream_context_set_option($ctx, 'ssl', 'passphrase', '1234');
 		
@@ -162,25 +161,21 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 				'ssl://gateway.push.apple.com:2195', $err,
 				$errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
 		
-		if (!$fp)
-			exit("Failed to connect: $err $errstr" . PHP_EOL);
-		
-		echo 'Connected to APNS' . PHP_EOL;
-		
-		
-		
-		// Create the payload body
-		$body['aps'] = array(
-				'alert' => $msg
-		);
-		
-		// Encode the payload as JSON
-		$payload = json_encode($body);
-		
-		// Build the binary notification
-		$msg = chr(0) . pack('n', 32) . pack('H*', $token) . pack('n', strlen($payload)) . $payload;
-		
-		// Send it to the server
-		$push_result = fwrite($fp, $msg, strlen($msg));		
+		if ($fp) {
+			// Create the payload body
+			$body['aps'] = array(
+					'alert' => $msg,
+					'sn'	=> $sn
+			);
+			
+			// Encode the payload as JSON
+			$payload = json_encode($body);
+			
+			// Build the binary notification
+			$msg = chr(0) . pack('n', 32) . pack('H*', $token) . pack('n', strlen($payload)) . $payload;
+			
+			// Send it to the server
+			$push_result = fwrite($fp, $msg);		
+		}
 	}
 }

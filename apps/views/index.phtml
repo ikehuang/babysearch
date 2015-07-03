@@ -9,11 +9,11 @@
 
 	<body>
 		<div id="usermenu">
-			<a href=""><img src="/img/button(1).png" style="float:right;margin-top:2.5em;margin-right:5%;"/></a>
+			<a href=""><img src="/img/button(1).png" id="cross_btn"/></a>
 			<div class="clear"></div>
-			<div style="font-size:8em;padding:2%;border-bottom: 1px solid white;"></div>
-			<a href="/user/update"><div style="font-size:6em;padding:3%;border-bottom: 1px solid white;">個人資訊</div></a>
-			<a href="/user/updateContact"><div style="font-size:6em;padding:3%;border-bottom: 1px solid white;">聯絡人清單</div></a>
+			<div id="space"></div>
+			<a href="/user/update"><div id="userinfo_link">個人資訊</div></a>
+			<a href="/user/updateContact"><div id="contact_link">聯絡人清單</div></a>
 		</div>	
 		<?php if(!isset($_GET['source'])) { ?>
 		<div id="header">

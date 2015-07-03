@@ -33,7 +33,7 @@
 	<li> > </li>
 	<li><a href='/user'>管理名單</a></li>
 	<li> > </li>
-	<li><a href='/device/update?serial_number=<?php echo $device->serial_number?>'><?php echo $device->name?></a></li>
+	<li><a href='/device/update?sn=<?php echo $device->serial_number?>'><?php echo $device->name?></a></li>
 	<li> > </li>
 	<li style='color:#86c557;'>遺失設定</li>
 </ul>
@@ -52,9 +52,9 @@
 		<input type='hidden' name='did' value='<?php echo $device->did;?>'/>
 		<input type='hidden' name='serial_number' value='<?php echo $device->serial_number;?>'/>
 		<div class='input_div'>
-	        <div class="blue_text"><span><font color="red">*</font>公告信息</span></div>
+	        <div class="blue_text"><span>公告信息</span></div>
 	        <!-- when print textarea, echo nl2br($message); -->
-	        <textarea id="message" name="lost_message" class="textfield" rows=5 placeholder="您可描述遺失當時的情境，或是其他能協助旳重要線索" required><?php echo $device->lost_message; ?></textarea>
+	        <textarea id="message" name="lost_message" class="textfield" rows=5 placeholder="您可描述遺失當時的情境，或是其他能協助旳重要線索"><?php echo $device->lost_message; ?></textarea>
 	    </div>   
 	    
 	    <div class='input_div'>
@@ -70,13 +70,13 @@
 	        <input type="text" name="lost_location" class="textfield" placeholder="請填寫地點或明顯的景點建築" value='<?php echo $device->lost_location; ?>'/>
 	    </div>
 	    <div class='input_div'>
-	        <div class="blue_text"><span><font color="red">*</font>穿著/特徵</span></div>
+	        <div class="blue_text"><span>穿著/特徵</span></div>
 	        <!-- when print textarea, echo nl2br($message); -->
-	        <textarea id="message" name="lost_spec" class="textfield" rows=5 placeholder="關於寵物的大小事" required><?php echo $device->lost_spec; ?></textarea>
+	        <textarea id="message" name="lost_spec" class="textfield" rows=5 placeholder="關於寵物的大小事" ><?php echo $device->lost_spec; ?></textarea>
 	    </div>   
 	    <div class='input_div'>
 	        <div class="blue_text" id='contact_div'>
-	        	<span><font color="red">*</font>聯絡人</span> 
+	        	<span>聯絡人</span> 
 	        	<div id='edit_contact_div'><img src='/img/12/icon-01.png'/> <a href='/user/updateContact'>編輯清單</a></div>
 	        </div>
 				<?php 
