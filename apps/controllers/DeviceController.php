@@ -586,7 +586,30 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 	public function updateInfoAction(){
 		$serial_number = $this->_request->get('serial_number');
 		
-
+		//for pet subcategory...
+		$dogs_category = Category::findFirst("name = 'Dogs'");
+		$cats_category = Category::findFirst("name = 'Cats'");
+		
+		$dogsize_subcategory = Category::find("parent_id = '{$dogs_category->cid}'");
+		$catsize_subcategory = Category::find("parent_id = '{$cats_category->cid}'");
+		
+		foreach($dogsize_subcategory as $subcategory){
+			$dogskind_subcategory = Category::find("parent_id = '{$subcategory->cid}'");
+		
+			foreach($dogskind_subcategory as $dogskind)
+				$dogs_subcategory[] = $dogskind;
+		}
+		
+		foreach($catsize_subcategory as $subcategory){
+			$cats_subcategory = Category::find("parent_id = '{$subcategory->cid}'");
+		
+			foreach($catskind_subcategory as $catskind)
+				$cats_subcategory[] = $catskind;
+		}
+		
+		$this->view->setVar("dogs_subcategory", $dogs_subcategory);
+		$this->view->setVar("cats_subcategory", $cats_subcategory);
+		
 		$device = Device::findFirst("serial_number = '{$serial_number}'");
 		
 		$this->view->setVar("device", $device);		
@@ -631,6 +654,8 @@ class DeviceController extends \Phalcon\Mvc\Controller {
  		
 		//for updating device info
 		$category = $this->_request->getPost('pet_category');
+		$subcategory1 = $this->_request->getPost('pet_subcategory1');
+		$subcategory2 = $this->_request->getPost('pet_subcategory2');
 		$status = strtolower($this->_request->getPost('status'));
 		//$type = $this->_request->getPost('type');
 		$name = $this->_request->getPost('name');
@@ -722,6 +747,11 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			//$device->photo = $photo;
 			$device->message = $message;
 			$device->category = $category;
+			
+			if(!empty($subcategory1))
+				$device->subcategory = $subcategory1;
+			if(!empty($subcategory2))
+				$device->subcategory = $subcategory2;
 		
 			//for uploading device photo
 			// Check if the user has uploaded files
