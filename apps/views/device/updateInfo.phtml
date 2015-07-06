@@ -77,7 +77,7 @@
 	        			<tr>
 	        				<td colspan=2>
 	        					<div style='float:left;'><input type="checkbox" name="pet_temperament[]" value="其他" <?php if(strpos($pet_info->temperament,'其他') !== false) echo 'checked="checked"'; ?>>其他</div>
-	        					<input type="text" name="pet_temperament[]" value="<?php if(strpos($pet_info->temperament,'其他') !== false) {$others = explode(",", $pet_info->temperament); echo array_pop($others); }?>" class='textfield' style='float:left;width:50%;font-size:0.5em;margin-left:5%;'/>
+	        					<input type="text" name="pet_temperament[]" value="<?php if(strpos($pet_info->temperament,'其他') !== false) {$others = explode(",", $pet_info->temperament); echo array_pop($others); }?>" class='textfield black_text' style='float:left;width:50%;font-size:0.5em;margin-left:5%;'/>
 	        				</td>
 	        			</tr>
 	        		</table>
@@ -98,7 +98,7 @@
 	        			<tr>
 	        				<td colspan=2>
 	        					<div style='float:left;'><input type="checkbox" name="pet_talents[]" value="其他" <?php if(strpos($pet_info->talents,'其他') !== false) echo 'checked="checked"'; ?>>其他</div>
-	        					<input type="text" name="pet_talents[]" value="<?php if(strpos($pet_info->talents,'其他') !== false) {$others = explode(",", $pet_info->talents); echo array_pop($others); }?>" class='textfield' style='float:left;width:50%;font-size:0.5em;margin-left:5%;'/>
+	        					<input type="text" name="pet_talents[]" value="<?php if(strpos($pet_info->talents,'其他') !== false) {$others = explode(",", $pet_info->talents); echo array_pop($others); }?>" class='textfield black_text' style='float:left;width:50%;font-size:0.5em;margin-left:5%;'/>
 	        				</td>
 	        			</tr>
 	        		</table>
@@ -148,7 +148,7 @@
 	        			<tr>
 	        				<td colspan=2>
 	        					<div style='float:left;'><input type="checkbox" name="pet_disability[]" value="其他" <?php if(strpos($pet_info->disability,'其他') !== false) echo "checked"; ?>>其他</div>
-	        					<input type="text" name="pet_disability[]" value="<?php if(strpos($pet_info->disability,'其他') !== false) {$others = explode(",", $pet_info->disability); echo array_pop($others); }?>" class='textfield' style='float:left;width:50%;font-size:0.5em;margin-left:5%;'/>
+	        					<input type="text" name="pet_disability[]" value="<?php if(strpos($pet_info->disability,'其他') !== false) {$others = explode(",", $pet_info->disability); echo array_pop($others); }?>" class='textfield black_text' style='float:left;width:50%;font-size:0.5em;margin-left:5%;'/>
 	        				</td>
 	        			</tr>
 	        		</table>

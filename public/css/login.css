@@ -2,7 +2,11 @@
 	
 }
 
-#banner_container img {
+#banner_container{
+	margin-bottom:-2px;
+}
+
+#banner_container img{
 	width:100%;
 }
 
