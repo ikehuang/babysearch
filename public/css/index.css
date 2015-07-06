@@ -114,6 +114,11 @@ a {
   	border: none;
 }
 
+.table_green_text{
+	color:#86C557;
+	font-size:3em;
+	line-height:1;	
+}
 .green_text{
 	color:#86C557;
 	font-size:4em;

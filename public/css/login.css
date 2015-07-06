@@ -32,17 +32,21 @@
 	padding:3% 0;	
 }
 .article {
+	font-family: Helvetica, Arial, 'LiHei Pro', '新細明體', sans-serif;
 	font-size:3.5em;
 	margin:1.5em;
 	line-height:1.5em;
+	letter-spacing:0.1em;
 }
 .article2 {
-	font-size:1em;
+	font-family: Helvetica, Arial, 'LiHei Pro', '新細明體', sans-serif;
+	font-size:1.1em;
 	margin-top:1em;
 	margin-bottom:5em;
 	margin-left:1.5em;
 	margin-right:1.5em;
-	line-height:1.5em;
+	line-height:1.75em;
+	letter-spacing:0.1em;
 	text-align:left;
 }
 
