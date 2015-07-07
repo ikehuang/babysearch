@@ -22,6 +22,10 @@ $(document).ready(function(){
 		default:
 			$("#cats_subcategory").hide();
 			$("#dogs_subcategory").hide();
+			$("#dogs_vaccine").hide();
+			$("#cats_vaccine").hide();
+			$("#dogs_bloodtype").hide();
+			$("#cats_bloodtype").hide();
 			break;
 	}		
 	
@@ -30,14 +34,26 @@ $(document).ready(function(){
 		if($(this).val() == 'dogs') {
 			$("#dogs_subcategory").show();
 			$("#cats_subcategory").hide();
+			$("#dogs_vaccine").show();
+			$("#cats_vaccine").hide();
+			$("#dogs_bloodtype").show();
+			$("#cats_bloodtype").hide();
 		}
 		else if($(this).val() == 'cats') {
 			$("#dogs_subcategory").hide();
 			$("#cats_subcategory").show();
+			$("#dogs_vaccine").hide();
+			$("#cats_vaccine").show();
+			$("#dogs_bloodtype").hide();
+			$("#cats_bloodtype").show();
 		}
 		else {
 			$("#dogs_subcategory").hide();
 			$("#cats_subcategory").hide();
+			$("#dogs_vaccine").hide();
+			$("#cats_vaccine").hide();
+			$("#dogs_bloodtype").hide();
+			$("#cats_bloodtype").hide();
 		}
 	});
 
