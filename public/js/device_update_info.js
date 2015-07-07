@@ -6,10 +6,18 @@ $(document).ready(function(){
 		case 'dogs':
 			$("#dogs_subcategory").show();
 			$("#cats_subcategory").hide();
+			$("#dogs_vaccine").show();
+			$("#cats_vaccine").hide();
+			$("#dogs_bloodtype").show();
+			$("#cats_bloodtype").hide();
 			break;
 		case 'cats':
 			$("#dogs_subcategory").hide();
 			$("#cats_subcategory").show();
+			$("#dogs_vaccine").hide();
+			$("#cats_vaccine").show();
+			$("#dogs_bloodtype").hide();
+			$("#cats_bloodtype").show();
 			break;
 		default:
 			$("#cats_subcategory").hide();
