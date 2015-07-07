@@ -158,9 +158,13 @@
 		        	<option value='五合一'>五合一</option>
 		        	<option value='傳染性腹膜炎'>傳染性腹膜炎</option>
 		        	<option value='狂犬病疫苗'>狂犬病疫苗</option>
-		        	<?php 
-		        		if(isset($pet_info->pet_vaccine_type))
-		        			echo '<option selected="' . $pet_info->pet_vaccine_type . '">' . $pet_info->pet_vaccine_type . '</option>';
+		        	<?php
+			        	$selected = 'selected="true"';
+			        	if(isset($pet_info->pet_vaccine_type))
+			        		echo '<option '.$selected.' value="' . $pet_info->pet_vaccine_type . '">' . $pet_info->pet_vaccine_type . '</option>';
+		        	
+		        		//if(isset($pet_info->pet_vaccine_type))
+		        			//echo '<option selected="' . $pet_info->pet_vaccine_type . '">' . $pet_info->pet_vaccine_type . '</option>';
 		        	?>
 		        	</select>
 		        	<select name="pet_vaccine_type" id="dogs_vaccine" class="textfield" style="width:100%;">
