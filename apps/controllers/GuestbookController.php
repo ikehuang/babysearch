@@ -53,7 +53,11 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 			$guestbook->latitude = $this->_request->getPost("latitude");
 			$guestbook->longitude = $this->_request->getPost("longitude");
 
+			$device = Device::findFirst("did = '{$guestbook->did}'");
+			$mobile = Mobile::findFirst("sso_id = '{$device->sso_id}' and token is not null and token != ''");
+
 			if(!empty($this->_request->getPost("date"))) {
+
 				$guestbook->datetime = $this->_request->getPost("date")." ".$this->_request->getPost("time");
 			}
 			
@@ -76,10 +80,10 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 						"id" => $guestbook->gid
 				);
 				
-				$this->_send_android_notification($guestbook->message, $serial_number, $_SESSION['USER']['INFO']['access_token']);
-				$this->_send_apple_notification($guestbook->message, $serial_number, $_SESSION['USER']['INFO']['access_token']);
+				$this->_send_android_notification($guestbook->message, $serial_number, $mobile->token);
+				$this->_send_apple_notification($guestbook->message, $serial_number, $mobile->token);
 			}
-
+			
 			$this->response->setContent(json_encode($response_data));
 			$this->response->send();
 		}
