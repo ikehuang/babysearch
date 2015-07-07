@@ -1908,6 +1908,7 @@ EOTl
 				$device->serial_number = $data[1];
 				$device->status = 'new';
 				$device->create();
+				
 				*/
 				$category = new Category();
 				$category->name = $data[1];
