@@ -606,7 +606,8 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			foreach($catskind_subcategory as $catskind)
 				$cats_subcategory[] = $catskind;
 		}
-		
+		var_dump($dogs_subcategory);
+		var_dump($cats_subcategory);die();
 		$this->view->setVar("dogs_subcategory", $dogs_subcategory);
 		$this->view->setVar("cats_subcategory", $cats_subcategory);
 		
