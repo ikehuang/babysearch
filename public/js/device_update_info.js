@@ -1,6 +1,39 @@
 $(document).ready(function(){
 	$.init_event();
 	$.init_form();
+
+	switch(device_category) {
+		case 'dogs':
+			$("#dogs_subcategory").show();
+			$("#cats_subcategory").hide();
+			break;
+		case 'cats':
+			$("#dogs_subcategory").hide();
+			$("#cats_subcategory").show();
+			break;
+		default:
+			$("#cats_subcategory").hide();
+			$("#dogs_subcategory").hide();
+			break;
+	}		
+	
+	$('select[name="pet_category"]').change(function(){
+
+		if($(this).val() == 'dogs') {
+			$("#dogs_subcategory").show();
+			$("#cats_subcategory").hide();
+		}
+		else if($(this).val() == 'cats') {
+			$("#dogs_subcategory").hide();
+			$("#cats_subcategory").show();
+		}
+		else {
+			$("#dogs_subcategory").hide();
+			$("#cats_subcategory").hide();
+		}
+	});
+
+	
 	/*
 	$("#updatePet_btn" ).click(function() {
 		// check input value

@@ -1899,15 +1899,21 @@ EOTl
 	public function importAction() {
 
 		$this->view->disable();
-		$file = getcwd()."/data/test_serial.csv";
+		$file = getcwd()."/data/Dog.csv";
 		
 		if (($handle = fopen($file, "r")) !== FALSE) {
 			while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-				
+				/*
 				$device = new Device();
 				$device->serial_number = $data[1];
 				$device->status = 'new';
 				$device->create();
+				*/
+				$category = new Category();
+				$category->name = $data[1];
+				$category->zh_tw_display_name = $data[0];
+				$category->parent_id = '4';
+				$category->create();
 			}
 			
 			fclose($handle);
