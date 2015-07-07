@@ -122,7 +122,7 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 		$this->view->device = $device;
 		$guestbook_list = Guestbook::find("did = '{$device->did}' and checked is null ");
 		$this->view->guestbook_list = $guestbook_list;
-		
+		/*
 		if(isset($_SESSION['USER']['INFO'])) {
 			$device = Device::findFirst("serial_number = '{$serial_number}' and sso_id='{$_SESSION['USER']['INFO']['sso_id']}'");
 			
@@ -137,6 +137,7 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 				}
 			}
 		}
+		*/
 	}
 	private function _send_android_notification($msg, $sn, $token) {
 		// API access key from Google API's Console

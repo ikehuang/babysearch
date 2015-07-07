@@ -1248,6 +1248,26 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 	
 		$device = Device::findFirst("serial_number = '{$serial_number}'");
 		
+		//check guestbook
+		$guestbook_list = Guestbook::find("did = '{$device->did}' and checked is null ");
+		
+		if($device->status == "lost") {
+			if(isset($_SESSION['USER']['INFO'])) {
+				$device = Device::findFirst("serial_number = '{$serial_number}' and sso_id='{$_SESSION['USER']['INFO']['sso_id']}'");
+					
+				if(!empty($device)) {
+					// update all guestbook to checked
+			
+					if(!empty($guestbook_list)) {
+						foreach($guestbook_list as $r) {
+							$r->checked = 'Y';
+							$r->update();
+						}
+					}
+				}
+			}
+		}
+		
 		$device->status = $this->_request->get('status');
 		$device->update();
 		
@@ -2048,7 +2068,7 @@ EOTl
 		$this->response->send();
 	}
 	
-private function _send_android_notification($msg, $sn, $token) {
+	private function _send_android_notification($msg, $sn, $token) {
 		// API access key from Google API's Console
 		define( 'API_ACCESS_KEY', 'AIzaSyDfmE5CeBGdP9eCVMbhykDkZ0jBaMS9mBM' );
 		
