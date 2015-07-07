@@ -466,12 +466,13 @@ class UserController extends \Phalcon\Mvc\Controller {
 			$this->response->setContentType('application/json', 'UTF-8');
 			$firstnames = $this->_request->getPost('firstname');
 			$lastnames = $this->_request->getPost('lastname');
+			$names = $this->_request->getPost('name');
 			$phones = $this->_request->getPost('phone');
 		
 			$response_data = array(
 					'status' => 'fail'
 			);
-		
+		/*
 			foreach($firstnames as $r) {
 		
 				//Assume firstname is required here...
@@ -487,6 +488,28 @@ class UserController extends \Phalcon\Mvc\Controller {
 						$lost_contact->update();
 					}
 				
+					$response_data = array(
+							'status' => 'success'
+					);
+				}
+			}
+			*/
+			foreach($names as $r) {
+			
+				//Assume firstname is required here...
+				if(!empty($names)) {
+			
+					foreach($names as $k => $v) {
+			
+						$lost_contact = LostContacts::findFirst("id = '{$k}'");
+			
+						//$lost_contact->firstname = $firstnames[$k];
+						//$lost_contact->lastname = $lastnames[$k];
+						$lost_contact->name = $names[$k];
+						$lost_contact->phone = $phones[$k];
+						$lost_contact->update();
+					}
+			
 					$response_data = array(
 							'status' => 'success'
 					);
