@@ -6,7 +6,7 @@ $(document).ready(function(){
 	$("#text5").hide();
 	$("#text6").hide();
 	$("#text7").hide();
-	$("#text8").hide();
+	//$("#text8").hide();
 	
 	$("#link1" ).click(function() {
 		$("#text1").toggle();
@@ -29,7 +29,7 @@ $(document).ready(function(){
 	$("#link7" ).click(function() {
 		$("#text7").toggle();
 	});
-	$("#link8" ).click(function() {
-		$("#text8").toggle();
-	});
+	//$("#link8" ).click(function() {
+		//$("#text8").toggle();
+	//});
 });
