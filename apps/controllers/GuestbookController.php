@@ -54,7 +54,7 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 			$guestbook->longitude = $this->_request->getPost("longitude");
 
 			$device = Device::findFirst("did = '{$guestbook->did}'");
-			$mobile = Mobile::findFirst("sso_id = '{$device->sso_id}' and token is not null and token != ''");
+			$mobiles = Mobile::find("sso_id = '{$device->sso_id}' and token is not null and token != ''");
 
 			if(!empty($this->_request->getPost("date"))) {
 
@@ -80,9 +80,30 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 						"id" => $guestbook->gid
 				);
 				
-				$this->_send_android_notification($guestbook->message, $serial_number, $mobile->token);
-				$this->_send_apple_notification($guestbook->message, $serial_number, $mobile->token);
+				$name = $device->name;
+				
+				if(empty($device->name))  {
+					$name = substr($device->serial_number,-12);
+				}
+					
+				$msg = "找到{$name}的人有留言給你";
+				
+				if(!empty($mobiles)) {
+					$android_send = "N";
+					$apple_send = "N";
+					
+					foreach($mobiles as $mobile) {
+						if($android_send == 'N') {
+							$android_send  = $this->_send_android_notification($msg, $serial_number, $mobile->token);
+						}
+						
+						if($apple_send == "N") {
+							$apple_send = $this->_send_apple_notification($msg, $serial_number, $mobile->token);
+						}
+					}
+				}
 			}
+			
 			
 			$this->response->setContent(json_encode($response_data));
 			$this->response->send();
@@ -152,34 +173,15 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 		curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fields ) );
 		$result = curl_exec($ch );
 		curl_close( $ch );
+		
+		$new_result = json_decode($result);
+		return $new_result->success == 1 ? 'Y' : 'N';
+		
 	}
 	
-	private function _send_apple_notification($msg, $token) {
-		$ctx = stream_context_create();
+	private function _send_apple_notification($msg, $serial_number, $token) {
 		
-		stream_context_set_option($ctx, 'ssl', 'local_cert', getcwd().'/data/ck.pem');
-		stream_context_set_option($ctx, 'ssl', 'passphrase', '1234');
-		
-		// Open a connection to the APNS server
-		$fp = stream_socket_client(
-				'ssl://gateway.push.apple.com:2195', $err,
-				$errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
-		
-		if ($fp) {
-			// Create the payload body
-			$body['aps'] = array(
-					'alert' => $msg,
-					'sn'	=> $sn
-			);
-			
-			// Encode the payload as JSON
-			$payload = json_encode($body);
-			
-			// Build the binary notification
-			$msg = chr(0) . pack('n', 32) . pack('H*', $token) . pack('n', strlen($payload)) . $payload;
-			
-			// Send it to the server
-			$push_result = fwrite($fp, $msg);		
-		}
+			exec("php ".getcwd()."/push.php {$token} {$serial_number} $msg");
+			return  'N';
 	}
 }
