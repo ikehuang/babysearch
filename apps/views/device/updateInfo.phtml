@@ -53,11 +53,11 @@
 		        	<?php 
 		        		
 		        		foreach($dogs_subcategory as $subcategory) {
-		        			echo '<option value="' . $subcategory->name . '">' . $subcategory->zh_tw_display_name . '</option>';
+							$selected = "";
+							if($device->subcategory == $subcategory->name)
+								$selected = 'selected="true"';
+		        			echo '<option {$selected} value="' . $subcategory->name . '">' . $subcategory->zh_tw_display_name . '</option>';
 		        		}
-		
-		        		if(isset($device->subcategory))
-		        			echo '<option selected="' . $device->subcategory . '">' . $device->subcategory . '</option>';
 		        	?>
 		        	</select>
 		        	<select name="pet_subcategory2" id="cats_subcategory" class="textfield" style="width:100%;">
@@ -65,11 +65,12 @@
 		        	<?php 
 		        		
 		        		foreach($cats_subcategory as $subcategory) {
-		        			echo '<option value="' . $subcategory->name . '">' . $subcategory->zh_tw_display_name . '</option>';
+							$selected = "";
+							
+							if($device->subcategory == $subcategory->name)
+								$selected = 'selected="true"';
+		        			echo '<option {$selected} value="' . $subcategory->name . '">' . $subcategory->zh_tw_display_name . '</option>';
 		        		}
-		
-		        		if(isset($device->subcategory))
-		        			echo '<option selected="' . $device->subcategory . '">' . $device->subcategory . '</option>';
 		        	?>
 		        	</select>
 				</div>
