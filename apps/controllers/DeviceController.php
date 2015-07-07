@@ -1899,7 +1899,7 @@ EOTl
 	public function importAction() {
 
 		$this->view->disable();
-		$file = getcwd()."/data/Dog.csv";
+		$file = getcwd()."/data/newdog.csv";
 		
 		if (($handle = fopen($file, "r")) !== FALSE) {
 			while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
