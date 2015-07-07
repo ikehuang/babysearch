@@ -594,11 +594,14 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		$catsize_subcategory = Category::find("parent_id = '{$cats_category->cid}'");
 		
 		foreach($dogsize_subcategory as $subcategory){
+			$dogsize_subcategory[] = $subcategory;
+			/*
 			$dogskind_subcategory = Category::find("parent_id = '{$subcategory->cid}'");
 			var_dump($dogskind_subcategory);die();
 			foreach($dogskind_subcategory as $dogskind){
 				$dogs_subcategory[] = $dogskind;
 			}
+			*/
 		}
 		
 		foreach($catsize_subcategory as $subcategory){
@@ -609,7 +612,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			}
 		}
 		
-		$this->view->setVar("dogs_subcategory", $dogs_subcategory);
+		$this->view->setVar("dogs_subcategory", $dogsize_subcategory);
 		$this->view->setVar("cats_subcategory", $cats_subcategory);
 		
 		$device = Device::findFirst("serial_number = '{$serial_number}'");
