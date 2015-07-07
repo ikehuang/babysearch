@@ -595,11 +595,11 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		
 		foreach($dogsize_subcategory as $subcategory){
 			$dogskind_subcategory = Category::find("parent_id = '{$subcategory->cid}'");
-			var_dump($dogskind_subcategory);die();
+			
 			foreach($dogskind_subcategory as $dogskind)
 				$dogs_subcategory[] = $dogskind;
 		}
-		
+		var_dump($dogs_subcategory);die();
 		foreach($catsize_subcategory as $subcategory){
 			$catskind_subcategory = Category::find("parent_id = '{$subcategory->cid}'");
 		
