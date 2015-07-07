@@ -154,10 +154,10 @@
 					<div class="blue_text">預防針種類</div>
 	        		<select name="pet_vaccine_type" id="cats_vaccine" class="textfield" style="width:100%;">
         			<option value=''></option>
-		        	<option value='三合一'>三合一</option>
-		        	<option value='五合一'>五合一</option>
-		        	<option value='傳染性腹膜炎'>傳染性腹膜炎</option>
-		        	<option value='狂犬病疫苗'>狂犬病疫苗</option>
+		        	<option <?php if(isset($pet_info->vaccine_type) && ($pet_info->vaccine_type == '三合一')) echo 'selected'; ?> value='三合一'>三合一</option>
+		        	<option <?php if(isset($pet_info->vaccine_type) && ($pet_info->vaccine_type == '五合一')) echo 'selected'; ?> value='五合一'>五合一</option>
+		        	<option <?php if(isset($pet_info->vaccine_type) && ($pet_info->vaccine_type == '傳染性腹膜炎')) echo 'selected'; ?> value='傳染性腹膜炎'>傳染性腹膜炎</option>
+		        	<option <?php if(isset($pet_info->vaccine_type) && ($pet_info->vaccine_type == '狂犬病疫苗')) echo 'selected'; ?> value='狂犬病疫苗'>狂犬病疫苗</option>
 		        	<?php
 			        	$selected = 'selected="true"';
 			        	if(isset($pet_info->vaccine_type))
@@ -187,9 +187,9 @@
 		        	</select>
 		        	<select name="pet_bloodtype" id="cats_bloodtype" class="textfield" style="width:100%;">
         			<option value=''></option>
-		        	<option value='A'>A</option>
-		        	<option value='B'>B</option>
-		        	<option value='C'>C</option>
+		        	<option <?php if(isset($pet_info->bloodtype) && ($pet_info->bloodtype == 'A')) echo 'selected'; ?>  value='A'>A</option>
+		        	<option <?php if(isset($pet_info->bloodtype) && ($pet_info->bloodtype == 'B')) echo 'selected'; ?>  value='B'>B</option>
+		        	<option <?php if(isset($pet_info->bloodtype) && ($pet_info->bloodtype == 'C')) echo 'selected'; ?>  value='C'>C</option>
 		        	<?php 
 		        		if(isset($pet_info->bloodtype))
 		        			echo '<option selected="' . $pet_info->bloodtype . '">' . $pet_info->bloodtype . '</option>';
