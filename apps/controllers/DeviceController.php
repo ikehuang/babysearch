@@ -686,8 +686,10 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		$pet_description = $this->_request->getPost('pet_description');
 		$pet_chip_number = $this->_request->getPost('pet_chip_number');
 		$pet_desex = $this->_request->getPost('pet_desex');
-		$pet_vaccine_type = $this->_request->getPost('pet_vaccine_type');
-		$pet_bloodtype = $this->_request->getPost('pet_bloodtype');
+		$pet_vaccine_type1 = $this->_request->getPost('pet_vaccine_type1');
+		$pet_vaccine_type2 = $this->_request->getPost('pet_vaccine_type2');
+		$pet_bloodtype1 = $this->_request->getPost('pet_bloodtype1');
+		$pet_bloodtype2 = $this->_request->getPost('pet_bloodtype2');
 		$pet_bloodbank = $this->_request->getPost('pet_bloodbank');
 		$pet_disability = $this->_request->getPost('pet_disability');
 		$pet_insurance = $this->_request->getPost('pet_insurance');
@@ -807,8 +809,19 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 				$pet_info->description = $pet_description;
 				$pet_info->chip_number = $pet_chip_number;
 				$pet_info->desex = $pet_desex;
-				$pet_info->vaccine_type = $pet_vaccine_type;
-				$pet_info->bloodtype = $pet_bloodtype;
+				
+				if(($category == 'dogs' )&&( !empty($pet_vaccine_type2)))
+					$pet_info->vaccine_type = $pet_vaccine_type2;
+				if(($category == 'cats' )&&( !empty($pet_vaccine_type1)))
+					$pet_info->vaccine_type = $pet_vaccine_type1;
+				//$pet_info->vaccine_type = $pet_vaccine_type;
+				
+				if(($category == 'dogs' )&&( !empty($pet_bloodtype1)))
+					$pet_info->bloodtype = $pet_bloodtype1;
+				if(($category == 'cats' )&&( !empty($pet_bloodtype2)))
+					$pet_info->bloodtype = $pet_bloodtype2;
+				//$pet_info->bloodtype = $pet_bloodtype;
+				
 				$pet_info->bloodbank = $pet_bloodbank;
 				//$pet_info->disability = $pet_disability;
 				$pet_info->insurance = $pet_insurance;

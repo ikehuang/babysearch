@@ -54,6 +54,7 @@ $(document).ready(function(){
 			$("#cats_vaccine").hide();
 			$("#dogs_bloodtype").hide();
 			$("#cats_bloodtype").hide();
+			
 		}
 	});
 

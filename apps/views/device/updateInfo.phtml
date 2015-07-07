@@ -152,7 +152,7 @@
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">預防針種類</div>
-	        		<select name="pet_vaccine_type" id="cats_vaccine" class="textfield" style="width:100%;">
+	        		<select name="pet_vaccine_type1" id="cats_vaccine" class="textfield" style="width:100%;">
         			<option value=''></option>
 		        	<option <?php if(isset($pet_info->vaccine_type) && ($pet_info->vaccine_type == '三合一')) echo 'selected'; ?> value='三合一'>三合一</option>
 		        	<option <?php if(isset($pet_info->vaccine_type) && ($pet_info->vaccine_type == '五合一')) echo 'selected'; ?> value='五合一'>五合一</option>
@@ -167,7 +167,7 @@
 		        			//echo '<option selected="' . $pet_info->pet_vaccine_type . '">' . $pet_info->pet_vaccine_type . '</option>';
 		        	?>
 		        	</select>
-		        	<select name="pet_vaccine_type" id="dogs_vaccine" class="textfield" style="width:100%;">
+		        	<select name="pet_vaccine_type2" id="dogs_vaccine" class="textfield" style="width:100%;">
         			<option value=''></option>
 		        	<option <?php if(isset($pet_info->vaccine_type) && ($pet_info->vaccine_type == '三合一')) echo 'selected'; ?> value='三合一'>三合一</option>
 		        	<option <?php if(isset($pet_info->vaccine_type) && ($pet_info->vaccine_type == '五合一')) echo 'selected'; ?> value='五合一'>五合一</option>
@@ -179,13 +179,13 @@
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">血型</div>
-					<select name="pet_bloodtype" id="dogs_bloodtype" class="textfield" style="width:100%;">
+					<select name="pet_bloodtype1" id="dogs_bloodtype" class="textfield" style="width:100%;">
         			<option value=''></option>
 		        	<option <?php if(isset($pet_info->bloodtype) && ($pet_info->bloodtype == 'DEA1.1')) echo 'selected'; ?> value='DEA1.1'>DEA[1.1]</option>
 		        	<option <?php if(isset($pet_info->bloodtype) && ($pet_info->bloodtype == 'DEA1.2')) echo 'selected'; ?> value='DEA1.2'>DEA[1.2]</option>
 		        	<option <?php if(isset($pet_info->bloodtype) && ($pet_info->bloodtype == 'DEA1-')) echo 'selected'; ?> value='DEA1-'>DEA[1-]</option>
 		        	</select>
-		        	<select name="pet_bloodtype" id="cats_bloodtype" class="textfield" style="width:100%;">
+		        	<select name="pet_bloodtype2" id="cats_bloodtype" class="textfield" style="width:100%;">
         			<option value=''></option>
 		        	<option <?php if(isset($pet_info->bloodtype) && ($pet_info->bloodtype == 'A')) echo 'selected'; ?>  value='A'>A</option>
 		        	<option <?php if(isset($pet_info->bloodtype) && ($pet_info->bloodtype == 'B')) echo 'selected'; ?>  value='B'>B</option>
