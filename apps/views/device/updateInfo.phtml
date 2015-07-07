@@ -53,7 +53,7 @@
 		        	<?php 
 		        		
 		        		foreach($dogs_subcategory as $subcategory) {
-		        			echo '<option value="' . $subcategory->name . '">' . utf8_decode($subcategory->zh_tw_display_name) . '</option>';
+		        			echo '<option value="' . $subcategory->name . '">' . $subcategory->zh_tw_display_name . '</option>';
 		        		}
 		
 		        		if(isset($device->subcategory))
@@ -65,7 +65,7 @@
 		        	<?php 
 		        		
 		        		foreach($cats_subcategory as $subcategory) {
-		        			echo '<option value="' . $subcategory->name . '">' . utf8_decode($subcategory->zh_tw_display_name) . '</option>';
+		        			echo '<option value="' . $subcategory->name . '">' . $subcategory->zh_tw_display_name . '</option>';
 		        		}
 		
 		        		if(isset($device->subcategory))
