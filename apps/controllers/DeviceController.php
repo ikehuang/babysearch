@@ -589,7 +589,8 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		//for pet subcategory...
 		$dogs_category = Category::findFirst("name = 'Dogs'");
 		$cats_category = Category::findFirst("name = 'Cats'");
-		
+		var_dump($dogs_category);
+		var_dump($cats_category);die();
 		$dogsize_subcategory = Category::find("parent_id = '{$dogs_category->cid}'");
 		$catsize_subcategory = Category::find("parent_id = '{$cats_category->cid}'");
 		
@@ -606,8 +607,7 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			foreach($catskind_subcategory as $catskind)
 				$cats_subcategory[] = $catskind;
 		}
-		var_dump($dogs_subcategory);
-		var_dump($cats_subcategory);die();
+		
 		$this->view->setVar("dogs_subcategory", $dogs_subcategory);
 		$this->view->setVar("cats_subcategory", $cats_subcategory);
 		
