@@ -758,9 +758,9 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			$device->message = $message;
 			$device->category = $category;
 			
-			if(!empty($subcategory1))
+			if(($category == 'Dogs' )&&( !empty($subcategory1)))
 				$device->subcategory = $subcategory1;
-			if(!empty($subcategory2))
+			if(($category == 'Cats' )&&( !empty($subcategory2)))
 				$device->subcategory = $subcategory2;
 		
 			//for uploading device photo
