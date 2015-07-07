@@ -41,7 +41,37 @@
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">類別</div>
-					<input type="text" name="pet_category" value="<?php echo $device->category; ?>" class="textfield"/>
+					<!-- <input type="text" name="pet_category" value="<?php echo $device->category; ?>" class="textfield"/> -->
+					<select name="pet_category" class="textfield" style="width:100%;">
+        			<option value=''></option>
+		        	<option <?php if(isset($device->category) && ($device->category == 'dogs')) echo "selected=" . $device->category;?> value='dogs'>狗類</option>
+		        	<option <?php if(isset($device->category) && ($device->category == 'cats')) echo "selected=" . $device->category;?> value='cats'>貓類</option>
+		        	</select>
+		        	
+					<select name="pet_subcategory1" id="dogs_subcategory" class="textfield" style="width:100%;">
+        			<option value=''>種類</option>
+		        	<?php 
+		        		
+		        		foreach($dogs_subcategory as $subcategory) {
+		        			echo '<option value="' . $subcategory->name . '">' . utf8_decode($subcategory->zh_tw_display_name) . '</option>';
+		        		}
+		
+		        		if(isset($device->subcategory))
+		        			echo '<option selected="' . $device->subcategory . '">' . $device->subcategory . '</option>';
+		        	?>
+		        	</select>
+		        	<select name="pet_subcategory2" id="cats_subcategory" class="textfield" style="width:100%;">
+        			<option value=''>種類</option>
+		        	<?php 
+		        		
+		        		foreach($cats_subcategory as $subcategory) {
+		        			echo '<option value="' . $subcategory->name . '">' . utf8_decode($subcategory->zh_tw_display_name) . '</option>';
+		        		}
+		
+		        		if(isset($device->subcategory))
+		        			echo '<option selected="' . $device->subcategory . '">' . $device->subcategory . '</option>';
+		        	?>
+		        	</select>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">性別 
@@ -340,6 +370,8 @@
 	
 <script>
 	var device_type = "<?php echo $device->type; ?>";
+	var device_category = "<?php echo $device->category; ?>";
+	var device_subcategory = "<?php echo $device->subcategory; ?>";
 </script>
 
 	</body>
