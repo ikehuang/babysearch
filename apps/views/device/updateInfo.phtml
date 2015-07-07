@@ -160,8 +160,8 @@
 		        	<option value='狂犬病疫苗'>狂犬病疫苗</option>
 		        	<?php
 			        	$selected = 'selected="true"';
-			        	if(isset($pet_info->pet_vaccine_type))
-			        		echo '<option '.$selected.' value="' . $pet_info->pet_vaccine_type . '">' . $pet_info->pet_vaccine_type . '</option>';
+			        	if(isset($pet_info->vaccine_type))
+			        		echo '<option '.$selected.' value="' . $pet_info->vaccine_type . '">' . $pet_info->vaccine_type . '</option>';
 		        	
 		        		//if(isset($pet_info->pet_vaccine_type))
 		        			//echo '<option selected="' . $pet_info->pet_vaccine_type . '">' . $pet_info->pet_vaccine_type . '</option>';
@@ -175,8 +175,8 @@
 		        	<option value='狂犬病疫苗'>狂犬病疫苗</option>
 		        	<option value='萊姆病'>萊姆病</option>
 		        	<?php 
-		        		if(isset($pet_info->pet_vaccine_type))
-		        			echo '<option selected="' . $pet_info->pet_vaccine_type . '">' . $pet_info->pet_vaccine_type . '</option>';
+		        		if(isset($pet_info->vaccine_type))
+		        			echo '<option selected="' . $pet_info->vaccine_type . '">' . $pet_info->vaccine_type . '</option>';
 		        	?>
 		        	</select>
 	        		<!-- <input type="text" name="pet_vaccine_type" value="<?php if(isset($pet_info)) echo $pet_info->vaccine_type; ?>" class="textfield"/> -->
@@ -189,8 +189,8 @@
 		        	<option value='DEA[1.2]'>DEA[1.2]</option>
 		        	<option value='DEA[1-]'>DEA[1-]</option>
 		        	<?php 
-		        		if(isset($pet_info->pet_bloodtype))
-		        			echo '<option selected="' . $pet_info->pet_bloodtype . '">' . $pet_info->pet_vaccine_type . '</option>';
+		        		if(isset($pet_info->bloodtype))
+		        			echo '<option selected="' . $pet_info->bloodtype . '">' . $pet_info->bloodtype . '</option>';
 		        	?>
 		        	</select>
 		        	<select name="pet_bloodtype" id="cats_bloodtype" class="textfield" style="width:100%;">
@@ -199,8 +199,8 @@
 		        	<option value='B'>B</option>
 		        	<option value='C'>C</option>
 		        	<?php 
-		        		if(isset($pet_info->pet_bloodtype))
-		        			echo '<option selected="' . $pet_info->pet_bloodtype . '">' . $pet_info->pet_vaccine_type . '</option>';
+		        		if(isset($pet_info->bloodtype))
+		        			echo '<option selected="' . $pet_info->bloodtype . '">' . $pet_info->bloodtype . '</option>';
 		        	?>
 		        	</select>
 	        		<!-- <input type="text" name="pet_bloodtype" value="<?php if(isset($pet_info)) echo $pet_info->bloodtype; ?>" class="textfield"/>  -->
