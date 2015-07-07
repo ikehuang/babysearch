@@ -59,9 +59,16 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		else
 			$msg = substr($serial_number, 3, 14);
 		
+		/*
 		if(($device->status == "lost") && (empty($_SESSION))) {
 			$this->_send_android_notification($msg, $serial_number, $_SESSION['USER']['INFO']['access_token']);
 			$this->_send_apple_notification($msg, $serial_number, $_SESSION['USER']['INFO']['access_token']);
+		}*/
+		if(($device->status == "lost") && (empty($_SESSION))) {
+			$mobile = Mobile::findFirst("sso_id = '{$device->sso_id}' and token is not null and token != ''");
+			 
+			$this->_send_android_notification($guestbook->message, $serial_number, $mobile->token);
+			$this->_send_apple_notification($guestbook->message, $serial_number, $mobile->token);
 		}
 			
 		switch($device->type) {
