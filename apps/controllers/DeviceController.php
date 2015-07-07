@@ -1909,7 +1909,7 @@ EOTl
 	public function importAction() {
 
 		$this->view->disable();
-		$file = getcwd()."/data/newdog.csv";
+		$file = getcwd()."/data/newcat.csv";
 		
 		if (($handle = fopen($file, "r")) !== FALSE) {
 			while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
@@ -1923,7 +1923,7 @@ EOTl
 				$category = new Category();
 				$category->name = $data[1];
 				$category->zh_tw_display_name = $data[0];
-				$category->parent_id = '4';
+				$category->parent_id = '5';
 				$category->create();
 			}
 			
