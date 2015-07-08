@@ -58,12 +58,11 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		
 			if((empty($_SESSION))) {
 				
-				$mobile = Mobile::findFirst("sso_id = '{$device->sso_id}' and token is not null and token != ''");
-							
+				$mobiles = Mobile::find("sso_id = '{$device->sso_id}' and token is not null and token != ''");
+											
 				if(!empty($mobiles)) {
 					$android_send = "N";
 					$apple_send = "N";
-					
 					foreach($mobiles as $mobile) {
 						if($android_send == 'N') {
 							$android_send  = $this->_send_android_notification($msg, $serial_number, $mobile->token);
