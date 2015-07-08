@@ -48,8 +48,31 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		//redirect according to device status...
 		if($device->status == "new")
 			header("Location: " . "http://{$_SERVER['HTTP_HOST']}/");
-		else if($device->status == "lost")
-			header("Location: " . "http://{$_SERVER['HTTP_HOST']}/guestbook/create?serial_number=" . $serial_number);
+		else if($device->status == "lost") ｛
+			//header("Location: " . "http://{$_SERVER['HTTP_HOST']}/guestbook/create?serial_number=" . $serial_number);
+			header("Location: " . "http://{$_SERVER['HTTP_HOST']}/device?serial_number=" . $serial_number);
+		
+			//push
+			if((empty($_SESSION))) {
+				$mobile = Mobile::findFirst("sso_id = '{$device->sso_id}' and token is not null and token != ''");
+			
+					
+				if(!empty($mobiles)) {
+					$android_send = "N";
+					$apple_send = "N";
+						
+					foreach($mobiles as $mobile) {
+						if($android_send == 'N') {
+							$android_send  = $this->_send_android_notification($msg, $serial_number, $mobile->token);
+						}
+							
+						if($apple_send == "N") {
+							$apple_send = $this->_send_apple_notification($msg, $serial_number, $mobile->token);
+						}
+					}
+				}
+			}
+		｝
 		else if($device->open == "N")
 			header("Location: " . "http://{$_SERVER['HTTP_HOST']}/");
 		
@@ -64,25 +87,6 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			$this->_send_android_notification($msg, $serial_number, $_SESSION['USER']['INFO']['access_token']);
 			$this->_send_apple_notification($msg, $serial_number, $_SESSION['USER']['INFO']['access_token']);
 		}*/
-		if(($device->status == "lost") && (empty($_SESSION))) {
-			$mobile = Mobile::findFirst("sso_id = '{$device->sso_id}' and token is not null and token != ''");
-			 
-			
-			if(!empty($mobiles)) {
-				$android_send = "N";
-				$apple_send = "N";
-					
-				foreach($mobiles as $mobile) {
-					if($android_send == 'N') {
-						$android_send  = $this->_send_android_notification($msg, $serial_number, $mobile->token);
-					}
-			
-					if($apple_send == "N") {
-						$apple_send = $this->_send_apple_notification($msg, $serial_number, $mobile->token);
-					}
-				}
-			}
-		}
 			
 		switch($device->type) {
 			case "Pets":
