@@ -28,7 +28,7 @@ $.init_form = function() {
 			
 			if(response.status == 'success') {
 				$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
-				$.blockUI({ message: '<h1>留言成功!</h1>', css: { 'margin-left':'-25%', 'width':'80%', 'font-size':'2em' }});
+				$.blockUI({ message: '<h1>您的留言巳送出<br>謝謝您的回復!</h1>', css: { 'margin-left':'-25%', 'width':'80%', 'font-size':'2em' }});
 			}
 			else {
 				$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
@@ -39,7 +39,8 @@ $.init_form = function() {
 				$.unblockUI();
 				//alert(response.msg);
 				if(response.status == 'success') {
-					window.location.href = '/guestbook/list?serial_number='+$("input[name='serial_number']").val();
+					window.location.href = '/device?sn='+$("input[name='serial_number']").val();
+					//window.location.href = '/guestbook/list?serial_number='+$("input[name='serial_number']").val();
 				}
 			}, 1000);
 		},
