@@ -48,15 +48,17 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		//redirect according to device status...
 		if($device->status == "new")
 			header("Location: " . "http://{$_SERVER['HTTP_HOST']}/");
-		else if($device->status == "lost") ｛
-			//header("Location: " . "http://{$_SERVER['HTTP_HOST']}/guestbook/create?serial_number=" . $serial_number);
-			header("Location: " . "http://{$_SERVER['HTTP_HOST']}/device?serial_number=" . $serial_number);
+		else if($device->status == "lost") {
 		
-			//push
+			//push notifications when device status lost
+			if(!empty($device->name))
+				$msg = '有人發現 "' . $device->name . '"';
+			else
+				$msg = '有人發現 "' . substr($serial_number, 3, 14) . '"';
+		
 			if((empty($_SESSION))) {
 				$mobile = Mobile::findFirst("sso_id = '{$device->sso_id}' and token is not null and token != ''");
-			
-					
+							
 				if(!empty($mobiles)) {
 					$android_send = "N";
 					$apple_send = "N";
@@ -72,15 +74,12 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 					}
 				}
 			}
-		｝
+			
+			//header("Location: " . "http://{$_SERVER['HTTP_HOST']}/guestbook/create?serial_number=" . $serial_number);
+			header("Location: " . "http://{$_SERVER['HTTP_HOST']}/device?serial_number=" . $serial_number);
+		}
 		else if($device->open == "N")
 			header("Location: " . "http://{$_SERVER['HTTP_HOST']}/");
-		
-		//push notifications when device status lost
-		if(!empty($device->name))
-			$msg = '有人發現 "' . $device->name . '"';
-		else
-			$msg = '有人發現 "' . substr($serial_number, 3, 14) . '"';
 		
 		/*
 		if(($device->status == "lost") && (empty($_SESSION))) {
