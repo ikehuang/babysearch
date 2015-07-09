@@ -54,8 +54,9 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 			$guestbook->longitude = $this->_request->getPost("longitude");
 
 			$device = Device::findFirst("did = '{$guestbook->did}'");
-			$mobiles = Mobile::find("sso_id = '{$device->sso_id}' and token is not null and token != ''");
-
+			//$mobiles = Mobile::find("sso_id = '{$device->sso_id}' and token is not null and token != ''");
+			$mobiles = Mobile::find(array("conditions" => "sso_id = '{$device->sso_id}' and token is not null and token != ''", "order" => "mid desc"));
+			
 			if(!empty($this->_request->getPost("date"))) {
 
 				$guestbook->datetime = $this->_request->getPost("date")." ".$this->_request->getPost("time");

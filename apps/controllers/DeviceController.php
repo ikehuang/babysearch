@@ -58,8 +58,9 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		
 			if((empty($_SESSION))) {
 				
-				$mobiles = Mobile::find("sso_id = '{$device->sso_id}' and token is not null and token != ''");
-											
+				//$mobiles = Mobile::find("sso_id = '{$device->sso_id}' and token is not null and token != ''");
+				$mobiles = Mobile::find(array("conditions" => "sso_id = '{$device->sso_id}' and token is not null and token != ''", "order" => "mid desc"));
+				
 				if(!empty($mobiles)) {
 					$android_send = "N";
 					$apple_send = "N";
