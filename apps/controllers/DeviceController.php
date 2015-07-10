@@ -1327,6 +1327,27 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			
 			$serial_number = strtoupper($this->_request->getPost('serial_number'));
 			
+			if(!empty($serial_number))
+			$type = $serial_number[0];
+		
+		switch($type) {
+			case "P":
+				$type = "Pets";
+				break;
+			case "M":
+				$type = "Human";
+				break;
+			case "T":
+				$type = "Valuables";
+				break;
+			case "A":
+				$type = "All";
+				break;
+			default:
+				break;
+		}
+
+
 			//create Device
 			//if serial number exists and 'status'='new', then continue to create device...; otherwise, return fail
 			if(Device::count(array("conditions" => "status = 'new' AND serial_number = '{$serial_number}'")) > 0) {
