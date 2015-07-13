@@ -772,8 +772,8 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			}
 		
 			//if device is lost, then switch ON the "open" flag to signal
-			if($device->status == 'lost')
-				$device->open = 'Y';
+			//if($device->status == 'lost')
+				//$device->open = 'Y';
 			//else
 				//$device->open = 'N';
 		
@@ -958,8 +958,8 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			}
 		
 			//if device is lost, then switch ON the "open" flag to signal
-			if($device->status == 'lost')
-				$device->open = 'Y';
+			//if($device->status == 'lost')
+				//$device->open = 'Y';
 			//else
 				//$device->open = 'N';
 		
@@ -1106,8 +1106,8 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			}
 		
 			//if device is lost, then switch ON the "open" flag to signal
-			if($device->status == 'lost')
-				$device->open = 'Y';
+			//if($device->status == 'lost')
+				//$device->open = 'Y';
 			//else
 				//$device->open = 'N';
 		
