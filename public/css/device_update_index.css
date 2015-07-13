@@ -127,6 +127,7 @@
 	float:left;
 	position:relative;
 	display:block;
+	margin-bottom:-2px;
 }
 
 .menu span {
