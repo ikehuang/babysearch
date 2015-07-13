@@ -79,7 +79,12 @@
 }
 
 #newsfeed_container{
-	margin-bottom:3%;	
+	width:50%;
+	float:left;
+	background:#E6E6E6;
+	color:#808080;
+	padding-top:1%;
+	padding-bottom:1%;
 }
 .st_facebook_custom{
 	background: url("/01/icon-01.png") no-repeat scroll left top transparent;
@@ -91,6 +96,12 @@
 }
 
 #download_container{
+	width:50%;
+	float:left;
+	background:#E6E6E6;
+	color:#808080;
+	padding-top:1%;
+	padding-bottom:1%;
 }
 
 .sso {
@@ -116,8 +127,7 @@
 #newsfeed_container ul ,
 #download_container ul {
 	list-style-type:none;
-	text-align:left;	
-	width:90%;
+	text-align:center;
 	padding:0;
 	margin:0;
 }
@@ -125,11 +135,9 @@
 #newsfeed_container li,
 #download_container li {
 	text-align:left;
-	padding-left:4%;
 	display:inline-block;	
 	vertical-align:middle;
 }
-
 
 #newsfeed_container img,
 #download_container img {
