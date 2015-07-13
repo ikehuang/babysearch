@@ -86,11 +86,11 @@
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">身高/身長(cm)</div>
-	        		<input type="number" name="pet_height" value="<?php if(isset($pet_info)) echo $pet_info->height; ?>" class="textfield"/>
+	        		<input type="number" name="pet_height" value="<?php if(isset($pet_info) && ($pet_info->height != 0)) echo $pet_info->height; ?>" class="textfield"/>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">體重(kg)</div>
-	        		<input type="number" name="pet_weight" value="<?php if(isset($pet_info)) echo $pet_info->weight; ?>" class="textfield"/>
+	        		<input type="number" name="pet_weight" value="<?php if(isset($pet_info) && ($pet_info->weight != 0)) echo $pet_info->weight; ?>" class="textfield"/>
 				</div>
 				<div class='input_div'>
 	        		<table class='checkbox_table'>
@@ -281,11 +281,11 @@
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">身高(cm)</div>
-	        		<input type="text" name="human_height" value="<?php if(isset($human_info)) echo $human_info->height; ?>" class="textfield"/>
+	        		<input type="text" name="human_height" value="<?php if(isset($human_info) && ($human_info->height != 0)) echo $human_info->height; ?>" class="textfield"/>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">體重(kg)</div>
-	        		<input type="text" name="human_weight" value="<?php if(isset($human_info)) echo $human_info->weight; ?>" class="textfield"/>
+	        		<input type="text" name="human_weight" value="<?php if(isset($human_info) && ($human_info->weight != 0)) echo $human_info->weight; ?>" class="textfield"/>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">血型</div>
