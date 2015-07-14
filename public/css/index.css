@@ -208,7 +208,7 @@ a {
 }
 .open-label {
     display: block; overflow: hidden; cursor: pointer;
-    border: 2px solid #999999; border-radius: 20px; width:200%; height:4.5em;
+    border: 2px solid #999999; border-radius: 20px; width:200%; height:4.5em; margin-top:-1em;
 }
 .open-inner {
     display: block; width: 200%; margin-left: -100%;
@@ -255,7 +255,7 @@ a {
 }
 .status-label {
     display: block; overflow: hidden; cursor: pointer;
-    border: 2px solid #999999; border-radius: 20px; width:200%; height:4.5em;
+    border: 2px solid #999999; border-radius: 20px; width:200%; height:4.5em; margin-top:-1em;
 }
 .status-inner {
     display: block; width: 200%; margin-left: -100%;
