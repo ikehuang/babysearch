@@ -86,16 +86,10 @@
 }
 
 .checkbox_table th {
-	width:20%;
-}
-
-.checkbox_table td {
 	text-align:left;
 	width:45%;
 	vertical-align:middle;
-	font-size:3.5em;
 	color:#666;
-	padding:3%;
 }
 
 #title {
