@@ -18,8 +18,9 @@ $.init_event = function() {
 	
 	$('input[name="open"]').change(function(){
 		var self = $(this);
+		var status = self.is(":checked") == true ? 'y' : 'n';
 		$.ajax({
-			url:"/device/updateOpenStatus?serial_number="+$("input[name='serial_number']").val()+"&status="+self.val(),
+			url:"/device/updateOpenStatus?serial_number="+$("input[name='serial_number']").val()+"&status="+status,
 			beforeSubmit:function(e) {
 				$.blockUI({ message: '<h1>更新公開狀態中...</h1>', css: { 'margin-left':'-25%', 'width':'80%', 'font-size':'2em' }});
 			},
@@ -36,15 +37,14 @@ $.init_event = function() {
 	
 	$('input[name="status"]').change(function(){
 		var self = $(this);
+		var status = self.is(":checked") == true ? 'lost' : 'normal';
 		$.ajax({
-			url:"/device/updateStatus?serial_number="+$("input[name='serial_number']").val()+"&status="+self.val(),
+			url:"/device/updateStatus?serial_number="+$("input[name='serial_number']").val()+"&status="+status,
 			beforeSubmit:function(e) {
-				$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
-				$.blockUI({ message: '<h1>更新遺失狀態中...</h1>', css: { 'margin-left':'-25%', 'width':'80%', 'font-size':'2em' }});
+				$.blockUI({ message: '<h1>更新公開狀態中...</h1>', css: { 'margin-left':'-25%', 'width':'80%', 'font-size':'2em' }});
 			},
 			success:function(response) {
-				$.blockUI({ css: { backgroundColor:'transparent', color:'black'} });
-				$.blockUI({ message: '<h1>更新遺失狀態成功!</h1>', css: { 'margin-left':'-25%', 'width':'80%', 'font-size':'2em' }});
+				$.blockUI({ message: '<h1>更新公開狀態成功!</h1>', css: { 'margin-left':'-25%', 'width':'80%', 'font-size':'2em' }});
 
 				setTimeout(function() {
 					$.unblockUI();
@@ -53,6 +53,7 @@ $.init_event = function() {
 			}
 		});
 	});
+	
 };
 
 function readURL(input) {

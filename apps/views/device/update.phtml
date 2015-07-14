@@ -145,6 +145,30 @@
 	<div class="clear"></div>
 	-->
 	<div>
+		<font style="color:red;font-size:3.333em;float:left;">*</font><span class="blue_text" style='margin-right:5%;float:left;'>資料公開</span>
+		<div class="open" style="margin-top:0.5em;float:left;">
+		    <input type="checkbox" name="open" class="open-checkbox" id="myopen" value='y' <?php if($device->open == 'y') echo 'checked';?>>
+		    <label class="open-label" for="myopen">
+		        <span class="open-inner"></span>
+		        <span class="open-switch"></span>
+		    </label>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<br>
+	<div>
+		<font style="color:red;font-size:3.333em;float:left;">*</font><span class="blue_text" style='margin-right:5%;float:left;'>遺失狀態</span>
+		<div class="status" style="margin-top:0.5em;float:left;">
+		    <input type="checkbox" name="status" class="status-checkbox" id="mystatus" value='lost' <?php if($device->status == 'lost') echo 'checked';?>>
+		    <label class="status-label" for="mystatus">
+		        <span class="status-inner"></span>
+		        <span class="status-switch"></span>
+		    </label>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<!-- 
+	<div>
 		<font style="color:red;font-size:3.333em;">*</font><span class="blue_text" style='margin-right:5%;'>資料公開</span>
 		<input type="radio" name="open" value="y" <?php if($device->open == 'y') echo 'checked';?>><span class='radio_text'>公開</span>
 		<input type="radio" name="open" value="n" <?php if($device->open != 'y') echo 'checked';?>><span class='radio_text'>關閉</span>
@@ -155,6 +179,7 @@
 		<input type="radio" name="status" value="lost" <?php if($device->status == 'lost') echo 'checked';?>><span class='radio_text'>遺失</span>
 		<input type="radio" name="status" value="normal" <?php if($device->status != 'lost') echo 'checked';?>><span class='radio_text' >關閉</span>
 	</div>
+	 -->
 </div>
 
 <div>
