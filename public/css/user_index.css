@@ -106,7 +106,8 @@
 	color:white;
 }
 
-.grey_text {
+.default_text {
+	color:#333333;
 	margin-left:4%;
 	margin-right:6.4%;
 	font-size:4.167em;

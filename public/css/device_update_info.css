@@ -13,6 +13,15 @@
    color:    #b3b3b3;
 }
 
+#updatePet{
+	background:#d9d9d9;
+}
+#updateHuman{
+	background:#d9d9d9;
+}
+#updateValuable{
+	background:#d9d9d9;
+}
 #human_tab_container,
 #val_tab_container,
 #pet_tab_container {

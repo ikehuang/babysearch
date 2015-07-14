@@ -24,7 +24,7 @@
 				}
 			?>
 		</div>
-		<a id='update_info_link' href="/user/update" class='blue_text'>
+		<a id='update_info_link' href="/user/update" class='black_text'>
 			<img src='/img/06/bu-02.png'/>	<?php echo $user->nickname?> <?php //echo $user['nickname']?>
 		</a>
 	</div>
@@ -120,17 +120,17 @@
 	<div class='img_wrapper'>	
 		{$img}
 		{$notification_div}
-		<p class='green_text' style='font-size:3.5em;text-align:center;margin-top:0;'>{$kind}</p>
+		<p class='black_text' style='font-size:3.5em;text-align:center;margin-top:0;'>{$kind}</p>
 	</div>
 	
 	<a href='/device/update?sn={$device->serial_number}'>
 		<div class='device_info'>
-			<p class='green_text' style='font-size:6em;margin-top:0.7em;'>{$name}</p>
-			<p class='green_text' style='font-size:3.5em;margin-top:-.8em;'>ID : {$id}</p>
+			<p class='black_text' style='font-size:6em;margin-top:0.7em;'>{$name}</p>
+			<p class='black_text' style='font-size:3.5em;margin-top:-.8em;'>ID : {$id}</p>
 		</div>
 		
 		<div class='device_status'>
-			<p class='green_text' style='font-size:4em;'>{$status}</p>
+			<p class='black_text' style='font-size:4em;'>{$status}</p>
 		</div>
 		<div class='clear'></div>
 	</a>
@@ -150,7 +150,7 @@ EOT;
 	<a href="/device/create" id='create_device_btn'>
 			<img src="/img/06/bu-01.png"/>
 	</a>
-	<div class="grey_text">
+	<div class="default_text">
 		<?php
 			if(!empty($device_list)) {
 

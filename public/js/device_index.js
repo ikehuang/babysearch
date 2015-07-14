@@ -1,6 +1,6 @@
 $(document).ready(function() {
 		
-	if($(status == 'lost')) {
+	if((status == 'lost')) {
 		$("#info_container").hide();
 		$("#notice_container").show();
 	
