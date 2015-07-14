@@ -235,7 +235,7 @@ a {
     display: block; width: 18px; margin: 6px;
     background: #FFFFFF;
     border: 2px solid #999999; border-radius: 20px;
-    position: absolute; top: 0; bottom: 0; right: 56px;
+    position: absolute; top: 0; bottom: 0; right: 56px; margin-top:-0.4em;
     -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
     -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; 
 }
@@ -283,7 +283,7 @@ a {
     display: block; width: 18px; margin: 6px;
     background: #FFFFFF;
     border: 2px solid #999999; border-radius: 20px;
-    position: absolute; top: 0; bottom: 0; right: 56px;
+    position: absolute; top: 0; bottom: 0; right: 56px; margin-top:-0.4em;
     -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
     -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; 
 }
