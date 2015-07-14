@@ -98,22 +98,22 @@
 	        				<th rowspan=6 style='vertical-align: top;'><div class="blue_text" style="text-align:left;">個性</div></th>
 	        			</tr>
 	        			<tr>
-	        				<th><input type="checkbox" name="pet_temperament[]" value="活潑" <?php if(strpos($pet_info->temperament,'活潑') !== false) echo "checked"; ?>>活潑</th>
+	        				<td><input type="checkbox" name="pet_temperament[]" value="活潑" <?php if(strpos($pet_info->temperament,'活潑') !== false) echo "checked"; ?>>活潑</td>
 	        			</tr>
 	        			<tr>
-	        				<th><input type="checkbox" name="pet_temperament[]" value="怕生" <?php if(strpos($pet_info->temperament,'怕生') !== false) echo "checked"; ?>>怕生</th>
+	        				<td><input type="checkbox" name="pet_temperament[]" value="怕生" <?php if(strpos($pet_info->temperament,'怕生') !== false) echo "checked"; ?>>怕生</td>
 	        			</tr>
 	        			<tr>	
-	        				<th><input type="checkbox" name="pet_temperament[]" value="容易攻擊" <?php if(strpos($pet_info->temperament,'容易攻擊') !== false) echo "checked"; ?>>容易攻擊</th>
+	        				<td><input type="checkbox" name="pet_temperament[]" value="容易攻擊" <?php if(strpos($pet_info->temperament,'容易攻擊') !== false) echo "checked"; ?>>容易攻擊</td>
 	        			</tr>
 	        			<tr>
-	        				<th><input type="checkbox" name="pet_temperament[]" value="具攻擊性" <?php if(strpos($pet_info->temperament,'具攻擊性') !== false) echo "checked"; ?>>具攻擊性</th>
+	        				<td><input type="checkbox" name="pet_temperament[]" value="具攻擊性" <?php if(strpos($pet_info->temperament,'具攻擊性') !== false) echo "checked"; ?>>具攻擊性</td>
 	        			</tr>
 	        			<tr>
-	        				<th colspan=2>
+	        				<td colspan=2>
 	        					<div style='float:left;'><input type="checkbox" name="pet_temperament[]" value="其他" <?php if(strpos($pet_info->temperament,'其他') !== false) echo 'checked="checked"'; ?>>其他</div>
 	        					<input type="text" name="pet_temperament[]" value="<?php if(strpos($pet_info->temperament,'其他') !== false) {$others = explode(",", $pet_info->temperament); echo array_pop($others); }?>" class='textfield black_text' style='float:left;width:50%;font-size:0.5em;margin-left:5%;'/>
-	        				</th>
+	        				</td>
 	        			</tr>
 	        		</table>
 				</div>
