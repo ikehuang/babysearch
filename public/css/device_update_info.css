@@ -153,7 +153,8 @@
 
 .submit_div {
 	width:92%;
-	margin:4.5% auto 12% auto;
+	margin:4.5% auto 0 auto;
+	padding-bottom:12%;
 }
 
 #healthStatus_container {
