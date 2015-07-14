@@ -107,7 +107,19 @@ EOT;
 			<tr>
 				<th class="blue_text">種類:</th>
 				<td class="black_text">
-					<?php echo $device->category; ?>
+					<?php
+						switch(strtolower($device->category)){
+							case 'dogs':
+								echo "狗類";
+								break;
+							case 'cats':
+								echo "貓類";
+								break;
+							default:
+								echo "";
+								break;
+						}
+					?>
 				</td>
 			</tr>
 			<tr>
