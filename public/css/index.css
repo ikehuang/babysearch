@@ -208,7 +208,7 @@ a {
 }
 .open-label {
     display: block; overflow: hidden; cursor: pointer;
-    border: 2px solid #999999; border-radius: 20px; width:200%; height:4em;
+    border: 2px solid #999999; border-radius: 20px; width:200%; height:4.5em;
 }
 .open-inner {
     display: block; width: 200%; margin-left: -100%;
@@ -223,12 +223,12 @@ a {
 .open-inner:before {
     content: "ON";
     padding-left: 10px;
-    background-color: #34A7C1; color: #FFFFFF; height:4em; font-size:3em; padding-top:0.3em;
+    background-color: #34A7C1; color: #FFFFFF; height:4.5em; font-size:3em; padding-top:0.35em;
 }
 .open-inner:after {
     content: "OFF";
     padding-right: 10px;
-    background-color: #EEEEEE; color: #999999; height:4em; font-size:3em; padding-top:0.3em;
+    background-color: #EEEEEE; color: #999999; height:4.5em; font-size:3em; padding-top:0.35em;
     text-align: right;
 }
 .open-switch {
@@ -255,7 +255,7 @@ a {
 }
 .status-label {
     display: block; overflow: hidden; cursor: pointer;
-    border: 2px solid #999999; border-radius: 20px; width:200%; height:4em;
+    border: 2px solid #999999; border-radius: 20px; width:200%; height:4.5em;
 }
 .status-inner {
     display: block; width: 200%; margin-left: -100%;
@@ -270,12 +270,12 @@ a {
 .status-inner:before {
     content: "ON";
     padding-left: 10px;
-    background-color: #34A7C1; color: #FFFFFF; height:4em; font-size:3em; padding-top:0.3em;
+    background-color: #34A7C1; color: #FFFFFF; height:4.5em; font-size:3em; padding-top:0.35em;
 }
 .status-inner:after {
     content: "OFF";
     padding-right: 10px;
-    background-color: #EEEEEE; color: #999999; height:4em; font-size:3em; padding-top:0.3em;
+    background-color: #EEEEEE; color: #999999; height:4.5em; font-size:3em; padding-top:0.35em;
     text-align: right;
 }
 .status-switch {
