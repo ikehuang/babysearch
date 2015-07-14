@@ -243,7 +243,8 @@ a {
     margin-left: 0;
 }
 .open-checkbox:checked + .open-label .open-switch {
-    right: -8em; 
+    right: -8em;
+	margin-top:-0.4em;
 }
 
 .status {
@@ -290,5 +291,6 @@ a {
     margin-left: 0;
 }
 .status-checkbox:checked + .status-label .status-switch {
-    right: -8em; 
+    right: -8em;
+	margin-top:-0.4em;
 }
