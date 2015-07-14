@@ -108,12 +108,10 @@
 	        				<th class="tr"><input type="checkbox" name="pet_temperament[]" value="具攻擊性" <?php if(strpos($pet_info->temperament,'具攻擊性') !== false) echo "checked"; ?>>具攻擊性</th>
 	        			</tr>
 	        			<tr>
-	        				<th class="tr" colspan=2>
-	        					<div style='float:left;'><input type="checkbox" name="pet_temperament[]" value="其他" <?php if(strpos($pet_info->temperament,'其他') !== false) echo 'checked="checked"'; ?>>其他</div>
-	        					<input type="text" name="pet_temperament[]" value="<?php if(strpos($pet_info->temperament,'其他') !== false) {$others = explode(",", $pet_info->temperament); echo array_pop($others); }?>" class='textfield' style='float:left;width:50%;font-size:1em;margin-left:5%;'/>
-	        				</th>
-	        			</tr>
+	        				<th class="tr"><input type="checkbox" name="pet_temperament[]" value="其他" <?php if(strpos($pet_info->temperament,'其他') !== false) echo 'checked="checked"'; ?>>其他</th>
+	        			</tr>			
 	        		</table>
+	        		<input type="text" name="pet_temperament[]" value="<?php if(strpos($pet_info->temperament,'其他') !== false) {$others = explode(",", $pet_info->temperament); echo array_pop($others); }?>" class='textfield'/>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">特殊才能</div>
@@ -131,12 +129,10 @@
 	        				<th class="tr"><input type="checkbox" name="pet_talents[]" value="站立" <?php if(strpos($pet_info->talents,'站立') !== false) echo "checked"; ?>>站立</th>
 	        			</tr>
 	        			<tr>
-	        				<th class="tr" colspan=2>
-	        					<div style='float:left;'><input type="checkbox" name="pet_talents[]" value="其他" <?php if(strpos($pet_info->talents,'其他') !== false) echo 'checked="checked"'; ?>>其他</div>
-	        					<input type="text" name="pet_talents[]" value="<?php if(strpos($pet_info->talents,'其他') !== false) {$others = explode(",", $pet_info->talents); echo array_pop($others); }?>" class='textfield' style='float:left;width:50%;font-size:1em;margin-left:5%;'/>
-	        				</th>
-	        			</tr>
+	        				<th class="tr"><input type="checkbox" name="pet_talents[]" value="其他" <?php if(strpos($pet_info->talents,'其他') !== false) echo 'checked="checked"'; ?>>其他</th>
+	        			</tr>			
 	        		</table>
+	        		<input type="text" name="pet_talents[]" value="<?php if(strpos($pet_info->talents,'其他') !== false) {$others = explode(",", $pet_info->talents); echo array_pop($others); }?>" class='textfield'/>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">簡介</div>
@@ -207,14 +203,10 @@
 	        				<th class="tr"><input type="checkbox" name="pet_disability[]" value="視覺" <?php if(strpos($pet_info->disability,'視覺') !== false) echo "checked"; ?>>視覺</th>
 	        			</tr>
 	        			<tr>
-	        				<th class="tr" colspan=2>
-	        					<div style='float:left;'><input type="checkbox" name="pet_disability[]" value="其他" <?php if(strpos($pet_info->disability,'其他') !== false) echo "checked"; ?>>其他</div>
-	        					<input type="text" name="pet_disability[]" value="<?php if(strpos($pet_info->disability,'其他') !== false) {$others = explode(",", $pet_info->disability); echo array_pop($others); }?>" class='textfield' style='float:left;width:50%;font-size:1em;margin-left:5%;'/>
-	        				</th>
-	        			</tr>
+	        				<th class="tr"><input type="checkbox" name="pet_disability[]" value="其他" <?php if(strpos($pet_info->disability,'其他') !== false) echo 'checked="checked"'; ?>>其他</th>
+	        			</tr>			
 	        		</table>
-	        		
-	        		<div class='clear'></div>
+	        		<input type="text" name="pet_disability[]" value="<?php if(strpos($pet_info->disability,'其他') !== false) {$others = explode(",", $pet_info->disability); echo array_pop($others); }?>" class='textfield'/>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">保險</div>
@@ -310,12 +302,10 @@
 	        				<th class="tr"><input type="checkbox" name="human_disease[]" value="失智" <?php if(strpos($human_info->disease,'失智') !== false) echo "checked"; ?>>失智</th>
 	        			</tr>
 	        			<tr>
-	        				<th class="tr" colspan=2>
-	        					<div style='float:left;'><input type="checkbox" name="human_disease[]" value="其他" <?php if(strpos($human_info->disease,'其他') !== false) echo "checked"; ?>>其他</div>
-	        					<input type="text" name="human_disease[]" value="<?php if(strpos($human_info->disease,'其他') !== false) {$others = explode(",", $human_info->disease); echo array_pop($others); }?>" class='textfield' style='float:left;width:50%;font-size:1em;margin-left:5%;'/>
-	        				</th>
-	        			</tr>
+	        				<th class="tr"><input type="checkbox" name="human_disease[]" value="其他" <?php if(strpos($human_info->disease,'其他') !== false) echo 'checked="checked"'; ?>>其他</th>
+	        			</tr>			
 	        		</table>
+	        		<input type="text" name="human_disease[]" value="<?php if(strpos($human_info->disease,'其他') !== false) {$others = explode(",", $human_info->disease); echo array_pop($others); }?>" class='textfield'/>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">肢體障礙<</div>
@@ -333,12 +323,10 @@
 	        				<th class="tr"><input type="checkbox" name="human_disability[]" value="語言" <?php if(strpos($human_info->disability,'語言') !== false) echo "checked"; ?>>語言</th>
 	        			</tr>
 	        			<tr>
-	        				<th class="tr" colspan=2>
-	        					<div style='float:left;'><input type="checkbox" name="human_disability[]" value="其他" <?php if(strpos($human_info->disability,'其他') !== false) echo "checked"; ?>>其他</div>
-	        					<input type="text" name="human_disability[]" value="<?php if(strpos($human_info->disability,'其他') !== false) {$others = explode(",", $human_info->disability); echo array_pop($others); }?>" class='textfield' style='float:left;width:50%;font-size:1em;margin-left:5%;'/>
-	        				</th>
-	        			</tr>
+	        				<th class="tr"><input type="checkbox" name="human_disability[]" value="其他" <?php if(strpos($human_info->disability,'其他') !== false) echo 'checked="checked"'; ?>>其他</th>
+	        			</tr>			
 	        		</table>
+	        		<input type="text" name="human_disability[]" value="<?php if(strpos($human_info->disability,'其他') !== false) {$others = explode(",", $human_info->disability); echo array_pop($others); }?>" class='textfield'/>
 				</div>
 				<div class='input_div'>
 					<div class="blue_text">服用藥物</div>

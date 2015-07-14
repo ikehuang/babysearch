@@ -166,14 +166,7 @@
   html, body {
   	font-size: 3px;line-height: 1;
   }
-  
-input[type=checkbox],
-  input[type=radio] {
-    border: 0px;
-    width: 4em;
-    height: 4em;
-  	zoom:300%;
-}
+
 }
 @media (min-width: 320px) {
   html, body {
@@ -181,10 +174,19 @@ input[type=checkbox],
 	line-height:1px; }
 	
 }
-@media (min-width: 360px) {
+@media (min-device-width: 360px) {
   html, body {
     font-size: 6px;
 	line-height:1px; } 
+  	
+  
+input[type=checkbox],
+  input[type=radio] {
+    border: 0px;
+    width: 3em;
+    height: 3em;
+  	zoom:300%;
+}
 }
 
 @media (min-width: 375px) {
