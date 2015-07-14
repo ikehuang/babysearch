@@ -168,18 +168,11 @@
   }
 
 }
-@media (min-width: 320px) {
+@media (min-device-width: 320px) {
   html, body {
      font-size: 4px;
 	line-height:1px; }
-	
-}
-@media (min-device-width: 360px) {
-  html, body {
-    font-size: 6px;
-	line-height:1px; } 
   	
-  
 input[type=checkbox],
   input[type=radio] {
     border: 0px;
@@ -187,6 +180,12 @@ input[type=checkbox],
     height: 3em;
   	zoom:300%;
 }
+	
+}
+@media (min-device-width: 360px) {
+  html, body {
+    font-size: 6px;
+	line-height:1px; } 
 }
 
 @media (min-width: 375px) {
