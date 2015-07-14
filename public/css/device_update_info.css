@@ -166,6 +166,14 @@
   html, body {
   	font-size: 3px;line-height: 1;
   }
+  
+input[type=checkbox],
+  input[type=radio] {
+    border: 0px;
+    width: 4em;
+    height: 4em;
+  	zoom:300%;
+}
 }
 @media (min-width: 320px) {
   html, body {
