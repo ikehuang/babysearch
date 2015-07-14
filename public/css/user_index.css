@@ -3,8 +3,7 @@
 }
 
 #list_device .odd {
-	background:#E6E6E6;	
-	
+	background:#E6E6E6;
 }
 
 #user_container{
@@ -74,6 +73,7 @@
 
 .img_wrapper img {
 	width:100%;
+	height:17em;
 	border-radius:15%;
 }
 
