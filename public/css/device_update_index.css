@@ -234,6 +234,7 @@ input[type=checkbox],
 .open-checkbox:checked + .open-label .open-switch {
     right: -8em;
 	margin-top:-0.1em;
+	margin-bottom:1.1em;
 }
 
 .status {
@@ -282,6 +283,7 @@ input[type=checkbox],
 .status-checkbox:checked + .status-label .status-switch {
     right: -8em;
 	margin-top:-0.1em;
+	margin-bottom:1.1em;
 }
 }
 
