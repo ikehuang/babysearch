@@ -196,6 +196,11 @@ class UserController extends \Phalcon\Mvc\Controller {
 	
 	public function updateAction(){
 		
+		$app = $this->_request->get('app');
+		
+		if(!empty($app))
+			$this->view->setVar("app", $app);
+		
 		//still need to get user email from session/login
 		//sample data
 		//$email = "watson@ink.net.tw";

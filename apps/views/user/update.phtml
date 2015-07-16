@@ -22,7 +22,10 @@
 </ul>
 <div id="user_form_container">
 	<form action="/user/update" method="post" id='update_user_form' enctype="multipart/form-data">
-		<input type='file' name="photos" class="photos" style='width:0;height:0;'/>
+		<?php
+		if(!isset($app)) 
+			echo "<input type='file' name='photos' class='photos' style='width:0;height:0;'/>";
+		?>
 		<div class="blue_text title">我的個人照片</div>
 		
 		<div class='clear'></div>
