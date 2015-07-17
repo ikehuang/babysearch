@@ -1,3 +1,6 @@
+body{
+	width:100%;
+}
 ::-webkit-input-placeholder { /* WebKit browsers */
     color:    #b3b3b3;
 }

@@ -1,4 +1,6 @@
-
+body{
+	width:100%;
+}
 	#title {
 		list-style-type:none;
 		background:#d9d9d9;
