@@ -210,7 +210,15 @@ body{
 @media (min-device-width: 1280px) {
         body {
                 width:450px;
+        	    font-size:6px;
         }
+.notification {
+	margin-top:-13px;
+	padding-top:18px;
+}
+.img_wrapper img{
+	height:6em;
+}
 #background {
                 width:120%;
         }

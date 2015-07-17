@@ -403,7 +403,11 @@ a {
 @media (min-device-width: 1280px) {
         body {
                 width:450px;
+        	    font-size:6px;
         }
+.textfield{
+	height:50px;
+}
 #pclogo {
 	visibility:visible;
 }

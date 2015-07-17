@@ -242,6 +242,7 @@ td {
 @media (min-device-width: 1280px) {
         body {
                 width:450px;
+        	    font-size:6px;
         }
 #background {
                 width:120%;

@@ -233,8 +233,15 @@ body{
 @media (min-device-width: 1280px) {
         body {
                 width:450px;
+        	    font-size:6px;
         }
 #background {
                 width:120%;
         }
+input[type=checkbox], input[type=radio] {
+  border: 0px;
+  width: 2em;
+  height: 2em;
+  zoom: 100%;
+}
 }
