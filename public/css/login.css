@@ -176,7 +176,6 @@ body {
 		padding:27px;
 		
 	}
-	
 }
 @media (min-width: 360px) {
   html, body {
@@ -196,10 +195,6 @@ body {
   html, body {
     font-size: 6px;
 	line-height:1;  	 }
-  	
-#background {
-		width:100%;
-	}
  }
 @media (min-width: 400px) {
   html, body {
@@ -209,5 +204,8 @@ body {
 @media (min-width: 1280px) {
 	body {
 		width:450px;
+	}
+#background {
+		width:120%;
 	}
 }
