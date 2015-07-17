@@ -165,7 +165,7 @@ body {
 }
 @media (min-device-width: 320px) {
   html, body {
-     font-size: 7px;
+     font-size: 4px;
 	line-height:1px; }
   	
 	#title {
