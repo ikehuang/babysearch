@@ -50,6 +50,13 @@ body {
 	width:37.5%;
 }
 
+#pclogo {
+	visibility:hidden;	
+}
+#background {
+	width:100%;
+}
+
 #usermenu {
 	width:100%;
 	height:100%;
@@ -393,10 +400,13 @@ a {
     font-size: 12px;
     line-height: 1;  	 }	
 
-@media (min-device-idth: 1280px) {
+@media (min-device-width: 1280px) {
         body {
                 width:450px;
         }
+#pclogo {
+	visibility:visible;
+}
 #background {
                 width:120%;
         }

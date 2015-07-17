@@ -381,7 +381,7 @@ input[type=checkbox],
     font-size: 12px;
     line-height: 1;  	 }	
 
-@media (min-device-idth: 1280px) {
+@media (min-device-width: 1280px) {
         body {
                 width:450px;
         }
