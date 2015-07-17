@@ -307,5 +307,11 @@ a {
 @media (min-width: 1280px) {
 	body {
 		width:450px;
-	}	
+	}
+#background {
+		width:120%;
+	}
+#usermenu {
+	width:450px;
+}
 }
