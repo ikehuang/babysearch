@@ -202,3 +202,11 @@ body {
     font-size: 6px;
 	line-height:1;  	 }
  }
+@media (min-width: 1280px) {
+	body {
+		width:450px;
+	}
+	#background {
+		width:120%;
+	}
+}
