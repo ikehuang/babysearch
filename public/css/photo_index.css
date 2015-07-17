@@ -71,7 +71,7 @@ body{
 	.delete_btn img {
 		width:100%;
 	}
-	
+
 @media (min-width: 213px) {
   html, body { font-size: 2px;line-height: 1;
 	 } }
@@ -193,7 +193,7 @@ body{
 		height:25px;
 		
 	}
-}  	
+}  		
 @media (min-width: 540px) {
   html, body {
     font-size: 6px;
@@ -232,11 +232,37 @@ body{
 	}
 }
 
-@media (min-width: 1280px) {
-	body {
-		width:450px;
-	}
-#background {
-		width:120%;
-	}
+@media (min-width: 640px) {
+  html, body {
+    font-size: 7px;
+    line-height: 1;  	 } }
+@media (min-width: 720px) {
+	
 }
+@media (min-width: 768px) {
+  html, body {
+    font-size: 8px;
+    line-height: 1;  	 } }
+@media (min-width: 800px) {
+  html, body {
+    font-size: 10px;
+    line-height: 1;  	 } }
+@media (min-width: 960px) {
+  html, body {
+    font-size: 11px;
+    line-height: 1;  	 }
+}
+@media (min-width: 1024px) {
+
+  html, body {
+    font-size: 12px;
+    line-height: 1;  	 }	
+
+@media (min-device-width: 1280px) {
+        body {
+                width:450px;
+        }
+#background {
+                width:120%;
+        }
+}	
