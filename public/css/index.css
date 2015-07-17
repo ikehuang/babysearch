@@ -5,7 +5,6 @@ body {
 	padding:0;
 	font-family: Arial, Helvetica, sans-serif;
 	line-height:1;
-	max-width:35%;
 	background-color:#666666;
 }
 
@@ -296,4 +295,14 @@ a {
     right: -8em;
 	margin-top:-0.1em;
 	margin-bottom:1.1em;
+}
+@media (min-width: 640px) {
+	body {
+		width:320px;
+	}	
+}
+@media (min-width: 1280px) {
+	body {
+		width:450px;
+	}	
 }
