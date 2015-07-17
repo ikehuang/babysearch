@@ -1,5 +1,7 @@
 body{
 	width:100%;
+	background-color: white;
+	box-shadow: 0 2px 0 2px #888888;
 }
 ::-webkit-input-placeholder { /* WebKit browsers */
     color:    #b3b3b3;

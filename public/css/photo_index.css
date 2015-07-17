@@ -1,5 +1,7 @@
 body{
 	width:100%;
+	background-color: white;
+	box-shadow: 0 2px 0 2px #888888;
 }
 	#title {
 		list-style-type:none;
