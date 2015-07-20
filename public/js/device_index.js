@@ -1,7 +1,6 @@
 $(document).ready(function() {
 		
 	if((status == 'lost')) {
-		alert("status lost");
 		$("#info_container").hide();
 		$("#notice_container").show();
 	
@@ -9,7 +8,6 @@ $(document).ready(function() {
 		$('#petHealth_tab').css("background", "#4e65c5").css("border-bottom-left-radius", "1em").css("border-bottom-right-radius", "0em");
 	}
 	else {
-		alert("status ");
 		$("#info_container").show();
 		$("#notice_container").hide();
 		
