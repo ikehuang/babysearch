@@ -132,7 +132,11 @@ body{
 .textfield {
 	height:50px;
 }  	
-  	
+
+.select {
+	height:80px;
+}
+
 input[type=checkbox],
   input[type=radio] {
     border: 0px;
