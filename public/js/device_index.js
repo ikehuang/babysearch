@@ -12,7 +12,7 @@ $(document).ready(function() {
 		$("#notice_container").hide();
 		
 		$('#petHealth_tab').css("background", "#4e88ff").css("border-bottom-right-radius", "1em").css("border-bottom-right-radius", "0em");
-		$('#petInfo_tab').css("background", "#4e65c5").css("border-bottom-left-radius", "1em").css("border-bottom-left-radius", "0em");
+		$('#petInfo_tab').css("background", "#4e65c5").css("border-bottom-right-radius", "1em");
 	}
 		
 	$(".pet_tab" ).click(function() {
