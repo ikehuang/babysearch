@@ -73,19 +73,49 @@
 		if($device->status == 'lost') {
 			if(!empty($lost_contacts)) {
 				foreach($lost_contacts as $r) {
-					if($r->id == $device->lost_contact_id) {
+					if($r->id == $device->lost_contact_id && $device->lost_contact_id == 'Y') {
 						echo <<<EOT
 <tr>
 	<th class="blue_text">聯絡方式:</th>
-	<td class="orange_text">
+	<td class="orange_text" style="width:30%">
+	{$r->name}
+	</td>
+	<td class="orange_text" style="width:30%">
 	{$r->phone}
 	</td>
 </tr>					
 EOT;
+					}
+					if($r->id == $device->lost_contact_id_2 && $device->lost_contact_id_2 == 'Y') {
+						echo <<<EOT
+<tr>
+	<th class="blue_text">聯絡方式:</th>
+	<td class="orange_text" style="width:30%">
+	{$r->name}
+	</td>
+	<td class="orange_text" style="width:30%">
+	{$r->phone}
+	</td>
+</tr>
+EOT;
+					}
+					if($r->id == $device->lost_contact_id_3 && $device->lost_contact_id_3 == 'Y') {
+						echo <<<EOT
+<tr>
+	<th class="blue_text">聯絡方式:</th>
+	<td class="orange_text" style="width:30%">
+	{$r->name}
+	</td>
+	<td class="orange_text" style="width:30%">
+	{$r->phone}
+	</td>
+</tr>
+EOT;
+					}
 				}
 			}
 		}
-	}
+		
 		?>
 	</table>				
 	
