@@ -2024,7 +2024,13 @@ EOTl
 			$device->lost_location = $this->_request->getPost("lost_location");
 			$device->lost_spec = $this->_request->getPost("lost_spec");
 			$device->lost_message = $this->_request->getPost("lost_message");
-			$device->lost_contact_id = $this->_request->getPost("lost_contact_id");
+			$lost_contact_id = $this->_request->getPost("lost_contact_id");
+			$lost_contact_id_2 = $this->_request->getPost("lost_contact_id_2");
+			$lost_contact_id_3 = $this->_request->getPost("lost_contact_id_3");
+			
+			$device->lost_contact_id = isset($lost_contact_id) ? $lost_contact_id : 'N';
+			$device->lost_contact_id_2 = isset($lost_contact_id_2) ? $lost_contact_id_2 : 'N';
+			$device->lost_contact_id_3 = isset($lost_contact_id_3) ? $lost_contact_id_3 : 'N';
 			if(!empty($this->_request->getPost("lost_date"))) {
 				$device->lost_date = $this->_request->getPost("lost_date")." ".$this->_request->getPost("lost_time");
 			}

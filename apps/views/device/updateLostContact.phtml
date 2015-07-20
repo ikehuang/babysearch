@@ -81,13 +81,23 @@
 	        	<div id='edit_contact_div'><img src='/img/12/icon-01.png'/> <a href='/user/updateContact'>編輯清單</a></div>
 	        </div>
 				<?php 
+				$index = "";
+				$count = "";
+					
 				for($i = 0; $i < 3;$i++) {
-					$index = $i+1;
+					$count = $i+1;
 
+					if($i > 0)
+						$index = "_".($i+1);
+					
 					if(isset($contacts[$i])) { 
 						$checked = "";
 							
-						if($contacts[$i]->id == $device->lost_contact_id)
+						if($i == 0 && $device->lost_contact_id != 'Y')
+							$checked = "checked";
+						if($i == 1 && $device->lost_contact_id_2 != 'Y')
+							$checked = "checked";
+						if($i == 2 && $device->lost_contact_id_3 != 'Y')
 							$checked = "checked";
 						
 							if($contacts[$i]->phone == 0)
@@ -97,7 +107,7 @@
 				<div class='contact'>
 					<table style="width:100%">
 					<tr>
-					<td style="width:10%"><input type='checkbox' {$checked} name='lost_contact_id' value='{$contacts[$i]->id}'/></td> <td style="width:20%">聯絡人{$index}</td> <td style="width:35%">{$contacts[$i]->name}</td> <td style="width:35%">{$contacts[$i]->phone}</td>
+					<td style="width:10%"><input type='checkbox' {$checked} name='lost_contact_id{$index}' value='{$contacts[$i]->id}'/></td> <td style="width:20%">聯絡人{$count}</td> <td style="width:35%">{$contacts[$i]->name}</td> <td style="width:35%">{$contacts[$i]->phone}</td>
 					</tr>
 					</table>
 				</div>
