@@ -13,6 +13,7 @@
 		</a>
 	</div>
 	<div id="user_info_wrapper">
+		<!-- 
 		<div class="green_text" id='user_info'>
 			<?php
 				if(!empty($device_list)) {
@@ -25,15 +26,21 @@
 				}
 			?>
 		</div>
-		<a id='update_info_link' href="/user/update" class='black_text' style="width:50%;float:left;">
+		 -->
+		<a id='update_info_link' href="/user/update" class='black_text' style="width:50%;">
 			<img src='/img/06/bu-02.png'/>	<?php echo $user->nickname?> <?php //echo $user['nickname']?>
 		</a>
-		<a href="/user/updateContact" style="text-decoration:none;">
-			<div style="float:right;font-size:3.5em;color:purple;margin-top:9%;margin-right:6.4%;">聯絡人資料</div>
-		</a>
+		<div style="margin-top:5%;margin-left:10%;margin-bottom:5%;">
+			<a href="/user/update">
+				<div class="black_text" style="text-decoration:none;float:left;">個人資訊</div>
+			</a>
+			<div class="black_text" style="float:left;">&nbsp&nbsp|&nbsp&nbsp</div>
+			<a href="/user/updateContact" style="text-decoration:none;">
+				<div class="black_text" style="float:left;margin-right:6.4%;">聯絡人資料</div>
+			</a>
+		</div>
 		<div class="clear"></div>
 	</div>
-	<div class="clear"></div>
 </div>
 
 <div id="device_container">
