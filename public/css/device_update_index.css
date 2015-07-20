@@ -402,23 +402,21 @@ input[type=checkbox],
     padding-top:0em;
 }
 .open-checkbox:checked + .open-label .open-switch {
-	right: -16em;
-	margin-top:-1.3em;
+	margin-top:-1em;
 	margin-bottom:0.5em;
 }
 .status-checkbox:checked + .status-label .status-switch {
-	right: -16em;
-	margin-top:-1.3em;
+	margin-top:-1em;
 	margin-bottom:0.5em;
 }
 
 .open-switch{
-	margin-top:-1.3em;
+	margin-top:-1em;
 	margin-bottom:0.5em;
 }
 
 .status-switch{
-	margin-top:-1.3em;
+	margin-top:-1em;
 	margin-bottom:0.5em;
 }
 
