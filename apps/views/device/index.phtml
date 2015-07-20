@@ -73,7 +73,7 @@
 		if($device->status == 'lost') {
 			if(!empty($lost_contacts)) {
 				foreach($lost_contacts as $r) {
-					if($r->id == $device->lost_contact_id && $device->lost_contact_id == 'Y') {
+					if($r->id == $device->lost_contact_id) {
 						echo <<<EOT
 <tr>
 	<th class="blue_text">聯絡方式:</th>
@@ -86,7 +86,7 @@
 </tr>					
 EOT;
 					}
-					if($r->id == $device->lost_contact_id_2 && $device->lost_contact_id_2 == 'Y') {
+					if($r->id == $device->lost_contact_id_2) {
 						echo <<<EOT
 <tr>
 	<th class="blue_text">聯絡方式:</th>
@@ -99,7 +99,7 @@ EOT;
 </tr>
 EOT;
 					}
-					if($r->id == $device->lost_contact_id_3 && $device->lost_contact_id_3 == 'Y') {
+					if($r->id == $device->lost_contact_id_3) {
 						echo <<<EOT
 <tr>
 	<th class="blue_text">聯絡方式:</th>
