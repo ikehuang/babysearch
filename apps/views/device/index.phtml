@@ -70,6 +70,8 @@
 			</td>
 		</tr>
 		<?php 
+		$space = '&nbsp&nbsp';
+		
 		if($device->status == 'lost') {
 			if(!empty($lost_contacts)) {
 				foreach($lost_contacts as $r) {
@@ -77,10 +79,9 @@
 						echo <<<EOT
 <tr>
 	<th class="blue_text">聯絡方式:</th>
-	<td class="orange_text" style="width:30%">
+	<td class="orange_text">
 	{$r->name}
-	</td>
-	<td class="orange_text" style="width:30%">
+	{$space}
 	{$r->phone}
 	</td>
 </tr>					
@@ -90,10 +91,9 @@ EOT;
 						echo <<<EOT
 <tr>
 	<th class="blue_text">聯絡方式:</th>
-	<td class="orange_text" style="width:30%">
+	<td class="orange_text">
 	{$r->name}
-	</td>
-	<td class="orange_text" style="width:30%">
+	{$space}
 	{$r->phone}
 	</td>
 </tr>
@@ -103,10 +103,9 @@ EOT;
 						echo <<<EOT
 <tr>
 	<th class="blue_text">聯絡方式:</th>
-	<td class="orange_text" style="width:30%">
+	<td class="orange_text">
 	{$r->name}
-	</td>
-	<td class="orange_text" style="width:30%">
+	{$space}
 	{$r->phone}
 	</td>
 </tr>
