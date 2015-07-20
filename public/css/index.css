@@ -418,4 +418,8 @@ a {
 #usermenu {
 	width:450px;
 }
+#cross_btn{
+	margin-top:2em;
+	width:5em;
+}
 }

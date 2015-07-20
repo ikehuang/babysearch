@@ -258,4 +258,7 @@ input[type=checkbox],
 #background {
                 width:120%;
         }
+#pet_tab_container li{
+	height:1em;
+}
 }

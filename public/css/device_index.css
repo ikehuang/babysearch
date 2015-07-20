@@ -247,4 +247,13 @@ td {
 #background {
                 width:120%;
         }
+#tab_container {
+	height:11em;
+}
+#notice_table tbody tr th{
+	width:30%;
+}
+#info_table tbody tr th{
+	width:30%;
+}
 }

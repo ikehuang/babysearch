@@ -217,7 +217,10 @@ body{
 	padding-top:18px;
 }
 .img_wrapper img{
-	height:6em;
+	height:10em;
+}
+#user_pic_wrapper a img{
+	height:20em;
 }
 #background {
                 width:120%;
