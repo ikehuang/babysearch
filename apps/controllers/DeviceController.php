@@ -67,10 +67,14 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 					foreach($mobiles as $mobile) {
 						if($android_send == 'N') {
 							$android_send  = $this->_send_android_notification($msg, $serial_number, $mobile->token);
+							
+							$email_send  = $this->_send_email($msg, $serial_number, $mobile->token);
 						}
 							
 						if($apple_send == "N") {
 							$apple_send = $this->_send_apple_notification($msg, $serial_number, $mobile->token);
+							
+							$email_send  = $this->_send_email($msg, $serial_number, $mobile->token);
 						}
 					}
 				}
@@ -2138,5 +2142,46 @@ EOTl
 		
 			exec("php ".getcwd()."/push.php {$token} {$serial_number} $msg");
 			return  'N';
+	}
+	
+	private function _send_email($msg, $serial_number, $token) {
+		
+		// multiple recipients
+		$to  = $_SESSION['USER']['INFO']['email']; // note the comma
+		
+		// subject
+		//$subject = 'Mail From '.$_POST['name'];
+		$subject = 'Mail From BabySearch';
+		
+		// message
+		$message = "
+		<html>
+		<head>
+		<title>{$subject}</title>
+		</head>
+		<body>
+		<p>Here are the birthdays upcoming in August!</p>
+		<table>
+		<tr>
+		<th>MESSAGE</th>
+		<td>{$msg}</td>
+		</tr>
+		</table>
+		</body>
+		</html>
+		";
+		
+		// To send HTML mail, the Content-type header must be set
+		$headers  = 'MIME-Version: 1.0' . "\r\n";
+		$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+		// Additional headers
+		$headers .= 'To: '.$to . "\r\n";
+		//$headers .= "From: {$_POST['name']} <{$_POST['email']}>" . "\r\n";
+		$headers .= "From: BabySearch" . "\r\n";
+		
+		
+		// Mail it
+		mail($to, $subject, $message, $headers);
 	}
 }

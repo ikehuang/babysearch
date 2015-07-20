@@ -101,10 +101,10 @@
 		<?php
 			switch($device->status){
 				case "invalid":
-					echo "<font style='color:EB447E;'>" . '停用' . "</font>";
+					echo "<font style='color:EB447E;'>" . '關閉' . "</font>";
 					break;
 				case "lost":
-					echo "<font style='color:EB447E;'>" . '遺失' . "</font>";
+					echo "<font style='color:red;'>" . '遺失' . "</font>";
 					break;
 				case "normal":
 					echo '正常';
@@ -146,7 +146,7 @@
 	<div class="clear"></div>
 	-->
 	<div style="margin-bottom:6em;">
-		<font style="color:red;font-size:3.333em;float:left;">*</font><span class="blue_text" style='margin-right:5%;float:left;'>資料公開</span>
+		<span class="blue_text" style='margin-right:5%;float:left;'>資料公開</span>
 		<div class="open" style="margin-top:0.5em;float:left;">
 		    <input type="checkbox" name="open" class="open-checkbox" id="myopen" value='y' <?php if($device->open == 'y') echo 'checked';?>>
 		    <label class="open-label" for="myopen">
@@ -158,7 +158,7 @@
 	</div>
 	<br>
 	<div>
-		<font style="color:red;font-size:3.333em;float:left;">*</font><span class="blue_text" style='margin-right:5%;float:left;'>遺失狀態</span>
+		<span class="blue_text" style='margin-right:15%;float:left;'>遺失</span>
 		<div class="status" style="margin-top:0.5em;float:left;">
 		    <input type="checkbox" name="status" class="status-checkbox" id="mystatus" value='lost' <?php if($device->status == 'lost') echo 'checked';?>>
 		    <label class="status-label" for="mystatus">

@@ -25,9 +25,13 @@
 				}
 			?>
 		</div>
-		<a id='update_info_link' href="/user/update" class='black_text'>
+		<a id='update_info_link' href="/user/update" class='black_text' style="width:50%;float:left;">
 			<img src='/img/06/bu-02.png'/>	<?php echo $user->nickname?> <?php //echo $user['nickname']?>
 		</a>
+		<a href="/user/updateContact" style="text-decoration:none;">
+			<div style="float:right;font-size:3.5em;color:purple;margin-top:9%;margin-right:6.4%;">聯絡人資料</div>
+		</a>
+		<div class="clear"></div>
 	</div>
 	<div class="clear"></div>
 </div>
@@ -131,7 +135,13 @@
 		</div>
 		
 		<div class='device_status'>
-			<p class='black_text' style='font-size:4em;'>{$status}</p>
+EOT;
+			if($status == '遺失')
+				echo "<p class='red_text' style='font-size:4em;'>" . $status . "</p>";
+			else
+				echo "<p class='black_text' style='font-size:4em;'>" . $status . "</p>";
+			
+			echo <<<EOT
 		</div>
 		<div class='clear'></div>
 	</a>
@@ -155,12 +165,12 @@ EOT;
 		<?php
 			if(!empty($device_list)) {
 
-				echo "新增註册商品";
+				echo "新增註册Tag";
 
 			}
 			else {
 
-				echo "你可以按 [ <img src='/img/06/icon.png' style='width:5%;'></img> ] 開始新增註册你所購買的產品";
+				echo "你可以按 [ <img src='/img/06/icon.png' style='width:5%;'></img> ] 開始新增註册你所購買的Tag";
 			}
 		?>
 	</div>

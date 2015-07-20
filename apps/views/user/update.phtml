@@ -9,6 +9,7 @@
 <script type="text/javascript">
 	function uploads(){
 		sendCommand("open");
+		Android.uploadPhoto();
 	}  
 	function sendCommand(cmd){
 		var url = "gallery:"+cmd;
