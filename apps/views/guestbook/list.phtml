@@ -68,6 +68,6 @@ EOT;
 		}
 		?>
 		<?php if(isset($_SESSION) && !empty($_SESSION)) { ?>
-		<a href="/user"><div id='home'>回首頁</div></a>
+		<a href="/device?sn=<?php echo $device->serial_number?>"><div id='home'>回到Tag資料</div></a>
 		<?php } ?>
 </div>
