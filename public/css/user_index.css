@@ -148,7 +148,7 @@ body{
 }
 
 #user_container{
-	height:6em;
+	height:20em;
 }
 }
 @media (min-width: 360px) {
@@ -230,4 +230,7 @@ body{
 #background {
                 width:120%;
         }
+#user_container{
+	height:10.2em;
+}
 }
