@@ -694,6 +694,13 @@ class UserController extends \Phalcon\Mvc\Controller {
 			$mobile->update();
 		}
 	
+		var_dump($_SESSION['USER']['INFO']['login_type']);
+		var_dump($_SESSION['USER']['INFO']['email']);
+		var_dump($_SESSION['USER']['INFO']['sso_id']);
+		var_dump($_SESSION['USER']['INFO']['nickname']);
+		var_dump($_SESSION['USER']['INFO']['access_token']);
+		die();
+		
 		return $this->response->redirect("user/index");
 	}
 	

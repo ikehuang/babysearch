@@ -45,7 +45,6 @@ class Acl extends \Phalcon\Mvc\User\Component
 			return;
 
 		if (isset($_SESSION['USER']['INFO']) && !empty($_SESSION['USER']['INFO']) &&  $controller == 'user' && $action == 'login') {
-			var_dump("here");die();
 			$dispatcher->forward(
 				array(
 					'controller' => 'user',
