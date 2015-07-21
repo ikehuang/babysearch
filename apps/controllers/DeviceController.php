@@ -2166,7 +2166,6 @@ EOTl
 		<title>{$subject}</title>
 		</head>
 		<body>
-		<p>Here are the birthdays upcoming in August!</p>
 		<table>
 		<tr>
 		<th>MESSAGE</th>

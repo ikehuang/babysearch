@@ -34,7 +34,12 @@
 		<div id='img_wrapper'>
 			<div>
 				<img id="pic" src= "<?php echo $user->photo; ?>"/>
-				<img id='upload_btn' src="/img/frame.png" onclick="uploads();" />
+				<?php
+					if(!isset($app)) 
+						echo "<img id='upload_btn' src='/img/frame.png' onclick='uploads();'/>";
+					else
+						echo "<img id='upload_btn' src='/img/frame.png'/>"
+				?>
 			</div>
 		</div>
 		<div class='input_div'>
