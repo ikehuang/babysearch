@@ -2,16 +2,18 @@
 <link rel="stylesheet" type="text/css" href="/css/index.css?rand=<?php echo rand(); ?>">
 <link rel="stylesheet" type="text/css" href="/css/user_index.css?rand=<?php echo rand(); ?>">
 <div id="user_container">
-	<div id="user_pic_wrapper">
-		<a href="/user/update">
-		<?php 
-		if(!empty($user->photo))
-			echo "<img src='" . $user->photo . "'  style='width:100%'></img>";
-		else
-			echo "<img src='/img/06/pic-01.png'  style='width:100%'></img>";
-		?>
-		</a>
-	</div>
+	<a href="/user/update">
+		<div id="user_pic_wrapper">
+			
+			<?php 
+			if(!empty($user->photo))
+				echo "<img src='" . $user->photo . "'  style='width:100%'></img>";
+			else
+				echo "<img src='/img/06/pic-01.png'  style='width:100%'></img>";
+			?>
+			
+		</div>
+	</a>
 	<div id="user_info_wrapper">
 		<!-- 
 		<div class="green_text" id='user_info'>
