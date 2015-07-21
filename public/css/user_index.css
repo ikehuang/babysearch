@@ -147,12 +147,12 @@ body{
 	padding-top:20%;
 }
 
-#user_pic_wrapper a img{
+#user_pic_wrapper img{
 	height:22.5em;
 }
 
 #user_container{
-	height:23em;
+	height:22.5em;
 }
 }
 @media (min-width: 360px) {
@@ -228,13 +228,13 @@ body{
 .img_wrapper img{
 	height:6em;
 }
-#user_pic_wrapper a img{
-	height:10em;
+#user_pic_wrapper img{
+	height:9.4em;
 }
 #background {
                 width:120%;
         }
 #user_container{
-	height:10.2em;
+	height:9.4em;
 }
 }

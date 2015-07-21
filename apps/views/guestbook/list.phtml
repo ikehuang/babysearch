@@ -41,7 +41,8 @@
 
 <div id='guestbook_list'>
 <?php 
-		if(!empty($guestbook_list)) {
+		if($guestbook_list->count() > 0) {
+
 			foreach($guestbook_list as $r) {
 				$created = date('Y-m-d',strtotime($r->datetime));
 				$phone_link = "";
@@ -66,8 +67,13 @@ EOT;
 				}
 			}
 		}
+		else {
+			echo <<<EOT
+<p class='grey_text;' style='text-align:center;font-size:4em;color:#808080'>目 前 沒 有 留 言</p>
+EOT;
+		}
 		?>
 		<?php if(isset($_SESSION) && !empty($_SESSION)) { ?>
-		<a href="/device?sn=<?php echo $device->serial_number?>"><div id='home'>回到Tag資料</div></a>
+		<a href="/device?sn=<?php echo $device->serial_number?>"><div id='home'>回上一頁</div></a>
 		<?php } ?>
 </div>

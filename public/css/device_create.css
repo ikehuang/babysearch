@@ -269,7 +269,11 @@ body{
 	  width: 92%;
 	  height: 65%;
 	  border-radius: 17%;
-	}  	
+	}
+
+	.textfield{
+		border: 2px inset;
+	}
 }
 @media (min-width: 360px) {
   html, body {
