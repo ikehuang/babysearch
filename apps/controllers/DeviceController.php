@@ -52,9 +52,9 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			
 			//push notifications when device status lost
 			if(!empty($device->name))
-				$msg = 'æœ‰äººç™¼ç¾ "' . $device->name . '"';
+				$msg = '有人發現 "' . $device->name . '"';
 			else
-				$msg = 'æœ‰äººç™¼ç¾ "' . substr($serial_number, 3, 14) . '"';
+				$msg = '有人發現 "' . substr($serial_number, 3, 14) . '"';
 		
 			if((empty($_SESSION))) {
 				
