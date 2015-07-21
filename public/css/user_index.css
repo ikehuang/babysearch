@@ -145,7 +145,11 @@ body{
 .notification {
 	font-size:2em;
 	padding-top:20%;
-}  	
+}
+
+#user_container{
+	height:6em;
+}
 }
 @media (min-width: 360px) {
   html, body {
