@@ -695,7 +695,7 @@ class UserController extends \Phalcon\Mvc\Controller {
 		}
 		
 		if(!$_SESSION['USER']['INFO']['access_token'])
-			return $this->response->redirect("user/login");
+			return $this->response->redirect("user/logout");
 		
 		return $this->response->redirect("user/index");
 	}
