@@ -52,9 +52,9 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			
 			//push notifications when device status lost
 			if(!empty($device->name))
-				$msg = '有人發現 "' . $device->name . '"';
+				$msg = 'æœ‰äººç™¼ç¾ "' . $device->name . '"';
 			else
-				$msg = '有人發現 "' . substr($serial_number, 3, 14) . '"';
+				$msg = 'æœ‰äººç™¼ç¾ "' . substr($serial_number, 3, 14) . '"';
 		
 			if((empty($_SESSION))) {
 				
@@ -67,16 +67,17 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 					foreach($mobiles as $mobile) {
 						if($android_send == 'N') {
 							$android_send  = $this->_send_android_notification($msg, $serial_number, $mobile->token);
-							
-							$email_send  = $this->_send_email($msg, $serial_number, $mobile->token);
 						}
 							
 						if($apple_send == "N") {
 							$apple_send = $this->_send_apple_notification($msg, $serial_number, $mobile->token);
 							
-							$email_send  = $this->_send_email($msg, $serial_number, $mobile->token);
 						}
 					}
+
+					$to = "By BabySearch";
+
+					$this->_send_mail($user->email,$to,$msg);
 				}
 			}
 			
@@ -88,8 +89,11 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		
 		/*
 		if(($device->status == "lost") && (empty($_SESSION))) {
+			$user = User::findFirst("sso_id = '{$device->sso_id}'");
+
 			$this->_send_android_notification($msg, $serial_number, $_SESSION['USER']['INFO']['access_token']);
 			$this->_send_apple_notification($msg, $serial_number, $_SESSION['USER']['INFO']['access_token']);
+			
 		}*/
 			
 		switch($device->type) {
@@ -2150,43 +2154,44 @@ EOTl
 			return  'N';
 	}
 	
-	private function _send_email($msg, $serial_number, $token) {
-		
-		// multiple recipients
-		$to  = $_SESSION['USER']['INFO']['email']; // note the comma
-		
-		// subject
-		//$subject = 'Mail From '.$_POST['name'];
-		$subject = 'Mail From BabySearch';
-		
-		// message
-		$message = "
-		<html>
-		<head>
-		<title>{$subject}</title>
-		</head>
-		<body>
-		<table>
-		<tr>
-		<th>MESSAGE</th>
-		<td>{$msg}</td>
-		</tr>
-		</table>
-		</body>
-		</html>
-		";
-		
-		// To send HTML mail, the Content-type header must be set
-		$headers  = 'MIME-Version: 1.0' . "\r\n";
-		$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
-		// Additional headers
-		$headers .= 'To: '.$to . "\r\n";
-		//$headers .= "From: {$_POST['name']} <{$_POST['email']}>" . "\r\n";
-		$headers .= "From: BabySearch" . "\r\n";
+
+	private function _send_mail($to,$subject,$msg) {
+		require getcwd().'/PHPMailer/PHPMailerAutoload.php';
+
+		$mail = new PHPMailer;
+		$mail->SMTPDebug = 0;
+		$mail->isSMTP();
+		$mail->Host = 'email-smtp.us-west-2.amazonaws.com';
+		$mail->SMTPAuth = true;
+		$mail->Username = 'AKIAJLZBBPUF4NTIG6GQ';
+		$mail->Password = 'ArVzhV6Pgm000i8dwHAlTzCKVPSrLIEiktIKS0gk2Ue9';
+		$mail->SMTPSecure = 'tls';
+		$mail->Port = 587;
+		$mail->CharSet = "UTF-8";
+
+
+		$mail->From = 'no-reply@traceez.com';
+		$mail->FromName = 'BabySearch';
+
+		$mail->addAddress($to);
+
+		$mail->isHTML(true);
+		$mail->Subject = $subject;
+		$mail->Body    = $msg;
+
+		$mail->send();
+		/**
 		
+		if(!$mail->send()) {
+   			echo 'Message could not be sent.';
+    			echo 'Mailer Error: ' . $mail->ErrorInfo;
+		} else {
+    			echo 'Message has been sent';
+		}
+		**/
 		
-		// Mail it
-		mail($to, $subject, $message, $headers);
 	}
+
 }
+

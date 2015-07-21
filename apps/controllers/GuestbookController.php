@@ -56,7 +56,7 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 			$device = Device::findFirst("did = '{$guestbook->did}'");
 			//$mobiles = Mobile::find("sso_id = '{$device->sso_id}' and token is not null and token != ''");
 			$mobiles = Mobile::find(array("conditions" => "sso_id = '{$device->sso_id}' and token is not null and token != ''", "order" => "mid desc"));
-			
+			$user = User::findFirst("sso_id = '{$device->sso_id}'");
 			if(!empty($this->_request->getPost("date"))) {
 
 				$guestbook->datetime = $this->_request->getPost("date")." ".$this->_request->getPost("time");
@@ -103,6 +103,11 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 						}
 					}
 				}
+
+				// send email
+				$subject = "By BabySearch";
+
+				$this->_send_mail($user->email,$subject,$msg);
 			}
 			
 			
@@ -185,5 +190,42 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 		
 			exec("php ".getcwd()."/push.php {$token} {$serial_number} $msg");
 			return  'N';
+	}
+
+	private function _send_mail($to,$subject,$msg) {
+		require getcwd().'/PHPMailer/PHPMailerAutoload.php';
+
+		$mail = new PHPMailer;
+		$mail->SMTPDebug = 0;
+		$mail->isSMTP();
+		$mail->Host = 'email-smtp.us-west-2.amazonaws.com';
+		$mail->SMTPAuth = true;
+		$mail->Username = 'AKIAJLZBBPUF4NTIG6GQ';
+		$mail->Password = 'ArVzhV6Pgm000i8dwHAlTzCKVPSrLIEiktIKS0gk2Ue9';
+		$mail->SMTPSecure = 'tls';
+		$mail->Port = 587;
+		$mail->CharSet = "UTF-8";
+
+
+		$mail->From = 'no-reply@traceez.com';
+		$mail->FromName = 'BabySearch';
+
+		$mail->addAddress($to);
+
+		$mail->isHTML(true);
+		$mail->Subject = $subject;
+		$mail->Body    = $msg;
+
+		$mail->send();
+		/**
+		
+		if(!$mail->send()) {
+   			echo 'Message could not be sent.';
+    			echo 'Mailer Error: ' . $mail->ErrorInfo;
+		} else {
+    			echo 'Message has been sent';
+		}
+		**/
+		
 	}
 }
