@@ -670,13 +670,13 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			//retrieve the respected 'info' accoring to different types
 			switch($device->type){
 				case "Pets":
-					$pet_info = PetInfo::findFirst("did = '{$device->did}'");
+					$pet_info = PetInfo::findFirst(array("did = '{$device->did}'", "order" => "id DESC"));
 					break;
 				case "Human":
-					$human_info = HumanInfo::findFirst("did = '{$device->did}'");
+					$human_info = HumanInfo::findFirst(array("did = '{$device->did}'", "order" => "id DESC"));
 					break;
 				case "Valuables":
-					$valuable_info = ValuableInfo::findFirst("did = '{$device->did}'");
+					$valuable_info = ValuableInfo::findFirst(array("did = '{$device->did}'", "order" => "id DESC"));
 					break;
 				default:
 					break;
