@@ -101,7 +101,7 @@
 				
 				$notification_div = "";
 				
-				if($device->notification_count > 0)
+				if($device->notification_count > 0 && ($device->status != 'invalid'))
 					$notification_div = "<a href='/guestbook/list?serial_number={$device->serial_number}' class='notification'>{$device->notification_count}</a>";
 				
 
