@@ -92,6 +92,61 @@ FB粉絲團 :<br><i><a href="http://www.facebook.com/BabySearch" style="color:#0
 			</div>
 		</article>
 		
+		<?php 
+			if(!empty($bulletins)) {
+		
+				$counter = 0;
+			
+				foreach($bulletins as $bulletin) {
+
+					if($counter == 0) {
+						echo <<<EOT
+<article class='bulletin' style='background:#F2F2F2;'>
+	<div style='color:#86C557;text-align:left;'>公告 :</div><br>
+	<div style='color:#333333;'>
+	{$bulletin->message}
+	</div>
+</article>			
+EOT;
+					}
+					
+					if($counter == 1) {
+						echo <<<EOT
+<p class="green_text" id="more">more</p>
+<div id="text">
+	<p class="green_text" style="text-align:left;margin:1em 1.5em;">其他公告訊息</p>
+	<ul>
+EOT;
+					}
+					
+					if($counter > 0) {
+					
+						if($counter%2 == 0)
+							echo <<<EOT
+		<li class="odd" >
+{$bulletin->created}
+<div class='bulletin_message'>{$bulletin->message}</div> 		
+		</li>
+EOT;
+						else
+							echo <<<EOT
+		<li class="even">
+{$bulletin->created}
+<div class='bulletin_message'>{$bulletin->message}</div>
+		</li>
+EOT;
+					}
+					
+					$counter++;
+				}
+				
+				echo <<<EOT
+</ul>
+</div>
+EOT;
+			}
+		?>
+
 		<div id="menuList_container">
 			<ul>
 				<li id="link1" class="odd">認 識 BabySearch</li>

@@ -63,6 +63,9 @@ class UserController extends \Phalcon\Mvc\Controller {
 		$this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_ACTION_VIEW);
 		$config = new \Phalcon\Config\Adapter\Ini("../apps/config/config.ini");
 		
+		//get bulletin
+		$bulletins = Bulletin::find(array("display = 'y'", "order" => "id DESC"));
+		$this->view->setVar("bulletins", $bulletins);
 		
 		//$this->view->setVar("config", $config);
 		$this->view->config = $config;
