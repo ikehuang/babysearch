@@ -137,8 +137,13 @@
 		{$notification_div}
 		<p class='black_text' style='font-size:3.5em;text-align:center;margin-top:0;'>{$kind}</p>
 	</div>
-	
+EOT;
+		
+			if($status != '停用')
+				echo <<<EOT
 	<a href='/device/update?sn={$device->serial_number}'>
+EOT;
+				echo <<<EOT
 		<div class='device_info'>
 			<p class='black_text' style='font-size:6em;margin-top:0.7em;'>{$name}</p>
 			<p class='black_text' style='font-size:3.5em;margin-top:-.8em;'>ID : {$id}</p>
@@ -154,7 +159,12 @@ EOT;
 			echo <<<EOT
 		</div>
 		<div class='clear'></div>
+EOT;
+			if($status != '停用')
+				echo <<<EOT
 	</a>
+EOT;
+			echo <<<EOT
 	<div class='clear'></div>
 	
 </div>
