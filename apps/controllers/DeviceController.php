@@ -217,9 +217,14 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			
 			$device->update();
 			
-			//create PetInfo
-			$pet_info = new PetInfo();
-			$pet_info->did = $device->did;
+			//find PetInfo
+			$pet_info = PetInfo::findFirst("did = '{$device->did}'");
+			
+			//if not found, create PetInfo
+			if(empty($pet_info)) {
+				$pet_info = new PetInfo();
+				$pet_info->did = $device->did;
+			}
 			
 			$pet_info->name = $pet_name;
 			$pet_info->sex = $pet_sex;
@@ -394,9 +399,14 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			
 			$device->update();
 			
-			//create HumanInfo
-			$human_info = new HumanInfo();
-			$human_info->did = $device->did;
+			//find HumanInfo
+			$human_info = HumanInfo::findFirst("did = '{$device->did}'");
+				
+			//if not found, create HumanInfo
+			if(empty($human_info)) {
+				$human_info = new HumanInfo();
+				$human_info->did = $device->did;
+			}
 			
 			$human_info->firstname = $human_firstname;
 			$human_info->lastname = $human_lastname;
@@ -544,8 +554,14 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			
 			$device->update();
 			
-			$valuable_info = new ValuableInfo();
-			$valuable_info->did = $device->did;
+			//find ValuableInfo
+			$valuable_info = ValuableInfo::findFirst("did = '{$device->did}'");
+			
+			//if not found, create ValuableInfo
+			if(empty($valuable_info)) {
+				$valuable_info = new ValuableInfo();
+				$valuable_info->did = $device->did;
+			}
 			
 			$valuable_info->name = $valuable_name;
 			$valuable_info->description = $valuable_description;
@@ -670,13 +686,16 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 			//retrieve the respected 'info' accoring to different types
 			switch($device->type){
 				case "Pets":
-					$pet_info = PetInfo::findFirst(array("did = '{$device->did}'", "order" => "id DESC"));
+					$pet_info = PetInfo::findFirst("did = '{$device->did}'");
+					//$pet_info = PetInfo::findFirst(array("did = '{$device->did}'", "order" => "id DESC"));
 					break;
 				case "Human":
-					$human_info = HumanInfo::findFirst(array("did = '{$device->did}'", "order" => "id DESC"));
+					$human_info = HumanInfo::findFirst("did = '{$device->did}'");
+					//$human_info = HumanInfo::findFirst(array("did = '{$device->did}'", "order" => "id DESC"));
 					break;
 				case "Valuables":
-					$valuable_info = ValuableInfo::findFirst(array("did = '{$device->did}'", "order" => "id DESC"));
+					$valuable_info = ValuableInfo::findFirst("did = '{$device->did}'");
+					//$valuable_info = ValuableInfo::findFirst(array("did = '{$device->did}'", "order" => "id DESC"));
 					break;
 				default:
 					break;
