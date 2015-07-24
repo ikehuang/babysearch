@@ -125,16 +125,20 @@ EOT;
 							echo <<<EOT
 		<li class="odd" >
 {$bulletin->created}
+<div class='bulletin_message'>
 <div style='color:#86C557;text-align:left;margin-left:1.5em;'>公告 :</div><br>
-<div class='bulletin_message'>{$bulletin->message}</div> 		
+{$bulletin->message}
+</div> 		
 		</li>
 EOT;
 						else
 							echo <<<EOT
 		<li class="even">
 {$bulletin->created}
+<div class='bulletin_message'>
 <div style='color:#86C557;text-align:left;margin-left:1.5em;'>公告 :</div><br>
-<div class='bulletin_message'>{$bulletin->message}</div>
+{$bulletin->message}
+</div>
 		</li>
 EOT;
 					}
