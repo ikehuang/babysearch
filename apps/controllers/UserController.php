@@ -37,6 +37,13 @@ class UserController extends \Phalcon\Mvc\Controller {
 		
 	}
 	
+	public function bulletinAction() {
+		
+		//get bulletin
+		$bulletins = Bulletin::find(array("display = 'y'", "order" => "id DESC"));
+		$this->view->setVar("bulletins", $bulletins);
+	}
+	
 	public function indexAction() {
 		
 		$device_list = array();

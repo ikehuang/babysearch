@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$("#text").hide();
+	//$("#text").hide();
 	$("#text1").hide();
 	$("#text2").hide();
 	$("#text3").hide();
@@ -9,13 +9,13 @@ $(document).ready(function(){
 	$("#text7").hide();
 	//$("#text8").hide();
 	
-	$('.bulletin_message').hide();
-	$("#text ul li" ).click(function() {
-		$(this).find('.bulletin_message').toggle();
-	});
-	$("#more" ).click(function() {
-		$("#text").toggle();
-	});
+	//$('.bulletin_message').hide();
+	//$("#text ul li" ).click(function() {
+		//$(this).find('.bulletin_message').toggle();
+	//});
+	//$("#more" ).click(function() {
+		//$("#text").toggle();
+	//});
 	$("#link1" ).click(function() {
 		$("#text1").toggle();
 	});

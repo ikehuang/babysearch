@@ -32,6 +32,9 @@ class Acl extends \Phalcon\Mvc\User\Component
 	{
 		$controller = $dispatcher->getControllerName();
 		$action = $dispatcher->getActionName();
+		if( $controller == 'user' && $action == 'bulletin')
+			return;
+		
 		if( $controller == 'device' && $action == 'create')
 			return;
 		
