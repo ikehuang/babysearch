@@ -1,0 +1,88 @@
+body {
+	font-size:16px;
+}
+
+#header {
+	display:none;
+}
+
+#footer {
+	font-size:1.5em;
+}
+
+#bulletin_banner {
+	background:#86C557;
+	padding:3%;
+	position:relative;
+}
+
+#bulletin_banner img {
+  vertical-align: middle;
+  width: 37.5%;
+}
+
+#text {
+	margin-top:2em;
+	margin-bottom:5em;
+}
+
+#text ul {
+	margin:0;
+	padding:0;
+	list-style-type:none;
+	font-size:2em;
+}
+
+#text ul .even{
+	padding-top:0.8em;
+	padding-bottom:0.8em;
+	padding-left:1.3em;
+	padding-right:1.3em;
+	font-size:0.8em;
+}
+
+#text ul .odd{
+	background:#F2F2F2;
+	padding-top:0.8em;
+	padding-bottom:0.8em;
+	padding-left:1.3em;
+	padding-right:1.3em;
+	font-size:0.8em;
+}
+
+.bulletin_label {
+	color:#86C557;
+	text-align:left;
+	font-size:1.2em;
+	width:50%;
+	float:left;
+}
+
+.date_label {
+	text-align:right;
+	font-size:0.8em;
+	margin-top:0.2em;
+	width:50%;
+	float:left;
+}
+
+.clear {
+	clear:both;
+}
+
+.green_text {
+	font-size:2em;
+	margin-left:1em;
+	margin-right:1em;
+	margin-top:1em;
+	margin-bottom:1em;
+}
+
+#back {
+	margin-top:2%;
+	background:#F2F2F2;
+	font-size:2em;
+	color:#333333;
+	text-align:center;
+	padding:5% 2%;
+}
