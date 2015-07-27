@@ -17,6 +17,12 @@
 	}
 </script>
 
+<script type="text/javascript">
+	function android_uploads(){
+		Android.uploadPhoto();
+	}  
+</script>
+
 <ul id='title'>
 	<li><a href='/'>首頁</a></li>
 	<li> > </li>
@@ -35,7 +41,9 @@
 			<div>
 				<img id="pic" src= "<?php echo $user->photo; ?>"/>
 				<?php
-					if(!isset($app)) 
+					if(!isset($app) && $app = 'android') 
+						echo "<img id='upload_btn' src='/img/frame.png' onclick='android_uploads();'/>";
+					else if(!isset($app) && $app = 'ios') 
 						echo "<img id='upload_btn' src='/img/frame.png' onclick='uploads();'/>";
 					else
 						echo "<img id='upload_btn' src='/img/frame.png'/>"
