@@ -17,8 +17,9 @@
 </script>
 
 <script type="text/javascript">
-	function android_uploads(){
-		Android.uploadPhoto();
+	function android_uploads(serial){
+		alert(serial);
+		Android.uploadPhoto(serial);
 	}  
 </script>
 
@@ -61,7 +62,7 @@
 				<!-- <img id='upload_btn' src="/img/frame.png" />  -->
 				<?php
 					if(!isset($app) && $app = 'android_device') 
-						echo "<img id='upload_btn' src='/img/frame.png' onclick='android_uploads();'/>";
+						echo "<img id='upload_btn' src='/img/frame.png' onclick='android_uploads({$device->serial_number});'/>";
 					else if(!isset($app) && $app = 'ios_device') 
 						echo "<img id='upload_btn' src='/img/frame.png' onclick='uploads();'/>";
 					else
