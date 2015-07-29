@@ -104,7 +104,8 @@ if($config->site->env == 'development') {
 			'email' => 'franky@ink.net.tw',
 			'sso_id' => '3e8a54fd43234d0ba1304aaf499c4c95',
 			'nickname' => 'Franky',
-			'access_token' => ''
+			'access_token' => '',
+			'app' => ''
 	);
 		
 	$_SESSION['USER']['INFO'] = $user_info;
@@ -130,7 +131,8 @@ if(isset($_GET["token"])) {
 					'email' => $user->email,
 					'sso_id' => $user->sso_id,
 					'nickname' => $user->nickname,
-					'access_token' => $user->token
+					'access_token' => $user->token,
+					'app' => ''
 			);
 			
 			$_SESSION['USER']['INFO'] = $user_info;

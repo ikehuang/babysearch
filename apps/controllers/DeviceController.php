@@ -1503,9 +1503,14 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 		
 		$app = $this->_request->get('app');
 		
-		if(!empty($app))
+		if(!empty($app)) {
+			//$this->view->setVar("app", $app);
+			$_SESSION['USER']['INFO']['app'] = $app;
 			$this->view->setVar("app", $app);
-		
+		}
+		else
+			$this->view->setVar("app", $_SESSION['USER']['INFO']['app']);
+			
 		$serial_number = $this->_request->get('sn');
 		$device = Device::findFirst("serial_number = '{$serial_number}'");
 		$this->view->device = $device;

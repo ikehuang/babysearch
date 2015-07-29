@@ -208,9 +208,14 @@ class UserController extends \Phalcon\Mvc\Controller {
 		
 		$app = $this->_request->get('app');
 		
-		if(!empty($app))
+		if(!empty($app)) {
+			//$this->view->setVar("app", $app);
+			$_SESSION['USER']['INFO']['app'] = $app;
 			$this->view->setVar("app", $app);
-		
+		}
+		else
+			$this->view->setVar("app", $_SESSION['USER']['INFO']['app']);
+			
 		//still need to get user email from session/login
 		//sample data
 		//$email = "watson@ink.net.tw";
