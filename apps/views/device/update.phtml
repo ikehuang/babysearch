@@ -60,9 +60,9 @@
 					?>"/>
 				<!-- <img id='upload_btn' src="/img/frame.png" />  -->
 				<?php
-					if(!isset($app) && $app = 'android') 
+					if(!isset($app) && $app = 'android_device') 
 						echo "<img id='upload_btn' src='/img/frame.png' onclick='android_uploads();'/>";
-					else if(!isset($app) && $app = 'ios') 
+					else if(!isset($app) && $app = 'ios_device') 
 						echo "<img id='upload_btn' src='/img/frame.png' onclick='uploads();'/>";
 					else
 						echo "<img id='upload_btn' src='/img/frame.png'/>"
