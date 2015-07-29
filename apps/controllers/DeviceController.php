@@ -1500,6 +1500,12 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 	}
 
 	public function updateAction(){
+		
+		$app = $this->_request->get('app');
+		
+		if(!empty($app))
+			$this->view->setVar("app", $app);
+		
 		$serial_number = $this->_request->get('sn');
 		$device = Device::findFirst("serial_number = '{$serial_number}'");
 		$this->view->device = $device;

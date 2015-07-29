@@ -5,6 +5,23 @@
 <script type='text/javascript' src='/js/jquery.validate.js'></script>
 <script type='text/javascript' src='/js/jquery.blockUI.js'></script>
 <script type='text/javascript' src='/js/device_update_index.js?rand=<?php echo rand(); ?>'></script>
+
+<script type="text/javascript">
+	function uploads(){
+		sendCommand("open");
+	}  
+	function sendCommand(cmd){
+		var url = "gallery:"+cmd;
+		document.location = url;
+	}
+</script>
+
+<script type="text/javascript">
+	function android_uploads(){
+		Android.uploadPhoto();
+	}  
+</script>
+
 <ul id='title'>
 	<li><a href='/'>首頁</a></li>
 	<li> > </li>
@@ -41,7 +58,15 @@
 						}
 						else echo $device->photo;
 					?>"/>
-				<img id='upload_btn' src="/img/frame.png" />
+				<!-- <img id='upload_btn' src="/img/frame.png" />  -->
+				<?php
+					if(!isset($app) && $app = 'android') 
+						echo "<img id='upload_btn' src='/img/frame.png' onclick='android_uploads();'/>";
+					else if(!isset($app) && $app = 'ios') 
+						echo "<img id='upload_btn' src='/img/frame.png' onclick='uploads();'/>";
+					else
+						echo "<img id='upload_btn' src='/img/frame.png'/>"
+				?>
 			</div>
 		</div>
 		<div id='info_wrapper'>
