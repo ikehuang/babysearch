@@ -60,12 +60,13 @@
 					?>"/>
 				<!-- <img id='upload_btn' src="/img/frame.png" />  -->
 				<?php
+				
 					if(!isset($app) && $app = 'android') 
 						echo "<img id='upload_btn' src='/img/frame.png' onclick='android_uploads({$device->serial_number});'/>";
 					else if(!isset($app) && $app = 'ios') 
 						echo "<img id='upload_btn' src='/img/frame.png' onclick='uploads();'/>";
 					else
-						echo "<img id='upload_btn' src='/img/frame.png'/>"
+						echo "<img id='upload_btn' src='/img/frame.png'/>";		
 				?>
 			</div>
 		</div>
