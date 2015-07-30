@@ -40,9 +40,9 @@
 			<div>
 				<img id="pic" src= "<?php echo $user->photo; ?>"/>
 				<?php
-					if(!isset($app) && $app = 'android') 
+					if($app = 'android')
 						echo "<img id='upload_btn' src='/img/frame.png' onclick='android_uploads();'/>";
-					else if(!isset($app) && $app = 'ios') 
+					else if($app = 'ios')
 						echo "<img id='upload_btn' src='/img/frame.png' onclick='uploads();'/>";
 					else
 						echo "<img id='upload_btn' src='/img/frame.png'/>";
