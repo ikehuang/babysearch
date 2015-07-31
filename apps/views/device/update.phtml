@@ -61,8 +61,10 @@
 				<!-- <img id='upload_btn' src="/img/frame.png" />  -->
 				<?php
 				
-					if($app = 'android') 
-						echo "<img id='upload_btn' src='/img/frame.png' onclick='android_uploads({$device->serial_number});'/>";
+					if($app = 'android') {
+				?>
+					<img id='upload_btn' src='/img/frame.png' onclick='android_uploads('"<?php echo $device->serial_number; ?>"');'/>
+				<?php }
 					else if($app = 'ios') 
 						echo "<img id='upload_btn' src='/img/frame.png' onclick='uploads();'/>";
 					else
