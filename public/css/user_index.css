@@ -148,11 +148,15 @@ body{
 }
 
 #user_pic_wrapper img{
-	height:22.5em;
+	height:6.5em;
 }
 
 #user_container{
-	height:22.5em;
+	height:6.5em;
+}
+
+.img_wrapper img{
+	height:4.5em;
 }
 }
 @media (min-width: 360px) {
