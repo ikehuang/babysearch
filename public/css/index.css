@@ -323,7 +323,7 @@ a {
 @media (min-width: 320px) {
   html, body {
      font-size: 4px;
-	line-height:1px; }
+	line-height:1; }
   	
 	#title {
 		padding:12px;
@@ -338,7 +338,7 @@ a {
 @media (min-width: 360px) {
   html, body {
     font-size: 6px;
-	line-height:1px; } 
+	line-height:1; } 
   	
 	#title {
 		padding:20px;
