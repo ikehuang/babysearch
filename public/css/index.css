@@ -194,7 +194,7 @@ a {
 @media (min-device-width: 360px) {
   html, body {
     font-size: 5px;
-	line-height:1px; }
+	line-height:1; }
 
 #cross_btn {
 	float:right;
