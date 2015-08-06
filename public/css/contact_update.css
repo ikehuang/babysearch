@@ -107,7 +107,7 @@ body{
 @media (min-width: 320px) {
   html, body {
      font-size: 4px;
-	line-height:1; }
+	line-height:25px; }
   	
 	#title {
 		padding:12px;
