@@ -7,7 +7,7 @@
 <ul id='title'>
 	<li><a href='/'>首頁</a></li>
 	<li> > </li>
-	<li style='color:#86c557;'>新 增 我 購 買 的 商 品</li>
+	<li style='color:#86c557;'>新 增 註 册 Tag</li>
 </ul>
 		<div>
 			<form action="/device/create" id='create_form' method="post" enctype="multipart/form-data">
@@ -32,7 +32,7 @@
 				
 				<div class='clear'></div>
 				 -->
-				<span class="blue_text"><font style="color:red;">*</font>產品序號</span><br>
+				<span class="blue_text">產品序號</span><br>
 				<input id="sn" type="text" name="serial_number" style='text-align:center;height:2em;' value="<?php if(!empty($_GET["sn"])) echo $_GET["sn"] ?>" placeholder="輸 入 你 的 商 品 序 號 / UID" class="textfield" required><br>
 				<a id="help_button" href='' ><img src='/img/13/icon-04.png'/></a>
 				<button type="submit" id="addSerial_next" class="button" style="height:3em;background:#EB004E;margin-bottom:2em;">完 成</button>
