@@ -155,8 +155,10 @@ body{
 	height:6.5em;
 }
 
-.img_wrapper img{
+.img_wrapper img {
+	width:100%;
 	height:4.5em;
+	border-radius:15%;
 }
 }
 @media (min-width: 360px) {
@@ -166,7 +168,21 @@ body{
   	.notification {
 	font-size:4em;
 	padding-top:13%;
-}  	 
+}
+
+#user_pic_wrapper img{
+	height:22.5em;
+}
+
+#user_container{
+	height:22.5em;
+}
+
+.img_wrapper img {
+	width:100%;
+	height:13em;
+	border-radius:15%;
+}
 }
 
 @media (min-width: 375px) {
