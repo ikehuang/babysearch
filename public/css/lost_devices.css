@@ -43,8 +43,12 @@ body {
 
 #lost_info_wrapper {
 	width:50%;
-	margin:1em;
+	margin:0.75em 1em;
 	float:left;
+}
+
+#lost_info_wrapper table{
+	width:100%;
 }
 
 #lost_info_wrapper tr{
@@ -63,7 +67,6 @@ body {
 #lost_info_wrapper td {
 	color:#333333;
 	padding-left:0.5em;
-	width:8em;
 }
 
 .clear {
