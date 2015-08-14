@@ -217,6 +217,7 @@ body {
 
 #lost_bulletin img{
 	width:100%;
+	height:10.65em;
 }
 
 #lost_bulletin #first p{
@@ -238,7 +239,6 @@ body {
 }
 
 #lost_bulletin #third{
-	margin-right:1em;
 	width:30%;
 	float:left;
 }
