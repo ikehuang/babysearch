@@ -37,6 +37,13 @@ class UserController extends \Phalcon\Mvc\Controller {
 		
 	}
 	
+	public function lostDevicesAction() {
+		
+		//get all lost devices
+		$lost_devices = Device::find(array("status = 'lost'", "order" => "did DESC"));
+		$this->view->setVar("lost_devices", $lost_devices);
+	}
+	
 	public function bulletinAction() {
 		
 		//get bulletin
@@ -75,7 +82,7 @@ class UserController extends \Phalcon\Mvc\Controller {
 		$this->view->setVar("bulletins", $bulletins);
 		
 		//get all lost devices
-		$lost_devices = Device::find(array("status = 'lost'", "order" => "did DESC"));
+		$lost_devices = Device::find(array("status = 'lost'", "order" => "did DESC", "limit" => 3));
 		$this->view->setVar("lost_devices", $lost_devices);
 		
 		//$this->view->setVar("config", $config);

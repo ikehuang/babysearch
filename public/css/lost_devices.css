@@ -1,1 +1,68 @@
 @CHARSET "UTF-8";
+
+body {
+	font-size:16px;
+}
+
+#header {
+	display:none;
+}
+
+#footer {
+	font-size:1.5em;
+}
+
+#lost_banner {
+	background:#86C557;
+	padding:3%;
+	position:relative;
+}
+
+#lost_banner img {
+  vertical-align: middle;
+  width: 37.5%;
+}
+
+#lost_label {
+	background:#FF5B7C;
+	font-size:2em;
+	color:white;
+	text-align:center;
+	padding:5% 2%;
+}
+
+#lost_photo {
+	width:40%;
+}
+
+#lost_photo img{
+	width:100%;
+}
+
+#lost_info_wrapper {
+	width:60%;
+	margin:1em;
+	
+}
+
+.lost_info_label {
+	color:#86C557;
+	float:left;
+}
+
+.lost_info {
+	color:#333333;
+	float:left;
+}
+
+.clear {
+	clear:both;
+}
+
+#back {
+	background:#F2F2F2;
+	font-size:2em;
+	color:#333333;
+	text-align:center;
+	padding:5% 2%;
+}
