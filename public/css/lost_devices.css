@@ -33,6 +33,7 @@ body {
 
 #lost_photo {
 	width:40%;
+	float:left;
 }
 
 #lost_photo img{
@@ -41,19 +42,23 @@ body {
 }
 
 #lost_info_wrapper {
-	width:60%;
+	width:50%;
 	margin:1em;
-	
+	float:left;
 }
 
-.lost_info_label {
+#lost_info_wrapper tr{
+	font-size:1.5em;
+	height:1.5em;
+}
+
+#lost_info_wrapper th{
 	color:#86C557;
-	float:left;
 }
 
-.lost_info {
+#lost_info_wrapper td {
 	color:#333333;
-	float:left;
+	padding-left:0.5em;
 }
 
 .clear {

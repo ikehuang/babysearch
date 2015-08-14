@@ -40,29 +40,28 @@
 ?>
 					<div id="lost_device_wrapper">
 						<div id="lost_photo">
-							<?php echo $img?>"/>
+							<?php echo $img?>
 						</div>
 						<div id="lost_info_wrapper">
-							<div>
-								<p class="lost_info_label">名稱:</p>
-								<p class="lost_info><?php echo $device->name?></p>
-							</div>
-							<div class="clear"></div>
-							<div>
-								<p class="lost_info_label">時間:</p>
-								<p class="lost_info><?php echo $device->lost_date?></p>
-							</div>
-							<div class="clear"></div>
-							<div>
-								<p class="lost_info_label">地點:</p>
-								<p class="lost_info><?php echo $device->lost_location?></p>
-							</div>
-							<div class="clear"></div>
-							<div>
-								<p class="lost_info_label">敘述:</p>
-								<p class="lost_info><?php echo $device->lost_message?></p>
-							</div>
-							<div class="clear"></div>
+							<table>
+								<tr>
+									<th>名稱:</th>
+									<td><?php echo $device->name?></td>
+								</tr>
+								<tr>
+									<th>時間:</th>
+									<td><?php echo $device->lost_date?></td>
+								</tr>
+								<tr>
+									<th>地點:</th>
+									<td><?php echo $device->lost_location?></td>
+								</tr>
+								<tr>
+									<th>敘述</th>
+									<td><?php echo $device->lost_message?></td>
+								</tr>
+								
+							</table>
 						</div>
 						<div class="clear"></div>
 					</div>
