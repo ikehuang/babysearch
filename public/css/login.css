@@ -206,12 +206,13 @@ body {
 
 #lost_bulletin {
 	background:#F2F2F2;
-	padding:1em;
+	padding:1.5em;
+	padding-bottom:0;
 }
 
 #lost_bulletin #first{
 	margin-right:1em;
-	width:30%;
+	width:31%;
 	float:left;
 }
 
@@ -221,32 +222,38 @@ body {
 }
 
 #lost_bulletin #first p{
-	margin:0;
+	margin:0.5em 0;
 	padding:0;
 	text-align:center;
+	font-size:3.333em;
+	color:#808080;
 }
 
 #lost_bulletin #second{
 	margin-right:1em;
-	width:30%;
+	width:31%;
 	float:left;
 }
 
 #lost_bulletin #second p{
-	margin:0;
+	margin:0.5em 0;
 	padding:0;
 	text-align:center;
+	font-size:3.333em;
+	color:#808080;
 }
 
 #lost_bulletin #third{
-	width:30%;
+	width:31%;
 	float:left;
 }
 
 #lost_bulletin #third p{
-	margin:0;
+	margin:0.5em 0;
 	padding:0;
 	text-align:center;
+	font-size:3.333em;
+	color:#808080;
 }
 
 @media (min-width: 213px) {
