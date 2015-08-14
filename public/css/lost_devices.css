@@ -32,7 +32,7 @@ body {
 }
 
 #lost_device_wrapper {
-	border-bottom: 1px black solid;
+	border-bottom: 1px #808080 solid;
 }
 
 #lost_photo {
