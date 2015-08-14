@@ -185,6 +185,66 @@ body {
 	width:17%;
 }
 
+#lost_bulletin_label {
+	background:#FF5B7C;
+	color:white;
+	padding:1em;
+	font-size:3.5em;
+}
+
+#lost_bulletin_label #left{
+	margin:0;
+	padding:0;
+	float:left;
+}
+
+#lost_bulletin_label #right{
+	margin:0;
+	padding:0;
+	float:right;
+}
+
+#lost_bulletin {
+	background:#F2F2F2;
+	padding:1em;
+}
+
+#lost_bulletin #first{
+	margin-right:1em;
+	width:30%;
+	float:left;
+}
+
+#lost_bulletin #first p{
+	margin:0;
+	padding:0;
+	text-align:center;
+}
+
+#lost_bulletin #second{
+	margin-right:1em;
+	width:30%;
+	float:left;
+}
+
+#lost_bulletin #second p{
+	margin:0;
+	padding:0;
+	text-align:center;
+}
+
+#lost_bulletin #third{
+	margin-right:1em;
+	width:30%;
+	float:left;
+}
+
+#lost_bulletin #third p{
+	margin:0;
+	padding:0;
+	text-align:center;
+}
+
 @media (min-width: 213px) {
   html, body { font-size: 2px;line-height: 1;
 	 } }

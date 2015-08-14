@@ -1,0 +1,57 @@
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="/css/index.css?rand=<?php echo rand(); ?>">
+<link rel="stylesheet" type="text/css" href="/css/lost_devices.css?rand=<?php echo rand(); ?>">
+
+<div id="bulletin_banner">
+	<a href="/user/login"><img src="/img/logo(white).png"/></a>
+	<!-- <div id='logout'><a id="userlink" href="#usermenu"><?php echo $_SESSION['USER']['INFO']['nickname']?></a> / <a href='/user/logout'>登出</a></div>  -->
+</div>
+		
+<?php 
+			if(!empty($bulletins)) {
+		
+				$counter = 0;
+			
+				foreach($bulletins as $bulletin) {
+					
+					if($counter == 1) {
+						echo <<<EOT
+<div id="text">
+	<p class="green_text">其他公告訊息</p>
+	<ul>
+EOT;
+					}
+					
+					if($counter > 0) {
+						
+						//if($counter%2 == 0)
+							echo <<<EOT
+		<li class="odd">
+{$bulletin->created} 		
+		</li>
+EOT;
+						//else
+							echo <<<EOT
+		<li class="even">
+<div class='bulletin_message'>
+<div class='bulletin_label'>公告 :</div>
+<div class='date_label'>{$bulletin->created}</div>
+<div class='clear'></div>
+<br>{$bulletin->message}
+</div>
+		</li>
+EOT;
+					}
+					
+					$counter++;
+				}
+				
+				echo <<<EOT
+</ul>
+</div>
+EOT;
+			}
+			
+		?>
+		
+		<a href="history.go(-1);"><div id="back">回上一頁</div></a>

@@ -74,6 +74,10 @@ class UserController extends \Phalcon\Mvc\Controller {
 		$bulletins = Bulletin::find(array("display = 'y'", "order" => "id DESC"));
 		$this->view->setVar("bulletins", $bulletins);
 		
+		//get all lost devices
+		$lost_devices = Device::find(array("status = 'lost'", "order" => "did DESC"));
+		$this->view->setVar("lost_devices", $lost_devices);
+		
 		//$this->view->setVar("config", $config);
 		$this->view->config = $config;
 	}

@@ -76,6 +76,85 @@
 		</div>
 		<div class="clear"></div>
 
+		<div id="lost_bulletin_label">
+			<p id="left">遺失公告</p>
+			<p id="right"><a href="/user/lost_devices"></a>more ></a></p>
+			<div class="clear"></div>
+		</div>
+		
+		<?php 
+		if(!empty($lost_devices)) {
+		?>
+		<div id="lost_bulletin">
+			<?php 
+			foreach($lost_devices as $k => $device) {
+echo $k;
+echo $device->photo;
+				if($k < 3) {
+
+				switch($device->type) {
+					case "Pets":
+						if(empty($device->photo))
+							$img = "<img src= '/img/default-01.png'/>";
+						else
+							$img = "<img src= '{$device->photo}'/>";
+						break;
+					case "Human":
+						if(empty($device->photo))
+							$img = "<img src= '/img/default-02.png'/>";
+						else
+							$img = "<img src= '{$device->photo}'/>";
+						break;
+					case "Valuables":
+						if(empty($device->photo))
+							$img = "<img src= '/img/default-03.png'/>";
+						else
+							$img = "<img src= '{$device->photo}'/>";
+						break;
+					default:
+						break;
+				}
+			?>
+			<?php 
+				if(!empty($device->photo) && ($k == 0)) {
+			?>
+					<div id="first">
+						<?php echo $img;?>
+						<p><?php $device->name?></p>
+					</div>
+			<?php 
+				}
+			?>
+			<?php 
+				if(!empty($device->photo) && ($k == 1)) {
+			?>
+					<div id="second">
+						<?php echo $img;?>
+						<p><?php $device->name?></p>
+					</div>
+			<?php 
+				}
+			?>
+			<?php 
+				if(!empty($device->photo) && ($k == 2)) {
+			?>
+					<div id="third">
+						<?php echo $img;?>
+						<p><?php $device->name?></p>
+					</div>
+			<?php 
+				}
+			?>
+			<div class="clear"></div>
+			<?php
+				}
+			}
+			?>
+		</div>	
+		<?php
+		}die();
+		?>
+		
 		<article class="article">
 			<div style="color:#86C557;text-align:center;">BabySearch 目標與精神</div>
 			<hr style="background:#86C557;width:70%;height:0.05em;text-align:center;border:none;">
