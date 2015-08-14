@@ -49,7 +49,7 @@ body {
 
 #lost_info_wrapper tr{
 	font-size:1.5em;
-	height:1em;
+	height:1.5em;
 	table-layout:fixed;
 	overflow:hidden;
 	white-space: nowrap;
@@ -63,6 +63,7 @@ body {
 #lost_info_wrapper td {
 	color:#333333;
 	padding-left:0.5em;
+	width:8em;
 }
 
 .clear {
