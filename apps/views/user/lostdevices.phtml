@@ -50,7 +50,7 @@
 								</tr>
 								<tr>
 									<th>時間:</th>
-									<td><?php echo $device->lost_date?></td>
+									<td><?php $date = explode(" ", $device->lost_date); echo $date[0]?></td>
 								</tr>
 								<tr>
 									<th>地點:</th>
