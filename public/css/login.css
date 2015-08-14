@@ -215,6 +215,10 @@ body {
 	float:left;
 }
 
+#lost_bulletin img{
+	width:100%;
+}
+
 #lost_bulletin #first p{
 	margin:0;
 	padding:0;
