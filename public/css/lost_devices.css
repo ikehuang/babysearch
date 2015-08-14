@@ -37,6 +37,7 @@ body {
 
 #lost_photo img{
 	width:100%;
+	height:11.25em;
 }
 
 #lost_info_wrapper {

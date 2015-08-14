@@ -14,32 +14,55 @@
 			if(!empty($lost_devices)) {
 
 				foreach($lost_devices as $device) {
+
+					switch($device->type) {
+						case "Pets":
+							if(empty($device->photo))
+								$img = "<img src= '/img/default-01.png'/>";
+							else
+								$img = "<img src= '{$device->photo}'/>";
+							break;
+						case "Human":
+							if(empty($device->photo))
+								$img = "<img src= '/img/default-02.png'/>";
+							else
+								$img = "<img src= '{$device->photo}'/>";
+							break;
+						case "Valuables":
+							if(empty($device->photo))
+								$img = "<img src= '/img/default-03.png'/>";
+							else
+								$img = "<img src= '{$device->photo}'/>";
+							break;
+						default:
+							break;
+					}
 ?>
 					<div id="lost_device_wrapper">
 						<div id="lost_photo">
-							<img src="<?php echo $device->photo?>"/>
+							<?php echo $img?>"/>
 						</div>
 						<div id="lost_info_wrapper">
 							<div>
 								<p class="lost_info_label">名稱:</p>
 								<p class="lost_info><?php echo $device->name?></p>
-								<div class="clear"></div>
 							</div>
+							<div class="clear"></div>
 							<div>
 								<p class="lost_info_label">時間:</p>
 								<p class="lost_info><?php echo $device->lost_date?></p>
-								<div class="clear"></div>
 							</div>
+							<div class="clear"></div>
 							<div>
 								<p class="lost_info_label">地點:</p>
 								<p class="lost_info><?php echo $device->lost_location?></p>
-								<div class="clear"></div>
 							</div>
+							<div class="clear"></div>
 							<div>
 								<p class="lost_info_label">敘述:</p>
 								<p class="lost_info><?php echo $device->lost_message?></p>
-								<div class="clear"></div>
 							</div>
+							<div class="clear"></div>
 						</div>
 						<div class="clear"></div>
 					</div>
