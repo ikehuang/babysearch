@@ -48,7 +48,7 @@ body {
 }
 
 #lost_info_wrapper table{
-	width:100%;
+	max-width:100%;
 }
 
 #lost_info_wrapper tr{
