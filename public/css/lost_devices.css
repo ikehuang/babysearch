@@ -48,7 +48,6 @@ body {
 }
 
 #lost_info_wrapper table{
-	max-width:100%;
 }
 
 #lost_info_wrapper tr{
@@ -66,7 +65,10 @@ body {
 
 #lost_info_wrapper td {
 	color:#333333;
-	padding-left:0.5em;
+	padding-left:0.25em;
+	max-width:7em;
+	overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .clear {
