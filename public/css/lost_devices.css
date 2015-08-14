@@ -49,11 +49,15 @@ body {
 
 #lost_info_wrapper tr{
 	font-size:1.5em;
-	height:1.5em;
+	height:1em;
+	table-layout:fixed;
+	overflow:hidden;
+	white-space: nowrap;
 }
 
 #lost_info_wrapper th{
 	color:#86C557;
+	width:3em;
 }
 
 #lost_info_wrapper td {
