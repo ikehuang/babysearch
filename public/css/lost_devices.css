@@ -31,9 +31,14 @@ body {
 	padding:5% 2%;
 }
 
+#lost_device_wrapper {
+	border-bottom: 1px black solid;
+}
+
 #lost_photo {
 	width:40%;
 	float:left;
+	height:11.25em;
 }
 
 #lost_photo img{
