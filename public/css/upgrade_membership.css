@@ -32,8 +32,5 @@
 	}
 }
 @media (min-device-width: 361px) and (max-device-width: 480px) {
-	html, body {
-    font-size: 10px;
-	line-height:1;  	 }
- }
+
 }
