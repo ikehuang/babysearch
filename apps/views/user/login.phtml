@@ -118,7 +118,7 @@
 				}
 			?>
 			<?php 
-				if(!empty($device->photo) && ($k == 0)) {
+				if($k == 0) {
 			?>
 					<a href="/device/index?sn=<?php echo $device->serial_number?>">
 						<div id="first">
@@ -129,7 +129,7 @@
 				}
 			?>
 			<?php 
-				if(!empty($device->photo) && ($k == 1)) {
+				if($k == 1) {
 			?>
 					<a href="/device/index?sn=<?php echo $device->serial_number?>">
 						<div id="second">
@@ -140,7 +140,7 @@
 				}
 			?>
 			<?php 
-				if(!empty($device->photo) && ($k == 2)) {
+				if($k == 2) {
 			?>
 					<a href="/device/index?sn=<?php echo $device->serial_number?>">
 						<div id="third">
@@ -157,7 +157,7 @@
 			<?php 
 			foreach($lost_devices as $k => $device) {
 				
-				if(!empty($device->photo) && ($k == 0)) {
+				if($k == 0) {
 			?>
 					<div id="first_text">
 						<p><?php echo $device->name?></p>
@@ -166,7 +166,7 @@
 				}
 			?>
 			<?php 
-				if(!empty($device->photo) && ($k == 1)) {
+				if($k == 1) {
 			?>
 					<div id="second_text">
 						<p><?php echo $device->name?></p>
@@ -175,7 +175,7 @@
 				}
 			?>
 			<?php 
-				if(!empty($device->photo) && ($k == 2)) {
+				if($k == 2) {
 			?>
 					<div id="third_text">
 						<p><?php echo $device->name?></p>
