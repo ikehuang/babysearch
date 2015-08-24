@@ -1,0 +1,39 @@
+#title {
+	list-style-type:none;
+	background:#d9d9d9;
+	text-align:left;
+	font-size:4em;
+	padding:2%;		
+	margin:0;
+}
+
+#title li {
+	display:inline;
+	color:#808080;	
+}
+
+#title a,
+#title a:visited {
+	color:#808080;
+}
+
+#upgrade_container {
+	padding:5%;
+	padding-bottom:10%;
+}
+
+@media (min-width: 360px) {
+  html, body {
+    font-size: 5px;
+	line-height:1px; }
+	
+	#title {
+		padding:20px;
+	}
+}
+@media (min-device-width: 361px) and (max-device-width: 480px) {
+	html, body {
+    font-size: 10px;
+	line-height:1;  	 }
+ }
+}

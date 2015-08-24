@@ -1,0 +1,78 @@
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="/css/index.css?rand=<?php echo rand(); ?>">
+<link rel="stylesheet" type="text/css" href="/css/upgrade_membership.css?rand=<?php echo rand(); ?>">
+<ul id='title'>
+	<li><a href='/'>首頁</a></li>
+	<li> > </li>
+	<li><a href='/user'>管理名單</a></li>
+	<li> > </li>
+	<li><a href='/device/update?sn=<?php echo $device->serial_number?>'><?php echo $device->name?></a></li>
+	<li> > </li>
+	<li style='color:#86c557;'>會員升級</li>
+</ul>
+<div id="upgrade_container">
+	<p class="black_text" style="font-size:5em;margin-top:0;"><strong>升級寵愛會員</strong></p>
+	<div>
+		<p class="black_text" style="float:left;">
+			<?php echo $device->name . ' ' ?>
+			<?php
+					//determine 'kind' from serial number
+					$kind = '';
+					
+					if(!empty($device->serial_number))
+						$kind = $device->serial_number[2];
+					
+					switch($kind){
+						case "Q":
+							$kind = "(Qtag)";
+							break;
+						case "B":
+							$kind = "(Btag)";
+							break;
+						case "N":
+							$kind = "(Ntag)";
+							break;
+						default:
+							break;
+					}
+					
+					echo $kind;
+				?>
+		</p>
+		<p class="black_text" style="float:right;">ID: <?php echo substr($device->serial_number, 5, 14); ?></p>
+	</div>
+	<div class="clear"></div>
+	
+	<p class="red_text" style="float:right;margin:0;padding:0;font-size:3em;">(優惠價)</p>
+	<div class="clear"></div>
+	
+	<div>
+		<p class="black_text" style="float:left;margin-top:0.5em;">一年期會員</p>
+		<p class="orange_text" style="float:right;margin-top:0.5em;">NT $150</p>
+	</div>
+	<div class="clear"></div>
+
+	<!-- 
+		<a href="#">
+			<div name="submit"  style="background:#eb9f4e;width:50%;height:10em;line-height:10em;margin:0 auto;border-radius:20px;margin-top:3em;">
+				<p class="white_text" style="margin:0;padding:0;padding-top:0.7em;text-align:center;">購&nbsp&nbsp&nbsp買</p>
+				<input type="image" src="" border="0" name="submit" alt="">
+			</div>
+		</a>
+	 -->
+
+	<div name="submit"  style="width:50%;height:10em;margin:0 auto;margin-top:3em;">
+		
+		<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+	
+			<input type="hidden" name="cmd" value="_s-xclick">
+			
+			<input type="hidden" name="hosted_button_id" value="8AFFYZVJS3JWA">
+			
+			<input type="image" src="/img/paypal.png" style="width:100%;" border="0" name="submit" alt="PayPal － 更安全、更簡單的線上付款方式！">
+			
+			<img alt="" border="0" src="https://www.paypalobjects.com/zh_TW/i/scr/pixel.gif" width="1" height="1">
+		
+		</form>
+	</div>
+</div>

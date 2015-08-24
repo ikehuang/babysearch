@@ -1,0 +1,72 @@
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width" />
+<link rel="stylesheet" type="text/css" href="/css/index.css?rand=<?php echo rand(); ?>">
+<link rel="stylesheet" type="text/css" href="/css/lost_devices.css?rand=<?php echo rand(); ?>">
+
+<div id="lost_banner">
+	<a href="/user/login"><img src="/img/logo(white).png"/></a>
+	<!-- <div id='logout'><a id="userlink" href="#usermenu"><?php echo $_SESSION['USER']['INFO']['nickname']?></a> / <a href='/user/logout'>登出</a></div>  -->
+</div>
+
+<div id="lost_label">遺失公告
+</div>
+
+<?php 
+			if(!empty($lost_devices)) {
+
+				foreach($lost_devices as $device) {
+
+					switch($device->type) {
+						case "Pets":
+							if(empty($device->photo))
+								$img = "<img src= '/img/default-01.png'/>";
+							else
+								$img = "<img src= '{$device->photo}'/>";
+							break;
+						case "Human":
+							if(empty($device->photo))
+								$img = "<img src= '/img/default-02.png'/>";
+							else
+								$img = "<img src= '{$device->photo}'/>";
+							break;
+						case "Valuables":
+							if(empty($device->photo))
+								$img = "<img src= '/img/default-03.png'/>";
+							else
+								$img = "<img src= '{$device->photo}'/>";
+							break;
+						default:
+							break;
+					}
+?>
+					<a href="/device/index?sn=<?php echo $device->serial_number?>">
+						<div id="lost_device_wrapper">
+							<div id="lost_photo">
+								<?php echo $img?>
+							</div>
+							<div id="lost_info_wrapper">
+								<table>
+									<tr>
+										<th>名稱:</th>
+										<td><?php echo $device->name?></td>
+									</tr>
+									<tr>
+										<th>時間:</th>
+										<td><?php $date = explode(" ", $device->lost_date); echo $date[0]?></td>
+									</tr>
+									<tr>
+										<th>地點:</th>
+										<td><?php echo $device->lost_location?></td>
+									</tr>								
+								</table>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</a>
+					
+		<?php
+				}
+			}		
+		?>
+		
+		<a href="history.go(-1);"><div id="back">回上一頁</div></a>
