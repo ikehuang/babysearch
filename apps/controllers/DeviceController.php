@@ -42,13 +42,22 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 	}
 	
 	public function indexAction() {
+		
+		//check 'mail' parameter to disable push and send mail function
+		$mail = $this->_request->get('mail');
+		
+		if($mail == null)
+			$mail = true;
+		else
+			$mail = false;
+
 		$serial_number = $this->_request->get('sn');
 		$device = Device::findFirst("serial_number = '{$serial_number}'");
 		
 		//redirect according to device status...
 		if($device->status == "new")
 			header("Location: " . "http://{$_SERVER['HTTP_HOST']}/");
-		else if($device->status == "lost") {
+		else if(($device->status == "lost") && ($mail)) {
 			
 			//push notifications when device status lost
 			if(!empty($device->name))
