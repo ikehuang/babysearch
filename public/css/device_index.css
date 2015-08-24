@@ -206,7 +206,8 @@ td {
 @media (min-width: 540px) {
   html, body {
     font-size: 6px;
-    line-height: 1; }  
+    line-height: 1; }
+}  
 @media (min-width: 600px) {
   html, body {
     font-size: 7px;
@@ -237,7 +238,8 @@ td {
 
   html, body {
     font-size: 12px;
-    line-height: 1;  	 }	
+    line-height: 1;  	 }
+}	
 
 @media (min-device-width: 1280px) {
         body {

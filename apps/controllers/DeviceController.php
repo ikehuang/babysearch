@@ -66,11 +66,14 @@ class DeviceController extends \Phalcon\Mvc\Controller {
 					$android_send = "N";
 					$apple_send = "N";
 					foreach($mobiles as $mobile) {
-						if($android_send == 'N') {
+						//check membership condition added
+						//if($android_send == 'N') {
+						if($android_send == 'N' && (date('Y-m-d') <= $device->expiry_date)) {
 							$android_send  = $this->_send_android_notification($msg, $serial_number, $mobile->token);
 						}
 							
-						if($apple_send == "N") {
+						//if($apple_send == "N") {
+						if($apple_send == "N" && (date('Y-m-d') <= $device->expiry_date)) {
 							$apple_send = $this->_send_apple_notification($msg, $serial_number, $mobile->token);
 							
 						}
@@ -2224,5 +2227,10 @@ EOTl
 		
 	}
 
+	public function upgradeMembershipAction() {
+		$serial_number = $this->_request->get('serial_number');
+		$device = Device::findFirst("serial_number = '{$serial_number}'");
+		$this->view->device = $device;
+	}
 }
 

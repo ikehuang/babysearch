@@ -74,6 +74,7 @@ class UserController extends \Phalcon\Mvc\Controller {
 	}
 	
 	public function loginAction() {
+		
 		$this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_ACTION_VIEW);
 		$config = new \Phalcon\Config\Adapter\Ini("../apps/config/config.ini");
 		

@@ -10,7 +10,15 @@ class PhotoController extends \Phalcon\Mvc\Controller {
 		$serial_number = $this->_request->get('serial_number');
 		$device = Device::findFirst("serial_number = '{$serial_number}'");
 		$this->view->device = $device;
-		$this->view->photo_list = Photos::find("did = '{$device->did}'");
+		//$this->view->photo_list = Photos::find("did = '{$device->did}'");
+		
+		//check membership condition added
+		if(date('Y-m-d') <= $device->expiry_date) {
+			$this->view->photo_list = Photos::find(array("did = '{$device->did}'", "order" => "id DESC", "limit" => 10));
+		}
+		else {
+			$this->view->photo_list = Photos::findFirst(array("did = '{$device->did}'", "order" => "id DESC"));
+		}
 	}
 	
 	public function createAction(){

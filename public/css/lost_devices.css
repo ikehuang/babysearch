@@ -48,7 +48,7 @@ body {
 
 #lost_info_wrapper {
 	width:50%;
-	margin:0.75em 1em;
+	margin:2em 1em;
 	float:left;
 }
 
@@ -86,4 +86,25 @@ body {
 	color:#333333;
 	text-align:center;
 	padding:5% 2%;
+}
+
+@media (min-device-width: 320px) {
+  html, body {
+     font-size: 10px;
+	line-height:1px; }
+	
+	#lost_photo {
+		height:12em;
+	}
+	
+	#lost_photo img{
+		height:12em;
+	}
+}
+
+@media (min-width: 1024px) {
+
+  html, body {
+    font-size: 16px;
+    line-height: 1;  	 }	
 }

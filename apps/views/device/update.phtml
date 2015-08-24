@@ -125,26 +125,28 @@
 		 -->
 		<div class="clear"></div>
 	</div>
-	<div class="blue_text" style='margin:5% 0 5% 0; float:left;'>狀態:</div>
-	<div class="green_text" style='margin:5% 0 5% 2%; float:left;'>
-		<?php
-			switch($device->status){
-				case "invalid":
-					echo "<font style='color:EB447E;'>" . '關閉' . "</font>";
-					break;
-				case "lost":
-					echo "<font style='color:red;'>" . '遺失' . "</font>";
-					break;
-				case "normal":
-					echo '正常';
-					break;
-				default:
-					echo '';
-					break;
-			}
-		?>
+	<div style="border-bottom:2px dotted #d9d9d9;">
+		<div class="blue_text" style='margin:5% 0 2.5% 0; float:left;'>狀態:</div>
+		<div class="green_text" style='margin:5% 0 2.5% 2%; float:left;'>
+			<?php
+				switch($device->status){
+					case "invalid":
+						echo "<font style='color:EB447E;'>" . '關閉' . "</font>";
+						break;
+					case "lost":
+						echo "<font style='color:red;'>" . '遺失' . "</font>";
+						break;
+					case "normal":
+						echo '正常';
+						break;
+					default:
+						echo '';
+						break;
+				}
+			?>
+		</div>
+		<div class="clear"></div>
 	</div>
-	<div class="clear"></div>
 	<!-- 
 	<div class="blue_text" style='margin:5% 0 5% 0; float:left;'>用途分類</div>
 	<div class="green_text" style='margin:5% 0 5% 7%; float:left;'>
@@ -174,7 +176,30 @@
 	</div>
 	<div class="clear"></div>
 	-->
-	<div style="margin-bottom:6em;">
+	<div style="padding-bottom:4.5%;border-bottom:2px dotted #d9d9d9;">
+		<?php 
+			//check membership conditions added  (期限:' . $device->expiry_date .')
+			if(date('Y-m-d') <= $device->expiry_date) {
+		?>
+				<span class="blue_text" style='margin-top:5.5%;margin-right:5%;float:left;'>方案 : 寵愛會員 </span>
+		<?php 
+			}
+			else {
+		?>
+				<span class="blue_text" style='margin-top:5.5%;margin-right:5%;float:left;'>方案 : 一般會員</span>
+				
+				<a href="/device/upgradeMembership?serial_number=<?php echo $device->serial_number?>">
+					<div id="upgrade_button">
+					    <p>會員升級</p>
+					</div>
+				</a>
+		<?php
+			}
+		?>
+		<div class="clear"></div>
+	</div>
+	<br>
+	<div style="padding-top:3em;padding-bottom:3em;border-bottom:2px dotted #d9d9d9;">
 		<span class="blue_text" style='margin-right:5%;float:left;'>資料公開</span>
 		<div class="open" style="margin-top:0.5em;float:left;">
 		    <input type="checkbox" name="open" class="open-checkbox" id="myopen" value='y' <?php if($device->open == 'y') echo 'checked';?>>
@@ -186,7 +211,7 @@
 		<div class="clear"></div>
 	</div>
 	<br>
-	<div>
+	<div style="padding-top:3em;">
 		<span id="lost_label" class="blue_text">遺失</span>
 		<div class="status" style="margin-top:0.5em;float:left;">
 		    <input type="checkbox" name="status" class="status-checkbox" id="mystatus" value='lost' <?php if($device->status == 'lost') echo 'checked';?>>
@@ -218,11 +243,11 @@
 			<?php if($notification_count > 0 ) { ?>
 			<span id='notification_count'><?php echo $notification_count; ?></span>
 			<?php } ?>
-			<span style="position:absolute;bottom:20px;right:10%;font-size:5em;" class="white_text">訊息通知</span>
+			<div class="white_text menu_label">訊息通知</div>
 	</a>
 	<a class='menu'  href="/device/updateInfo?serial_number=<?php echo $device->serial_number?>">
 		<img src="/img/bu-02.png" style="width:100%;">
-		<div style="position:absolute;bottom:20px;right:10%;font-size:5em;" class="white_text">基本資料</div>
+		<div class="white_text menu_label">基本資料</div>
 	</a>
 	<div class="clear"></div>
 </div>
@@ -230,11 +255,11 @@
 <div>
 	<a class='menu'  href="/photo/list?serial_number=<?php echo $device->serial_number?>">
 		<img src="/img/bu-03.png" style="width:100%;">
-		<div style="position:absolute;bottom:20px;right:10%;font-size:5em;" class="white_text">相片集</div>
+		<div class="white_text menu_label">相片集</div>
 	</a>
 	<a class='menu'  href="/device/updateLostContact?serial_number=<?php echo $device->serial_number?>">
 		<img src="/img/bu-04.png" style="width:100%;">
-		<div style="position:absolute;bottom:20px;right:10%;font-size:5em;" class="white_text">遺失設定</div>
+		<div class="white_text menu_label">遺失設定</div>
 	</a>
 	<div class="clear"></div>
 </div>

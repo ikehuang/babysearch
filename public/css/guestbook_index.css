@@ -181,7 +181,7 @@ body{
 }
 @media (min-width: 360px) {
   html, body {
-    font-size: 6px;
+    font-size: 5px;
 	line-height:1px; } 
   	
 	#title {
@@ -211,7 +211,8 @@ body{
 @media (min-width: 540px) {
   html, body {
     font-size: 6px;
-    line-height: 1; }  
+    line-height: 1; }
+}  
 @media (min-width: 600px) {
   html, body {
     font-size: 7px;
@@ -242,7 +243,8 @@ body{
 
   html, body {
     font-size: 12px;
-    line-height: 1;  	 }	
+    line-height: 1;  	 }
+}	
 
 @media (min-device-width: 1280px) {
         body {

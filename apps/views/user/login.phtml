@@ -90,13 +90,14 @@
 		if(!empty($lost_devices)) {
 		?>
 		<div id="lost_bulletin">
+			<div id="lost_wrapper">
 			<?php 
 			foreach($lost_devices as $k => $device) {
 
 				switch($device->type) {
 					case "Pets":
 						if(empty($device->photo))
-							$img = "<img src= '/img/default-pet.png'/>";
+							$img = "<img src= '/img/default-01.png'/>";
 						else
 							$img = "<img src= '{$device->photo}'/>";
 						break;
@@ -119,8 +120,46 @@
 			<?php 
 				if(!empty($device->photo) && ($k == 0)) {
 			?>
-					<div id="first">
-						<?php echo $img;?>
+					<a href="/device/index?sn=<?php echo $device->serial_number?>">
+						<div id="first">
+							<?php echo $img;?>
+						</div>
+					</a>
+			<?php 
+				}
+			?>
+			<?php 
+				if(!empty($device->photo) && ($k == 1)) {
+			?>
+					<a href="/device/index?sn=<?php echo $device->serial_number?>">
+						<div id="second">
+							<?php echo $img;?>
+						</div>
+					</a>
+			<?php 
+				}
+			?>
+			<?php 
+				if(!empty($device->photo) && ($k == 2)) {
+			?>
+					<a href="/device/index?sn=<?php echo $device->serial_number?>">
+						<div id="third">
+							<?php echo $img;?>
+						</div>
+					</a>
+			<?php 
+				}	
+			}
+			?>
+			</div>
+			<div class="clear"></div>
+			
+			<?php 
+			foreach($lost_devices as $k => $device) {
+				
+				if(!empty($device->photo) && ($k == 0)) {
+			?>
+					<div id="first_text">
 						<p><?php echo $device->name?></p>
 					</div>
 			<?php 
@@ -129,8 +168,7 @@
 			<?php 
 				if(!empty($device->photo) && ($k == 1)) {
 			?>
-					<div id="second">
-						<?php echo $img;?>
+					<div id="second_text">
 						<p><?php echo $device->name?></p>
 					</div>
 			<?php 
@@ -139,8 +177,7 @@
 			<?php 
 				if(!empty($device->photo) && ($k == 2)) {
 			?>
-					<div id="third">
-						<?php echo $img;?>
+					<div id="third_text">
 						<p><?php echo $device->name?></p>
 					</div>
 			<?php 
@@ -442,8 +479,8 @@ B將保管儲存用戶資料至用戶或B終止服務為止。用戶有權在任
 		
 		<div id="article_container">
 			<p class='green'>聯絡我們</p>
-			<p style="color:#4D4D4D;border-color:#4D4D4D;border-top-style:dotted;border-bottom-style:dotted;padding-top:3%;padding-bottom:3%;margin-bottom:0;">電話 : <a href="tel:028791-1915">(02)8791-1915</a></p>
-			<p style="color:#4D4D4D;border-color:#4D4D4D;border-bottom-style:dotted;padding-top:3%;padding-bottom:3%;margin-top:0;">信箱 : <a href="mailto:sales@traceez.com">sales@traceez.com</a></p>
+			<p style="color:#4D4D4D;border-color:#4D4D4D;border-top-style:dotted;border-bottom-style:dotted;padding-top:3%;padding-bottom:3%;margin-bottom:0;border-width:1px;">電話 : <a href="tel:028791-1915">(02)8791-1915</a></p>
+			<p style="color:#4D4D4D;border-color:#4D4D4D;border-bottom-style:dotted;padding-top:3%;padding-bottom:3%;margin-top:0;border-width:1px;">信箱 : <a href="mailto:sales@traceez.com">sales@traceez.com</a></p>
 		</div>
 		<!-- 
 		<div id="newsfeed_container">
