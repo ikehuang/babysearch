@@ -2236,10 +2236,70 @@ EOTl
 		
 	}
 
-	public function upgradeMembershipAction() {
+	public function upgradeMembershipAction() {		
 		$serial_number = $this->_request->get('serial_number');
 		$device = Device::findFirst("serial_number = '{$serial_number}'");
 		$this->view->device = $device;
+		
+		$config = new \Phalcon\Config\Adapter\Ini("../apps/config/config.ini");
+		$this->view->config = $config;
+	}
+	
+	function ipnAction() {
+		
+		$config = new \Phalcon\Config\Adapter\Ini("../apps/config/config.ini");
+		
+		$this->autoLayout = false;
+		$result = unserialize($data);
+
+		header('HTTP/1.0 200 OK');
+		$payment_status = $_REQUEST['payment_status'];
+		
+		if($payment_status != 'Completed')
+			exit(0);
+		
+		//$domain = $config->paypal->domain;
+		//$domain = Configure::read( 'Paypal.domain' );
+	
+		//$verify_url = 'https://'.$domain.'/cgi-bin/webscr?cmd=_notify-validate&' . http_build_query( $_POST );
+	
+	
+		//if( !strstr( file_get_contents( $verify_url ), 'VERIFIED' ) ) exit(0);
+		
+		
+		if(Payment::count(array("transaction_id = '{$_REQUEST['txn_id']}'")) > 0) {
+			$payment = Payment::findFirst("transaction_id = '{$_REQUEST['txn_id']}'");
+			
+			$payment->payment_info = serialize($_REQUEST);
+			
+			$payment->update();
+		}
+		else {
+		
+			$payment = new Payment();
+			$payment->payment_info = serialize($_REQUEST);
+			$payment->serial_number = $_REQUEST['custom'];
+			$payment->transaction_id = $_REQUEST['txn_id'];
+			
+			//set default timezone
+			date_default_timezone_set( "Asia/Taipei" );
+			$payment->created = date('Y-m-d H:i:s');
+			
+			$payment->create();
+			
+			//extend membership for device
+			$device = Device::findFirst("serial_number = '{$payment->serial_number}'");
+			
+			$device->expiry_date = date('Y-m-d H:i:s', strtotime('+1 years'));
+			
+			$device->update();
+		}
+		
+		//$order_id = $_POST['custom'];
+		//$info['Order']['id'] = $order_id;
+		//$info['Order']['order_payment_status'] = 1;
+		//$this->Order->save( $info );
+		exit(0);
 	}
 }
 

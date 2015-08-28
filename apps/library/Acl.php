@@ -44,6 +44,9 @@ class Acl extends \Phalcon\Mvc\User\Component
 		if( $controller == 'device' && $action == 'index')
 			return;
 		
+		if( $controller == 'device' && $action == 'ipn')
+			return;
+		
 		if( $controller == 'guestbook' && $action == 'create')
 			return;
 		
