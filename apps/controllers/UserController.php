@@ -53,6 +53,16 @@ class UserController extends \Phalcon\Mvc\Controller {
 	
 	public function indexAction() {
 		
+		$app = $this->_request->get('app');
+		
+		if(!empty($app)) {
+			//$this->view->setVar("app", $app);
+			$_SESSION['USER']['INFO']['app'] = $app;
+			$this->view->setVar("app", $app);
+		}
+		else
+			$this->view->setVar("app", $_SESSION['USER']['INFO']['app']);
+
 		$device_list = array();
 		
 		//find user info and all devices belong to the user

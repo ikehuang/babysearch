@@ -30,11 +30,21 @@
 			?>
 		</div>
 		 -->
-		<a id='update_info_link' href="/user/update" class='black_text'>
+		<?php
+			if($app == 'android')
+				echo "<a id='update_info_link' href='/user/update?source&app=android' class='black_text'>";
+			else
+				echo "<a id='update_info_link' href='/user/update' class='black_text'>";
+		?>
 			<img src='/img/06/bu-02.png'/>	<?php echo $user->nickname?> <?php //echo $user['nickname']?>
 		</a>
 		<div style="margin-top:5%;margin-left:10%;margin-bottom:5%;">
-			<a href="/user/update">
+			<?php
+				if($app == 'android')
+					echo "<a href='/user/update?source&app=android'>";
+				else
+					echo "<a href='/user/update'>";
+			?>
 				<div class="black_text" style="text-decoration:none;float:left;">使用者資料</div>
 			</a>
 			<div class="black_text" style="float:left;">&nbsp&nbsp|&nbsp&nbsp</div>
@@ -146,10 +156,16 @@
 	</div>
 EOT;
 		
-			if($status != '停用')
-				echo <<<EOT
+			if($status != '停用') {
+				if($app == 'android')
+					echo <<<EOT
+	<a href='/device/update?sn={$device->serial_number}&source&app=android'>
+EOT;
+				else
+					echo <<<EOT
 	<a href='/device/update?sn={$device->serial_number}'>
 EOT;
+			}
 				echo <<<EOT
 		<div class='device_info'>
 			<p class='black_text' style='font-size:6em;margin-top:0.7em;'>{$name}</p>
