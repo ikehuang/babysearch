@@ -129,7 +129,9 @@ class GuestbookController extends \Phalcon\Mvc\Controller {
 		$serial_number = $this->_request->get('serial_number');
 		$device = Device::findFirst("serial_number = '{$serial_number}'");
 		$this->view->device = $device;
-		$guestbook_list = Guestbook::find("did = '{$device->did}' and checked is null ");
+		//$guestbook_list = Guestbook::find("did = '{$device->did}' and checked is null ");
+		$guestbook_list = Guestbook::find("did = '{$device->did}' and checked = 'N' ");
+
 		$this->view->guestbook_list = $guestbook_list;
 		/*
 		if(isset($_SESSION['USER']['INFO'])) {
